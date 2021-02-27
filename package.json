@@ -1,5 +1,6 @@
 {
-  "name": "react-avancado-boilerplate",
+  "name": "box-shadow",
+  "author": "Guillermo Angulo <anyermo@gmail.com>",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -55,5 +56,12 @@
     "prettier": "^2.2.1",
     "storybook-addon-next-router": "^2.0.4",
     "typescript": "^4.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GuilleAngulo/box-shadow"
+  },
+  "bugs": {
+    "url": "https://github.com/GuilleAngulo/box-shadow/issues"
   }
 }
