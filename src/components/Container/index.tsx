@@ -13,9 +13,11 @@ const Container = ({ boxShadow }: BoxShadowProps) => {
 
   return (
     <S.Wrapper>
-      <Shadow boxShadow={code} />
+      <S.Panel>
+        <Shadow boxShadow={code} />
+        <Tools boxShadow={code} setBoxShadow={setCode} />
+      </S.Panel>
       <Editor boxShadow={code} />
-      <Tools boxShadow={code} setBoxShadow={setCode} />
     </S.Wrapper>
   )
 }

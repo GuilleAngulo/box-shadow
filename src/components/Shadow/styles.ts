@@ -5,6 +5,9 @@ import { Square } from 'styles/shapes'
 import { stringify } from 'utils/helpers'
 
 export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 2rem;
 `
 export const Image = styled(Square)<BoxShadowProps>`

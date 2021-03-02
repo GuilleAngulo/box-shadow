@@ -22,10 +22,13 @@
     ]
   },
   "dependencies": {
+    "@styled-icons/material-outlined": "^10.28.0",
+    "hex-rgb": "^4.2.0",
     "next": "10.0.7",
     "next-pwa": "^5.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "rgb-hex": "^3.0.0",
     "styled-components": "5.2.1",
     "styled-media-query": "^2.1.2"
   },
@@ -36,6 +39,7 @@
     "@storybook/react": "6.1.18",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.1",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.30",
     "@types/react": "^17.0.2",

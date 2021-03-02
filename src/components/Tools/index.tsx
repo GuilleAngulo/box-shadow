@@ -2,6 +2,10 @@ import { Dispatch, SetStateAction } from 'react'
 import { ShadowProps } from 'components/Shadow'
 import * as S from './styles'
 import InputRange from 'components/InputRange'
+import InputColor from 'components/InputColor'
+import Checkbox from 'components/Checkbox'
+
+import hexRgb from 'hex-rgb'
 
 export type ToolProps = {
   boxShadow: ShadowProps[]
@@ -32,6 +36,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
           index
         ) => (
           <S.Item key={index}>
+            <h2>Shadow {index + 1}</h2>
             <InputRange
               label="Horizontal Offset"
               name="horizontal-offset"
@@ -67,6 +72,32 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               max={10}
               initialValue={spreadRadius}
               onInput={(value: number) => onInput(value, index, 'spreadRadius')}
+            />
+            <S.Color>
+              <InputColor
+                initialValue={boxShadow[index].color}
+                onInput={(value: string) =>
+                  setBoxShadow &&
+                  setBoxShadow((prev) => {
+                    const arr = [...prev]
+                    arr[index].color = hexRgb(value)
+                    return arr
+                  })
+                }
+              />
+            </S.Color>
+            <Checkbox
+              onCheck={() =>
+                setBoxShadow &&
+                setBoxShadow((prev) => {
+                  const arr = [...prev]
+                  arr[index].inset = !arr[index].inset
+                  return arr
+                })
+              }
+              isChecked={boxShadow[index].inset}
+              label="Inset"
+              labelColor="black"
             />
           </S.Item>
         )

@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin: 2rem;
 `
 export const Item = styled.div`
-  border: 1px solid black;
+  margin: 0 1rem;
 `
+export const Color = styled.div``

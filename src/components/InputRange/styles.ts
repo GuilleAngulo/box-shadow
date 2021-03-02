@@ -1,10 +1,22 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.main``
 
-export const Input = styled.input``
+export const Input = styled.input`
+  ${({ theme }) => css`
+    &::-webkit-slider-runnable-track {
+      background: ${theme.colors.lightGray};
+      cursor: pointer;
+      border-radius: 1.2rem;
+    }
 
-// export const Input = styled.input`
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb,
+    &::-ms-thumb {
+      background-color: black;
+    }
+  `}// export const Input = styled.input
+`
 //   ${({ theme }) => css`
 //     display: block;
 //     overflow: hidden;

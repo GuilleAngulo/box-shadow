@@ -3,13 +3,18 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.section`
   position: absolute;
-  display: flex;
-  flex-direction: column;
   width: 70vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`
+
+export const Panel = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 8rem;
   ${media.greaterThan('medium')`
-      flex-direction: row;
-    `}
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-around;
+  `}
 `

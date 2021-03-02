@@ -7,9 +7,10 @@ export const Wrapper = styled.div`
 
 export const Pre = styled.pre`
   ${({ theme }) => css`
+    position: relative;
     display: flex;
-    width: 60rem;
-    max-width: 60rem;
+    width: 62rem;
+    max-width: 62rem;
     align-items: center;
     justify-content: center;
     word-wrap: break-word;
@@ -17,7 +18,7 @@ export const Pre = styled.pre`
     overflow-x: auto;
     background-color: ${theme.colors.black};
     border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.small};
+    padding: ${theme.spacings.large} ${theme.spacings.small};
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -36,5 +37,16 @@ export const Code = styled.code`
     font-family: monospace;
     color: ${theme.colors.white};
     background-color: transparent;
+  `}
+`
+
+export const CopyWrapper = styled.div`
+  ${({ theme }) => css`
+    cursor: pointer;
+    color: ${theme.colors.white};
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.2rem;
   `}
 `

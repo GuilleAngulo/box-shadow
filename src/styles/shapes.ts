@@ -7,7 +7,7 @@ export const Square = styled.div`
     align-items: center;
     width: 24rem;
     height: 24rem;
-    font-size: ${theme.font.sizes.large};
+    font-size: ${theme.font.sizes.huge};
     border-radius: ${theme.border.radius};
   `}
 `
