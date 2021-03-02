@@ -1,5 +1,4 @@
 import Container from 'components/Container'
-import { stringify } from 'utils/helpers'
 import mock from 'components/Shadow/mock'
 
 export type HomeProps = {
@@ -7,7 +6,7 @@ export type HomeProps = {
 }
 
 export default function Home({ boxShadow }: HomeProps) {
-  return <Container boxShadow={stringify(boxShadow)} />
+  return <Container boxShadow={boxShadow} />
 }
 
 export type RGBAProps = {

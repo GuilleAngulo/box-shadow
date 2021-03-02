@@ -34,14 +34,13 @@ const InputRange = ({
     <S.Wrapper>
       {!!label && <label htmlFor={name}>{label}</label>}
       <div>
-        <input
+        <S.Input
           type="range"
           min={min}
           max={max}
           onChange={onChange}
           value={value}
           disabled={disabled}
-          aria-live="polite"
           name={name}
           {...(label ? { id: name } : {})}
           {...props}

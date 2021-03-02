@@ -5,7 +5,9 @@ import mock from 'components/Shadow/mock'
 export default {
   title: 'Editor',
   component: Editor,
-  boxShadow: mock
+  args: {
+    boxShadow: mock
+  }
 } as Meta
 
 export const Default: Story<EditorProps> = (args) => <Editor {...args} />
