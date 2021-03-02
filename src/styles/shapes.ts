@@ -5,8 +5,8 @@ export const Square = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20rem;
-    height: 20rem;
+    width: 24rem;
+    height: 24rem;
     font-size: ${theme.font.sizes.large};
     border-radius: ${theme.border.radius};
   `}

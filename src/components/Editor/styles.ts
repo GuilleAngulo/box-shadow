@@ -8,14 +8,16 @@ export const Wrapper = styled.div`
 export const Pre = styled.pre`
   ${({ theme }) => css`
     display: flex;
+    width: 60rem;
+    max-width: 60rem;
     align-items: center;
+    justify-content: center;
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow-x: auto;
     background-color: ${theme.colors.black};
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.small};
-    margin: ${theme.spacings.xxsmall} 0;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
