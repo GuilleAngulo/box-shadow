@@ -8,6 +8,7 @@ export type InputRangeProps = {
   initialValue?: number
   min: number
   max: number
+  icon?: React.ReactNode
   isVertical?: boolean
   disabled?: boolean
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'onInput'>
@@ -20,6 +21,7 @@ const InputRange = ({
   min = 0,
   max = 0,
   isVertical = false,
+  icon,
   onInput,
   ...props
 }: InputRangeProps) => {
@@ -34,8 +36,13 @@ const InputRange = ({
 
   return (
     <S.Wrapper>
-      {!!label && <label htmlFor={name}>{label}</label>}
-      <div>
+      {!!label && (
+        <S.Label htmlFor={name}>
+          {label}
+          {!!icon && icon}
+        </S.Label>
+      )}
+      <S.InputWrapper>
         <S.Input
           type="range"
           min={min}
@@ -45,11 +52,11 @@ const InputRange = ({
           disabled={disabled}
           name={name}
           isVertical={isVertical}
-          orient={isVertical ? 'vertical' : 'horizontal'}
+          // orient={isVertical ? 'vertical' : 'horizontal'}
           {...(label ? { id: name } : {})}
           {...props}
         />
-      </div>
+      </S.InputWrapper>
     </S.Wrapper>
   )
 }

@@ -1,6 +1,21 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.main``
+export const Wrapper = styled.div``
+
+export const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 1.2rem 0;
+`
+
+export const Label = styled.label`
+  display: flex;
+  align-items: center;
+  svg {
+    width: 1.4rem;
+    margin-left: 0.8rem;
+  }
+`
 
 export type InputProps = {
   isVertical?: boolean
@@ -9,8 +24,18 @@ export type InputProps = {
 
 const InputModifiers = {
   vertical: () => css`
-    writing-mode: bt-lr; /* IE */
-    -webkit-appearance: slider-vertical; /* WebKit */
+    writing-mode: bt-lr;
+    /*-webkit-appearance: slider-vertical; */
+    transform: rotate(270deg);
+    &::-webkit-slider-thumb {
+      cursor: ns-resize;
+    }
+    &::-moz-range-thumb {
+      cursor: ns-resize;
+    }
+    &::-ms-thumb {
+      cursor: ns-resize;
+    }
   `
 }
 

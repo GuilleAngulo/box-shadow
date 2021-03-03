@@ -4,7 +4,12 @@ import * as S from './styles'
 import InputRange from 'components/InputRange'
 import InputColor from 'components/InputColor'
 import Checkbox from 'components/Checkbox'
-
+import {
+  MoveHorizontal,
+  MoveVertical,
+  Move
+} from '@styled-icons/boxicons-regular'
+import { BlurOn } from '@styled-icons/material-outlined'
 import hexRgb from 'hex-rgb'
 
 export type ToolProps = {
@@ -43,6 +48,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               min={-100}
               max={100}
               initialValue={horizontalOffset}
+              icon={<MoveHorizontal />}
               onInput={(value: number) =>
                 onInput(value, index, 'horizontalOffset')
               }
@@ -53,6 +59,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               min={-100}
               max={100}
               initialValue={verticalOffset}
+              icon={<MoveVertical />}
               onInput={(value: number) =>
                 onInput(value, index, 'verticalOffset')
               }
@@ -63,6 +70,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               min={0}
               max={100}
               initialValue={blurRadius}
+              icon={<BlurOn />}
               onInput={(value: number) => onInput(value, index, 'blurRadius')}
             />
             <InputRange
@@ -71,6 +79,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               min={-10}
               max={10}
               initialValue={spreadRadius}
+              icon={<Move />}
               onInput={(value: number) => onInput(value, index, 'spreadRadius')}
             />
             <S.Color>
