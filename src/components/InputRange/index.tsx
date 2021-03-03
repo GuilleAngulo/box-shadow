@@ -8,6 +8,7 @@ export type InputRangeProps = {
   initialValue?: number
   min: number
   max: number
+  isVertical?: boolean
   disabled?: boolean
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'onInput'>
 
@@ -18,6 +19,7 @@ const InputRange = ({
   disabled = false,
   min = 0,
   max = 0,
+  isVertical = false,
   onInput,
   ...props
 }: InputRangeProps) => {
@@ -42,6 +44,8 @@ const InputRange = ({
           value={value}
           disabled={disabled}
           name={name}
+          isVertical={isVertical}
+          orient={isVertical ? 'vertical' : 'horizontal'}
           {...(label ? { id: name } : {})}
           {...props}
         />

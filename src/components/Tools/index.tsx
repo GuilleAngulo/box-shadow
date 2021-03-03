@@ -85,6 +85,17 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
                   })
                 }
               />
+              <InputRange
+                label="Opacity"
+                name="opacity"
+                min={0}
+                max={100}
+                initialValue={boxShadow[index].color.alpha * 100}
+                isVertical={true}
+                // onInput={(value: number) =>
+                //   onInput(value, index, 'spreadRadius')
+                // }
+              />
             </S.Color>
             <Checkbox
               onCheck={() =>

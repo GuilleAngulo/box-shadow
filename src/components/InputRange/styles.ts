@@ -2,8 +2,20 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.main``
 
-export const Input = styled.input`
-  ${({ theme }) => css`
+export type InputProps = {
+  isVertical?: boolean
+  orient?: string
+}
+
+const InputModifiers = {
+  vertical: () => css`
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+  `
+}
+
+export const Input = styled.input<InputProps>`
+  ${({ theme, isVertical }) => css`
     &::-webkit-slider-runnable-track {
       background: ${theme.colors.lightGray};
       cursor: pointer;
@@ -15,8 +27,11 @@ export const Input = styled.input`
     &::-ms-thumb {
       background-color: black;
     }
-  `}// export const Input = styled.input
+
+    ${isVertical && InputModifiers.vertical()}
+  `}
 `
+// export const Input = styled.input
 //   ${({ theme }) => css`
 //     display: block;
 //     overflow: hidden;
