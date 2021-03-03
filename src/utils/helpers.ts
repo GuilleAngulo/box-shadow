@@ -10,8 +10,8 @@ export const prettify = (code: string) => {
   })
 }
 
-export const stringify = (shadowStyle: ShadowProps[]) => {
-  const styles =
+export const stringify = (shadowStyle: ShadowProps[], semicolon = true) => {
+  const stylesArray =
     Array.isArray(shadowStyle) &&
     shadowStyle.map(
       ({
@@ -29,5 +29,11 @@ export const stringify = (shadowStyle: ShadowProps[]) => {
         }, ${color.green}, ${color.blue}, ${color.alpha})`
     )
 
-  return Array.isArray(styles) ? styles.join(', ') + ';' : ''
+  let styles = Array.isArray(stylesArray) ? stylesArray.join(', ') : ''
+
+  if (semicolon) {
+    styles += ';'
+  }
+
+  return styles
 }

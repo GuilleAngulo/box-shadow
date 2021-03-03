@@ -1,6 +1,7 @@
+import { BoxShadowProps } from 'components/Shadow'
 import styled, { css } from 'styled-components'
 
-export const Square = styled.div`
+export const Square = styled.div<BoxShadowProps>`
   ${({ theme }) => css`
     display: flex;
     justify-content: center;

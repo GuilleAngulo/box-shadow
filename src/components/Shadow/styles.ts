@@ -10,8 +10,15 @@ export const Wrapper = styled.div`
   justify-content: center;
   margin: 0 2rem;
 `
-export const Image = styled(Square)<BoxShadowProps>`
-  ${({ boxShadow }) => css`
-    ${!!boxShadow && `box-shadow: ${stringify(boxShadow)}`};
-  `}
-`
+
+// export const Image = styled(Square)<BoxShadowProps>`
+//   ${({ boxShadow }) => css`
+//     ${!!boxShadow && `box-shadow: ${stringify(boxShadow)}`}
+//   `}
+// `
+
+export const Image = styled(Square).attrs<BoxShadowProps>((props) => ({
+  style: {
+    boxShadow: stringify(props.boxShadow, false)
+  }
+}))``

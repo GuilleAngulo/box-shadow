@@ -81,6 +81,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
                   setBoxShadow((prev) => {
                     const arr = [...prev]
                     arr[index].color = hexRgb(value)
+                    console.log(arr)
                     return arr
                   })
                 }
@@ -91,10 +92,14 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
                 min={0}
                 max={100}
                 initialValue={boxShadow[index].color.alpha * 100}
-                isVertical={true}
-                // onInput={(value: number) =>
-                //   onInput(value, index, 'spreadRadius')
-                // }
+                onInput={(value: number) =>
+                  setBoxShadow &&
+                  setBoxShadow((prev) => {
+                    const arr = [...prev]
+                    arr[index].color.alpha = value / 100
+                    return arr
+                  })
+                }
               />
             </S.Color>
             <Checkbox
