@@ -16,16 +16,86 @@ const InputModifiers = {
 
 export const Input = styled.input<InputProps>`
   ${({ theme, isVertical }) => css`
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+
+    /** THUMB */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 3rem;
+      width: 1.2rem;
+      border-radius: 0.6rem;
+      border: none;
+      background: ${theme.colors.primary};
+      cursor: ew-resize;
+      margin-top: -1.4rem;
+    }
+
+    &:focus::-webkit-slider-thumb {
+      box-shadow: 0 0 0.5rem ${theme.colors.primary};
+    }
+    &::-moz-range-thumb {
+      -webkit-appearance: none;
+      height: 3rem;
+      width: 1.2rem;
+      border-radius: 0.6rem;
+      border: none;
+      background: ${theme.colors.primary};
+      cursor: ew-resize;
+    }
+    &:focus::-moz-range-thumb {
+      box-shadow: 0 0 0.5rem ${theme.colors.primary};
+    }
+    &::-ms-thumb {
+      -webkit-appearance: none;
+      height: 3rem;
+      width: 1.2rem;
+      border-radius: 0.6rem;
+      border: none;
+      background: ${theme.colors.primary};
+      cursor: ew-resize;
+    }
+    &:focus::-ms-thumb {
+      box-shadow: 0 0 0.5rem ${theme.colors.primary};
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    /** TRACK */
     &::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 0.8rem;
       background: ${theme.colors.lightGray};
       cursor: pointer;
       border-radius: 1.2rem;
     }
+    &:focus::-webkit-slider-runnable-track {
+      border: 0.05rem solid ${`${theme.colors.gray}66`};
+    }
 
-    &::-webkit-slider-thumb,
-    &::-moz-range-thumb,
-    &::-ms-thumb {
-      background-color: black;
+    &::-moz-range-track {
+      width: 100%;
+      height: 0.8rem;
+      background: ${theme.colors.lightGray};
+      cursor: pointer;
+      border-radius: 1.2rem;
+    }
+    &:focus::-moz-range-track {
+      border: 0.05rem solid ${`${theme.colors.gray}66`};
+    }
+
+    &::-ms-track {
+      width: 100%;
+      height: 0.8rem;
+      background: ${theme.colors.lightGray};
+      cursor: pointer;
+      border-radius: 1.2rem;
+    }
+    &:focus::-ms-track {
+      border: 0.05rem solid ${`${theme.colors.gray}66`};
     }
 
     ${isVertical && InputModifiers.vertical()}
