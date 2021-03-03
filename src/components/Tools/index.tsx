@@ -11,6 +11,7 @@ import {
 } from '@styled-icons/boxicons-regular'
 import { BlurOn } from '@styled-icons/material-outlined'
 import hexRgb from 'hex-rgb'
+import Color from 'components/Color'
 
 export type ToolProps = {
   boxShadow: ShadowProps[]
@@ -82,7 +83,7 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               icon={<Move />}
               onInput={(value: number) => onInput(value, index, 'spreadRadius')}
             />
-            <S.Color>
+            {/* <S.Color>
               <InputColor
                 initialValue={boxShadow[index].color}
                 onInput={(value: string) =>
@@ -110,7 +111,12 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
                   })
                 }
               />
-            </S.Color>
+            </S.Color> */}
+            <Color
+              boxShadow={boxShadow}
+              setBoxShadow={setBoxShadow}
+              index={index}
+            />
             <Checkbox
               onCheck={() =>
                 setBoxShadow &&

@@ -10,7 +10,7 @@ export type EditorProps = {
 
 const Editor = ({ boxShadow }: EditorProps) => {
   const [copied, setCopied] = useState(false)
-  const handleCopyUrl = async () => {
+  const handleCopyCode = async () => {
     try {
       await navigator.clipboard.writeText(prettify(stringify(boxShadow)))
       setCopied(true)
@@ -23,7 +23,7 @@ const Editor = ({ boxShadow }: EditorProps) => {
   return (
     <S.Wrapper>
       <S.Pre>
-        <S.CopyWrapper onClick={handleCopyUrl} role="button">
+        <S.CopyWrapper onClick={handleCopyCode} role="button">
           {copied ? (
             <span>Copied ✓</span>
           ) : (
