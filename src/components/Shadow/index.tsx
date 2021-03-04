@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import * as S from './styles'
 
 export type RGBAProps = {
@@ -16,15 +17,31 @@ export type ShadowProps = {
   inset?: boolean
 }
 
+export type Shape = 'square' | 'circle'
+
 export type BoxShadowProps = {
   boxShadow: ShadowProps[]
   children?: React.ReactNode
+  initialShape?: Shape
 }
 
-const Shadow = ({ boxShadow, children }: BoxShadowProps) => (
-  <S.Wrapper>
-    <S.Image boxShadow={boxShadow}>{children}</S.Image>
-  </S.Wrapper>
-)
+const Shadow = ({
+  boxShadow,
+  children,
+  initialShape = 'square'
+}: BoxShadowProps) => {
+  const [shape] = useState(initialShape)
 
+  const showImage = (type: Shape) => {
+    switch (type) {
+      default:
+        return (
+          <S.Simple shape={type} boxShadow={boxShadow}>
+            {children}
+          </S.Simple>
+        )
+    }
+  }
+  return <S.Wrapper>{showImage(shape)}</S.Wrapper>
+}
 export default Shadow

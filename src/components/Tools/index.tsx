@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from 'react'
 import { ShadowProps } from 'components/Shadow'
 import * as S from './styles'
 import InputRange from 'components/InputRange'
-import InputColor from 'components/InputColor'
 import Checkbox from 'components/Checkbox'
 import {
   MoveHorizontal,
@@ -10,7 +9,6 @@ import {
   Move
 } from '@styled-icons/boxicons-regular'
 import { BlurOn } from '@styled-icons/material-outlined'
-import hexRgb from 'hex-rgb'
 import Color from 'components/Color'
 
 export type ToolProps = {
@@ -83,35 +81,6 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
               icon={<Move />}
               onInput={(value: number) => onInput(value, index, 'spreadRadius')}
             />
-            {/* <S.Color>
-              <InputColor
-                initialValue={boxShadow[index].color}
-                onInput={(value: string) =>
-                  setBoxShadow &&
-                  setBoxShadow((prev) => {
-                    const arr = [...prev]
-                    arr[index].color = hexRgb(value)
-                    console.log(arr)
-                    return arr
-                  })
-                }
-              />
-              <InputRange
-                label="Opacity"
-                name="opacity"
-                min={0}
-                max={100}
-                initialValue={boxShadow[index].color.alpha * 100}
-                onInput={(value: number) =>
-                  setBoxShadow &&
-                  setBoxShadow((prev) => {
-                    const arr = [...prev]
-                    arr[index].color.alpha = value / 100
-                    return arr
-                  })
-                }
-              />
-            </S.Color> */}
             <Color
               boxShadow={boxShadow}
               setBoxShadow={setBoxShadow}
@@ -138,11 +107,3 @@ const Tools = ({ boxShadow, setBoxShadow }: ToolProps) => {
 }
 
 export default Tools
-
-// export default Tools
-// horizontalOffset: number
-// verticalOffset: number
-// blurRadius: number
-// spreadRadius: number
-// color: RGBAProps
-// inset?: boolean

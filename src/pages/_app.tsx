@@ -5,8 +5,14 @@ import Head from 'next/head'
 import theme from 'styles/theme'
 import GlobalStyles from 'styles/global'
 import 'styles/fonts.css'
+import { useState } from 'react'
+import SwitchButton from 'components/Switch'
 
 function App({ Component, pageProps }: AppProps) {
+  const [darkMode, setDarkMode] = useState(false)
+  const themeToggler = () => {
+    setDarkMode((prev) => !prev)
+  }
   return (
     <ThemeProvider theme={theme}>
       <Head>
@@ -16,7 +22,8 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="description" content="" />
       </Head>
-      <GlobalStyles />
+      <GlobalStyles dark={darkMode} />
+      <SwitchButton onChange={themeToggler} checked={darkMode} />
       <Component {...pageProps} />
     </ThemeProvider>
   )

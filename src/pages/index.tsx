@@ -1,5 +1,6 @@
 import Container from 'components/Container'
-import mock from 'components/Shadow/mock'
+// import mock from 'components/Shadow/mock'
+import mock from 'components/Shadow/examples'
 
 export type HomeProps = {
   boxShadow: ShadowProps[]

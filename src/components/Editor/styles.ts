@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  grid-column: auto / span 2;
 `
 
 export const Pre = styled.pre`
@@ -22,6 +23,7 @@ export const Pre = styled.pre`
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    border: 0.2rem solid ${theme.colors.white};
   `}
 `
 

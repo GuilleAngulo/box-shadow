@@ -16,8 +16,8 @@ const Container = ({ boxShadow }: BoxShadowProps) => {
       <S.Panel>
         <Shadow boxShadow={code} />
         <Tools boxShadow={code} setBoxShadow={setCode} />
+        <Editor boxShadow={code} />
       </S.Panel>
-      <Editor boxShadow={code} />
     </S.Wrapper>
   )
 }
