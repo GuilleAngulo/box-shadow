@@ -1,5 +1,5 @@
-import { useState, InputHTMLAttributes } from 'react'
-import { RGBAProps } from 'components/Shadow'
+import { InputHTMLAttributes, useMemo } from 'react'
+import { RGBAProps } from 'types'
 import rgbHex from 'rgb-hex'
 
 import * as S from './styles'
@@ -19,18 +19,16 @@ const InputColor = ({
   onInput,
   ...props
 }: InputRangeProps) => {
-  const [value, setValue] = useState(() => {
+  const value = useMemo(() => {
     if (initialValue) {
       const { red, green, blue } = initialValue
-      // return rgbHex(red, green, blue, alpha)
       return `#${rgbHex(red, green, blue)}`
     }
     return
-  })
+  }, [initialValue])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value
-    setValue(newValue)
 
     !!onInput && onInput(newValue)
   }

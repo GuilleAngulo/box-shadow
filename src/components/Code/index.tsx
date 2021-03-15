@@ -1,15 +1,13 @@
 import { useState } from 'react'
-import * as S from './styles'
 import { stringify, prettify } from 'utils/helpers'
-import { ShadowProps } from 'components/Shadow'
+import { useBoxShadow } from 'hooks/use-box-shadow'
+
+import * as S from './styles'
 import { ContentCopy } from '@styled-icons/material-outlined'
 
-export type EditorProps = {
-  boxShadow: ShadowProps[]
-}
-
-const Editor = ({ boxShadow }: EditorProps) => {
+const Editor = () => {
   const [copied, setCopied] = useState(false)
+  const { boxShadow = [] } = useBoxShadow()
   const handleCopyCode = async () => {
     try {
       await navigator.clipboard.writeText(prettify(stringify(boxShadow)))
@@ -30,7 +28,7 @@ const Editor = ({ boxShadow }: EditorProps) => {
             <ContentCopy size={20} aria-label="Copy Code" />
           )}
         </S.CopyWrapper>
-        <S.Code>{prettify(stringify(boxShadow))}</S.Code>
+        <S.Code>{prettify(stringify(boxShadow, false))}</S.Code>
       </S.Pre>
     </S.Wrapper>
   )

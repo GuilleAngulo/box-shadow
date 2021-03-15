@@ -1,5 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { Shape, ShadowProps } from '.'
+import { ShadowProps } from 'types'
 import { stringify } from 'utils/helpers'
 
 export const Wrapper = styled.div`
@@ -7,14 +7,13 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 2rem;
     border-radius: ${theme.border.radius};
   `}
 `
 
-export type SimpleProps = {
+export type ShapeProps = {
   boxShadow: ShadowProps[]
-  shape?: Shape
+  type: 'square' | 'circle'
 }
 
 const shapeModifiers = {
@@ -26,12 +25,12 @@ const shapeModifiers = {
   `
 }
 
-export const Simple = styled.div.attrs<SimpleProps>((props) => ({
+export const Shape = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
   style: {
-    boxShadow: stringify(props.boxShadow, false)
+    boxShadow: stringify(boxShadow, false)
   }
-}))<SimpleProps>`
-  ${({ theme, shape }) => css`
+}))<ShapeProps>`
+  ${({ theme, type }) => css`
     width: 24rem;
     height: 24rem;
     display: flex;
@@ -39,6 +38,6 @@ export const Simple = styled.div.attrs<SimpleProps>((props) => ({
     align-items: center;
     font-size: ${theme.font.sizes.huge};
 
-    ${!!shape && shapeModifiers[shape](theme)};
+    ${!!type && shapeModifiers[type](theme)};
   `}
 `

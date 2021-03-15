@@ -2907,6 +2907,14 @@
     "@babel/runtime" "^7.10.5"
     "@emotion/is-prop-valid" "^0.8.7"
 
+"@styled-icons/typicons@^10.18.0":
+  version "10.18.0"
+  resolved "https://registry.yarnpkg.com/@styled-icons/typicons/-/typicons-10.18.0.tgz#87924805c219d4eda6193e87643a71b3ff10ac12"
+  integrity sha512-VN9vEzeAn5//uUvBN2N/OAXnrC6zCERu1eXUiXmYTwd7n8ZoMMASKmVWrAho20YmhUjEPZdSvS1cJ/pzV9K6Zg==
+  dependencies:
+    "@babel/runtime" "^7.10.5"
+    "@styled-icons/styled-icon" "^10.6.0"
+
 "@surma/rollup-plugin-off-main-thread@^1.4.1":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-1.4.2.tgz#e6786b6af5799f82f7ab3a82e53f6182d2b91a58"
@@ -10900,6 +10908,13 @@ polished@^3.4.4:
   integrity sha512-b4OViUOihwV0icb9PHmWbR+vPqaSzSAEbgLskvb7ANPATVXGiYv/TQFHQo65S53WU9i5EQ1I03YDOJW7K0bmYg==
   dependencies:
     "@babel/runtime" "^7.9.2"
+
+polished@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-4.1.1.tgz#40442cc973348e466f2918cdf647531bb6c29bfb"
+  integrity sha512-4MZTrfPMPRLD7ac8b+2JZxei58zw6N1hFkdBDERif5Tlj19y3vPoPusrLG+mJIlPTGnUlKw3+yWz0BazvMx1vg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"

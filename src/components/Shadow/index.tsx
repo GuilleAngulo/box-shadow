@@ -1,47 +1,26 @@
-import { useState } from 'react'
+import { useBoxShadow } from 'hooks/use-box-shadow'
+
 import * as S from './styles'
 
-export type RGBAProps = {
-  red: number
-  green: number
-  blue: number
-  alpha: number
-}
-
-export type ShadowProps = {
-  horizontalOffset: number
-  verticalOffset: number
-  blurRadius: number
-  spreadRadius: number
-  color: RGBAProps
-  inset?: boolean
-}
-
-export type Shape = 'square' | 'circle'
-
 export type BoxShadowProps = {
-  boxShadow: ShadowProps[]
+  type?: string
   children?: React.ReactNode
-  initialShape?: Shape
 }
 
-const Shadow = ({
-  boxShadow,
-  children,
-  initialShape = 'square'
-}: BoxShadowProps) => {
-  const [shape] = useState(initialShape)
+const Shadow = ({ children, type = 'square' }: BoxShadowProps) => {
+  const { boxShadow = [] } = useBoxShadow()
 
-  const showImage = (type: Shape) => {
+  const shape = (type: string) => {
     switch (type) {
+      case 'square':
+      case 'circle':
+        return <S.Shape boxShadow={boxShadow} type={type} />
+
       default:
-        return (
-          <S.Simple shape={type} boxShadow={boxShadow}>
-            {children}
-          </S.Simple>
-        )
+        return <div></div>
     }
   }
-  return <S.Wrapper>{showImage(shape)}</S.Wrapper>
+
+  return <S.Wrapper>{shape(type)}</S.Wrapper>
 }
 export default Shadow

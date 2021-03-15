@@ -2,25 +2,27 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 export const Wrapper = styled.section`
-  ${({ theme }) => css`
-    display: grid;
-    grid-gap: ${theme.grid.gutter};
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 2rem;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+`
+export const Panel = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  ${media.greaterThan('medium')`
+    grid-template-columns: 60rem auto;
   `}
 `
 
-export const Panel = styled.div`
+export const Display = styled.div`
   ${({ theme }) => css`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: ${theme.grid.gutter};
-    margin-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    padding: 8rem ${theme.spacings.small};
+    padding-bottom: ${theme.spacings.small};
     ${media.greaterThan('medium')`
-      grid-template-columns: repeat(2, 1fr);
-      justify-content: space-around;
+      gap: 12rem;
     `}
   `}
 `

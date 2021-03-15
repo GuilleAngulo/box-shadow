@@ -6,7 +6,7 @@ import {
 } from 'styled-components'
 
 type GlobalStylesProps = {
-  dark?: boolean
+  removeBg?: boolean
 }
 
 const GlobalStyles: GlobalStyleComponent<
@@ -26,7 +26,8 @@ const GlobalStyles: GlobalStyleComponent<
     }
   }
 
-  ${({ theme, dark }) => css`
+
+  ${({ theme }) => css`
     html {
       font-size: 62.5%;
     }
@@ -34,16 +35,8 @@ const GlobalStyles: GlobalStyleComponent<
     body {
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
-
-      ${!dark
-        ? css`
-            background-color: ${theme.colors.white};
-            color: ${theme.colors.black};
-          `
-        : css`
-            background-color: ${theme.colors.black};
-            color: ${theme.colors.white};
-          `}
+      background-color: ${theme.colors.background};
+      color: ${theme.colors.font};
     }
   `}
 `

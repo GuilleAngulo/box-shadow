@@ -1,22 +1,18 @@
-import Editor from 'components/Editor'
-import Shadow, { BoxShadowProps } from 'components/Shadow'
+import Code from 'components/Code'
+import Shadow from 'components/Shadow'
 import Tools from 'components/Tools'
-import { useState } from 'react'
+
 import * as S from './styles'
 
-export type ContainerProps = {
-  boxShadow: string
-}
-
-const Container = ({ boxShadow }: BoxShadowProps) => {
-  const [code, setCode] = useState(boxShadow)
-
+const Container = () => {
   return (
     <S.Wrapper>
       <S.Panel>
-        <Shadow boxShadow={code} />
-        <Tools boxShadow={code} setBoxShadow={setCode} />
-        <Editor boxShadow={code} />
+        <S.Display>
+          <Shadow />
+          <Code />
+        </S.Display>
+        <Tools />
       </S.Panel>
     </S.Wrapper>
   )

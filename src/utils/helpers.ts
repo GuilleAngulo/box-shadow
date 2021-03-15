@@ -1,11 +1,12 @@
 import parserPostcss from 'prettier/parser-postcss'
 import prettier from 'prettier/standalone'
-import { ShadowProps } from 'components/Shadow'
+import { ShadowProps } from 'types'
 
 export const prettify = (code: string) => {
-  const css = `box-shadow: ${code}`
+  const css = code && `box-shadow: ${code}`
   return prettier.format(css, {
     parser: 'css',
+    printWidth: 70,
     plugins: [parserPostcss]
   })
 }

@@ -1,31 +1,34 @@
 import Switch from 'react-switch'
+import { lightTheme, darkTheme } from 'styles/theme'
 import * as S from './styles'
-import theme from 'styles/theme'
-
-const {
-  colors: { primary, lightGray }
-} = theme
 
 export type SwitchProps = {
-  onChange: () => void
-  checked: boolean
+  toggleTheme: () => void
+  isChecked: boolean
 }
 
-const SwitchButton = ({ onChange, checked }: SwitchProps) => {
+const SwitchButton = ({ toggleTheme, isChecked }: SwitchProps) => {
+  const {
+    colors: { primary: lightPrimary, secondary: lightSecondary }
+  } = lightTheme
+  const {
+    colors: { primary: darkPrimary, secondary: darkSecondary }
+  } = darkTheme
+
   return (
     <S.Wrapper>
       <Switch
-        onChange={onChange}
-        checked={checked}
+        onChange={() => toggleTheme()}
+        checked={isChecked}
         checkedIcon={false}
         uncheckedIcon={false}
         height={15}
         width={40}
         handleDiameter={20}
-        offColor={lightGray}
-        onColor={primary}
-        offHandleColor={primary}
-        onHandleColor={lightGray}
+        offColor={lightSecondary}
+        onColor={darkSecondary}
+        offHandleColor={lightPrimary}
+        onHandleColor={darkPrimary}
       />
     </S.Wrapper>
   )

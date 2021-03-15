@@ -1,4 +1,4 @@
-import { useState, InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react'
 
 import * as S from './styles'
 
@@ -25,13 +25,10 @@ const InputRange = ({
   onInput,
   ...props
 }: InputRangeProps) => {
-  const [value, setValue] = useState(initialValue)
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.currentTarget.value
-    setValue(Number(newValue))
+    const newValue = Number(e.currentTarget.value)
 
-    !!onInput && onInput(Number(newValue))
+    !!onInput && onInput(newValue)
   }
 
   return (
@@ -48,7 +45,7 @@ const InputRange = ({
           min={min}
           max={max}
           onChange={onChange}
-          value={value}
+          value={initialValue}
           disabled={disabled}
           name={name}
           isVertical={isVertical}

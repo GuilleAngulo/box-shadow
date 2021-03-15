@@ -93,34 +93,34 @@ export const Input = styled.input<InputProps>`
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.lightGray};
+      background: ${theme.colors.secondary};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-webkit-slider-runnable-track {
-      border: 0.05rem solid ${`${theme.colors.gray}66`};
+      border: 0.05rem solid ${`${theme.colors.border}66`};
     }
 
     &::-moz-range-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.lightGray};
+      background: ${theme.colors.secondary};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-moz-range-track {
-      border: 0.05rem solid ${`${theme.colors.gray}66`};
+      border: 0.05rem solid ${`${theme.colors.border}66`};
     }
 
     &::-ms-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.lightGray};
+      background: ${theme.colors.secondary};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-ms-track {
-      border: 0.05rem solid ${`${theme.colors.gray}66`};
+      border: 0.05rem solid ${`${theme.colors.border}66`};
     }
 
     ${isVertical && InputModifiers.vertical()}

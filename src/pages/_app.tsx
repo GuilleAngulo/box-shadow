@@ -1,30 +1,36 @@
 import { AppProps } from 'next/app'
-import { ThemeProvider } from 'styled-components'
+import { DefaultTheme, ThemeProvider } from 'styled-components'
+import { BoxShadowProvider } from 'hooks/use-box-shadow'
 import Head from 'next/head'
 
-import theme from 'styles/theme'
+import { lightTheme, darkTheme } from 'styles/theme'
 import GlobalStyles from 'styles/global'
 import 'styles/fonts.css'
-import { useState } from 'react'
 import SwitchButton from 'components/Switch'
+import { useDarkMode } from 'hooks/use-dark-mode'
 
 function App({ Component, pageProps }: AppProps) {
-  const [darkMode, setDarkMode] = useState(false)
-  const themeToggler = () => {
-    setDarkMode((prev) => !prev)
-  }
+  const [theme, themeToggler, isMounted] = useDarkMode()
+  const themeMode = theme === 'light' ? lightTheme : darkTheme
+
+  if (!isMounted) return null
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>Box Shadow</title>
-        <link rel="shortcut icon" href="/img/icon-512.png" />
-        <link rel="apple-touch-icon" href="/img/icon-512.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="description" content="" />
-      </Head>
-      <GlobalStyles dark={darkMode} />
-      <SwitchButton onChange={themeToggler} checked={darkMode} />
-      <Component {...pageProps} />
+    <ThemeProvider theme={themeMode as DefaultTheme}>
+      <BoxShadowProvider>
+        <Head>
+          <title>Box Shadow</title>
+          <link rel="shortcut icon" href="/img/icon-512.png" />
+          <link rel="apple-touch-icon" href="/img/icon-512.png" />
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="description" content="" />
+        </Head>
+        <GlobalStyles />
+        <SwitchButton
+          toggleTheme={themeToggler}
+          isChecked={theme === 'dark' ? true : false}
+        />
+        <Component {...pageProps} />
+      </BoxShadowProvider>
     </ThemeProvider>
   )
 }
