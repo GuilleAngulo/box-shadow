@@ -8,7 +8,7 @@ import {
   Move
 } from '@styled-icons/boxicons-regular'
 import { BlurOn } from '@styled-icons/material-outlined'
-import { DeleteOutline as Delete } from '@styled-icons/typicons'
+import { Delete } from '@styled-icons/typicons'
 import * as S from './styles'
 
 export type ShadowToolProps = {

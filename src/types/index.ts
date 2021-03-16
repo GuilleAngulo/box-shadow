@@ -82,3 +82,5 @@ export type BoxShadowKeyProps =
   | 'inset'
   | 'color'
   | 'opacity'
+
+export type Shape = 'square' | 'circle'

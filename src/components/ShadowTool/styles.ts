@@ -15,8 +15,8 @@ export const Delete = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.2rem;
-    margin-top: -0.4rem;
+    padding: 0.25rem;
+    margin-top: -0.3rem;
     cursor: pointer;
 
     &:hover {

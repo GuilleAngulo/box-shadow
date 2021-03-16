@@ -1,11 +1,12 @@
 import hexRgb from 'hex-rgb'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { AnimationProps, BoxShadowKeyProps, ShadowProps } from 'types'
+import { AnimationProps, BoxShadowKeyProps, ShadowProps, Shape } from 'types'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
+  shape?: Shape
   animation?: AnimationProps
   keyframe?: Keyframe[]
   setBoxShadowProperty: (
@@ -44,10 +45,10 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
 
   useEffect(() => {
-    const data = getStorageItem(BOXSHADOW_KEY)
+    const boxShadowData = getStorageItem(BOXSHADOW_KEY)
 
-    if (data) {
-      setBoxShadow(data)
+    if (boxShadowData) {
+      setBoxShadow(boxShadowData)
     }
   }, [])
 

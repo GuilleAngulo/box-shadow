@@ -12,7 +12,7 @@ export const Label = styled.label`
   display: flex;
   align-items: center;
   svg {
-    width: 1.4rem;
+    width: 1.7rem;
     margin-left: 0.8rem;
   }
 `
@@ -48,13 +48,13 @@ export const Input = styled.input<InputProps>`
     /** THUMB */
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 3rem;
+      height: 2.6rem;
       width: 1.2rem;
       border-radius: 0.6rem;
       border: none;
       background: ${theme.colors.primary};
       cursor: ew-resize;
-      margin-top: -1.4rem;
+      margin-top: -1rem;
     }
 
     &:focus::-webkit-slider-thumb {
@@ -62,7 +62,7 @@ export const Input = styled.input<InputProps>`
     }
     &::-moz-range-thumb {
       -webkit-appearance: none;
-      height: 3rem;
+      height: 2.6rem;
       width: 1.2rem;
       border-radius: 0.6rem;
       border: none;
@@ -74,7 +74,7 @@ export const Input = styled.input<InputProps>`
     }
     &::-ms-thumb {
       -webkit-appearance: none;
-      height: 3rem;
+      height: 2.6rem;
       width: 1.2rem;
       border-radius: 0.6rem;
       border: none;

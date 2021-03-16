@@ -1,10 +1,11 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { ShadowProps } from 'types'
+import { ShadowProps, Shape } from 'types'
 import { stringify } from 'utils/helpers'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: ${theme.border.radius};
@@ -13,7 +14,7 @@ export const Wrapper = styled.div`
 
 export type ShapeProps = {
   boxShadow: ShadowProps[]
-  type: 'square' | 'circle'
+  shape: Shape
 }
 
 const shapeModifiers = {
@@ -25,19 +26,20 @@ const shapeModifiers = {
   `
 }
 
-export const Shape = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
+export const ShapeBlock = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
   style: {
     boxShadow: stringify(boxShadow, false)
   }
 }))<ShapeProps>`
-  ${({ theme, type }) => css`
+  ${({ theme, shape }) => css`
     width: 24rem;
     height: 24rem;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: ${theme.font.sizes.huge};
+    transition: ${theme.transition.default};
 
-    ${!!type && shapeModifiers[type](theme)};
+    ${!!shape && shapeModifiers[shape](theme)};
   `}
 `
