@@ -18,6 +18,10 @@ export const ToolsWrapper = styled.div`
     padding: 0 ${theme.spacings.small};
     margin: auto;
     margin-top: 4rem;
+    ${media.lessThan('small')`
+      grid-template-columns: 1fr;
+      width: 100%;
+    `}
     ${media.greaterThan('large')`
       grid-template-columns: repeat(3, minmax(20rem, 1fr));
     `}
