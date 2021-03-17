@@ -18,11 +18,11 @@ function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={themeMode as DefaultTheme}>
       <BoxShadowProvider>
         <Head>
-          <title>Box Shadow</title>
-          <link rel="shortcut icon" href="/img/icon-512.png" />
-          <link rel="apple-touch-icon" href="/img/icon-512.png" />
+          <title>Box Shadow Tool</title>
+          <link rel="shortcut icon" href="/img/favicon.ico" />
+          <link rel="apple-touch-icon" href="/img/icon.png" />
           <link rel="manifest" href="/manifest.json" />
-          <meta name="description" content="" />
+          <meta name="description" content="CSS Box Shadow Tool" />
         </Head>
         <GlobalStyles />
         <SwitchButton

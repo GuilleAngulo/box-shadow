@@ -3,6 +3,7 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 3rem;
 `
 export const Item = styled.div`
   margin: 0 1rem;
@@ -17,7 +18,7 @@ export const ToolsWrapper = styled.div`
     grid-row-gap: 1.4rem;
     padding: 0 ${theme.spacings.small};
     margin: auto;
-    margin-top: 4rem;
+    margin-top: 3rem;
     ${media.lessThan('small')`
       grid-template-columns: 1fr;
       width: 100%;
@@ -34,7 +35,6 @@ export const Add = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1rem;
-    height: auto;
     min-height: 32rem;
     border-radius: ${theme.border.radius};
     border: 2px dashed ${theme.colors.border};

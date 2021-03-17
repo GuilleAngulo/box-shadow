@@ -17,7 +17,6 @@ export type BoxShadowContextData = {
   removeBoxShadow: (index: number) => void
   addBoxShadow: (newBoxShadow?: ShadowProps[], isDarkMode?: boolean) => void
   clearBoxShadow: () => void
-  isEmpty: () => boolean
 }
 
 const BOXSHADOW_KEY = 'boxShadow'
@@ -29,8 +28,7 @@ const BoxShadowContextDefaultValues = {
   setBoxShadowProperty: () => null,
   removeBoxShadow: () => null,
   addBoxShadow: () => null,
-  clearBoxShadow: () => null,
-  isEmpty: () => false
+  clearBoxShadow: () => null
 }
 
 export const BoxShadowContext = createContext<BoxShadowContextData>(
@@ -45,11 +43,9 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
 
   useEffect(() => {
-    const boxShadowData = getStorageItem(BOXSHADOW_KEY)
+    const data = getStorageItem(BOXSHADOW_KEY)
 
-    if (boxShadowData) {
-      setBoxShadow(boxShadowData)
-    }
+    data ? setBoxShadow(data) : addBoxShadow()
   }, [])
 
   const saveBoxShadow = (boxShadow: ShadowProps[]) => {
@@ -116,10 +112,6 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
     saveBoxShadow([])
   }
 
-  const isEmpty = () => {
-    return !boxShadow.length
-  }
-
   return (
     <BoxShadowContext.Provider
       value={{
@@ -127,8 +119,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
         setBoxShadowProperty,
         removeBoxShadow,
         addBoxShadow,
-        clearBoxShadow,
-        isEmpty
+        clearBoxShadow
       }}
     >
       {children}
