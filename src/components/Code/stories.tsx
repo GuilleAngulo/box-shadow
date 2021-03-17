@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import Editor, { EditorProps } from '.'
+import Editor from '.'
 import mock from 'components/Shadow/mock'
 
 export default {
@@ -10,4 +10,4 @@ export default {
   }
 } as Meta
 
-export const Default: Story<EditorProps> = (args) => <Editor {...args} />
+export const Default: Story = (args) => <Editor {...args} />
