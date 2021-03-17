@@ -6,7 +6,6 @@ export type CheckboxProps = {
   isChecked?: boolean
   label?: string
   labelFor?: string
-  labelColor?: 'white' | 'black'
   value?: string | ReadonlyArray<string> | number
 } & InputHTMLAttributes<HTMLInputElement>
 
@@ -15,7 +14,6 @@ const Checkbox = ({
   isChecked = false,
   label,
   labelFor = '',
-  labelColor = 'white',
   value,
   ...props
 }: CheckboxProps) => {
@@ -37,11 +35,7 @@ const Checkbox = ({
         value={value}
         {...props}
       />
-      {!!label && (
-        <S.Label htmlFor={labelFor} labelColor={labelColor}>
-          {label}
-        </S.Label>
-      )}
+      {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
     </S.Wrapper>
   )
 }

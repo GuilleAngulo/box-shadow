@@ -1,47 +1,30 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
+import { useState } from 'react'
 import Checkbox, { CheckboxProps } from '.'
 
 export default {
   title: 'Form/Checkbox',
   component: Checkbox,
   parameters: {
-    layout: 'fullscreen',
-    backgrounds: {
-      default: 'won-dark'
-    }
+    layout: 'fullscreen'
   },
   argTypes: {
     onCheck: { action: 'checked' }
   }
 } as Meta
 
-export const Default: Story<CheckboxProps> = (args) => (
-  <>
+export const Default: Story<CheckboxProps> = (args) => {
+  const [value, setValue] = useState(false)
+  return (
     <div style={{ padding: 10 }}>
       <Checkbox
         name="category"
         label="Action"
         labelFor="action"
-        isChecked
+        isChecked={value}
+        onCheck={setValue}
         {...args}
       />
     </div>
-    <div style={{ padding: 10 }}>
-      <Checkbox
-        name="category"
-        label="Adventure"
-        labelFor="adventure"
-        {...args}
-      />
-    </div>
-    <div style={{ padding: 10 }}>
-      <Checkbox
-        name="category"
-        label="Strategy"
-        labelFor="strategy"
-        isChecked
-        {...args}
-      />
-    </div>
-  </>
-)
+  )
+}

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  margin: 0.6rem 0;
 `
 
 export const Input = styled.input`
@@ -24,7 +25,7 @@ export const Input = styled.input`
       content: '';
       width: 0.6rem;
       height: 0.9rem;
-      border: 0.2rem solid ${theme.colors.font};
+      border: 0.2rem solid white;
       border-top: 0;
       border-left: 0;
       transform: rotate(45deg);
@@ -59,5 +60,6 @@ export const Label = styled.label`
     cursor: pointer;
     padding-left: ${theme.spacings.xxsmall};
     line-height: 1.8rem;
+    color: ${theme.colors.font};
   `}
 `

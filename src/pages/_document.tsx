@@ -1,3 +1,4 @@
+import Analytics from 'components/Analytics'
 import Document, {
   Html,
   Head,
@@ -37,7 +38,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <Analytics />
+        </Head>
         <body>
           <Main />
           <NextScript />

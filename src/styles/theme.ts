@@ -95,7 +95,8 @@ export const lightTheme = {
     secondary: '#E5E7EB',
     border: '#8F8F8F',
     background: '#FAFAFA',
-    font: '#030517'
+    font: '#030517',
+    codeBackground: '#F3F4F6'
   },
   transition: {
     default: '0.3s ease-in-out',
@@ -138,10 +139,11 @@ export const darkTheme = {
   },
   colors: {
     primary: '#F231A5',
-    secondary: '#2E303C',
+    secondary: '#4B5563',
     border: '#E5E7EB',
     background: '#1F2229',
-    font: '#E5E7EB'
+    font: '#E5E7EB',
+    codeBackground: '#1F2937'
   },
   transition: {
     default: '0.3s ease-in-out',

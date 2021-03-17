@@ -77,12 +77,11 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
           setBoxShadowProperty(index, 'spreadRadius', value)
         }
       />
-      <Color index={index} />
+      <Color index={index} label="Color" />
       <Checkbox
         onCheck={() => setBoxShadowProperty(index, 'inset')}
         isChecked={inset}
         label="Inset"
-        labelColor="black"
       />
     </S.Item>
   )

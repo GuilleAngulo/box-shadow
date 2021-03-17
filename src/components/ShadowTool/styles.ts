@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components'
 export const Item = styled.div`
   ${({ theme }) => css`
     position: relative;
-    padding: 0.8rem 1rem;
-    height: 32rem;
+    padding: 1rem 1.2rem;
+    padding-top: 1.6rem;
+    height: fit-content;
     border-radius: ${theme.border.radius};
     border: 1px solid ${theme.colors.border};
   `}

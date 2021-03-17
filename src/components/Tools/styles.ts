@@ -13,11 +13,11 @@ export const ToolsWrapper = styled.div`
   ${({ theme }) => css`
     display: grid;
     grid-template-columns: repeat(2, minmax(20rem, 1fr));
-    grid-column-gap: 2rem;
-    grid-row-gap: 1.2rem;
+    grid-column-gap: 2.2rem;
+    grid-row-gap: 1.4rem;
     padding: 0 ${theme.spacings.small};
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 4rem;
     ${media.greaterThan('large')`
       grid-template-columns: repeat(3, minmax(20rem, 1fr));
     `}
@@ -30,7 +30,8 @@ export const Add = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1rem;
-    height: 32rem;
+    height: auto;
+    min-height: 32rem;
     border-radius: ${theme.border.radius};
     border: 2px dashed ${theme.colors.border};
     cursor: pointer;

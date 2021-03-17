@@ -22,16 +22,6 @@ describe('<Checkbox />', () => {
     expect(screen.queryByLabelText('Checkbox')).not.toBeInTheDocument()
   })
 
-  // it('it should render with black label', () => {
-  //   renderWithTheme(
-  //     <Checkbox label="checkbox label" labelFor="check" labelColor="black" />
-  //   )
-
-  //   expect(screen.getByText(/checkbox label/i)).toHaveStyle({
-  //     color: '#030517'
-  //   })
-  // })
-
   it('should dispatch onCheck when status changes', async () => {
     const onCheck = jest.fn()
 

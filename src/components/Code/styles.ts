@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import media from 'styled-media-query'
 import { lighten } from 'polished'
 
 export const Wrapper = styled.div`
@@ -17,7 +16,7 @@ export const Pre = styled.pre`
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow-x: auto;
-    background-color: ${theme.colors.background};
+    background-color: ${theme.colors.codeBackground};
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.large} ${theme.spacings.small};
     white-space: pre-wrap;

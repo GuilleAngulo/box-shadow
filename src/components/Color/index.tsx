@@ -7,9 +7,10 @@ import * as S from './styles'
 
 export type ColorProps = {
   index?: number
+  label?: string
 }
 
-const Color = ({ index = 0 }: ColorProps) => {
+const Color = ({ index = 0, label }: ColorProps) => {
   const { boxShadow = [], setBoxShadowProperty } = useBoxShadow()
 
   const handleColor = (value: string) => {
@@ -22,15 +23,20 @@ const Color = ({ index = 0 }: ColorProps) => {
 
   return (
     <S.Wrapper>
-      <InputColor initialValue={boxShadow[index].color} onInput={handleColor} />
-      <InputRange
-        label="Opacity"
-        name="opacity"
-        min={0}
-        max={100}
-        initialValue={boxShadow[index].color.alpha * 100}
-        onInput={handleOpacity}
-      />
+      {!!label && <S.Label>{label}</S.Label>}
+      <S.InputWrapper>
+        <InputColor
+          initialValue={boxShadow[index].color}
+          onInput={handleColor}
+        />
+        <InputRange
+          name="opacity"
+          min={0}
+          max={100}
+          initialValue={boxShadow[index].color.alpha * 100}
+          onInput={handleOpacity}
+        />
+      </S.InputWrapper>
     </S.Wrapper>
   )
 }
