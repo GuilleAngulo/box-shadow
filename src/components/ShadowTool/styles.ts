@@ -4,8 +4,7 @@ import { transparentize } from 'polished'
 export const Item = styled.div`
   ${({ theme }) => css`
     position: relative;
-    padding: 1rem 1.2rem;
-    padding-top: 1.6rem;
+    padding: 0.5rem 1.2rem 1rem 1.2rem;
     height: fit-content;
     border-radius: ${theme.border.radius};
     border: 1px solid ${theme.colors.border};
@@ -23,8 +22,7 @@ export const Delete = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.25rem;
-    margin-top: -0.3rem;
+    margin-right: 0.5rem;
     cursor: pointer;
 
     &:hover {
@@ -34,4 +32,12 @@ export const Delete = styled.div`
       }
     }
   `}
+`
+
+export const Index = styled.span`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 0.4rem;
+  margin-right: 0.8rem;
 `

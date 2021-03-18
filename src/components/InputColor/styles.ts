@@ -3,12 +3,13 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  align-self: center;
 `
 
 export const Input = styled.input`
   -webkit-appearance: none;
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
   cursor: pointer;
 
   &::-webkit-focus-ring-color {

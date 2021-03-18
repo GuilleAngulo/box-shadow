@@ -1,19 +1,21 @@
 import styled, { css } from 'styled-components'
 import { lighten, transparentize } from 'polished'
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+  width: 100%;
+`
 
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 1.2rem 0;
+  margin-bottom: 1.4rem;
 `
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
   svg {
-    width: 1.7rem;
+    width: 1.6rem;
     margin-left: 0.8rem;
   }
 `
@@ -127,6 +129,28 @@ export const Input = styled.input<InputProps>`
     ${isVertical && InputModifiers.vertical()}
   `}
 `
+export const Ranges = styled.div`
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+`
+
+export const RangeUnit = styled.span`
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.xxsmall};
+  `}
+`
+
+export const RangeWrapper = styled.div`
+  width: 100%;
+`
+
+export const FieldWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 // export const VariantInput = styled.input`
 //   ${({ theme }) => css`
 //     display: block;

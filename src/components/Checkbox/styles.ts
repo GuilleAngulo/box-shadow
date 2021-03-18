@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
 `
 
 export const Input = styled.input`

@@ -3,7 +3,7 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   display: flex;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `
 export const Item = styled.div`
   margin: 0 1rem;

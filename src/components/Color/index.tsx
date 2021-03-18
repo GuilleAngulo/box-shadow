@@ -1,5 +1,6 @@
 import InputColor from 'components/InputColor'
 import InputRange from 'components/InputRange'
+import { OPACITY_RANGES } from 'utils/shadow'
 
 import { useBoxShadow } from 'hooks/use-box-shadow'
 
@@ -31,10 +32,11 @@ const Color = ({ index = 0, label }: ColorProps) => {
         />
         <InputRange
           name="opacity"
-          min={0}
-          max={100}
-          initialValue={boxShadow[index].color.alpha * 100}
+          min={OPACITY_RANGES[0]}
+          max={OPACITY_RANGES[1]}
+          initialValue={Math.round(boxShadow[index].color.alpha * 100)}
           onInput={handleOpacity}
+          rangeUnit="%"
         />
       </S.InputWrapper>
     </S.Wrapper>

@@ -7,6 +7,6 @@ export const Label = styled.label`
 `
 export const InputWrapper = styled.div`
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
 `

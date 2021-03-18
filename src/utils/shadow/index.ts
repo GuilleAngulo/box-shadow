@@ -12,6 +12,12 @@ export const defaultShadow = (isDarkMode = false) => {
   }
 }
 
+export const HORIZONTAL_OFFSET_RANGES = [-100, 100]
+export const VERTICAL_OFFSET_RANGES = [-100, 100]
+export const BLUR_RADIUS_RANGES = [0, 100]
+export const SPREAD_RADIUS_RANGES = [-50, 50]
+export const OPACITY_RANGES = [0, 100]
+
 /** ECLIPSE
 box-shadow: -10px -1px 14px 1px rgba(255, 184, 31, 1),
   -23px 0px 23px 10px rgba(255, 253, 194, 0.36),

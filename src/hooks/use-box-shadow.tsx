@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { AnimationProps, BoxShadowKeyProps, ShadowProps, Shape } from 'types'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
+import { useDarkMode } from './use-dark-mode'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
@@ -44,7 +45,6 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
 
   useEffect(() => {
     const data = getStorageItem(BOXSHADOW_KEY)
-
     data ? setBoxShadow(data) : addBoxShadow()
   }, [])
 

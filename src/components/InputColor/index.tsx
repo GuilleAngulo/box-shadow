@@ -36,17 +36,15 @@ const InputColor = ({
   return (
     <S.Wrapper>
       {!!label && <label htmlFor={name}>{label}</label>}
-      <div>
-        <S.Input
-          type="color"
-          onChange={onChange}
-          value={value}
-          disabled={disabled}
-          name={name}
-          {...(label ? { id: name } : {})}
-          {...props}
-        />
-      </div>
+      <S.Input
+        type="color"
+        onChange={onChange}
+        value={value}
+        disabled={disabled}
+        name={name}
+        {...(label ? { id: name } : {})}
+        {...props}
+      />
     </S.Wrapper>
   )
 }

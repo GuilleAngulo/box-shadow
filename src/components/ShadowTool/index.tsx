@@ -3,6 +3,13 @@ import Color from 'components/Color'
 import InputRange from 'components/InputRange'
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import {
+  HORIZONTAL_OFFSET_RANGES,
+  VERTICAL_OFFSET_RANGES,
+  BLUR_RADIUS_RANGES,
+  SPREAD_RADIUS_RANGES
+} from 'utils/shadow'
+
+import {
   MoveHorizontal,
   MoveVertical,
   Move
@@ -36,8 +43,8 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
       <InputRange
         label="Horizontal Offset"
         name="horizontal-offset"
-        min={-100}
-        max={100}
+        min={HORIZONTAL_OFFSET_RANGES[0]}
+        max={HORIZONTAL_OFFSET_RANGES[1]}
         initialValue={horizontalOffset}
         icon={<MoveHorizontal />}
         onInput={(value: number) =>
@@ -47,8 +54,8 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
       <InputRange
         label="Vertical Offset"
         name="vertical-offset"
-        min={-100}
-        max={100}
+        min={VERTICAL_OFFSET_RANGES[0]}
+        max={VERTICAL_OFFSET_RANGES[1]}
         initialValue={verticalOffset}
         icon={<MoveVertical />}
         onInput={(value: number) =>
@@ -58,8 +65,8 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
       <InputRange
         label="Blur Radius"
         name="blur-radius"
-        min={0}
-        max={100}
+        min={BLUR_RADIUS_RANGES[0]}
+        max={BLUR_RADIUS_RANGES[1]}
         initialValue={blurRadius}
         icon={<BlurOn />}
         onInput={(value: number) =>
@@ -69,20 +76,23 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
       <InputRange
         label="Spread Radius"
         name="spread-radius"
-        min={-10}
-        max={10}
+        min={SPREAD_RADIUS_RANGES[0]}
+        max={SPREAD_RADIUS_RANGES[1]}
         initialValue={spreadRadius}
         icon={<Move />}
         onInput={(value: number) =>
           setBoxShadowProperty(index, 'spreadRadius', value)
         }
       />
-      <Color index={index} label="Color" />
+      <Color index={index} label="Color | Opacity" />
       <Checkbox
         onCheck={() => setBoxShadowProperty(index, 'inset')}
         isChecked={inset}
         label="Inset"
       />
+      <S.Index aria-label={`Box Shadow level ${index + 1}`}>
+        {index + 1}
+      </S.Index>
     </S.Item>
   )
 }

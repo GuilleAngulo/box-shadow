@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from 'react'
+import NumberField from 'components/NumberField'
 
 import * as S from './styles'
 
@@ -11,6 +12,7 @@ export type InputRangeProps = {
   icon?: React.ReactNode
   isVertical?: boolean
   disabled?: boolean
+  rangeUnit?: string
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'onInput'>
 
 const InputRange = ({
@@ -23,12 +25,17 @@ const InputRange = ({
   isVertical = false,
   icon,
   onInput,
+  rangeUnit = 'px',
   ...props
 }: InputRangeProps) => {
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.currentTarget.value)
 
     !!onInput && onInput(newValue)
+  }
+
+  const handleInputChange = (value: number) => {
+    !!onInput && onInput(value)
   }
 
   return (
@@ -39,21 +46,41 @@ const InputRange = ({
           {!!icon && icon}
         </S.Label>
       )}
-      <S.InputWrapper>
-        <S.Input
-          type="range"
+      <S.FieldWrapper>
+        <S.RangeWrapper>
+          <S.Ranges>
+            <S.RangeUnit>
+              {min}
+              {rangeUnit}
+            </S.RangeUnit>
+            <S.RangeUnit>
+              {max}
+              {rangeUnit}
+            </S.RangeUnit>
+          </S.Ranges>
+          <S.InputWrapper>
+            <S.Input
+              type="range"
+              min={min}
+              max={max}
+              onChange={handleChange}
+              value={initialValue}
+              disabled={disabled}
+              name={name}
+              isVertical={isVertical}
+              // orient={isVertical ? 'vertical' : 'horizontal'}
+              {...(label ? { id: name } : {})}
+              {...props}
+            />
+          </S.InputWrapper>
+        </S.RangeWrapper>
+        <NumberField
           min={min}
           max={max}
-          onChange={onChange}
-          value={initialValue}
-          disabled={disabled}
-          name={name}
-          isVertical={isVertical}
-          // orient={isVertical ? 'vertical' : 'horizontal'}
-          {...(label ? { id: name } : {})}
-          {...props}
+          onInputChange={(v) => handleInputChange(v)}
+          initialValue={initialValue}
         />
-      </S.InputWrapper>
+      </S.FieldWrapper>
     </S.Wrapper>
   )
 }
