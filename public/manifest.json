@@ -1,20 +1,15 @@
 {
-  "name": "React Avançado - Boilerplate",
-  "short_name": "React Avançado",
+  "name": "CSS Box Shadow",
+  "short_name": "Box Shadow",
   "icons": [
     {
-      "src": "/img/icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/img/icon-512.png",
+      "src": "/img/icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "background_color": "#06092B",
-  "description": "Boilerplate utilizando Typescript, React, NextJS e Styled Components!",
+  "description": "CSS Box Shadow Tool to generate styles",
   "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#06092B"
