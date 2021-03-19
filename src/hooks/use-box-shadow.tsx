@@ -42,6 +42,7 @@ export type BoxShadowProviderProps = {
 
 const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
+  const { isDarkMode } = useDarkMode()
 
   useEffect(() => {
     const data = getStorageItem(BOXSHADOW_KEY)
@@ -58,7 +59,6 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
     key: BoxShadowKeyProps,
     value?: number | string
   ) => {
-    // const arr = [...boxShadow]
     const arr = JSON.parse(JSON.stringify(boxShadow))
     const obj = JSON.parse(JSON.stringify(arr[index]))
     if (obj) {
@@ -97,7 +97,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   const addBoxShadow = (newBoxShadow?: ShadowProps[]) => {
     if (!newBoxShadow) {
       const deepCopy = JSON.parse(JSON.stringify(boxShadow))
-      const newShadow = defaultShadow()
+      const newShadow = defaultShadow(isDarkMode())
       return saveBoxShadow([...deepCopy, newShadow])
     }
 
