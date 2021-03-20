@@ -27,7 +27,11 @@ const Tools = () => {
             <ShadowTool key={index} index={index} />
           ))}
         </>
-        <S.Add onClick={() => addBoxShadow()}>
+        <S.Add
+          role="button"
+          aria-label="Add New Box Shadow"
+          onClick={() => addBoxShadow()}
+        >
           <AddIcon width={30} />
         </S.Add>
       </S.ToolsWrapper>

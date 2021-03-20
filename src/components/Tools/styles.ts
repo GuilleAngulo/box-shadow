@@ -10,7 +10,7 @@ export const Item = styled.div`
 `
 export const Color = styled.div``
 
-export const ToolsWrapper = styled.div`
+export const ToolsWrapper = styled.ul`
   ${({ theme }) => css`
     display: grid;
     grid-template-columns: repeat(2, minmax(20rem, 1fr));
@@ -19,6 +19,7 @@ export const ToolsWrapper = styled.div`
     padding: 0 ${theme.spacings.small};
     margin: auto;
     margin-top: 3rem;
+    list-style: none;
     ${media.lessThan('small')`
       grid-template-columns: 1fr;
       width: 100%;
@@ -28,7 +29,7 @@ export const ToolsWrapper = styled.div`
     `}
   `}
 `
-export const Add = styled.div`
+export const Add = styled.li`
   ${({ theme }) => css`
     position: relative;
     display: flex;

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { transparentize } from 'polished'
 
-export const Item = styled.div`
+export const Item = styled.li`
   ${({ theme }) => css`
     position: relative;
     padding: 0.5rem 1.2rem 1rem 1.2rem;

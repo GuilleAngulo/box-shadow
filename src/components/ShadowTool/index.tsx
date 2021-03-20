@@ -36,8 +36,11 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
   const inset = boxShadow[index]?.inset
 
   return (
-    <S.Item key={index}>
-      <S.Delete onClick={() => removeBoxShadow(index)}>
+    <S.Item key={index} aria-label={`Tool for Box Shadow Level ${index}`}>
+      <S.Delete
+        aria-label={`Delete Box Shadow Level ${index}`}
+        onClick={() => removeBoxShadow(index)}
+      >
         <Delete width={20} />
       </S.Delete>
       <InputRange
