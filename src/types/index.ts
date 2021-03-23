@@ -84,3 +84,11 @@ export type BoxShadowKeyProps =
   | 'opacity'
 
 export type Shape = 'square' | 'circle'
+
+export type Mode = 'light' | 'dark'
+
+export type Preset = {
+  boxShadow: ShadowProps[]
+  shape: Shape
+  theme: Mode
+}

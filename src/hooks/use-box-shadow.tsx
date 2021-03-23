@@ -1,13 +1,19 @@
 import hexRgb from 'hex-rgb'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { AnimationProps, BoxShadowKeyProps, ShadowProps, Shape } from 'types'
+import {
+  AnimationProps,
+  BoxShadowKeyProps,
+  ShadowProps,
+  Shape,
+  Mode,
+  Preset
+} from 'types'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
-import { useDarkMode } from './use-dark-mode'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
-  shape?: Shape
+  shape?: Shape | undefined
   animation?: AnimationProps
   keyframe?: Keyframe[]
   setBoxShadowProperty: (
@@ -18,18 +24,24 @@ export type BoxShadowContextData = {
   removeBoxShadow: (index: number) => void
   addBoxShadow: (newBoxShadow?: ShadowProps[], isDarkMode?: boolean) => void
   clearBoxShadow: () => void
+  saveShape: (shape: Shape) => void
+  loadPreset: (preset: Preset) => void
 }
 
 const BOXSHADOW_KEY = 'boxShadow'
+const SHAPE_KEY = 'shape'
 
 const BoxShadowContextDefaultValues = {
   boxShadow: [],
   animation: {},
   keyframe: [],
+  shape: undefined,
   setBoxShadowProperty: () => null,
   removeBoxShadow: () => null,
   addBoxShadow: () => null,
-  clearBoxShadow: () => null
+  clearBoxShadow: () => null,
+  saveShape: () => null,
+  loadPreset: () => null
 }
 
 export const BoxShadowContext = createContext<BoxShadowContextData>(
@@ -38,20 +50,33 @@ export const BoxShadowContext = createContext<BoxShadowContextData>(
 
 export type BoxShadowProviderProps = {
   children: React.ReactNode
+  theme?: Mode
+  toggleTheme?: () => void
 }
 
-const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
+const BoxShadowProvider = ({
+  children,
+  theme,
+  toggleTheme
+}: BoxShadowProviderProps) => {
   const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
-  const { isDarkMode } = useDarkMode()
+  const [shape, setShape] = useState<Shape | undefined>(undefined)
 
   useEffect(() => {
-    const data = getStorageItem(BOXSHADOW_KEY)
-    data ? setBoxShadow(data) : addBoxShadow()
+    const storedBoxShadow = getStorageItem(BOXSHADOW_KEY)
+    const storedShape = getStorageItem(SHAPE_KEY)
+    setShape(storedShape ? storedShape : 'square')
+    storedBoxShadow ? setBoxShadow(storedBoxShadow) : addBoxShadow()
   }, [])
 
   const saveBoxShadow = (boxShadow: ShadowProps[]) => {
     setBoxShadow(boxShadow)
     setStorageItem(BOXSHADOW_KEY, boxShadow)
+  }
+
+  const saveShape = (shape: Shape) => {
+    setShape(shape)
+    setStorageItem(SHAPE_KEY, shape)
   }
 
   const setBoxShadowProperty = (
@@ -95,31 +120,50 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   }
 
   const addBoxShadow = (newBoxShadow?: ShadowProps[]) => {
+    // If empty creates a default box shadow
     if (!newBoxShadow) {
       const deepCopy = JSON.parse(JSON.stringify(boxShadow))
-      const newShadow = defaultShadow(isDarkMode())
+      const newShadow = defaultShadow(theme === 'dark')
       return saveBoxShadow([...deepCopy, newShadow])
     }
 
-    //TODO
-    return (
-      Array.isArray(newBoxShadow) &&
-      saveBoxShadow([...boxShadow, ...newBoxShadow])
-    )
+    //If
+    if (Array.isArray(newBoxShadow)) {
+      const deepCopy = JSON.parse(JSON.stringify(boxShadow))
+      const newShadow = JSON.parse(JSON.stringify(newBoxShadow))
+      return saveBoxShadow([...deepCopy, newShadow])
+    }
+
+    return
   }
 
   const clearBoxShadow = () => {
     saveBoxShadow([])
   }
 
+  const loadPreset = (preset: Preset) => {
+    if (preset?.theme !== theme && toggleTheme) {
+      toggleTheme()
+    }
+
+    if (preset?.shape !== shape) {
+      saveShape(preset?.shape)
+    }
+
+    saveBoxShadow(preset?.boxShadow)
+  }
+
   return (
     <BoxShadowContext.Provider
       value={{
         boxShadow,
+        shape,
         setBoxShadowProperty,
         removeBoxShadow,
         addBoxShadow,
-        clearBoxShadow
+        clearBoxShadow,
+        saveShape,
+        loadPreset
       }}
     >
       {children}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
-
-export type Mode = 'light' | 'dark'
+import { Mode } from 'types'
 
 const MODE_KEY = 'theme'
 
@@ -14,14 +13,10 @@ export const useDarkMode = () => {
     setTheme(mode)
   }
 
-  const isDarkMode = () => {
-    const storedTheme = getStorageItem(MODE_KEY)
-    return storedTheme === 'dark'
-  }
-
   const themeToggler = (mode?: Mode) => {
     if (!mode) {
-      return theme === 'light' ? setMode('dark') : setMode('light')
+      theme === 'light' ? setMode('dark') : setMode('light')
+      return
     }
     setMode(mode)
   }
@@ -32,5 +27,5 @@ export const useDarkMode = () => {
     setIsMounted(true)
   }, [])
 
-  return { theme, themeToggler, isMounted, isDarkMode } as const
+  return [theme, themeToggler, isMounted] as const
 }

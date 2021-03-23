@@ -10,13 +10,13 @@ import SwitchButton from 'components/Switch'
 import { useDarkMode } from 'hooks/use-dark-mode'
 
 function App({ Component, pageProps }: AppProps) {
-  const { theme, themeToggler, isMounted } = useDarkMode()
+  const [theme, themeToggler, isMounted] = useDarkMode()
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   if (!isMounted) return null
   return (
     <ThemeProvider theme={themeMode as DefaultTheme}>
-      <BoxShadowProvider>
+      <BoxShadowProvider theme={theme} toggleTheme={themeToggler}>
         <Head>
           <title>Box Shadow Tool</title>
           <link rel="shortcut icon" href="/img/favicon.ico" />

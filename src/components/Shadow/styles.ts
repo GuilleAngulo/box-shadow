@@ -38,7 +38,7 @@ export const ShapeBlock = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
     justify-content: center;
     align-items: center;
     font-size: ${theme.font.sizes.huge};
-    transition: ${theme.transition.default};
+    transition: border-radius ${theme.transition.default};
 
     ${!!shape && shapeModifiers[shape](theme)};
   `}

@@ -1,18 +1,12 @@
 import ShapeSidebar from 'components/ShapeSidebar'
 import { useBoxShadow } from 'hooks/use-box-shadow'
-import { useEffect, useState } from 'react'
 import { Shape } from 'types'
-import { getStorageItem, setStorageItem } from 'utils/localStorage'
 
 import * as S from './styles'
 
 export type BoxShadowProps = {
   children?: React.ReactNode
 }
-
-const SHAPE_KEY = 'shape'
-
-const defaultShape = 'square'
 
 const items = [
   {
@@ -26,29 +20,18 @@ const items = [
 ]
 
 const Shadow = ({ children }: BoxShadowProps) => {
-  const { boxShadow = [] } = useBoxShadow()
-  const [shape, setShape] = useState<Shape | undefined>(undefined)
+  const { boxShadow = [], shape, saveShape } = useBoxShadow()
 
-  useEffect(() => {
-    const data = getStorageItem(SHAPE_KEY)
-    setShape(data ? data : defaultShape)
-  }, [])
+  // const renderShape = (type: string | undefined) => {
+  //   switch (type) {
+  //     case 'square':
+  //     case 'circle':
+  //       return <S.ShapeBlock boxShadow={boxShadow} shape={type} />
 
-  const saveShape = (shape: Shape) => {
-    setShape(shape)
-    setStorageItem(SHAPE_KEY, shape)
-  }
-
-  const renderShape = (type: string | undefined) => {
-    switch (type) {
-      case 'square':
-      case 'circle':
-        return <S.ShapeBlock boxShadow={boxShadow} shape={type} />
-
-      default:
-        return <div></div>
-    }
-  }
+  //     default:
+  //       return <div></div>
+  //   }
+  // }
 
   return (
     <S.Wrapper>

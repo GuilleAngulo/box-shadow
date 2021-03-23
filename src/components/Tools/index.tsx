@@ -29,7 +29,7 @@ const Tools = () => {
         </>
         <S.Add
           role="button"
-          aria-label="Add New Box Shadow"
+          aria-label="create new box shadow"
           onClick={() => addBoxShadow()}
         >
           <AddIcon width={30} />
