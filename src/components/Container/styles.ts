@@ -26,3 +26,16 @@ export const Display = styled.div`
     `}
   `}
 `
+
+export const Config = styled.div`
+  position: absolute;
+  display: flex;
+  top: 18rem;
+  left: 1rem;
+  flex-direction: column;
+  justify-content: center;
+
+  svg {
+    width: 3rem;
+  }
+`

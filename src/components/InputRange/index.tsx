@@ -42,8 +42,8 @@ const InputRange = ({
     <S.Wrapper>
       {!!label && (
         <S.Label htmlFor={name}>
-          {label}
           {!!icon && icon}
+          {label}
         </S.Label>
       )}
       <S.FieldWrapper>

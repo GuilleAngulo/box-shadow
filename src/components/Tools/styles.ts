@@ -5,9 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   margin-bottom: 2rem;
 `
-export const Item = styled.div`
-  margin: 0 1rem;
-`
+export const Item = styled.div``
 export const Color = styled.div``
 
 export const ToolsWrapper = styled.ul`
@@ -18,7 +16,7 @@ export const ToolsWrapper = styled.ul`
     grid-row-gap: 1.4rem;
     padding: 0 ${theme.spacings.small};
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 2.4rem;
     list-style: none;
     ${media.lessThan('small')`
       grid-template-columns: 1fr;
@@ -38,11 +36,11 @@ export const Add = styled.li`
     padding: 0.8rem 1rem;
     min-height: 32rem;
     border-radius: ${theme.border.radius};
-    border: 2px dashed ${theme.colors.border};
+    border: 0.2rem dashed ${theme.colors.tertiaryFont};
     cursor: pointer;
 
     svg {
-      fill: ${theme.colors.border};
+      fill: ${theme.colors.tertiaryFont};
     }
   `}
 `

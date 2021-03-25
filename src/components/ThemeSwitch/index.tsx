@@ -2,17 +2,17 @@ import Switch from 'react-switch'
 import { lightTheme, darkTheme } from 'styles/theme'
 import * as S from './styles'
 
-export type SwitchProps = {
+export type ThemeSwitchProps = {
   toggleTheme: () => void
   isChecked: boolean
 }
 
-const SwitchButton = ({ toggleTheme, isChecked }: SwitchProps) => {
+const ThemeSwitch = ({ toggleTheme, isChecked }: ThemeSwitchProps) => {
   const {
-    colors: { primary: lightPrimary, secondary: lightSecondary }
+    colors: { primary: lightPrimary, accent: lightSecondary }
   } = lightTheme
   const {
-    colors: { primary: darkPrimary, secondary: darkSecondary }
+    colors: { primary: darkPrimary, accent: darkSecondary }
   } = darkTheme
 
   return (
@@ -34,4 +34,4 @@ const SwitchButton = ({ toggleTheme, isChecked }: SwitchProps) => {
   )
 }
 
-export default SwitchButton
+export default ThemeSwitch

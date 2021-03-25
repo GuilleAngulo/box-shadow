@@ -36,7 +36,7 @@ const GlobalStyles: GlobalStyleComponent<
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
       background-color: ${theme.colors.background};
-      color: ${theme.colors.font};
+      color: ${theme.colors.primaryFont};
     }
   `}
 `

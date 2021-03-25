@@ -9,22 +9,23 @@ export const InputWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    background: ${theme.colors.secondary};
+    background: ${theme.colors.accent};
     border-radius: 0.2rem;
     padding: 0 ${theme.spacings.xxsmall};
     border: 0.2rem solid;
-    border-color: ${theme.colors.secondary};
+    border-color: ${theme.colors.accent};
     margin-left: 1rem;
 
     &:focus-within {
       box-shadow: 0 0 0.5rem ${theme.colors.primary};
+      border: 0.2rem solid ${theme.colors.primary};
     }
   `}
 `
 
 export const Input = styled.input`
   ${({ theme }) => css`
-    color: ${theme.colors.font};
+    color: ${theme.colors.primaryFont};
     font-family: ${theme.font.family};
     font-size: ${theme.font.sizes.small};
     padding: 0.2rem 0;
@@ -47,7 +48,7 @@ export const Input = styled.input`
 export const Label = styled.label`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
-    color: ${theme.colors.font};
+    color: ${theme.colors.primaryFont};
     cursor: pointer;
   `}
 `
@@ -78,7 +79,7 @@ export const Loading = styled.span`
       top: 0;
       left: 0;
       position: absolute;
-      border: 0.2rem solid ${theme.colors.secondary};
+      border: 0.2rem solid ${theme.colors.accent};
       border-left-color: ${theme.colors.primary};
       border-radius: 50%;
       width: ${theme.font.sizes.small};
@@ -113,7 +114,7 @@ const wrapperModifiers = {
     ${Label},
     ${Input} {
       cursor: not-allowed;
-      color: ${theme.colors.border};
+      color: ${theme.colors.accent};
 
       &::placeholder {
         color: currentColor;

@@ -29,6 +29,7 @@ const ShapeSidebar = ({
   const handleRadio = (value: Shape) => {
     setValue(value)
   }
+
   return (
     <S.Wrapper>
       {items.map((item) => (

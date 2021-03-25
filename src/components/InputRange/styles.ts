@@ -12,12 +12,19 @@ export const InputWrapper = styled.div`
 `
 
 export const Label = styled.label`
-  display: flex;
-  align-items: center;
-  svg {
-    width: 1.6rem;
-    margin-left: 0.8rem;
-  }
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    color: ${theme.colors.primaryFont};
+    font-size: ${theme.font.sizes.medium};
+    font-weight: ${theme.font.bold};
+    svg {
+      width: 2rem;
+      margin-right: 0.6rem;
+      color: ${theme.colors.secondaryFont};
+    }
+  `}
 `
 
 export type InputProps = {
@@ -96,34 +103,34 @@ export const Input = styled.input<InputProps>`
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.secondary};
+      background: ${theme.colors.accent};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-webkit-slider-runnable-track {
-      border: 0.05rem solid ${transparentize(0.5, theme.colors.border)}};
+      border: 0.05rem solid ${transparentize(0.5, theme.colors.tertiaryFont)}};
     }
 
     &::-moz-range-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.secondary};
+      background: ${theme.colors.accent};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-moz-range-track {
-      border: 0.05rem solid ${transparentize(0.5, theme.colors.border)}};
+      border: 0.05rem solid ${transparentize(0.5, theme.colors.tertiaryFont)}};
     }
 
     &::-ms-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.secondary};
+      background: ${theme.colors.accent};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-ms-track {
-      border: 0.05rem solid ${transparentize(0.5, theme.colors.border)}};
+      border: 0.05rem solid ${transparentize(0.5, theme.colors.tertiaryFont)}};
     }
 
     ${isVertical && InputModifiers.vertical()}
@@ -137,7 +144,9 @@ export const Ranges = styled.div`
 
 export const RangeUnit = styled.span`
   ${({ theme }) => css`
+    color: ${theme.colors.secondaryFont};
     font-size: ${theme.font.sizes.xxsmall};
+    margin-bottom: 0.1rem;
   `}
 `
 

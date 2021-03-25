@@ -9,9 +9,10 @@ import * as S from './styles'
 export type ColorProps = {
   index?: number
   label?: string
+  icon?: React.ReactNode
 }
 
-const Color = ({ index = 0, label }: ColorProps) => {
+const Color = ({ index = 0, label, icon }: ColorProps) => {
   const { boxShadow = [], setBoxShadowProperty } = useBoxShadow()
 
   const handleColor = (value: string) => {
@@ -24,7 +25,12 @@ const Color = ({ index = 0, label }: ColorProps) => {
 
   return (
     <S.Wrapper>
-      {!!label && <S.Label>{label}</S.Label>}
+      {!!label && (
+        <S.Label>
+          {!!icon && icon}
+          {label}
+        </S.Label>
+      )}
       <S.InputWrapper>
         <InputColor
           initialValue={boxShadow[index].color}

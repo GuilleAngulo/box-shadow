@@ -16,13 +16,13 @@ export const Pre = styled.pre`
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow-x: auto;
-    background-color: ${theme.colors.codeBackground};
+    background-color: ${theme.colors.terminalBg};
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.large} ${theme.spacings.small};
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    border: 0.2rem solid ${theme.colors.font};
+    border: 0.2rem solid ${theme.colors.accent};
   `}
 `
 
@@ -35,7 +35,7 @@ export const Code = styled.code`
     font-size: ${theme.font.sizes.medium};
     font-weight: ${theme.font.light};
     font-family: monospace;
-    color: ${theme.colors.font};
+    color: ${theme.colors.terminalFont};
     background-color: transparent;
   `}
 `
@@ -43,7 +43,7 @@ export const Code = styled.code`
 export const CopyWrapper = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
-    color: ${theme.colors.font};
+    color: ${theme.colors.secondaryFont};
     position: absolute;
     top: 0;
     right: 0;
@@ -51,7 +51,7 @@ export const CopyWrapper = styled.div`
     transition: color ${theme.transition.fast};
 
     &:hover {
-      color: ${lighten(0.2, theme.colors.font)};
+      color: ${lighten(0.2, theme.colors.primaryFont)};
     }
   `}
 `

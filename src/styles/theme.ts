@@ -67,7 +67,7 @@ export const lightTheme = {
   },
   font: {
     family:
-      "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
     bold: 600,
@@ -92,12 +92,16 @@ export const lightTheme = {
     xxlarge: '5.6rem'
   },
   colors: {
-    primary: '#79A6DD',
-    secondary: '#E5E7EB',
-    border: '#8F8F8F',
-    background: '#FAFAFA',
-    font: '#030517',
-    codeBackground: '#F3F4F6'
+    primary: '#6A8BFF',
+    background: '#FEFEFE',
+    card: '#F5F5F5',
+    accent: '#D4D4D4',
+    tertiaryFont: '#818181',
+    secondaryFont: '#7D7D7D',
+    primaryFont: '#383838',
+    terminalFont: '#F9F9F9',
+    terminalBg: '#1E293C',
+    red: '#ef4444'
   },
   transition: {
     default: '0.3s ease-in-out',
@@ -115,7 +119,7 @@ export const darkTheme = {
   },
   font: {
     family:
-      "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
     bold: 600,
@@ -141,11 +145,15 @@ export const darkTheme = {
   },
   colors: {
     primary: '#F231A5',
-    secondary: '#4B5563',
-    border: '#E5E7EB',
-    background: '#1F2229',
-    font: '#E5E7EB',
-    codeBackground: '#1F2937'
+    background: '#131F33',
+    card: '#1E293C',
+    accent: '#666D7A',
+    tertiaryFont: '#ACB1B8',
+    secondaryFont: '#CFD2D6',
+    primaryFont: '#F9F9F9',
+    terminalFont: '#F9F9F9',
+    terminalBg: '#1E293C',
+    red: '#ef4444'
   },
   transition: {
     default: '0.3s ease-in-out',

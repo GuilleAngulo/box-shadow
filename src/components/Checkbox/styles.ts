@@ -15,7 +15,7 @@ export const Input = styled.input`
     appearance: none;
     width: 1.8rem;
     height: 1.8rem;
-    border: 0.2rem solid ${theme.colors.font};
+    border: 0.2rem solid ${theme.colors.tertiaryFont};
     border-radius: 0.2rem;
     transition: background border ${theme.transition.fast};
     position: relative;
@@ -40,7 +40,7 @@ export const Input = styled.input`
     }
 
     &:hover {
-      border-color: ${theme.colors.border};
+      border-color: ${theme.colors.secondaryFont};
       transition: ${theme.transition.fast};
     }
 
@@ -60,6 +60,7 @@ export const Label = styled.label`
     cursor: pointer;
     padding-left: ${theme.spacings.xxsmall};
     line-height: 1.8rem;
-    color: ${theme.colors.font};
+    color: ${theme.colors.primaryFont};
+    font-weight: ${theme.font.bold};
   `}
 `

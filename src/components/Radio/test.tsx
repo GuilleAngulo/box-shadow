@@ -1,4 +1,4 @@
-import { renderWithTheme } from 'utils/tests/helpers'
+import { renderWithTheme } from 'utils/tests'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { lightTheme } from 'styles/theme'
@@ -11,7 +11,7 @@ describe('<Radio />', () => {
 
     const label = screen.getByText('Radio')
     expect(label).toBeInTheDocument()
-    expect(label).toHaveStyle({ color: lightTheme.colors.font })
+    expect(label).toHaveStyle({ color: lightTheme.colors.primaryFont })
     // expect(container.firstChild).toMatchSnapshot()
   })
 

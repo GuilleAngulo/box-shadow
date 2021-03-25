@@ -6,5 +6,9 @@ export const Wrapper = styled.div`
     top: 0;
     left: 0;
     margin: ${theme.spacings.xsmall};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   `}
 `

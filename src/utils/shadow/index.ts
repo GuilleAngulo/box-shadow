@@ -10,11 +10,12 @@ export const defaultShadow = (isDarkMode = false) => {
   const color = isDarkMode
     ? { red: 255, green: 255, blue: 255, alpha: 0.6 }
     : { red: 0, green: 0, blue: 0, alpha: 0.4 }
+
   return {
     horizontalOffset: 0,
     verticalOffset: 0,
     blurRadius: 32,
-    spreadRadius: 0,
+    spreadRadius: isDarkMode ? 15 : 0,
     inset: false,
     color
   }
@@ -25,9 +26,9 @@ export const preset = {
   shape: 'square' as Shape,
   boxShadow: [
     {
-      horizontalOffset: -3,
-      verticalOffset: -3,
-      blurRadius: 6,
+      horizontalOffset: -2,
+      verticalOffset: -2,
+      blurRadius: 4,
       spreadRadius: 1,
       color: {
         red: 0,
@@ -37,10 +38,10 @@ export const preset = {
       }
     },
     {
-      horizontalOffset: 1,
-      verticalOffset: 1,
-      blurRadius: 5,
-      spreadRadius: 2,
+      horizontalOffset: 2,
+      verticalOffset: 2,
+      blurRadius: 4,
+      spreadRadius: 1,
       color: {
         red: 255,
         green: 0,
@@ -49,9 +50,9 @@ export const preset = {
       }
     },
     {
-      horizontalOffset: -56,
+      horizontalOffset: -50,
       verticalOffset: -30,
-      blurRadius: 78,
+      blurRadius: 80,
       spreadRadius: -10,
       color: {
         red: 0,
@@ -61,10 +62,10 @@ export const preset = {
       }
     },
     {
-      horizontalOffset: 26,
+      horizontalOffset: 30,
       verticalOffset: 30,
-      blurRadius: 68,
-      spreadRadius: 0,
+      blurRadius: 80,
+      spreadRadius: -10,
       color: {
         red: 255,
         green: 31,

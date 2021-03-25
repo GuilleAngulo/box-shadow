@@ -1,5 +1,6 @@
 import ShapeSidebar from 'components/ShapeSidebar'
 import { useBoxShadow } from 'hooks/use-box-shadow'
+import { useEffect, useState } from 'react'
 import { Shape } from 'types'
 
 import * as S from './styles'

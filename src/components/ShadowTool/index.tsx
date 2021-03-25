@@ -15,7 +15,8 @@ import {
   Move
 } from '@styled-icons/boxicons-regular'
 import { BlurOn } from '@styled-icons/material-outlined'
-import { Delete } from '@styled-icons/typicons'
+import { ColorFill } from '@styled-icons/boxicons-regular'
+import { Close } from '@styled-icons/material-outlined'
 import * as S from './styles'
 
 export type ShadowToolProps = {
@@ -41,7 +42,7 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
         aria-label={`Delete Box Shadow Level ${index}`}
         onClick={() => removeBoxShadow(index)}
       >
-        <Delete width={20} />
+        <Close width={24} />
       </S.Delete>
       <InputRange
         label="Horizontal Offset"
@@ -87,7 +88,7 @@ const ShadowTool = ({ index = 0 }: ShadowToolProps) => {
           setBoxShadowProperty(index, 'spreadRadius', value)
         }
       />
-      <Color index={index} label="Color | Opacity" />
+      <Color index={index} label="Color - Opacity" icon={<ColorFill />} />
       <Checkbox
         onCheck={() => setBoxShadowProperty(index, 'inset')}
         isChecked={inset}

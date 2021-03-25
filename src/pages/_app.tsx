@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { lightTheme, darkTheme } from 'styles/theme'
 import GlobalStyles from 'styles/global'
 import 'styles/fonts.css'
-import SwitchButton from 'components/Switch'
+// import SwitchButton from 'components/ThemeSwitch'
 import { useDarkMode } from 'hooks/use-dark-mode'
 
 function App({ Component, pageProps }: AppProps) {
@@ -25,10 +25,10 @@ function App({ Component, pageProps }: AppProps) {
           <meta name="description" content="CSS Box Shadow Tool" />
         </Head>
         <GlobalStyles />
-        <SwitchButton
+        {/* <SwitchButton
           toggleTheme={themeToggler}
           isChecked={theme === 'dark' ? true : false}
-        />
+        /> */}
         <Component {...pageProps} />
       </BoxShadowProvider>
     </ThemeProvider>

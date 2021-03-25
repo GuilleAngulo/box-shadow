@@ -7,7 +7,7 @@ export function getStorageItem(key: string) {
   return data && JSON.parse(data)
 }
 
-export function setStorageItem(key: string, value: any) {
+export function setStorageItem(key: string, value: unknown) {
   if (typeof window === 'undefined') return
 
   const data = JSON.stringify(value)

@@ -16,6 +16,7 @@ export type BoxShadowContextData = {
   shape?: Shape | undefined
   animation?: AnimationProps
   keyframe?: Keyframe[]
+  theme?: Mode
   setBoxShadowProperty: (
     index: number,
     key: BoxShadowKeyProps,
@@ -26,6 +27,7 @@ export type BoxShadowContextData = {
   clearBoxShadow: () => void
   saveShape: (shape: Shape) => void
   loadPreset: (preset: Preset) => void
+  toggleTheme?: () => void
 }
 
 const BOXSHADOW_KEY = 'boxShadow'
@@ -36,6 +38,7 @@ const BoxShadowContextDefaultValues = {
   animation: {},
   keyframe: [],
   shape: undefined,
+  theme: undefined,
   setBoxShadowProperty: () => null,
   removeBoxShadow: () => null,
   addBoxShadow: () => null,
@@ -158,12 +161,14 @@ const BoxShadowProvider = ({
       value={{
         boxShadow,
         shape,
+        theme,
         setBoxShadowProperty,
         removeBoxShadow,
         addBoxShadow,
         clearBoxShadow,
         saveShape,
-        loadPreset
+        loadPreset,
+        toggleTheme
       }}
     >
       {children}

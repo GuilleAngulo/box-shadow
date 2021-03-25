@@ -8,18 +8,24 @@ export const Wrapper = styled.div`
 
 export const Input = styled.input`
   -webkit-appearance: none;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.8rem;
+  height: 2.8rem;
   cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
 
   &::-webkit-focus-ring-color {
     outline: auto 1px;
   }
 
   &::-webkit-color-swatch-wrapper {
+    border: none;
+    border-radius: 50%;
     padding: 0;
   }
   &::-webkit-color-swatch {
     border: none;
+    border-radius: 50%;
+    padding: 0;
   }
 `

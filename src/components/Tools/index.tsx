@@ -32,7 +32,7 @@ const Tools = () => {
           aria-label="create new box shadow"
           onClick={() => addBoxShadow()}
         >
-          <AddIcon width={30} />
+          <AddIcon width={50} />
         </S.Add>
       </S.ToolsWrapper>
     </S.Wrapper>

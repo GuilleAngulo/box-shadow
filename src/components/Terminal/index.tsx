@@ -5,7 +5,7 @@ import { useBoxShadow } from 'hooks/use-box-shadow'
 import * as S from './styles'
 import { ContentCopy } from '@styled-icons/material-outlined'
 
-const Editor = () => {
+const Terminal = () => {
   const [copied, setCopied] = useState(false)
   const { boxShadow = [] } = useBoxShadow()
   const handleCopyCode = async () => {
@@ -34,4 +34,4 @@ const Editor = () => {
   )
 }
 
-export default Editor
+export default Terminal

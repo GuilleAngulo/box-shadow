@@ -43,7 +43,7 @@ export const Input = styled.input`
 export const Label = styled.label`
   ${({ theme }) => css`
     padding-left: ${theme.spacings.xxsmall};
-    color: ${theme.colors.font};
+    color: ${theme.colors.primaryFont};
     line-height: 1;
     cursor: pointer;
   `}
