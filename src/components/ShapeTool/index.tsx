@@ -1,19 +1,16 @@
-import Dropdown from 'components/Dropdown'
 import { useBoxShadow } from 'hooks/use-box-shadow'
 
 import { Square, Circle } from '@styled-icons/boxicons-regular'
 import * as S from './styles'
+import Button from 'components/Button'
 
 const ShapeTool = () => {
-  const { shape } = useBoxShadow()
+  const { shape, saveShape } = useBoxShadow()
 
   return (
     <S.Wrapper>
-      <Dropdown title={shape === 'square' ? <Circle /> : <Square />}>
-        <div>
-          <Square /> <Circle />
-        </div>
-      </Dropdown>
+      <Button minimal icon={<Square />} aria-label="select square shape" />
+      <Button minimal icon={<Circle />} aria-label="select circle shape" />
     </S.Wrapper>
   )
 }

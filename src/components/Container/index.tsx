@@ -4,6 +4,7 @@ import Tools from 'components/Tools'
 
 import * as S from './styles'
 import TopTools from 'components/TopTools'
+import ShapeTool from 'components/ShapeTool'
 
 const Container = () => {
   return (

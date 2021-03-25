@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
+import { lighten } from 'polished'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -38,6 +39,13 @@ export const Add = styled.li`
     border-radius: ${theme.border.radius};
     border: 0.2rem dashed ${theme.colors.tertiaryFont};
     cursor: pointer;
+
+    &:hover {
+      svg {
+        fill: ${lighten(0.2, theme.colors.tertiaryFont)};
+        transition: fill ${theme.transition.default};
+      }
+    }
 
     svg {
       fill: ${theme.colors.tertiaryFont};
