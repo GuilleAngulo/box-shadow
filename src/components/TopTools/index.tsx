@@ -1,17 +1,15 @@
 import PresetsTool from 'components/PresetsTool'
 import ShapeTool from 'components/ShapeTool'
 import ThemeSwitch from 'components/ThemeSwitch'
-import { useBoxShadow } from 'hooks/use-box-shadow'
+import { useTheme } from 'hooks/use-theme'
 import * as S from './styles'
 
 const TopTools = () => {
-  const { theme, toggleTheme } = useBoxShadow()
+  const { theme, toggleTheme } = useTheme()
+  const isChecked = theme === 'dark' ? true : false
   return (
     <S.Wrapper>
-      <ThemeSwitch
-        toggleTheme={toggleTheme!}
-        isChecked={theme === 'dark' ? true : false}
-      />
+      <ThemeSwitch toggleTheme={toggleTheme} isChecked={isChecked} />
       <PresetsTool />
       <ShapeTool />
     </S.Wrapper>

@@ -1,11 +1,14 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-  button {
-    svg {
-      width: 3rem;
+  ${({ theme }) => css`
+    button {
+      svg {
+        fill: ${theme.colors.primary};
+        width: 3rem;
+      }
     }
-  }
+  `}
 `
 
 export const ItemsWrapper = styled.div`

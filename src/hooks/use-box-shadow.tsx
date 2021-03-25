@@ -5,18 +5,17 @@ import {
   BoxShadowKeyProps,
   ShadowProps,
   Shape,
-  Mode,
   Preset
 } from 'types'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
+import { useTheme } from 'hooks/use-theme'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
   shape?: Shape | undefined
   animation?: AnimationProps
   keyframe?: Keyframe[]
-  theme?: Mode
   setBoxShadowProperty: (
     index: number,
     key: BoxShadowKeyProps,
@@ -27,7 +26,6 @@ export type BoxShadowContextData = {
   clearBoxShadow: () => void
   saveShape: (shape: Shape) => void
   loadPreset: (preset: Preset) => void
-  toggleTheme?: () => void
 }
 
 const BOXSHADOW_KEY = 'boxShadow'
@@ -38,7 +36,6 @@ const BoxShadowContextDefaultValues = {
   animation: {},
   keyframe: [],
   shape: undefined,
-  theme: undefined,
   setBoxShadowProperty: () => null,
   removeBoxShadow: () => null,
   addBoxShadow: () => null,
@@ -53,17 +50,12 @@ export const BoxShadowContext = createContext<BoxShadowContextData>(
 
 export type BoxShadowProviderProps = {
   children: React.ReactNode
-  theme?: Mode
-  toggleTheme?: () => void
 }
 
-const BoxShadowProvider = ({
-  children,
-  theme,
-  toggleTheme
-}: BoxShadowProviderProps) => {
+const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
   const [shape, setShape] = useState<Shape | undefined>(undefined)
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const storedBoxShadow = getStorageItem(BOXSHADOW_KEY)
@@ -161,14 +153,12 @@ const BoxShadowProvider = ({
       value={{
         boxShadow,
         shape,
-        theme,
         setBoxShadowProperty,
         removeBoxShadow,
         addBoxShadow,
         clearBoxShadow,
         saveShape,
-        loadPreset,
-        toggleTheme
+        loadPreset
       }}
     >
       {children}

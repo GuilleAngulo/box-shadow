@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { lighten } from 'polished'
+import { lighten, darken } from 'polished'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ export const Code = styled.code`
 export const CopyWrapper = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
-    color: ${theme.colors.secondaryFont};
+    color: ${darken(0.2, theme.colors.terminalFont)};
     position: absolute;
     top: 0;
     right: 0;
@@ -51,7 +51,7 @@ export const CopyWrapper = styled.div`
     transition: color ${theme.transition.fast};
 
     &:hover {
-      color: ${lighten(0.2, theme.colors.primaryFont)};
+      color: ${lighten(0.4, theme.colors.terminalFont)};
     }
   `}
 `
