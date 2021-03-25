@@ -18,7 +18,7 @@ export const Pre = styled.pre`
     overflow-x: auto;
     background-color: ${theme.colors.terminalBg};
     border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.large} ${theme.spacings.xsmall};
+    padding: ${theme.spacings.medium} ${theme.spacings.xsmall};
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;

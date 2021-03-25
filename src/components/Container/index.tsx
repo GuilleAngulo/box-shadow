@@ -13,7 +13,10 @@ const Container = () => {
       <S.Panel>
         <S.Display>
           <Shadow />
-          <Terminal />
+          <div>
+            <ShapeTool />
+            <Terminal />
+          </div>
         </S.Display>
         <Tools />
       </S.Panel>

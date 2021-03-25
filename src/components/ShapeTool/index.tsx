@@ -3,14 +3,34 @@ import { useBoxShadow } from 'hooks/use-box-shadow'
 import { Square, Circle } from '@styled-icons/boxicons-regular'
 import * as S from './styles'
 import Button from 'components/Button'
+import { Shape } from 'types'
 
 const ShapeTool = () => {
   const { shape, saveShape } = useBoxShadow()
 
+  const handleClick = (selectedShape: Shape) => {
+    if (shape !== selectedShape) {
+      saveShape(selectedShape)
+    }
+    return
+  }
+
   return (
     <S.Wrapper>
-      <Button minimal icon={<Square />} aria-label="select square shape" />
-      <Button minimal icon={<Circle />} aria-label="select circle shape" />
+      <S.Button
+        aria-label="select square shape"
+        onClick={() => handleClick('square')}
+        selected={shape === 'square'}
+      >
+        <Square />
+      </S.Button>
+      <S.Button
+        aria-label="select circle shape"
+        onClick={() => handleClick('circle')}
+        selected={shape === 'circle'}
+      >
+        <Circle />
+      </S.Button>
     </S.Wrapper>
   )
 }
