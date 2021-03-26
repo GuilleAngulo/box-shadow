@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 
 export const ItemsWrapper = styled.div`
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `
 export const Item = styled.div`
   cursor: pointer;

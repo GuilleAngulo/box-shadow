@@ -21,7 +21,137 @@ export const defaultShadow = (isDarkMode = false) => {
   }
 }
 
-export const preset = {
+export const simplePreset = {
+  theme: 'light' as Mode,
+  shape: 'square' as Shape,
+  boxShadow: [
+    {
+      horizontalOffset: 0,
+      verticalOffset: 5,
+      blurRadius: 12,
+      spreadRadius: 3,
+      color: {
+        red: 0,
+        green: 0,
+        blue: 0,
+        alpha: 0.15
+      }
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 30,
+      blurRadius: 40,
+      spreadRadius: -10,
+      color: {
+        red: 0,
+        green: 0,
+        blue: 0,
+        alpha: 0.3
+      }
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 90,
+      spreadRadius: 10,
+      color: {
+        red: 70,
+        green: 70,
+        blue: 70,
+        alpha: 0.15
+      }
+    }
+  ]
+}
+
+export const neumorphismPreset = {
+  theme: 'light' as Mode,
+  shape: 'square' as Shape,
+  boxShadow: [
+    {
+      horizontalOffset: 20,
+      verticalOffset: 20,
+      blurRadius: 50,
+      spreadRadius: 0,
+      color: {
+        red: 165,
+        green: 165,
+        blue: 165,
+        alpha: 0.4
+      }
+    },
+    {
+      horizontalOffset: 40,
+      verticalOffset: 40,
+      blurRadius: 65,
+      spreadRadius: -5,
+      color: {
+        red: 160,
+        green: 160,
+        blue: 160,
+        alpha: 0.25
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: -20,
+      verticalOffset: -20,
+      blurRadius: 50,
+      spreadRadius: 0,
+      color: {
+        red: 255,
+        green: 255,
+        blue: 255,
+        alpha: 1
+      }
+    }
+  ]
+}
+
+export const ringsPreset = {
+  theme: 'light' as Mode,
+  shape: 'circle' as Shape,
+  boxShadow: [
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 0,
+      spreadRadius: 10,
+      color: {
+        red: 106,
+        green: 139,
+        blue: 255,
+        alpha: 1
+      }
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 0,
+      spreadRadius: 20,
+      color: {
+        red: 106,
+        green: 139,
+        blue: 255,
+        alpha: 0.6
+      }
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 0,
+      spreadRadius: 30,
+      color: {
+        red: 106,
+        green: 139,
+        blue: 255,
+        alpha: 0.2
+      }
+    }
+  ]
+}
+
+export const ledsPreset = {
   theme: 'dark' as Mode,
   shape: 'square' as Shape,
   boxShadow: [
@@ -75,6 +205,75 @@ export const preset = {
     }
   ]
 }
+
+export const eclipsePreset = {
+  theme: 'dark' as Mode,
+  shape: 'circle' as Shape,
+  boxShadow: [
+    {
+      horizontalOffset: -30,
+      verticalOffset: 10,
+      blurRadius: 30,
+      spreadRadius: -10,
+      color: {
+        red: 230,
+        green: 0,
+        blue: 0,
+        alpha: 1
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: 50,
+      verticalOffset: -15,
+      blurRadius: 10,
+      spreadRadius: -5,
+      color: {
+        red: 250,
+        green: 255,
+        blue: 160,
+        alpha: 1
+      }
+    },
+    {
+      horizontalOffset: 55,
+      verticalOffset: -15,
+      blurRadius: 25,
+      spreadRadius: 0,
+      color: {
+        red: 255,
+        green: 96,
+        blue: 10,
+        alpha: 1
+      }
+    },
+    {
+      horizontalOffset: 60,
+      verticalOffset: -20,
+      blurRadius: 60,
+      spreadRadius: 15,
+      color: {
+        red: 255,
+        green: 123,
+        blue: 0,
+        alpha: 0.85
+      }
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 20,
+      spreadRadius: 5,
+      color: {
+        red: 10,
+        green: 161,
+        blue: 255,
+        alpha: 0.85
+      }
+    }
+  ]
+}
+
 export const shadow = [
   {
     horizontalOffset: -2,

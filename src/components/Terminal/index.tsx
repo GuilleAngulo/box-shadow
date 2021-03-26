@@ -8,6 +8,7 @@ import { ContentCopy } from '@styled-icons/material-outlined'
 const Terminal = () => {
   const [copied, setCopied] = useState(false)
   const { boxShadow = [] } = useBoxShadow()
+
   const handleCopyCode = async () => {
     try {
       await navigator.clipboard.writeText(prettify(stringify(boxShadow)))
@@ -28,7 +29,9 @@ const Terminal = () => {
             <ContentCopy size={20} aria-label="Copy Code" />
           )}
         </S.CopyWrapper>
-        <S.Code>{prettify(stringify(boxShadow, false))}</S.Code>
+        <S.Code className="language-css">
+          {prettify(stringify(boxShadow, false))}
+        </S.Code>
       </S.Pre>
     </S.Wrapper>
   )

@@ -6,14 +6,30 @@ import Modal from 'components/Modal'
 
 import * as S from './styles'
 import { Settings } from '@styled-icons/material-outlined'
-import { preset } from 'utils/shadow'
+import {
+  simplePreset,
+  neumorphismPreset,
+  ringsPreset,
+  ledsPreset,
+  eclipsePreset
+} from 'utils/shadow'
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { Preset } from 'types'
 
 const PresetModal = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { loadPreset } = useBoxShadow()
-  const items = [{ name: 'Switch', img: '/img/preset-1.svg', preset }]
+  const items = [
+    { name: 'Simple', img: '/img/simple.svg', preset: simplePreset },
+    {
+      name: 'Neumorphism',
+      img: '/img/neumorphism.svg',
+      preset: neumorphismPreset
+    },
+    { name: 'Rings', img: '/img/rings.svg', preset: ringsPreset },
+    { name: 'Leds', img: '/img/leds.svg', preset: ledsPreset },
+    { name: 'Ecplipse', img: '/img/eclipse.svg', preset: eclipsePreset }
+  ]
 
   const handleClick = (preset: Preset) => {
     loadPreset(preset)
