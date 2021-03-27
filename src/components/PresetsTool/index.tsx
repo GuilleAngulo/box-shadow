@@ -28,7 +28,7 @@ const PresetModal = () => {
     },
     { name: 'Rings', img: '/img/rings.png', preset: ringsPreset },
     { name: 'Leds', img: '/img/leds.png', preset: ledsPreset },
-    { name: 'Ecplipse', img: '/img/eclipse.png', preset: eclipsePreset }
+    { name: 'Eclipse', img: '/img/eclipse.png', preset: eclipsePreset }
   ]
 
   const handleClick = (preset: Preset) => {
