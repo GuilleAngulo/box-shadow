@@ -20,15 +20,15 @@ const PresetModal = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { loadPreset } = useBoxShadow()
   const items = [
-    { name: 'Simple', img: '/img/simple.svg', preset: simplePreset },
+    { name: 'Simple', img: '/img/simple.png', preset: simplePreset },
     {
       name: 'Neumorphism',
-      img: '/img/neumorphism.svg',
+      img: '/img/neumorphism.png',
       preset: neumorphismPreset
     },
-    { name: 'Rings', img: '/img/rings.svg', preset: ringsPreset },
-    { name: 'Leds', img: '/img/leds.svg', preset: ledsPreset },
-    { name: 'Ecplipse', img: '/img/eclipse.svg', preset: eclipsePreset }
+    { name: 'Rings', img: '/img/rings.png', preset: ringsPreset },
+    { name: 'Leds', img: '/img/leds.png', preset: ledsPreset },
+    { name: 'Ecplipse', img: '/img/eclipse.png', preset: eclipsePreset }
   ]
 
   const handleClick = (preset: Preset) => {
@@ -54,8 +54,9 @@ const PresetModal = () => {
               key={item.name}
               onClick={() => handleClick(item.preset)}
             >
-              <Image src={item.img} width={150} height={150} />
-              {item.name}
+              <S.Image src={item.img} alt={item.name} />
+
+              <label>{item.name}</label>
             </S.Item>
           ))}
         </S.ItemsWrapper>

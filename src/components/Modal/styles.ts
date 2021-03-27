@@ -42,7 +42,7 @@ export const Modal = styled.div<ModalProps>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: ${theme.border.radius};
+    border-radius: 1.2rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition: ${theme.transition.default};
@@ -57,7 +57,9 @@ export const Wrapper = styled.div`
     display: flex;
     align-content: center;
     flex-direction: column;
-    padding: ${theme.spacings.small};
+    padding: ${theme.spacings.medium};
+    border-radius: 1.2rem;
+    box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5);
 
     ${ButtonStyles.Wrapper} {
       svg {
@@ -69,31 +71,34 @@ export const Wrapper = styled.div`
 
 export const CloseButton = styled.div`
   ${({ theme }) => css`
-    color: ${theme.colors.primary};
+    color: ${theme.colors.primaryFont};
     position: absolute;
     right: 0;
     top: 0;
     padding: 0.4rem 0.4rem 0 0;
     cursor: pointer;
     svg {
-      width: 2.5rem;
+      width: 3rem;
     }
-  `}
-`
 
-export const Message = styled.div`
-  ${({ theme }) => css`
-    font-size: ${theme.font.sizes.xsmall};
-    color: ${theme.colors.primaryFont};
-    padding-bottom: ${theme.spacings.xxsmall};
-    font-style: italic;
+    &:hover {
+      color: ${theme.colors.secondaryFont};
+    }
   `}
 `
 
 export const Header = styled.div``
 
+export const Title = styled.h3`
+  ${({ theme }) => css`
+    font-size: 2rem;
+    font-weight: ${theme.font.normal};
+    margin-bottom: ${theme.spacings.medium};
+  `}
+`
+
 export const Content = styled.div`
   ${({ theme }) => css`
-    padding-bottom: ${theme.spacings.xsmall};
+    /* padding-bottom: ${theme.spacings.xsmall}; */
   `}
 `

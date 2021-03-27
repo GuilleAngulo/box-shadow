@@ -55,10 +55,10 @@ const Modal = ({ isOpen, setIsOpen, title, children }: ModalProps) => {
       >
         <S.Wrapper>
           <S.CloseButton onClick={() => setIsOpen(false)} role="button">
-            <Close aria-label="Close dialog box" />
+            <Close aria-label="close dialog box" />
           </S.CloseButton>
           <S.Header>
-            <h1>{title}</h1>
+            <S.Title>{title}</S.Title>
           </S.Header>
           <S.Content>{children} </S.Content>
         </S.Wrapper>
