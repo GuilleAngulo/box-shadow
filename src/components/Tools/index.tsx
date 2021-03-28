@@ -1,7 +1,7 @@
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import ShadowTool from 'components/ShadowTool'
 
-import { AddToQueue as AddIcon } from '@styled-icons/boxicons-regular'
+import { LayerPlus as AddIcon } from '@styled-icons/boxicons-regular'
 
 import * as S from './styles'
 import { useMemo } from 'react'

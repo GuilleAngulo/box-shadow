@@ -2,7 +2,6 @@ import { useBoxShadow } from 'hooks/use-box-shadow'
 
 import { Square, Circle } from '@styled-icons/boxicons-regular'
 import * as S from './styles'
-import Button from 'components/Button'
 import { Shape } from 'types'
 
 const ShapeTool = () => {

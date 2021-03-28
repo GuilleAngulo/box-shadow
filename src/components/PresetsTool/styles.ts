@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -6,7 +7,7 @@ export const Wrapper = styled.div`
       outline: none;
       svg {
         fill: ${theme.colors.primary};
-        width: 3rem;
+        width: 2.8rem;
       }
     }
   `}
@@ -14,8 +15,13 @@ export const Wrapper = styled.div`
 
 export const ItemsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  ${media.greaterThan('medium')`
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  `}
 `
 export const Item = styled.div`
   cursor: pointer;

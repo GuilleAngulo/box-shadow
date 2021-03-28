@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import Image from 'next/image'
 
 import Button from 'components/Button'
 import Modal from 'components/Modal'
 
 import * as S from './styles'
-import { Settings } from '@styled-icons/material-outlined'
 import {
   simplePreset,
   neumorphismPreset,
@@ -40,11 +38,12 @@ const PresetModal = () => {
     <S.Wrapper>
       <Button
         size="small"
-        icon={<Settings />}
         minimal
         aria-label="add preset configurations"
         onClick={() => setIsOpen(true)}
-      />
+      >
+        Presets
+      </Button>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Choose a preset:">
         <S.ItemsWrapper>
           {items.map((item) => (

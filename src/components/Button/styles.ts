@@ -10,16 +10,16 @@ export type WrapperProps = {
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
     height: 3rem;
-    font-size: ${theme.font.sizes.xsmall};
+    font-size: ${theme.font.sizes.medium};
   `,
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
-    font-size: ${theme.font.sizes.small};
+    font-size: ${theme.font.sizes.large};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
   `,
   large: (theme: DefaultTheme) => css`
     height: 5rem;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.xlarge};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `,
   fullWidth: () => css`
@@ -36,10 +36,11 @@ const wrapperModifiers = {
   `,
   minimal: (theme: DefaultTheme) => css`
     background: none;
-    color: ${theme.colors.primaryFont};
+    color: ${theme.colors.primary};
+    font-weight: ${theme.font.bold};
 
     &:hover {
-      color: ${darken(0.1, theme.colors.primaryFont)};
+      color: ${darken(0.1, theme.colors.primary)};
     }
   `,
   disabled: () => css`
