@@ -56,7 +56,7 @@ export const Wrapper = styled.button<WrapperProps>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
+    background: ${theme.colors.primary};
     color: ${theme.colors.primaryFont};
     border: 0;
     cursor: pointer;
