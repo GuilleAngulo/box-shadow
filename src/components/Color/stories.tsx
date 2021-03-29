@@ -6,4 +6,13 @@ export default {
   component: Color
 } as Meta
 
-export const Default: Story = () => <Color />
+export const Default: Story = () => (
+  <div style={{ width: '50rem' }}>
+    <Color />
+  </div>
+)
+
+Default.args = {
+  initialColor: 0,
+  initialOpacity: 0.5
+}

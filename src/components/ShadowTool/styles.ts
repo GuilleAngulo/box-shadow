@@ -3,6 +3,7 @@ import { transparentize } from 'polished'
 
 export const Item = styled.li`
   ${({ theme }) => css`
+    list-style: none;
     position: relative;
     padding: 0.5rem 1.2rem 1rem 1.2rem;
     height: fit-content;

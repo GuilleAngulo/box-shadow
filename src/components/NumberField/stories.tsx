@@ -6,12 +6,8 @@ export default {
   title: 'Form/NumberField',
   component: NumberField,
   args: {
-    label: 'E-mail',
-    name: 'email',
-    initialValue: '',
-    placeholder: 'john.cage@gmail.com',
-    icon: <Email />,
-    iconPosition: 'left',
+    name: 'horizontalOffset',
+    initialValue: 10,
     disabled: false
   },
   argTypes: {
@@ -23,13 +19,13 @@ export default {
 } as Meta
 
 export const Default: Story<NumberFieldProps> = (args) => (
-  <div style={{ maxWidth: 300, padding: 15 }}>
+  <div style={{ maxWidth: 100, padding: 15 }}>
     <NumberField {...args} />
   </div>
 )
 
 export const withError: Story<NumberFieldProps> = (args) => (
-  <div style={{ maxWidth: 300, padding: 15 }}>
+  <div style={{ maxWidth: 100, padding: 15 }}>
     <NumberField {...args} />
   </div>
 )
@@ -39,7 +35,7 @@ withError.args = {
 }
 
 export const withLoading: Story<NumberFieldProps> = (args) => (
-  <div style={{ maxWidth: 300, padding: 15 }}>
+  <div style={{ maxWidth: 100, padding: 15 }}>
     <NumberField {...args} />
   </div>
 )

@@ -5,7 +5,7 @@ import * as S from './styles'
 import { Shape } from 'types'
 
 const ShapeTool = () => {
-  const { shape, saveShape } = useBoxShadow()
+  const { shape = 'square', saveShape } = useBoxShadow()
 
   const handleClick = (selectedShape: Shape) => {
     if (shape !== selectedShape) {

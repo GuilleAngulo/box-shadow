@@ -10,16 +10,16 @@ export type WrapperProps = {
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
     height: 3rem;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.small};
   `,
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
-    font-size: ${theme.font.sizes.large};
+    font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
   `,
   large: (theme: DefaultTheme) => css`
     height: 5rem;
-    font-size: ${theme.font.sizes.xlarge};
+    font-size: ${theme.font.sizes.large};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `,
   fullWidth: () => css`
@@ -57,7 +57,7 @@ export const Wrapper = styled.button<WrapperProps>`
     align-items: center;
     justify-content: center;
     background: ${theme.colors.primary};
-    color: ${theme.colors.primaryFont};
+    color: white;
     border: 0;
     cursor: pointer;
     border-radius: ${theme.border.radius};
@@ -65,9 +65,7 @@ export const Wrapper = styled.button<WrapperProps>`
     text-decoration: none;
 
     &:hover {
-      background: ${minimal
-        ? 'none'
-        : `linear-gradient(180deg, #e35565 0%, #d958ab 50%)`};
+      background: ${minimal ? 'none' : darken(0.1, theme.colors.primary)};
     }
 
     ${!!size && wrapperModifiers[size](theme)};

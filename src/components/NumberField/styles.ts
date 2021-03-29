@@ -9,6 +9,7 @@ export const InputWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
+    justify-content: center;
     background: ${theme.colors.accent};
     border-radius: 0.2rem;
     padding: 0 ${theme.spacings.xxsmall};
@@ -50,47 +51,6 @@ export const Label = styled.label`
     font-size: ${theme.font.sizes.small};
     color: ${theme.colors.primaryFont};
     cursor: pointer;
-  `}
-`
-
-export const Error = styled.span`
-  ${({ theme }) => css`
-    color: red;
-    font-size: ${theme.font.sizes.xsmall};
-
-    &::before {
-      content: '\\d7';
-      font-size: ${theme.font.sizes.large};
-      padding-right: 0.4rem;
-      vertical-align: middle;
-    }
-  `}
-`
-
-export const Loading = styled.span`
-  ${({ theme }) => css`
-    position: relative;
-    padding-left: 2rem;
-    color: ${theme.colors.primary};
-    font-size: ${theme.font.sizes.xsmall};
-
-    &::before {
-      content: '';
-      top: 0;
-      left: 0;
-      position: absolute;
-      border: 0.2rem solid ${theme.colors.accent};
-      border-left-color: ${theme.colors.primary};
-      border-radius: 50%;
-      width: ${theme.font.sizes.small};
-      height: ${theme.font.sizes.small};
-      animation: spin 1s linear infinite;
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-    }
   `}
 `
 

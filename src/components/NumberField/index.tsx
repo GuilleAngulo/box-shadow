@@ -59,8 +59,6 @@ const NumberField = ({
           {...props}
         />
       </S.InputWrapper>
-      {!!error && <S.Error>{error}</S.Error>}
-      {loading && <S.Loading>{loading}</S.Loading>}
     </S.Wrapper>
   )
 }

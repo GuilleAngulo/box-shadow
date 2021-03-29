@@ -4,8 +4,13 @@ import { useBoxShadow } from 'hooks/use-box-shadow'
 
 import * as S from './styles'
 import { ContentCopy } from '@styled-icons/material-outlined'
+import { ShadowProps } from 'types'
 
-const Terminal = () => {
+export type TerminalProps = {
+  initialBoxShadow?: ShadowProps[]
+}
+
+const Terminal = ({ initialBoxShadow }: TerminalProps) => {
   const [copied, setCopied] = useState(false)
   const { boxShadow = [] } = useBoxShadow()
 
@@ -29,8 +34,8 @@ const Terminal = () => {
             <ContentCopy size={20} aria-label="Copy Code" />
           )}
         </S.CopyWrapper>
-        <S.Code className="language-css">
-          {prettify(stringify(boxShadow, false))}
+        <S.Code>
+          {prettify(stringify(boxShadow || initialBoxShadow, false))}
         </S.Code>
       </S.Pre>
     </S.Wrapper>

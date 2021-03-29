@@ -10,9 +10,17 @@ export type ColorProps = {
   index?: number
   label?: string
   icon?: React.ReactNode
+  initialColor?: number
+  initialOpacity?: number
 }
 
-const Color = ({ index = 0, label, icon }: ColorProps) => {
+const Color = ({
+  index = 0,
+  label,
+  icon,
+  initialColor = 0,
+  initialOpacity = 0
+}: ColorProps) => {
   const { boxShadow = [], setBoxShadowProperty } = useBoxShadow()
 
   const handleColor = (value: string) => {
@@ -33,14 +41,16 @@ const Color = ({ index = 0, label, icon }: ColorProps) => {
       )}
       <S.InputWrapper>
         <InputColor
-          initialValue={boxShadow[index].color}
+          initialValue={boxShadow[index]?.color || initialColor}
           onInput={handleColor}
         />
         <InputRange
           name="opacity"
           min={OPACITY_RANGES[0]}
           max={OPACITY_RANGES[1]}
-          initialValue={Math.round(boxShadow[index].color.alpha * 100)}
+          initialValue={
+            Math.round(boxShadow[index]?.color?.alpha * 100) || initialOpacity
+          }
           onInput={handleOpacity}
           rangeUnit="%"
         />
