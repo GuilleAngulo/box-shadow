@@ -6,6 +6,12 @@ export const BLUR_RADIUS_RANGES = [0, 100]
 export const SPREAD_RADIUS_RANGES = [-50, 50]
 export const OPACITY_RANGES = [0, 100]
 
+export const SIZES = {
+  large: 24,
+  medium: 12,
+  small: 9
+}
+
 export const defaultShadow = (isDarkMode = false) => {
   const color = isDarkMode
     ? { red: 255, green: 255, blue: 255, alpha: 0.6 }
@@ -22,6 +28,7 @@ export const defaultShadow = (isDarkMode = false) => {
 }
 
 export const simplePreset = {
+  name: 'Simple',
   theme: 'light' as Mode,
   shape: 'square' as Shape,
   boxShadow: [
@@ -65,6 +72,7 @@ export const simplePreset = {
 }
 
 export const neumorphismPreset = {
+  name: 'Neumorphism',
   theme: 'light' as Mode,
   shape: 'square' as Shape,
   boxShadow: [
@@ -109,6 +117,7 @@ export const neumorphismPreset = {
 }
 
 export const ringsPreset = {
+  name: 'Rings',
   theme: 'light' as Mode,
   shape: 'circle' as Shape,
   boxShadow: [
@@ -152,6 +161,7 @@ export const ringsPreset = {
 }
 
 export const ledsPreset = {
+  name: 'Leds',
   theme: 'dark' as Mode,
   shape: 'square' as Shape,
   boxShadow: [
@@ -207,6 +217,7 @@ export const ledsPreset = {
 }
 
 export const eclipsePreset = {
+  name: 'Eclipse',
   theme: 'dark' as Mode,
   shape: 'circle' as Shape,
   boxShadow: [
@@ -269,6 +280,53 @@ export const eclipsePreset = {
         green: 161,
         blue: 255,
         alpha: 0.85
+      }
+    }
+  ]
+}
+
+export const featuredPreset = {
+  name: 'Featured',
+  author: 'GuilleAngulo',
+  theme: 'dark' as Mode,
+  shape: 'circle' as Shape,
+  boxShadow: [
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 90,
+      spreadRadius: 35,
+      color: {
+        red: 206,
+        green: 1,
+        blue: 208,
+        alpha: 0.7
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: -100,
+      verticalOffset: -45,
+      blurRadius: 50,
+      spreadRadius: -50,
+      color: {
+        red: 245,
+        green: 1,
+        blue: 90,
+        alpha: 1
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 70,
+      spreadRadius: 24,
+      color: {
+        red: 245,
+        green: 20,
+        blue: 245,
+        alpha: 0.4
       }
     }
   ]

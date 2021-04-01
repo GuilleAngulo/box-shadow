@@ -9,20 +9,13 @@ export type BoxShadowProps = {
 const Shadow = ({ children }: BoxShadowProps) => {
   const { boxShadow = [], shape } = useBoxShadow()
 
-  // const renderShape = (type: string | undefined) => {
-  //   switch (type) {
-  //     case 'square':
-  //     case 'circle':
-  //       return <S.ShapeBlock boxShadow={boxShadow} shape={type} />
-
-  //     default:
-  //       return <div></div>
-  //   }
-  // }
-
   return (
     <S.Wrapper>
-      {shape && <S.ShapeBlock boxShadow={boxShadow} shape={shape} />}
+      {shape && (
+        <S.ShapeBlock boxShadow={boxShadow} shape={shape}>
+          {children}
+        </S.ShapeBlock>
+      )}
     </S.Wrapper>
   )
 }

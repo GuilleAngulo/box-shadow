@@ -5,6 +5,8 @@ import {
   GlobalStyleComponent
 } from 'styled-components'
 
+import { lightTheme, darkTheme } from 'styles/theme'
+
 type GlobalStylesProps = {
   removeBg?: boolean
 }
@@ -26,6 +28,10 @@ const GlobalStyles: GlobalStyleComponent<
     }
   }
 
+  html {
+      --light-background: ${lightTheme.colors.background};
+      --dark-background: ${darkTheme.colors.background};
+    }
 
   ${({ theme }) => css`
     html {

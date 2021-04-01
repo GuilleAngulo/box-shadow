@@ -40,15 +40,15 @@ export const Add = styled.li`
     border: 0.2rem dashed ${theme.colors.tertiaryFont};
     cursor: pointer;
 
-    &:hover {
-      svg {
-        fill: ${lighten(0.2, theme.colors.tertiaryFont)};
-        transition: fill ${theme.transition.default};
-      }
-    }
-
     svg {
       fill: ${theme.colors.tertiaryFont};
+      transition: all ${theme.transition.default};
+    }
+    &:hover {
+      svg {
+        fill: ${theme.colors.secondaryFont};
+        transform: translateY(-0.5rem);
+      }
     }
   `}
 `

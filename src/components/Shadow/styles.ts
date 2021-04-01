@@ -17,7 +17,7 @@ export type ShapeProps = {
   shape: Shape
 }
 
-const shapeModifiers = {
+export const shapeModifiers = {
   square: (theme: DefaultTheme) => css`
     border-radius: ${theme.border.radius};
   `,
@@ -32,8 +32,8 @@ export const ShapeBlock = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
   }
 }))<ShapeProps>`
   ${({ theme, shape }) => css`
-    width: 24rem;
-    height: 24rem;
+    width: ${theme.shadow.sizes.large};
+    height: ${theme.shadow.sizes.large};
     display: flex;
     justify-content: center;
     align-items: center;

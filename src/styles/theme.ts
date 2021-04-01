@@ -62,6 +62,18 @@ export const lightTheme = {
     container: '130rem',
     gutter: '3.2rem'
   },
+  shadow: {
+    sizes: {
+      large: '24rem',
+      medium: '12rem',
+      small: '9rem'
+    },
+    padding: {
+      large: '12.25rem',
+      medium: '7rem',
+      small: '4rem'
+    }
+  },
   border: {
     radius: '0.4rem'
   },
@@ -101,7 +113,8 @@ export const lightTheme = {
     primaryFont: '#383838',
     terminalFont: '#F9F9F9',
     terminalBg: '#1E293C',
-    red: '#ef4444'
+    red: '#ef4444',
+    glow: '#ecae0f'
   },
   transition: {
     default: '0.3s ease-in-out',
@@ -113,6 +126,18 @@ export const darkTheme = {
   grid: {
     container: '130rem',
     gutter: '3.2rem'
+  },
+  shadow: {
+    sizes: {
+      large: '24rem',
+      medium: '12rem',
+      small: '9rem'
+    },
+    padding: {
+      large: '12.25rem',
+      medium: '7rem',
+      small: '4rem'
+    }
   },
   border: {
     radius: '0.4rem'
@@ -153,7 +178,8 @@ export const darkTheme = {
     primaryFont: '#F9F9F9',
     terminalFont: '#F9F9F9',
     terminalBg: '#1E293C',
-    red: '#ef4444'
+    red: '#ef4444',
+    glow: '#FAD02C'
   },
   transition: {
     default: '0.3s ease-in-out',
