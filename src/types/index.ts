@@ -94,7 +94,7 @@ export type Author = {
 }
 
 export type Preset = {
-  name: string
+  name?: string
   boxShadow: ShadowProps[]
   shape: Shape
   theme: Mode

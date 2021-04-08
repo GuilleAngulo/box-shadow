@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { ShadowProps, Shape } from 'types'
 import { stringify } from 'utils/helpers'
@@ -31,14 +32,20 @@ export const ShapeBlock = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
     boxShadow: stringify(boxShadow, false)
   }
 }))<ShapeProps>`
-  ${({ theme, shape }) => css`
+  ${({ theme, shape, boxShadow }) => css`
     width: ${theme.shadow.sizes.large};
     height: ${theme.shadow.sizes.large};
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: ${theme.font.sizes.huge};
     transition: border-radius ${theme.transition.default};
+    background: ${boxShadow.length ? 'none' : theme.colors.card};
+
+    > svg {
+      fill: ${theme.colors.background};
+      width: 6rem;
+      height: 6rem;
+    }
 
     ${!!shape && shapeModifiers[shape](theme)};
   `}

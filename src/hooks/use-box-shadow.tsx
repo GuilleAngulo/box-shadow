@@ -62,6 +62,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
     const storedShape = getStorageItem(SHAPE_KEY)
     setShape(storedShape ? storedShape : 'square')
     storedBoxShadow ? setBoxShadow(storedBoxShadow) : addBoxShadow()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const saveBoxShadow = (boxShadow: ShadowProps[]) => {

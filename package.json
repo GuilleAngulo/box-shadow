@@ -14,7 +14,8 @@
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook -s ./public",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "supabase:types": "dotenv -e .env.local -- cross-var npx openapi-typescript %NEXT_PUBLIC_SUPABASE_URL%/rest/v1/?apikey=%NEXT_PUBLIC_SUPABASE_ANON_KEY% --output src/types/supabase.ts"
   },
   "lint-staged": {
     "src/**/*": [
@@ -26,6 +27,8 @@
     "@styled-icons/boxicons-regular": "^10.23.0",
     "@styled-icons/material-outlined": "^10.28.0",
     "@styled-icons/typicons": "^10.18.0",
+    "@supabase/supabase-js": "^1.7.7",
+    "@supabase/ui": "^0.23.1",
     "hex-rgb": "^4.2.0",
     "next": "10.0.7",
     "next-pwa": "^5.0.5",
@@ -33,6 +36,7 @@
     "react": "17.0.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "17.0.1",
+    "react-hot-toast": "^1.0.2",
     "react-switch": "^6.0.0",
     "rgb-hex": "^3.0.0",
     "styled-components": "5.2.1",
@@ -55,6 +59,8 @@
     "@typescript-eslint/parser": "^4.15.1",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^4.0.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",

@@ -88,5 +88,5 @@ export const Author = styled.a`
 export const AuthorPhoto = styled.img`
   width: 1.8rem;
   height: 1.8rem;
-  border-radius: 100%;
+  border-radius: 50%;
 `

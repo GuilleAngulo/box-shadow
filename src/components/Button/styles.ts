@@ -10,11 +10,11 @@ export type WrapperProps = {
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
     height: 3rem;
-    font-size: ${theme.font.sizes.small};
+    font-size: ${theme.font.sizes.medium};
   `,
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.large};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
   `,
   large: (theme: DefaultTheme) => css`
@@ -68,6 +68,7 @@ export const Wrapper = styled.button<WrapperProps>`
     }
 
     &:focus {
+      outline-offset: 0.2rem;
       outline: 0.2rem solid ${theme.colors.primary};
       &:not(:focus-visible) {
         outline: none;

@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
-import { lighten } from 'polished'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ export const ToolsWrapper = styled.ul`
     grid-template-columns: repeat(2, minmax(20rem, 1fr));
     grid-column-gap: 2.2rem;
     grid-row-gap: 1.4rem;
-    padding: 0 ${theme.spacings.small};
+    /* padding: 0 ${theme.spacings.small}; */
     margin: auto;
     margin-top: 2.4rem;
     list-style: none;
