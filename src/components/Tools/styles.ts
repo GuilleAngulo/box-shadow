@@ -11,19 +11,20 @@ export const Color = styled.div``
 export const ToolsWrapper = styled.ul`
   ${({ theme }) => css`
     display: grid;
-    grid-template-columns: repeat(2, minmax(20rem, 1fr));
-    grid-column-gap: 2.2rem;
+    grid-template-columns: 1fr;
     grid-row-gap: 1.4rem;
-    /* padding: 0 ${theme.spacings.small}; */
+    width: 100%;
+    padding: 0 ${theme.spacings.small};
     margin: auto;
     margin-top: 2.4rem;
     list-style: none;
-    ${media.lessThan('small')`
-      grid-template-columns: 1fr;
-      width: 100%;
+    ${media.greaterThan('medium')`
+      grid-template-columns: repeat(2, 26rem);
+      grid-column-gap: 2.2rem;
     `}
     ${media.greaterThan('large')`
-      grid-template-columns: repeat(3, minmax(20rem, 1fr));
+      grid-template-columns: repeat(3, 26rem);
+      padding: 0 ;
     `}
   `}
 `
@@ -34,7 +35,7 @@ export const Add = styled.li`
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1rem;
-    min-height: 32rem;
+    min-height: 34.8rem;
     border-radius: ${theme.border.radius};
     border: 0.2rem dashed ${theme.colors.tertiaryFont};
     cursor: pointer;

@@ -9,8 +9,8 @@ export const Wrapper = styled.section`
 export const Panel = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  ${media.greaterThan('medium')`
-    grid-template-columns: 60rem auto;
+  ${media.greaterThan('large')`
+    grid-template-columns: 60rem 80rem;
   `}
 `
 
@@ -19,7 +19,7 @@ export const Display = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8rem;
-    padding: 8rem ${theme.spacings.small};
+    padding: 12rem ${theme.spacings.small};
     padding-bottom: ${theme.spacings.small};
     ${media.greaterThan('medium')`
       gap: 12rem;
