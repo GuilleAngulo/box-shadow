@@ -1,5 +1,4 @@
 import { useRef, ElementRef } from 'react'
-import { useRouter } from 'next/router'
 
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { useTheme } from 'hooks/use-theme'
@@ -9,16 +8,16 @@ import Button from 'components/Button'
 import Dropdown from 'components/Dropdown'
 
 import toast, { Toaster } from 'react-hot-toast'
+import { Github } from '@styled-icons/boxicons-logos'
 
 import * as S from './styles'
 
 import { Logout, Save, FileDownload } from '@styled-icons/material-outlined'
 
 const Login = () => {
-  const { push } = useRouter()
   const { boxShadow, shape, loadPreset } = useBoxShadow()
   const { theme } = useTheme()
-  const { loading, error, user, session, signInGithub, signOut } = useAuth()
+  const { loading, user, session, signInGithub, signOut } = useAuth()
 
   const dropdownRef = useRef<ElementRef<typeof Dropdown>>(null)
 
@@ -47,7 +46,7 @@ const Login = () => {
       res,
       {
         loading: 'Loading...',
-        success: () => `Successfully loaded.`,
+        success: () => `Loaded.`,
         error: () => `Oops...something went wrong. Try again.`
       },
       {
@@ -76,8 +75,8 @@ const Login = () => {
     toast.promise(
       res,
       {
-        loading: 'Loading...',
-        success: () => `Saved successfully.`,
+        loading: 'Saving...',
+        success: () => `Saved.`,
         error: () => `Oops...something went wrong. Try again.`
       },
       {
@@ -126,8 +125,13 @@ const Login = () => {
           </Dropdown>
         </S.Logged>
       ) : (
-        <Button size="small" minimal onClick={signInGithub}>
-          Login
+        <Button
+          size="small"
+          icon={<Github />}
+          loading={loading}
+          onClick={signInGithub}
+        >
+          Log in
         </Button>
       )}
       <Toaster position="bottom-right" />

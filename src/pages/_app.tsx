@@ -9,6 +9,7 @@ import { BoxShadowProvider } from 'hooks/use-box-shadow'
 import { ThemeProvider } from 'hooks/use-theme'
 import GlobalStyles from 'styles/global'
 import 'styles/fonts.css'
+import NextNprogress from 'nextjs-progressbar'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -23,6 +24,13 @@ function App({ Component, pageProps }: AppProps) {
             <meta name="description" content="CSS Box Shadow Tool" />
           </Head>
           <GlobalStyles />
+          <NextNprogress
+            color="white"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            options={{ showSpinner: false }}
+          />
           <Component {...pageProps} />
         </BoxShadowProvider>
       </ThemeProvider>

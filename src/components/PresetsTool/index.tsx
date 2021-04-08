@@ -58,6 +58,7 @@ const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
     <S.Wrapper>
       <Button
         size="small"
+        minimal
         aria-label="add preset configurations"
         onClick={() => setIsOpen(true)}
       >

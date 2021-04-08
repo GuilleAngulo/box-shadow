@@ -29,7 +29,7 @@ export const Item = styled.li`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     cursor: pointer;
     color: ${theme.colors.secondaryFont};
     padding: ${theme.spacings.xsmall} ${theme.spacings.small};

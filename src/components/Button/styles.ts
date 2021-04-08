@@ -27,7 +27,7 @@ const wrapperModifiers = {
   `,
   withIcon: (theme: DefaultTheme) => css`
     svg {
-      width: 1.5rem;
+      width: 2rem;
 
       & + span {
         margin-left: ${theme.spacings.xxsmall};
@@ -37,9 +37,11 @@ const wrapperModifiers = {
   minimal: (theme: DefaultTheme) => css`
     background: none;
     color: ${theme.colors.primaryFont};
+    border: 0.2rem solid ${theme.colors.primary};
+    transition: border ${theme.transition.fast};
 
     &:hover {
-      color: ${darken(0.1, theme.colors.primaryFont)};
+      border: 0.2rem solid ${darken(0.2, theme.colors.primary)};
     }
   `,
   disabled: () => css`

@@ -37,6 +37,7 @@ const AuthProvider = ({ supabaseClient, children }: AuthProviderProps) => {
 
   const signInGithub = async () => {
     setLoading(true)
+    await new Promise((resolve) => setTimeout(resolve, 500))
     const { error } = await supabaseClient.auth.signIn({ provider: 'github' })
     if (error) setError(error.message)
     setLoading(false)
