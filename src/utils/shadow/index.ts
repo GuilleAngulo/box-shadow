@@ -3,7 +3,7 @@ import { Mode, Shape } from 'types'
 export const HORIZONTAL_OFFSET_RANGES = [-100, 100]
 export const VERTICAL_OFFSET_RANGES = [-100, 100]
 export const BLUR_RADIUS_RANGES = [0, 100]
-export const SPREAD_RADIUS_RANGES = [-50, 50]
+export const SPREAD_RADIUS_RANGES = [-100, 100]
 export const OPACITY_RANGES = [0, 100]
 
 export const SIZES = {
@@ -125,11 +125,50 @@ export const ringsPreset = {
       horizontalOffset: 0,
       verticalOffset: 0,
       blurRadius: 0,
-      spreadRadius: 10,
+      spreadRadius: 20,
       color: {
-        red: 106,
-        green: 139,
-        blue: 255,
+        red: 0,
+        green: 180,
+        blue: 216,
+        alpha: 1
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 20,
+      spreadRadius: 20,
+      color: {
+        red: 0,
+        green: 0,
+        blue: 0,
+        alpha: 1
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 100,
+      spreadRadius: 100,
+      color: {
+        red: 160,
+        green: 225,
+        blue: 238,
+        alpha: 1
+      },
+      inset: true
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 20,
+      spreadRadius: 0,
+      color: {
+        red: 0,
+        green: 0,
+        blue: 0,
         alpha: 1
       }
     },
@@ -139,22 +178,34 @@ export const ringsPreset = {
       blurRadius: 0,
       spreadRadius: 20,
       color: {
-        red: 106,
-        green: 139,
-        blue: 255,
-        alpha: 0.6
+        red: 0,
+        green: 150,
+        blue: 199,
+        alpha: 1
+      }
+    },
+    {
+      horizontalOffset: 0,
+      verticalOffset: 0,
+      blurRadius: 20,
+      spreadRadius: 20,
+      color: {
+        red: 0,
+        green: 0,
+        blue: 0,
+        alpha: 1
       }
     },
     {
       horizontalOffset: 0,
       verticalOffset: 0,
       blurRadius: 0,
-      spreadRadius: 30,
+      spreadRadius: 40,
       color: {
-        red: 106,
-        green: 139,
-        blue: 255,
-        alpha: 0.2
+        red: 0,
+        green: 119,
+        blue: 182,
+        alpha: 1
       }
     }
   ]
@@ -358,11 +409,3 @@ export const shadow = [
     }
   }
 ]
-
-/** ECLIPSE
-box-shadow: -10px -1px 14px 1px rgba(255, 184, 31, 1),
-  -23px 0px 23px 10px rgba(255, 253, 194, 0.36),
-  inset -6px 0px 30px 1px rgba(168, 169, 184, 1),
-  0px 0px 100px 10px rgba(111, 82, 255, 0.66),
-  0px 0px 44px 10px rgba(97, 215, 255, 0.4);
-*/
