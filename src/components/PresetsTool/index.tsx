@@ -13,9 +13,8 @@ import {
   eclipsePreset
 } from 'utils/shadow'
 import { useBoxShadow } from 'hooks/use-box-shadow'
-import { Preset, Author } from 'types'
-
-import { getUser } from 'services/github-user'
+import { Preset } from 'types'
+import { getBoxShadow } from 'services/boxShadows'
 
 export type PresetModalProps = {
   featuredBoxShadow?: Preset
@@ -24,9 +23,8 @@ export type PresetModalProps = {
 const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const { loadPreset } = useBoxShadow()
-  const [author, setAuthor] = useState<Author>({
-    name: featuredBoxShadow?.author
-  })
+  const [featured, setFeatured] = useState(undefined)
+
   const items: Preset[] = [
     simplePreset,
     neumorphismPreset,
@@ -41,17 +39,13 @@ const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
   }
 
   useEffect(() => {
-    if (author.name) {
-      getUser(author.name)
-        .then((res) => {
-          setAuthor({
-            ...author,
-            link: res.html_url,
-            photo: res.avatar_url
-          })
-        })
-        .catch((err) => console.log(err))
+    async function fetchBoxShadow() {
+      const response = await getBoxShadow()
+      if (response) {
+        setFeatured(response)
+      }
     }
+    fetchBoxShadow()
   }, [])
 
   return (
@@ -89,34 +83,32 @@ const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
               </S.Item>
             ))}
           </>
-          {featuredBoxShadow && (
+          {featured && (
             <S.FeaturedItem
               role="button"
-              aria-label={`select ${featuredBoxShadow?.name} preset`}
-              key={featuredBoxShadow?.name}
-              onClick={() =>
-                featuredBoxShadow && handleClick(featuredBoxShadow)
-              }
+              aria-label={`select ${featured.preset.name} preset`}
+              key={featured.preset.name}
+              onClick={() => featured.preset && handleClick(featured.preset)}
             >
               <S.FeaturedImage>
                 <GalleryShadow
-                  aria-label={`${featuredBoxShadow?.name} preset preview`}
-                  initialBoxShadow={featuredBoxShadow?.boxShadow}
+                  aria-label={`${featured.preset.name} preset preview`}
+                  initialBoxShadow={featured.preset.boxShadow}
                   size="small"
-                  shape={featuredBoxShadow?.shape}
-                  mode={featuredBoxShadow?.theme}
+                  shape={featured.preset.shape}
+                  mode={featured.preset.theme}
                 />
               </S.FeaturedImage>
               <S.Info>
-                <label>{featuredBoxShadow?.name}</label>
-                {author.name && (
-                  <S.Author href={author.link} target="_blank">
+                <S.FeaturedTitle>{featured.preset.name}</S.FeaturedTitle>
+                {featured.author.name && (
+                  <S.Author href={'#'} target="_blank">
                     <div>
-                      by <span>{author.name}</span>
+                      by <span>{featured.author.name}</span>
                     </div>
                     <S.AuthorPhoto
-                      src={author.photo}
-                      alt={`${author.name}'s photo`}
+                      src={featured.author.avatar_url}
+                      alt={`${featured.author.name}'s photo`}
                     />
                   </S.Author>
                 )}

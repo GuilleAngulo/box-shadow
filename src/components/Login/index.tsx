@@ -1,4 +1,4 @@
-import { useRef, ElementRef } from 'react'
+import { useRef, ElementRef, useState } from 'react'
 
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { useTheme } from 'hooks/use-theme'
@@ -6,6 +6,7 @@ import { useAuth } from 'hooks/use-auth'
 
 import Button from 'components/Button'
 import Dropdown from 'components/Dropdown'
+import SaveDialog from 'components/SaveDialog'
 
 import toast, { Toaster } from 'react-hot-toast'
 import { Github } from '@styled-icons/boxicons-logos'
@@ -13,11 +14,15 @@ import { Github } from '@styled-icons/boxicons-logos'
 import * as S from './styles'
 
 import { Logout, Save, FileDownload } from '@styled-icons/material-outlined'
+import { saveBoxShadow } from 'services/boxShadows'
 
 const Login = () => {
   const { boxShadow, shape, loadPreset } = useBoxShadow()
   const { theme } = useTheme()
   const { loading, user, session, signInGithub, signOut } = useAuth()
+
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
+  const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
 
   const dropdownRef = useRef<ElementRef<typeof Dropdown>>(null)
 
@@ -57,27 +62,21 @@ const Login = () => {
     )
   }
 
-  const save = async () => {
-    closeDropdown()
-
-    const res = fetch('/api/boxshadows', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        token: session?.access_token || ''
-      }),
-      body: JSON.stringify({ boxShadow, theme, shape }),
-      credentials: 'same-origin'
+  const save = async (title: string) => {
+    const res = saveBoxShadow({
+      title,
+      box_shadow: JSON.stringify(boxShadow),
+      theme,
+      shape,
+      user_id: user?.id ?? ''
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
 
     toast.promise(
       res,
       {
         loading: 'Saving...',
-        success: () => `Saved.`,
-        error: () => `Oops...something went wrong. Try again.`
+        success: () => `Successfully saved.`,
+        error: (err) => `${err.toString()}`
       },
       {
         style: {
@@ -112,7 +111,15 @@ const Login = () => {
                 <span>Load design</span>
               </S.Item>
 
-              <S.Item role="button" aria-label="Save" onClick={save}>
+              <S.Item
+                role="button"
+                aria-label="Save"
+                onClick={() => {
+                  closeDropdown()
+                  setIsSaveModalOpen(true)
+                  return
+                }}
+              >
                 <Save />
                 <span>Save design</span>
               </S.Item>
@@ -134,6 +141,11 @@ const Login = () => {
           Log in
         </Button>
       )}
+      <SaveDialog
+        isOpen={isSaveModalOpen}
+        setIsOpen={setIsSaveModalOpen}
+        onSave={save}
+      />
       <Toaster position="bottom-right" />
     </S.Wrapper>
   )

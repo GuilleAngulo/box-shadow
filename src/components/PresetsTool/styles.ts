@@ -46,7 +46,7 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 2rem;
   margin-top: 0.4rem;
 
   label {
@@ -89,4 +89,10 @@ export const AuthorPhoto = styled.img`
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
+`
+
+export const FeaturedTitle = styled.span`
+  ${({ theme }) => css`
+    font-size: 2.2rem;
+  `}
 `

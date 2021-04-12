@@ -106,8 +106,8 @@ export const Header = styled.div``
 
 export const Title = styled.h3`
   ${({ theme }) => css`
-    font-size: 2rem;
-    font-weight: ${theme.font.normal};
+    font-size: 2.6rem;
+    font-weight: ${theme.font.bold};
     margin-bottom: ${theme.spacings.medium};
   `}
 `
