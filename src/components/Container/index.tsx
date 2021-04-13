@@ -5,11 +5,16 @@ import Tools from 'components/Tools'
 import * as S from './styles'
 import TopTools from 'components/TopTools'
 import ShapeTool from 'components/ShapeTool'
+import { Preset } from 'types'
 
-const Container = () => {
+export type ContainerProps = {
+  featured: Preset
+}
+
+const Container = ({ featured }: ContainerProps) => {
   return (
     <S.Wrapper>
-      <TopTools />
+      <TopTools featured={featured} />
       <S.Panel>
         <S.Display>
           <Shadow />

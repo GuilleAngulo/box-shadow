@@ -1,3 +1,6 @@
+-- 0. Drop Table if exists
+drop table if exists public.users;
+
 -- 1. Create Table
 create table public.users (
   id uuid not null primary key references auth.users(id),
@@ -28,7 +31,11 @@ create policy "Allow individual update access"
     auth.uid() = id
   );
 
--- 4. Create trigger to insert a new user created on Auth
+-- 4.1 Drop trigger and function if exists
+drop trigger if exists on_auth_user_created on auth.users;
+drop function if exists handle_new_user;
+
+-- 4.2 Create trigger to insert a new user created on Auth
 create function public.handle_new_user()
 returns trigger as $$
 begin

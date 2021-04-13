@@ -120,6 +120,102 @@ export interface paths {
       }
     }
   }
+  '/likes': {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters['rowFilter.likes.id']
+          inserted_at?: parameters['rowFilter.likes.inserted_at']
+          user_id?: parameters['rowFilter.likes.user_id']
+          box_shadow_id?: parameters['rowFilter.likes.box_shadow_id']
+          /** Filtering Columns */
+          select?: parameters['select']
+          /** Ordering */
+          order?: parameters['order']
+          /** Limiting and Pagination */
+          offset?: parameters['offset']
+          /** Limiting and Pagination */
+          limit?: parameters['limit']
+        }
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters['range']
+          /** Limiting and Pagination */
+          'Range-Unit'?: parameters['rangeUnit']
+          /** Preference */
+          Prefer?: parameters['preferCount']
+        }
+      }
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions['likes'][]
+        }
+        /** Partial Content */
+        206: unknown
+      }
+    }
+    post: {
+      parameters: {
+        body: {
+          /** likes */
+          likes?: definitions['likes']
+        }
+        query: {
+          /** Filtering Columns */
+          select?: parameters['select']
+        }
+        header: {
+          /** Preference */
+          Prefer?: parameters['preferReturn']
+        }
+      }
+      responses: {
+        /** Created */
+        201: unknown
+      }
+    }
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters['rowFilter.likes.id']
+          inserted_at?: parameters['rowFilter.likes.inserted_at']
+          user_id?: parameters['rowFilter.likes.user_id']
+          box_shadow_id?: parameters['rowFilter.likes.box_shadow_id']
+        }
+        header: {
+          /** Preference */
+          Prefer?: parameters['preferReturn']
+        }
+      }
+      responses: {
+        /** No Content */
+        204: never
+      }
+    }
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters['rowFilter.likes.id']
+          inserted_at?: parameters['rowFilter.likes.inserted_at']
+          user_id?: parameters['rowFilter.likes.user_id']
+          box_shadow_id?: parameters['rowFilter.likes.box_shadow_id']
+        }
+        body: {
+          /** likes */
+          likes?: definitions['likes']
+        }
+        header: {
+          /** Preference */
+          Prefer?: parameters['preferReturn']
+        }
+      }
+      responses: {
+        /** No Content */
+        204: never
+      }
+    }
+  }
   '/users': {
     get: {
       parameters: {
@@ -233,6 +329,23 @@ export interface paths {
       }
     }
   }
+  '/rpc/get_most_popular_box_shadow': {
+    post: {
+      parameters: {
+        body: {
+          args: { [key: string]: any }
+        }
+        header: {
+          /** Preference */
+          Prefer?: parameters['preferParams']
+        }
+      }
+      responses: {
+        /** OK */
+        200: unknown
+      }
+    }
+  }
 }
 
 export interface definitions {
@@ -254,6 +367,25 @@ export interface definitions {
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
      */
     user_id: string
+  }
+  /** Each like on the box shadows. */
+  likes: {
+    /**
+     * Note:
+     * This is a Primary Key.<pk/>
+     */
+    id: number
+    inserted_at: string
+    /**
+     * Note:
+     * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
+     */
+    user_id: string
+    /**
+     * Note:
+     * This is a Foreign Key to `box_shadows.id`.<fk table='box_shadows' column='id'/>
+     */
+    box_shadow_id: number
   }
   /** Profile data for each user. */
   users: {
@@ -301,6 +433,12 @@ export interface parameters {
   'rowFilter.box_shadows.shape': string
   'rowFilter.box_shadows.theme': string
   'rowFilter.box_shadows.user_id': string
+  /** likes */
+  'body.likes': definitions['likes']
+  'rowFilter.likes.id': string
+  'rowFilter.likes.inserted_at': string
+  'rowFilter.likes.user_id': string
+  'rowFilter.likes.box_shadow_id': string
   /** users */
   'body.users': definitions['users']
   /** References the internal Supabase Auth user. */

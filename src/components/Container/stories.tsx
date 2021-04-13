@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import Container from '.'
+import Container, { ContainerProps } from '.'
 
 export default {
   title: 'Container',
   component: Container
 } as Meta
 
-export const Default: Story = (args) => <Container {...args} />
+export const Default: Story<ContainerProps> = (args) => <Container {...args} />

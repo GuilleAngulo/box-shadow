@@ -88,9 +88,8 @@ export type Shape = 'square' | 'circle'
 export type Mode = 'light' | 'dark'
 
 export type Author = {
-  name?: string
-  link?: string
-  photo?: string
+  name: string
+  avatar_url: string
 }
 
 export type Preset = {
@@ -98,5 +97,6 @@ export type Preset = {
   boxShadow: ShadowProps[]
   shape: Shape
   theme: Mode
-  author?: string
+  author?: Author
+  likes?: number
 }

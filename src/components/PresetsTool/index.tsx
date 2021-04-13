@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import Button from 'components/Button'
 import Modal from 'components/Modal'
 import GalleryShadow from 'components/GalleryShadow'
 
 import * as S from './styles'
+import { Heart } from '@styled-icons/typicons'
+
 import {
   simplePreset,
   neumorphismPreset,
@@ -14,16 +16,14 @@ import {
 } from 'utils/shadow'
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { Preset } from 'types'
-import { getBoxShadow } from 'services/boxShadows'
 
 export type PresetModalProps = {
-  featuredBoxShadow?: Preset
+  featured?: Preset
 }
 
-const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
+const PresetModal = ({ featured }: PresetModalProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const { loadPreset } = useBoxShadow()
-  const [featured, setFeatured] = useState(undefined)
 
   const items: Preset[] = [
     simplePreset,
@@ -37,16 +37,6 @@ const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
     loadPreset(preset)
     setIsOpen(false)
   }
-
-  useEffect(() => {
-    async function fetchBoxShadow() {
-      const response = await getBoxShadow()
-      if (response) {
-        setFeatured(response)
-      }
-    }
-    fetchBoxShadow()
-  }, [])
 
   return (
     <S.Wrapper>
@@ -86,26 +76,36 @@ const PresetModal = ({ featuredBoxShadow }: PresetModalProps) => {
           {featured && (
             <S.FeaturedItem
               role="button"
-              aria-label={`select ${featured.preset.name} preset`}
-              key={featured.preset.name}
-              onClick={() => featured.preset && handleClick(featured.preset)}
+              aria-label={`select ${featured.name} preset`}
+              key={featured.name}
+              onClick={() => featured && handleClick(featured)}
             >
               <S.FeaturedImage>
+                {featured.likes && (
+                  <S.Likes>
+                    <Heart />
+                    {new Intl.NumberFormat('en-GB', {
+                      notation: 'compact',
+                      compactDisplay: 'short'
+                    }).format(featured.likes)}
+                  </S.Likes>
+                )}
                 <GalleryShadow
-                  aria-label={`${featured.preset.name} preset preview`}
-                  initialBoxShadow={featured.preset.boxShadow}
+                  aria-label={`${featured.name} preset preview`}
+                  initialBoxShadow={featured.boxShadow}
                   size="small"
-                  shape={featured.preset.shape}
-                  mode={featured.preset.theme}
+                  shape={featured.shape}
+                  mode={featured.theme}
                 />
               </S.FeaturedImage>
               <S.Info>
-                <S.FeaturedTitle>{featured.preset.name}</S.FeaturedTitle>
-                {featured.author.name && (
+                <S.FeaturedTitle>{featured.name}</S.FeaturedTitle>
+                {featured?.author?.name && (
                   <S.Author href={'#'} target="_blank">
-                    <div>
+                    <S.AuthorName>
                       by <span>{featured.author.name}</span>
-                    </div>
+                    </S.AuthorName>
+
                     <S.AuthorPhoto
                       src={featured.author.avatar_url}
                       alt={`${featured.author.name}'s photo`}
