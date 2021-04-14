@@ -1,7 +1,7 @@
 import { supabase } from 'utils/supabaseClient'
 import { definitions } from 'types/supabase'
 
-import { Author, Preset } from 'types/index'
+import { Author } from 'types/index'
 
 export type BoxShadowProps = Omit<
   definitions['box_shadows'],

@@ -7,7 +7,7 @@ import { Preset } from 'types'
 import * as S from './styles'
 
 export type TopToolsProps = {
-  featured: Preset
+  featured?: Preset
 }
 
 const TopTools = ({ featured }: TopToolsProps) => {

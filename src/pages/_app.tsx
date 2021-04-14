@@ -19,7 +19,6 @@ function App({ Component, pageProps }: AppProps) {
           <Head>
             <title>Box Shadow Tool</title>
             <link rel="shortcut icon" href="/img/favicon.ico" />
-            <link rel="apple-touch-icon" href="/img/icon.png" />
             <link rel="manifest" href="/manifest.json" />
             <meta name="description" content="CSS Box Shadow Tool" />
           </Head>

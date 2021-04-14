@@ -3,7 +3,7 @@ import { getFeaturedBoxShadow } from 'services/boxShadows'
 import { Preset } from 'types'
 
 export type IndexProps = {
-  featured: Preset
+  featured?: Preset
 }
 
 export default function Home({ featured }: IndexProps) {

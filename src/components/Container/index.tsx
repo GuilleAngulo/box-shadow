@@ -8,7 +8,7 @@ import ShapeTool from 'components/ShapeTool'
 import { Preset } from 'types'
 
 export type ContainerProps = {
-  featured: Preset
+  featured?: Preset
 }
 
 const Container = ({ featured }: ContainerProps) => {
