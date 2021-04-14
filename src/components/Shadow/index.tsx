@@ -2,12 +2,14 @@ import { useBoxShadow } from 'hooks/use-box-shadow'
 
 import * as S from './styles'
 import { Layer } from '@styled-icons/boxicons-regular'
+import { ShadowProps } from 'types'
 
 export type BoxShadowProps = {
+  initialBoxShadow?: ShadowProps[]
   children?: React.ReactNode
 }
 
-const Shadow = ({ children }: BoxShadowProps) => {
+const Shadow = ({ children, initialBoxShadow }: BoxShadowProps) => {
   const { boxShadow = [], shape = 'square' } = useBoxShadow()
 
   return (

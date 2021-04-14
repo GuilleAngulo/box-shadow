@@ -32,6 +32,11 @@ create policy "Allow anon-key read access"
     auth.role() = 'anon'
   );
 
+create policy "Allow authenticated read access"
+  on public.box_shadows for select using (
+    auth.role() = 'authenticated'
+  );
+
 create policy "Allow individual insert access"
   on public.box_shadows for insert with check (
      auth.uid() = box_shadows.user_id

@@ -1,13 +1,13 @@
-import Container from 'components/Container'
+import HomeTemplate from 'templates/HomeTemplate'
 import { getFeaturedBoxShadow } from 'services/boxShadows'
 import { Preset } from 'types'
 
-export type IndexProps = {
+export type HomeProps = {
   featured?: Preset
 }
 
-export default function Home({ featured }: IndexProps) {
-  return <Container featured={featured} />
+export default function Home({ featured }: HomeProps) {
+  return <HomeTemplate featured={featured} />
 }
 
 export async function getStaticProps() {

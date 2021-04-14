@@ -34,7 +34,6 @@ export const Config = styled.div`
   left: 1rem;
   flex-direction: column;
   justify-content: center;
-
   svg {
     width: 3rem;
   }

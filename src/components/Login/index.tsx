@@ -34,37 +34,12 @@ const Login = () => {
 
   const load = async () => {
     closeDropdown()
-
-    const res = fetch('/api/boxshadows', {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        token: session?.access_token || ''
-      }),
-      credentials: 'same-origin'
-    })
-      .then((res) => res.json())
-      .then(([data]) => loadPreset(data))
-      .catch((err) => console.log(err))
-
-    toast.promise(
-      res,
-      {
-        loading: 'Loading...',
-        success: () => `Loaded.`,
-        error: () => `Oops...something went wrong. Try again.`
-      },
-      {
-        style: {
-          minWidth: '150px'
-        }
-      }
-    )
   }
 
   const save = async (title: string) => {
     const res = saveBoxShadow({
       title,
+      slug: title.toLowerCase().split(' ').join('-'),
       box_shadow: JSON.stringify(boxShadow),
       theme,
       shape,

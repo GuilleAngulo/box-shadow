@@ -5,7 +5,7 @@ import { Author } from 'types/index'
 
 export type BoxShadowProps = Omit<
   definitions['box_shadows'],
-  'id' | 'inserted_at' | 'slug'
+  'id' | 'inserted_at'
 >
 
 export async function saveBoxShadow(props: BoxShadowProps) {
@@ -72,25 +72,11 @@ export async function getFeaturedBoxShadow() {
   }
 }
 
-export async function createBoxShadow({
-  user_id,
-  title,
-  box_shadow,
-  shape,
-  theme
-}: BoxShadowProps) {
+export async function createBoxShadow(props: BoxShadowProps) {
   try {
-    const content = {
-      title,
-      slug: title.toLowerCase().split(' ').join('-'),
-      box_shadow,
-      theme,
-      shape,
-      user_id
-    }
     const { data, error } = await supabase
       .from('box_shadows')
-      .insert([content], { returning: 'minimal' })
+      .insert([props], { returning: 'minimal' })
 
     if (error) {
       throw error || new Error('Failed to create the box shadow.')
@@ -115,6 +101,31 @@ export async function getBoxShadow(boxShadowId: number) {
           `
       )
       .eq('id', boxShadowId)
+      .single()
+
+    if (error) {
+      throw error || new Error('Failed to retrieve the box shadow.')
+    }
+
+    return data
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
+
+export async function getBoxShadowBySlug(slug: string) {
+  try {
+    const { data, error } = await supabase
+      .from<BoxShadowAuthorProps>('box_shadows')
+      .select(
+        `id, title, slug, box_shadow, theme, shape,
+            user_id (
+              name,
+              avatar_url
+            )
+          `
+      )
+      .eq('slug', slug)
       .single()
 
     if (error) {
@@ -152,6 +163,23 @@ export async function getMostPopularBoxShadow() {
 
     if (error) {
       throw error || new Error('RPC `get_most_popular_box_shadow()` failed.')
+    }
+
+    return data
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
+
+export async function getSlugs(limit: number) {
+  try {
+    const { data, error } = await supabase
+      .from('box_shadows')
+      .select('slug')
+      .limit(limit)
+
+    if (error) {
+      throw error || new Error('Failed to retrieve the slugs.')
     }
 
     return data

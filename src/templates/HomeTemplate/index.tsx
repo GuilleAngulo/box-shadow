@@ -7,11 +7,11 @@ import TopTools from 'components/TopTools'
 import ShapeTool from 'components/ShapeTool'
 import { Preset } from 'types'
 
-export type ContainerProps = {
+export type HomeTemplateProps = {
   featured?: Preset
 }
 
-const Container = ({ featured }: ContainerProps) => {
+const HomeTemplate = ({ featured }: HomeTemplateProps) => {
   return (
     <S.Wrapper>
       <TopTools featured={featured} />
@@ -29,4 +29,4 @@ const Container = ({ featured }: ContainerProps) => {
   )
 }
 
-export default Container
+export default HomeTemplate
