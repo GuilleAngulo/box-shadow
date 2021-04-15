@@ -31,7 +31,7 @@ export const Input = styled.input<IconPositionProps>`
     font-family: ${theme.font.family};
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} 0;
-    padding-${iconPosition}: ${theme.spacings.small};
+    padding-${iconPosition}: ${theme.spacings.xsmall};
     background: transparent;
     border: 0;
     outline: none;
@@ -46,6 +46,7 @@ export const Input = styled.input<IconPositionProps>`
       ${theme.colors.accent} inset;
       filter: none;
       &::first-line {
+        color: ${theme.colors.primaryFont};
         font-family: ${theme.font.family};
         font-size: ${theme.font.sizes.medium};
       }

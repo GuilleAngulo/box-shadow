@@ -1,8 +1,9 @@
+import { GalleryProps } from 'components/Gallery'
 import { getAllBoxShadows, getLikesCount } from 'services/boxShadows'
-import GalleryTemplate, { BoxShadowProps } from 'templates/GalleryTemplate'
+import GalleryTemplate from 'templates/GalleryTemplate'
 
-export default function BoxShadow({ boxShadows }: BoxShadowProps) {
-  return <GalleryTemplate boxShadows={boxShadows} />
+export default function BoxShadow({ boxShadowList }: GalleryProps) {
+  return <GalleryTemplate boxShadowList={boxShadowList} />
 }
 
 export async function getStaticProps() {
@@ -17,11 +18,11 @@ export async function getStaticProps() {
     likes: await getLikesCount(item.id)
   }))
 
-  const boxShadows = await Promise.all(promises)
+  const boxShadowList = await Promise.all(promises)
 
   return {
     props: {
-      boxShadows
+      boxShadowList
     },
     revalidate: 200
   }

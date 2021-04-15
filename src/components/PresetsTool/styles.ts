@@ -15,8 +15,13 @@ export const Wrapper = styled.div`
 
 export const ItemsWrapper = styled.div`
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  ${media.greaterThan('small')`
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+    gap: 2rem;
+  `}
 
   ${media.greaterThan('medium')`
     grid-template-columns: repeat(3, 1fr);

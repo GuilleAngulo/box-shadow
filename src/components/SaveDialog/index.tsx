@@ -30,7 +30,7 @@ const SaveDialog = ({ isOpen, setIsOpen, onSave }: SaveDialogProps) => {
         />
       </S.Content>
       <S.Controls>
-        <Button minimal onClick={() => setIsOpen(false)} aria-label="close">
+        <Button variant onClick={() => setIsOpen(false)} aria-label="close">
           Cancel
         </Button>
         <Button

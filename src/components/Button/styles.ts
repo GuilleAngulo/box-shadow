@@ -5,7 +5,7 @@ import { ButtonProps } from '.'
 
 export type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal'>
+} & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal' | 'variant'>
 
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
@@ -15,7 +15,7 @@ const wrapperModifiers = {
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
     font-size: ${theme.font.sizes.large};
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.small};
   `,
   large: (theme: DefaultTheme) => css`
     height: 5rem;
@@ -36,12 +36,21 @@ const wrapperModifiers = {
   `,
   minimal: (theme: DefaultTheme) => css`
     background: none;
-    color: ${theme.colors.primaryFont};
-    border: 0.2rem solid ${theme.colors.primary};
-    transition: border ${theme.transition.fast};
+    color: ${theme.colors.secondaryFont};
+    transition: color ${theme.transition.fast};
 
     &:hover {
-      border: 0.2rem solid ${darken(0.2, theme.colors.primary)};
+      color: ${theme.colors.primaryFont};
+    }
+  `,
+  variant: (theme: DefaultTheme) => css`
+    background: ${theme.colors.variant};
+    color: ${theme.colors.primaryFont};
+    transition: color ${theme.transition.fast};
+
+    &:hover {
+      color: ${theme.colors.primaryFont};
+      background: ${darken(0.02, theme.colors.variant)};
     }
   `,
   disabled: () => css`
@@ -53,7 +62,7 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullWidth, hasIcon, minimal, disabled }) => css`
+  ${({ theme, size, fullWidth, hasIcon, minimal, variant, disabled }) => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -64,6 +73,7 @@ export const Wrapper = styled.button<WrapperProps>`
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.xxsmall};
     text-decoration: none;
+    transition: background ${theme.transition.fast};
 
     &:hover {
       background: ${minimal ? 'none' : darken(0.1, theme.colors.primary)};
@@ -81,6 +91,7 @@ export const Wrapper = styled.button<WrapperProps>`
     ${!!fullWidth && wrapperModifiers.fullWidth()};
     ${!!hasIcon && wrapperModifiers.withIcon(theme)};
     ${!!minimal && wrapperModifiers.minimal(theme)};
+    ${!!variant && wrapperModifiers.variant(theme)};
     ${disabled && wrapperModifiers.disabled()};
   `}
 `
