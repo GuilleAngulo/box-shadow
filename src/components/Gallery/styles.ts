@@ -112,7 +112,7 @@ export const AuthorName = styled.div`
 
 export const Title = styled.span`
   ${({ theme }) => css`
-    max-width: 100%;
+    max-width: 26rem;
     font-size: 2.2rem;
     font-weight: ${theme.font.bold};
     word-wrap: break-word;

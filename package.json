@@ -26,6 +26,7 @@
   "dependencies": {
     "@styled-icons/boxicons-logos": "^10.23.0",
     "@styled-icons/boxicons-regular": "^10.23.0",
+    "@styled-icons/boxicons-solid": "^10.23.0",
     "@styled-icons/material-outlined": "^10.28.0",
     "@styled-icons/typicons": "^10.18.0",
     "@supabase/supabase-js": "^1.7.7",

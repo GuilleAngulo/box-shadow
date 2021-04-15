@@ -1,11 +1,11 @@
 import { supabase } from 'utils/supabaseClient'
 
 import { definitions } from 'types/supabase'
-export type Like = definitions['likes']
+export type Like = Omit<definitions['likes'], 'id' | 'inserted_at'>
 
 export async function createLike({ user_id, box_shadow_id }: Like) {
   const { data, error } = await supabase
-    .from('likes')
+    .from<Like>('likes')
     .insert([{ user_id, box_shadow_id }])
 
   return { data, error }
