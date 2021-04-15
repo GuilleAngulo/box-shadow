@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import Button from 'components/Button'
 import Login from 'components/Login'
 import PresetsTool from 'components/PresetsTool'
 import ToogleButton from 'components/ToogleButton'
@@ -18,6 +20,11 @@ const TopTools = ({ featured }: TopToolsProps) => {
     <S.Wrapper>
       <ToogleButton onCheck={toggleTheme} isChecked={isChecked} />
       <PresetsTool featured={featured} />
+      <Link href="/gallery" passHref>
+        <Button size="small" minimal>
+          Gallery
+        </Button>
+      </Link>
       <Login />
     </S.Wrapper>
   )

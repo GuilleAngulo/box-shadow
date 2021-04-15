@@ -30,7 +30,7 @@ export type ThumbProps = {
 
 const thumbModifiers = {
   isChecked: () => css`
-    transform: translateX(2.5rem);
+    left: 2.5rem;
   `
 }
 
@@ -43,6 +43,7 @@ export const Thumb = styled.div<ThumbProps>`
     height: 2.5rem;
     transform: scale(0.9);
     border-radius: 50%;
+    background: ${theme.colors.primary};
     background: linear-gradient(
       to bottom,
       ${lighten(0.1, theme.colors.primary)},
@@ -51,7 +52,7 @@ export const Thumb = styled.div<ThumbProps>`
     box-shadow: 0 0.02rem 0.07rem rgba(0, 0, 0, 0.5),
       inset 0 0.08rem 0.08rem rgba(255, 255, 255, 0.5),
       inset 0 -0.08rem 0.08rem rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease-in;
+    transition: all 0.2s ease-in;
 
     ${isChecked && thumbModifiers.isChecked()};
   `}
