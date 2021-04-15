@@ -49,7 +49,7 @@ export const Info = styled.div`
 
 export const Image = styled.div`
   ${({ theme }) => css`
-    border-radius: ${theme.border.radius};
+    border-radius: 1rem;
     border: 0.4rem solid ${theme.colors.variant};
   `}
 `
