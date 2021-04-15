@@ -138,6 +138,29 @@ export async function getBoxShadowBySlug(slug: string) {
   }
 }
 
+export async function getAllBoxShadows() {
+  try {
+    const { data, error } = await supabase
+      .from<BoxShadowAuthorProps>('box_shadows')
+      .select(
+        `id, title, slug, box_shadow, theme, shape, inserted_at,
+            user_id (
+              name,
+              avatar_url
+            )
+          `
+      )
+
+    if (error || !data) {
+      throw error || new Error('Failed to retrieve box shadows.')
+    }
+
+    return data
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
+
 export async function getLikesCount(boxShadowId: number) {
   try {
     const { count, error } = await supabase

@@ -101,7 +101,7 @@ const PresetModal = ({ featured }: PresetModalProps) => {
               <S.Info>
                 <S.FeaturedTitle>{featured.name}</S.FeaturedTitle>
                 {featured?.author?.name && (
-                  <S.Author href={'#'} target="_blank">
+                  <S.Author>
                     <S.AuthorName>
                       by <span>{featured.author.name}</span>
                     </S.AuthorName>

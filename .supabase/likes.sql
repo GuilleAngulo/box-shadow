@@ -14,9 +14,15 @@ comment on table public.likes is 'Each like on the box shadows.';
 alter table public.likes enable row level security;
 
 create policy "Allow anon-key full access"
-  on public.likes for all using (
+  on public.likes for select using (
     auth.role() = 'anon'
   );
+
+create policy "Allow authenticated read access"
+  on public.box_shadows for select using (
+    auth.role() = 'authenticated'
+  );
+
 
 create policy "Allow individual insert access"
   on public.likes for insert with check (

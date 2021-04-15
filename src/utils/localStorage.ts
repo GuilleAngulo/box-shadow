@@ -4,6 +4,9 @@ export function getStorageItem(key: string) {
   if (typeof window === 'undefined') return
 
   const data = window.localStorage.getItem(`${APP_KEY}_${key}`)
+
+  if (data === 'undefined') return null
+
   return data && JSON.parse(data)
 }
 

@@ -34,7 +34,10 @@ export async function updateUser(name?: string, avatar_url?: string) {
 export async function signInUser({ id, name, avatar_url }: User) {
   try {
     const { user, error: getUserError } = await getUser()
-    console.error(getUserError?.message)
+
+    if (getUserError) {
+      throw getUserError || new Error('Error retrieving the user.')
+    }
 
     if (user) {
       // Check if user metadata has change to update

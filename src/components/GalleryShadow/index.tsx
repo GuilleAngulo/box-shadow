@@ -11,7 +11,7 @@ export type BoxShadowProps = {
   mode?: Mode
 }
 
-const Shadow = ({
+const GalleryShadow = ({
   size = 'large',
   initialBoxShadow,
   shape,
@@ -30,4 +30,4 @@ const Shadow = ({
     </S.Wrapper>
   )
 }
-export default Shadow
+export default GalleryShadow

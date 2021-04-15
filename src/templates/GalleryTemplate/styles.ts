@@ -3,13 +3,11 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    button {
-      outline: none;
-      svg {
-        fill: ${theme.colors.primary};
-        width: 2.8rem;
-      }
-    }
+    background: ${theme.colors.card};
+    display: grid;
+    height: 100vh;
+    padding: ${theme.spacings.large};
+    padding-top: 8rem;
   `}
 `
 
@@ -19,8 +17,8 @@ export const ItemsWrapper = styled.div`
   gap: 2rem;
 
   ${media.greaterThan('medium')`
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
   `}
 `
 export const Item = styled.div`
@@ -35,7 +33,7 @@ export const Item = styled.div`
 export const Info = styled.div`
   ${({ theme }) => css`
     display: flex;
-    width: 18rem;
+    width: 26rem;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
@@ -48,8 +46,6 @@ export const Info = styled.div`
   `}
 `
 
-export const FeaturedItem = styled(Item)``
-
 export const Image = styled.div`
   ${({ theme }) => css`
     border-radius: ${theme.border.radius};
@@ -61,22 +57,8 @@ export const Image = styled.div`
   `}
 `
 
-export const FeaturedImage = styled(Image)`
-  ${({ theme }) => css`
-    position: relative;
-    box-shadow: 0 0 2rem 0.4rem ${theme.colors.glow};
-    transition: box-shadow ${theme.transition.fast};
-    &:hover {
-      box-shadow: 0 0 2rem 0.8rem ${theme.colors.glow};
-    }
-  `}
-`
-
 export const Likes = styled.div`
   ${({ theme }) => css`
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,12 +105,19 @@ export const AuthorName = styled.div`
   `}
 `
 
-export const FeaturedTitle = styled.span`
+export const Title = styled.span`
   ${({ theme }) => css`
     max-width: 100%;
     font-size: 2.2rem;
     font-weight: ${theme.font.bold};
     word-wrap: break-word;
     overflow-wrap: break-word;
+  `}
+`
+
+export const Date = styled.span`
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.xsmall};
+    color: ${theme.colors.secondaryFont};
   `}
 `

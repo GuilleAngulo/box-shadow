@@ -16,9 +16,14 @@ alter table public.users
   enable row level security;
 
 -- 3. Create Policies
-create policy "Allow individual select access."
+create policy "Allow anon-key select access."
   on public.users for select using (
-    auth.uid() = id
+    auth.uid() = 'anon-key'
+  );
+
+create policy "Allow authenticated read access"
+  on public.box_shadows for select using (
+    auth.role() = 'authenticated'
   );
 
 create policy "Allow individual insert access"

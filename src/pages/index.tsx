@@ -14,7 +14,7 @@ export async function getStaticProps() {
   const featured = await getFeaturedBoxShadow()
 
   return {
-    revalidate: 60,
+    revalidate: 200,
     props: {
       featured
     }
