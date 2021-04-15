@@ -51,7 +51,12 @@ const Login = () => {
       {
         loading: 'Saving...',
         success: () => `Successfully saved.`,
-        error: (err) => `${err.toString()}`
+        error: (err: string) => {
+          const error = err.toString()
+          return error.includes('duplicate key value')
+            ? 'Someone has already used that name.'
+            : 'Oops ... something went wrong.'
+        }
       },
       {
         style: {
