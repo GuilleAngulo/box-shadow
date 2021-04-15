@@ -1,5 +1,9 @@
 import { GalleryProps } from 'components/Gallery'
-import { getAllBoxShadows, getLikesCount } from 'services/boxShadows'
+import {
+  getAllBoxShadows,
+  getLikesCount,
+  getMostPopularBoxShadow
+} from 'services/boxShadows'
 import GalleryTemplate from 'templates/GalleryTemplate'
 
 export default function BoxShadow({ boxShadowList }: GalleryProps) {
@@ -13,9 +17,14 @@ export async function getStaticProps() {
     throw new Error(`Error retrieving box shadows.`)
   }
 
+  const { box_shadow_id } = await getMostPopularBoxShadow()
+
   const promises = boxShadowsData.map(async (item) => ({
     ...item,
-    likes: await getLikesCount(item.id)
+    likes: await getLikesCount(item.id),
+    ...(box_shadow_id === item.id && {
+      featured: true
+    })
   }))
 
   const boxShadowList = await Promise.all(promises)

@@ -8,7 +8,8 @@ import GalleryShadow from 'components/GalleryShadow'
 
 import {
   CalendarAlt,
-  Heart as EmptyHeart
+  Heart as EmptyHeart,
+  Medal
 } from '@styled-icons/boxicons-regular'
 import { Heart } from '@styled-icons/typicons'
 import * as S from './styles'
@@ -19,6 +20,7 @@ export type GalleryProps = {
       id: number
       user_id?: Author
       likes?: number
+      featured?: boolean
     }
   ]
 }
@@ -28,8 +30,13 @@ const Gallery = ({ boxShadowList }: GalleryProps) => (
     {boxShadowList.map((boxShadow) => (
       <S.Item key={boxShadow.id}>
         <S.Title>{boxShadow.title}</S.Title>
-        <S.Image>
-          <Link href={boxShadow.slug} passHref>
+        <S.Image featured={boxShadow?.featured}>
+          {boxShadow?.featured && (
+            <S.FeaturedIcon>
+              <Medal />
+            </S.FeaturedIcon>
+          )}
+          <Link href={`/${boxShadow.slug}`} passHref>
             <a>
               <GalleryShadow
                 aria-label={`Design name: ${boxShadow.title}`}

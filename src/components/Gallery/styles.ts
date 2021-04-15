@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
@@ -47,8 +47,13 @@ export const Info = styled.div`
   `}
 `
 
-export const Image = styled.div`
-  ${({ theme }) => css`
+export type ImageProps = {
+  featured?: boolean
+}
+
+export const Image = styled.div<ImageProps>`
+  ${({ theme, featured }) => css`
+    position: relative;
     border-radius: 1rem;
     border: 0.4rem solid ${theme.colors.variant};
   `}
@@ -136,4 +141,13 @@ export const Footer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+`
+
+export const FeaturedIcon = styled.div`
+  ${({ theme }) => css`
+    position: absolute;
+    top: -0.2rem;
+    width: 4rem;
+    color: ${theme.colors.accent};
+  `}
 `
