@@ -1,6 +1,6 @@
 import Login from 'components/Login'
 import PresetsTool from 'components/PresetsTool'
-import ThemeSwitch from 'components/ThemeSwitch'
+import ToogleButton from 'components/ToogleButton'
 import { useTheme } from 'hooks/use-theme'
 import { Preset } from 'types'
 
@@ -16,7 +16,7 @@ const TopTools = ({ featured }: TopToolsProps) => {
 
   return (
     <S.Wrapper>
-      <ThemeSwitch toggleTheme={toggleTheme} isChecked={isChecked} />
+      <ToogleButton onCheck={toggleTheme} isChecked={isChecked} />
       <PresetsTool featured={featured} />
       <Login />
     </S.Wrapper>

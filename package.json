@@ -39,7 +39,6 @@
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "17.0.1",
     "react-hot-toast": "^1.0.2",
-    "react-switch": "^6.0.0",
     "rgb-hex": "^3.0.0",
     "styled-components": "5.2.1",
     "styled-media-query": "^2.1.2"
