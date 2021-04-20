@@ -1,5 +1,6 @@
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css, DefaultTheme, keyframes } from 'styled-components'
 import media from 'styled-media-query'
+import { opacify } from 'polished'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -54,8 +55,8 @@ export type ImageProps = {
 export const Image = styled.div<ImageProps>`
   ${({ theme, featured }) => css`
     position: relative;
-    border-radius: 1rem;
-    border: 0.4rem solid ${theme.colors.variant};
+    border-radius: ${theme.border.radius};
+    border: 0.2rem solid ${theme.colors.variant};
   `}
 `
 
@@ -148,6 +149,23 @@ export const FeaturedIcon = styled.div`
     position: absolute;
     top: -0.2rem;
     width: 4rem;
+    border-radius: 50%;
     color: ${theme.colors.accent};
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    animation: ${glow(theme.colors.accent)} 1s ease-out infinite normal;
   `}
+`
+
+const glow = (color: string) => keyframes`
+0% {
+    box-shadow: 0 0 0 0 ${opacify(0.4, color)};
+  }
+  80%, 100% {
+    box-shadow: 0 0 0 1.2rem rgba(0, 0, 0, 0)};
+  }
 `
