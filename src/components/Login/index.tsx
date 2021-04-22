@@ -115,6 +115,7 @@ const Login = () => {
         <Button
           size="small"
           icon={<Github />}
+          disabled={loading}
           loading={loading}
           onClick={signInGithub}
         >

@@ -56,7 +56,6 @@ const wrapperModifiers = {
   disabled: () => css`
     &:disabled {
       cursor: not-allowed;
-      filter: saturate(30%);
     }
   `
 }

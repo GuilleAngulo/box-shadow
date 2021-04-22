@@ -18,9 +18,14 @@ create policy "Allow anon-key full access"
     auth.role() = 'anon'
   );
 
-create policy "Allow authenticated read access"
-  on public.box_shadows for select using (
+  create policy "Allow authenticated full access"
+  on public.likes for select using (
     auth.role() = 'authenticated'
+  );
+
+create policy "Allow individual read access"
+  on public.box_shadows for select using (
+    auth.uid() = user_id
   );
 
 

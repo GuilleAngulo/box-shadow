@@ -2,6 +2,7 @@ import { Mode, ShadowProps, Shape } from 'types'
 import { resizeBoxShadow } from 'utils/helpers'
 import { SIZES } from 'utils/shadow'
 
+import { Error } from '@styled-icons/boxicons-regular'
 import * as S from './styles'
 
 export type BoxShadowProps = {
@@ -27,7 +28,10 @@ const GalleryShadow = ({
       {boxShadow ? (
         <S.ShapeBlock boxShadow={boxShadow} shape={shape} size={size} />
       ) : (
-        <S.Empty shape={shape} size={size} mode={mode} />
+        <S.Empty shape={shape} size={size} mode={mode}>
+          <Error />
+          Oops ... 😱
+        </S.Empty>
       )}
     </S.Wrapper>
   )

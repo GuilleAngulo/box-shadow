@@ -172,4 +172,5 @@ const glow = (color: string) => keyframes`
 
 export const Link = styled.a`
   text-decoration: none;
+  cursor: pointer;
 `

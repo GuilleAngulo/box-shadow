@@ -4,8 +4,6 @@ import { stringify } from 'utils/helpers'
 import { shapeModifiers } from 'components/Shadow/styles'
 import { BoxShadowProps } from '.'
 
-import { Error } from '@styled-icons/boxicons-regular'
-
 export type WrapperProps = Pick<BoxShadowProps, 'size' | 'mode'>
 
 const backgroundModifiers = {
@@ -84,8 +82,12 @@ export const colorModifiers = {
   `
 }
 
-export const Empty = styled(Error)<Omit<BoxShadowProps, 'initialBoxShadow'>>`
+export const Empty = styled.div<Omit<BoxShadowProps, 'initialBoxShadow'>>`
   ${({ theme, shape, size, mode }) => css`
+    font-size: ${theme.font.sizes.large};
+    font-weight: ${theme.font.bold};
+    text-align: center;
+
     ${!!mode && colorModifiers[mode]()};
     ${!!size && sizeModifiers[size](theme)};
     ${!!shape && shapeModifiers[shape](theme)};
