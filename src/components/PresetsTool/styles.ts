@@ -89,6 +89,7 @@ export const Likes = styled.div`
     padding: 0.8rem;
     color: ${theme.colors.tertiaryFont};
     font-size: ${theme.font.sizes.xsmall};
+    font-weight: ${theme.font.bold};
 
     svg {
       width: 1.8rem;

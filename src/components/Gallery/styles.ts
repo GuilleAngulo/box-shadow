@@ -169,3 +169,7 @@ const glow = (color: string) => keyframes`
     box-shadow: 0 0 0 1.2rem rgba(0, 0, 0, 0)};
   }
 `
+
+export const Link = styled.a`
+  text-decoration: none;
+`

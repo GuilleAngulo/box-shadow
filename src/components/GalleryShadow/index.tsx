@@ -14,7 +14,7 @@ export type BoxShadowProps = {
 const GalleryShadow = ({
   size = 'large',
   initialBoxShadow,
-  shape,
+  shape = 'square',
   mode = 'light'
 }: BoxShadowProps) => {
   const boxShadow =
@@ -24,8 +24,10 @@ const GalleryShadow = ({
 
   return (
     <S.Wrapper mode={mode} size={size}>
-      {shape && (
+      {boxShadow ? (
         <S.ShapeBlock boxShadow={boxShadow} shape={shape} size={size} />
+      ) : (
+        <S.Empty shape={shape} size={size} mode={mode} />
       )}
     </S.Wrapper>
   )
