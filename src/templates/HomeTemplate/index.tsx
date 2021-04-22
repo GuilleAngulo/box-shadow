@@ -5,10 +5,10 @@ import Tools from 'components/Tools'
 import * as S from './styles'
 import TopTools from 'components/TopTools'
 import ShapeTool from 'components/ShapeTool'
-import { Preset } from 'types'
+import { AuthoredPreset } from 'types'
 
 export type HomeTemplateProps = {
-  featured?: Preset
+  featured?: AuthoredPreset
 }
 
 const HomeTemplate = ({ featured }: HomeTemplateProps) => {
@@ -17,6 +17,7 @@ const HomeTemplate = ({ featured }: HomeTemplateProps) => {
       <TopTools featured={featured} />
       <S.Panel>
         <S.Display>
+          {/* <TopTools featured={featured} /> */}
           <Shadow />
           <div>
             <ShapeTool />

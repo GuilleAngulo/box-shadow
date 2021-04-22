@@ -15,10 +15,10 @@ import {
   eclipsePreset
 } from 'utils/shadow'
 import { useBoxShadow } from 'hooks/use-box-shadow'
-import { Preset } from 'types'
+import { Preset, AuthoredPreset } from 'types'
 
 export type PresetModalProps = {
-  featured?: Preset
+  featured?: AuthoredPreset
 }
 
 const PresetModal = ({ featured }: PresetModalProps) => {
@@ -33,7 +33,7 @@ const PresetModal = ({ featured }: PresetModalProps) => {
     eclipsePreset
   ]
 
-  const handleClick = (preset: Preset) => {
+  const handleClick = (preset: Preset | AuthoredPreset) => {
     loadPreset(preset)
     setIsOpen(false)
   }
@@ -73,7 +73,7 @@ const PresetModal = ({ featured }: PresetModalProps) => {
               </S.Item>
             ))}
           </>
-          {featured && (
+          {!!featured && (
             <S.FeaturedItem
               role="button"
               aria-label={`select ${featured.name} preset`}
@@ -81,7 +81,7 @@ const PresetModal = ({ featured }: PresetModalProps) => {
               onClick={() => featured && handleClick(featured)}
             >
               <S.FeaturedImage>
-                {featured.likes && (
+                {featured.likes >= 0 && (
                   <S.Likes>
                     <Heart />
                     {new Intl.NumberFormat('en-GB', {

@@ -5,7 +5,8 @@ import {
   BoxShadowKeyProps,
   ShadowProps,
   Shape,
-  Preset
+  Preset,
+  AuthoredPreset
 } from 'types'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
@@ -25,7 +26,7 @@ export type BoxShadowContextData = {
   addBoxShadow: (newBoxShadow?: ShadowProps[], isDarkMode?: boolean) => void
   clearBoxShadow: () => void
   saveShape: (shape: Shape) => void
-  loadPreset: (preset: Preset) => void
+  loadPreset: (preset: Preset | AuthoredPreset) => void
 }
 
 const BOXSHADOW_KEY = 'boxShadow'

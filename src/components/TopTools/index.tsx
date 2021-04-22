@@ -4,12 +4,12 @@ import Login from 'components/Login'
 import PresetsTool from 'components/PresetsTool'
 import ToogleButton from 'components/ToogleButton'
 import { useTheme } from 'hooks/use-theme'
-import { Preset } from 'types'
+import { AuthoredPreset } from 'types'
 
 import * as S from './styles'
 
 export type TopToolsProps = {
-  featured?: Preset
+  featured?: AuthoredPreset
 }
 
 const TopTools = ({ featured }: TopToolsProps) => {

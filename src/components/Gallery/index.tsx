@@ -45,7 +45,7 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
               <a>
                 <GalleryShadow
                   aria-label={`Design name: ${boxShadow.title}`}
-                  initialBoxShadow={JSON.parse(boxShadow.box_shadow)}
+                  initialBoxShadow={JSON.parse(boxShadow.box_shadow || '')}
                   size="medium"
                   shape={boxShadow.shape}
                   mode={boxShadow.theme}

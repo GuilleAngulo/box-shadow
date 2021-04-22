@@ -115,7 +115,7 @@ export const lightTheme = {
     terminalFont: '#F9F9F9',
     terminalBg: '#1E293C',
     red: '#ef4444',
-    glow: '#0536e4',
+    glow: '#818181',
     shadowBg: '#D1D1D1'
   },
   transition: {
@@ -182,7 +182,7 @@ export const darkTheme = {
     terminalFont: '#F9F9F9',
     terminalBg: '#1E293C',
     red: '#ef4444',
-    glow: '#FAD02C',
+    glow: '#ACB1B8',
     shadowBg: '#27364f'
   },
   transition: {

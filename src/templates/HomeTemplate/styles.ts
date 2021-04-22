@@ -16,6 +16,11 @@ export const Panel = styled.div`
 
 export const Display = styled.div`
   ${({ theme }) => css`
+    /** Follow scroll move */
+    /* position: sticky;
+    top: 0;
+    height: 100vh; */
+
     display: flex;
     flex-direction: column;
     gap: 8rem;

@@ -97,6 +97,13 @@ export type Preset = {
   boxShadow: ShadowProps[]
   shape: Shape
   theme: Mode
-  author?: Author
-  likes?: number
+}
+
+export type AuthoredPreset = {
+  name?: string
+  boxShadow: ShadowProps[]
+  shape: Shape
+  theme: Mode
+  author: Author
+  likes: number
 }

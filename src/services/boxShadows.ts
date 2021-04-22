@@ -60,31 +60,25 @@ export async function getPresetByBoxShadow(boxShadowId: number) {
 export async function getFeaturedBoxShadow() {
   try {
     const { data: featured } = await getBoxShadowOrderByLikes()
+    const likes = featured?.likes_count ?? 0
 
     // If featured is undefined, will call without ID and return the newest
 
     const { data, error } = await getBoxShadow(featured?.box_shadow_id)
 
-    // If there is a box shadow, parse data
-    if (data) {
-      return {
-        data: {
-          name: data?.title,
-          boxShadow: JSON.parse(data?.box_shadow || ''),
-          shape: data?.shape,
-          theme: data?.theme,
-          likes: featured.likes_count,
-          author: {
-            name: data?.user_id?.name,
-            avatar_url: data?.user_id?.avatar_url
-          }
-        },
-        error
+    const boxShadow = {
+      name: data?.title,
+      boxShadow: JSON.parse(data?.box_shadow || ''),
+      shape: data?.shape,
+      theme: data?.theme,
+      likes,
+      author: {
+        name: data?.user_id?.name,
+        avatar_url: data?.user_id?.avatar_url
       }
     }
 
-    //Else return null and error
-    return { data, error }
+    return { data: boxShadow, error }
   } catch (err) {
     const message = 'Failed to retrieve featured box shadow: ' + err.message
     return { data: null, error: { message } }

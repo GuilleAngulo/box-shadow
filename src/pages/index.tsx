@@ -1,9 +1,9 @@
 import HomeTemplate from 'templates/HomeTemplate'
 import { getFeaturedBoxShadow } from 'services/boxShadows'
-import { Preset } from 'types'
+import { AuthoredPreset } from 'types'
 
 export type HomeProps = {
-  featured?: Preset
+  featured?: AuthoredPreset
 }
 
 export default function Home({ featured }: HomeProps) {
@@ -11,12 +11,12 @@ export default function Home({ featured }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const featured = await getFeaturedBoxShadow()
+  const { data: featured } = await getFeaturedBoxShadow()
 
   return {
     revalidate: 200,
     props: {
-      featured: featured ?? null
+      featured
     }
   }
 }

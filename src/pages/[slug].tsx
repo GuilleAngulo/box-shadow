@@ -22,13 +22,15 @@ export default function BoxShadow({ boxShadow }: BoxShadowProps) {
 export async function getStaticProps({
   params
 }: GetStaticPropsContext<{ slug: string }>) {
-  const boxShadow = await getBoxShadowBySlug(params!.slug)
+  const { data: boxShadow, error } = await getBoxShadowBySlug(params!.slug)
 
   if (!boxShadow) {
-    throw new Error(`Box Shadow with slug '${params!.slug}' not found`)
+    throw new Error(
+      `Box Shadow with slug '${params!.slug}' not found: ${error}`
+    )
   }
 
-  const likes = await getLikesCount(boxShadow.id)
+  const { data: likes } = await getLikesCount(boxShadow.id)
 
   if (likes) {
     boxShadow.likes = likes

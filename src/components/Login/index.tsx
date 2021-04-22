@@ -14,7 +14,7 @@ import { Github } from '@styled-icons/boxicons-logos'
 import * as S from './styles'
 
 import { Logout, Save, FileDownload } from '@styled-icons/material-outlined'
-import { saveBoxShadow, getBoxShadow } from 'services/boxShadows'
+import { saveBoxShadow } from 'services/boxShadows'
 
 const Login = () => {
   const { boxShadow, shape, loadPreset } = useBoxShadow()
@@ -33,10 +33,7 @@ const Login = () => {
   }
 
   const load = async () => {
-    //closeDropdown()
-    const { data, error } = await getBoxShadow(2)
-    console.log('data', data)
-    console.log('error', error)
+    closeDropdown()
   }
 
   const save = async (title: string) => {
