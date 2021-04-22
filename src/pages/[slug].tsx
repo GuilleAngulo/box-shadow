@@ -45,7 +45,7 @@ export async function getStaticProps({
 export async function getStaticPaths() {
   const LIMIT = 10
 
-  const slugs = await getSlugs(LIMIT)
+  const { data: slugs } = await getSlugs(LIMIT)
   const paths = slugs?.map(({ slug }) => ({
     params: { slug }
   }))

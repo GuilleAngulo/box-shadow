@@ -3,20 +3,14 @@ import Link from 'next/link'
 import { Author } from 'types'
 import { definitions } from 'types/supabase'
 
-import Button from 'components/Button'
 import GalleryShadow from 'components/GalleryShadow'
 
-import {
-  CalendarAlt,
-  Heart as EmptyHeart,
-  Medal
-} from '@styled-icons/boxicons-regular'
+import { CalendarAlt, Medal } from '@styled-icons/boxicons-regular'
 
-import { Heart as FullHeart } from '@styled-icons/boxicons-solid'
 import { Heart } from '@styled-icons/typicons'
 import * as S from './styles'
 import { useAuth } from 'hooks/use-auth'
-import { createLike } from 'services/likes'
+import LikeButton from 'components/LikeButton'
 
 export type GalleryProps = {
   boxShadowList: [
@@ -34,16 +28,7 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
 
   //TO DO GET USER'S LIKES TO ITERATE AND FILL LIKED DESIGNS
 
-  const handleLike = async (boxShadowId: number) => {
-    if (user) {
-      const { data, error } = await createLike({
-        user_id: user.id,
-        box_shadow_id: boxShadowId
-      })
-
-      console.log(data, error)
-    }
-  }
+  // const hasLike = (id: string) => wishlistItems.some((game) => game.id === id)
 
   return (
     <S.Wrapper>
@@ -95,16 +80,7 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
                   compactDisplay: 'short'
                 }).format(boxShadow.likes || 0)}
               </S.Likes>
-              {user && (
-                <Button
-                  variant
-                  size="medium"
-                  icon={<EmptyHeart />}
-                  onClick={() => handleLike(boxShadow.id)}
-                >
-                  Awesome
-                </Button>
-              )}
+              {user && <LikeButton id={boxShadow.id} />}
             </S.Footer>
           </S.Info>
         </S.Item>

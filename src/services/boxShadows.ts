@@ -3,14 +3,18 @@ import { definitions } from 'types/supabase'
 
 import { Author } from 'types/index'
 
-export type BoxShadowProps = Omit<
-  definitions['box_shadows'],
-  'id' | 'inserted_at'
->
+export type BoxShadowProps = Omit<definitions['box_shadows'], 'id'>
 
-export async function saveBoxShadow(props: BoxShadowProps) {
+export async function saveBoxShadow(
+  props: Omit<BoxShadowProps, 'inserted_at'>
+) {
   try {
-    await createBoxShadow(props)
+    const { error } = await createBoxShadow(props)
+
+    if (error) {
+      throw error || new Error('Failed to save the box shadow.')
+    }
+
     return
   } catch (error) {
     throw new Error(error.message)
@@ -25,91 +29,121 @@ export type BoxShadowAuthorProps = Omit<BoxShadowProps, 'user_id'> & {
 
 export async function getPresetByBoxShadow(boxShadowId: number) {
   try {
-    const data = await getBoxShadow(boxShadowId)
+    const { data, error } = await getBoxShadow(boxShadowId)
 
-    const count = await getLikesCount(data!.id!)
+    if (error || !data) {
+      throw error || new Error('No box shadow found with that ID.')
+    }
+
+    const { data: count, error: likesError } = await getLikesCount(data.id)
 
     return {
-      name: data?.title,
-      boxShadow: JSON.parse(data?.box_shadow || ''),
-      shape: data?.shape,
-      theme: data?.theme,
-      likes: count,
-      author: {
-        name: data?.user_id?.name,
-        avatar_url: data?.user_id?.avatar_url
-      }
+      data: {
+        name: data?.title,
+        boxShadow: JSON.parse(data?.box_shadow || ''),
+        shape: data?.shape,
+        theme: data?.theme,
+        likes: count,
+        author: {
+          name: data?.user_id?.name,
+          avatar_url: data?.user_id?.avatar_url
+        }
+      },
+      error: likesError
     }
-  } catch (error) {
-    console.error(error.message)
-    return
+  } catch (err) {
+    const message = 'Failed to retrieve preset by id: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
 export async function getFeaturedBoxShadow() {
   try {
-    const featured = await getMostPopularBoxShadow()
+    const { data: featured } = await getBoxShadowOrderByLikes()
 
-    const data = await getBoxShadow(featured.box_shadow_id)
+    // If featured is undefined, will call without ID and return the newest
 
+    const { data, error } = await getBoxShadow(featured?.box_shadow_id)
+
+    // If there is a box shadow, parse data
     if (data) {
-      data.likes = featured.likes_count
-    }
-
-    return {
-      name: data?.title,
-      boxShadow: JSON.parse(data?.box_shadow || ''),
-      shape: data?.shape,
-      theme: data?.theme,
-      likes: data?.likes,
-      author: {
-        name: data?.user_id?.name,
-        avatar_url: data?.user_id?.avatar_url
+      return {
+        data: {
+          name: data?.title,
+          boxShadow: JSON.parse(data?.box_shadow || ''),
+          shape: data?.shape,
+          theme: data?.theme,
+          likes: featured.likes_count,
+          author: {
+            name: data?.user_id?.name,
+            avatar_url: data?.user_id?.avatar_url
+          }
+        },
+        error
       }
     }
-  } catch (error) {
-    console.error(error.message)
+
+    //Else return null and error
+    return { data, error }
+  } catch (err) {
+    const message = 'Failed to retrieve featured box shadow: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
-export async function createBoxShadow(props: BoxShadowProps) {
+export async function createBoxShadow(
+  props: Omit<BoxShadowProps, 'inserted_at'>
+) {
   try {
     const { data, error } = await supabase
       .from('box_shadows')
       .insert([props], { returning: 'minimal' })
 
-    if (error) {
-      throw error || new Error('Failed to create the box shadow.')
-    }
-
-    return data
+    return { data, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = 'Failed to create the box shadow: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
-export async function getBoxShadow(boxShadowId: number) {
+export async function getBoxShadow(boxShadowId?: number) {
   try {
+    if (boxShadowId) {
+      const { data, error } = await supabase
+        .from<BoxShadowAuthorProps>('box_shadows')
+        .select(
+          `id, title, slug, box_shadow, theme, shape,
+              user_id (
+                name,
+                avatar_url
+              )
+            `
+        )
+        .eq('id', boxShadowId)
+        .single()
+
+      return { data, error }
+    }
+
+    //If there is no ID, return newest
     const { data, error } = await supabase
       .from<BoxShadowAuthorProps>('box_shadows')
       .select(
         `id, title, slug, box_shadow, theme, shape,
-            user_id (
-              name,
-              avatar_url
-            )
-          `
+          user_id (
+            name,
+            avatar_url
+          )
+        `
       )
-      .eq('id', boxShadowId)
+      .order('inserted_at', { ascending: false })
+      .limit(1)
       .single()
 
-    if (error) {
-      throw error || new Error('Failed to retrieve the box shadow.')
-    }
-
-    return data
+    return { data, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = 'Failed to retrieve the box shadow: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
@@ -128,13 +162,10 @@ export async function getBoxShadowBySlug(slug: string) {
       .eq('slug', slug)
       .single()
 
-    if (error) {
-      throw error || new Error('Failed to retrieve the box shadow.')
-    }
-
-    return data
+    return { data, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = 'Failed to retrieve the box shadow by slug: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
@@ -151,13 +182,10 @@ export async function getAllBoxShadows() {
           `
       )
 
-    if (error || !data) {
-      throw error || new Error('Failed to retrieve box shadows.')
-    }
-
-    return data
+    return { data, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = 'Failed to retrieve all box shadows: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
@@ -168,29 +196,23 @@ export async function getLikesCount(boxShadowId: number) {
       .select('*', { count: 'exact' })
       .eq('box_shadow_id', boxShadowId)
 
-    if (error) {
-      throw error || new Error('Failed to retrieve the likes count.')
-    }
-
-    return count
+    return { data: count, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = 'Failed to retrieve the likes count: ' + err.message
+    return { data: null, error: { message } }
   }
 }
 
-export async function getMostPopularBoxShadow() {
+export async function getBoxShadowOrderByLikes() {
   try {
     const { data, error } = await supabase
       .rpc('get_most_popular_box_shadow')
       .single()
 
-    if (error) {
-      throw error || new Error('RPC `get_most_popular_box_shadow()` failed.')
-    }
-
-    return data
+    return { data, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = "RPC 'get_most_popular_box_shadow()' failed: " + err.message
+    return { data: null, error: { message } }
   }
 }
 
@@ -201,12 +223,9 @@ export async function getSlugs(limit: number) {
       .select('slug')
       .limit(limit)
 
-    if (error) {
-      throw error || new Error('Failed to retrieve the slugs.')
-    }
-
-    return data
+    return { data, error }
   } catch (err) {
-    throw new Error(err.message)
+    const message = 'Failed to retrieve box shadows slugs: ' + err.message
+    return { data: null, error: { message } }
   }
 }

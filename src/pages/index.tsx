@@ -16,7 +16,7 @@ export async function getStaticProps() {
   return {
     revalidate: 200,
     props: {
-      featured
+      featured: featured ?? null
     }
   }
 }

@@ -31,7 +31,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      boxShadowList
+      boxShadowList: boxShadowList ?? null
     },
     revalidate: 200
   }
