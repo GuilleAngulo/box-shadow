@@ -40,7 +40,7 @@ export async function getPresetByBoxShadow(boxShadowId: number) {
     return {
       data: {
         name: data?.title,
-        boxShadow: JSON.parse(data?.box_shadow || ''),
+        boxShadow: parseBoxShadow(data?.box_shadow),
         shape: data?.shape,
         theme: data?.theme,
         likes: count,
@@ -68,7 +68,7 @@ export async function getFeaturedBoxShadow() {
 
     const boxShadow = {
       name: data?.title,
-      boxShadow: JSON.parse(data?.box_shadow || ''),
+      boxShadow: parseBoxShadow(data?.box_shadow),
       shape: data?.shape,
       theme: data?.theme,
       likes,
@@ -221,5 +221,15 @@ export async function getSlugs(limit: number) {
   } catch (err) {
     const message = 'Failed to retrieve box shadows slugs: ' + err.message
     return { data: null, error: { message } }
+  }
+}
+
+const parseBoxShadow = (boxShadow?: string) => {
+  try {
+    if (boxShadow) {
+      return JSON.parse(boxShadow)
+    }
+  } catch {
+    return boxShadow
   }
 }

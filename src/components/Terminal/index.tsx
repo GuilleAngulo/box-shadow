@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Highlight, { defaultProps } from 'prism-react-renderer'
 import { stringify, prettify } from 'utils/helpers'
 import { useBoxShadow } from 'hooks/use-box-shadow'
 
@@ -24,20 +25,41 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
       console.error('Failed to copy: ', err)
     }
   }
+
   return (
-    <S.Wrapper>
-      <S.Pre>
-        <S.CopyWrapper onClick={handleCopyCode} role="button">
-          {copied ? (
-            <span>Copied ✓</span>
-          ) : (
-            <ContentCopy size={20} aria-label="Copy Code" />
-          )}
-        </S.CopyWrapper>
-        <S.Code>
-          {prettify(stringify(boxShadow || initialBoxShadow, false))}
-        </S.Code>
-      </S.Pre>
+    <S.Wrapper aria-label="CSS Snippet">
+      <S.CopyWrapper onClick={handleCopyCode} role="button">
+        {copied ? (
+          <span>Copied ✓</span>
+        ) : (
+          <ContentCopy size={20} aria-label="Copy Code" />
+        )}
+      </S.CopyWrapper>
+      <Highlight
+        {...defaultProps}
+        code={prettify(stringify(boxShadow || initialBoxShadow, false))}
+        language="css"
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <S.Pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <S.Line key={i} {...getLineProps({ line, key: i })}>
+                {/* <S.LineContent
+                  alpha={boxShadow[i]?.color.alpha ?? 0}
+                  blue={boxShadow[i]?.color.blue ?? 0}
+                  green={boxShadow[i]?.color.green ?? 0}
+                  red={boxShadow[i]?.color.red ?? 0}
+                > */}
+                <S.LineContent>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token, key })} />
+                  ))}
+                </S.LineContent>
+              </S.Line>
+            ))}
+          </S.Pre>
+        )}
+      </Highlight>
     </S.Wrapper>
   )
 }

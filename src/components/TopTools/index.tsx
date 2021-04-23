@@ -18,14 +18,16 @@ const TopTools = ({ featured }: TopToolsProps) => {
 
   return (
     <S.Wrapper>
-      <ToogleButton onCheck={toggleTheme} isChecked={isChecked} />
-      <PresetsTool featured={featured} />
-      <Link href="/gallery" passHref>
-        <Button size="small" minimal>
-          Gallery
-        </Button>
-      </Link>
-      <Login />
+      <S.Content>
+        <ToogleButton onCheck={toggleTheme} isChecked={isChecked} />
+        <PresetsTool featured={featured} />
+        <Link href="/gallery" passHref>
+          <Button size="small" minimal>
+            Gallery
+          </Button>
+        </Link>
+        <Login />
+      </S.Content>
     </S.Wrapper>
   )
 }

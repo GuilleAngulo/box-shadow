@@ -6,7 +6,8 @@ export const Item = styled.li`
     list-style: none;
     position: relative;
     padding: 0.5rem 1.2rem 1rem 1.2rem;
-    height: fit-content;
+    /* height: fit-content; */
+    height: 35rem;
     background-color: ${theme.colors.card};
     border-radius: ${theme.border.radius};
     border: 1px solid ${theme.colors.accent};

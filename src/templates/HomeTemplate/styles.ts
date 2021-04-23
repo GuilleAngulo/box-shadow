@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
@@ -10,24 +11,39 @@ export const Panel = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   ${media.greaterThan('large')`
-    grid-template-columns: 60rem 80rem;
+    grid-template-columns: 55rem 80rem;
   `}
 `
 
 export const Display = styled.div`
   ${({ theme }) => css`
-    /** Follow scroll move */
-    /* position: sticky;
-    top: 0;
-    height: 100vh; */
-
     display: flex;
     flex-direction: column;
     gap: 8rem;
-    padding: 12rem ${theme.spacings.small};
+    padding-top: 12rem;
     padding-bottom: ${theme.spacings.small};
     ${media.greaterThan('medium')`
-      gap: 12rem;
+      gap: 8rem;
+    `}
+
+    ${media.greaterThan('large')`
+      /** Follow scroll move */
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      /* overflow-y: auto;
+
+      ::-webkit-scrollbar {
+          width: 0.5rem;
+      }
+      ::-webkit-scrollbar-thumb {
+          background: ${theme.colors.accent};
+          border-radius: 0.12rem;
+      }
+      ::-webkit-scrollbar-track {
+          background: ${theme.colors.tertiaryFont};
+          border-radius: 0.12rem;
+      } */
     `}
   `}
 `

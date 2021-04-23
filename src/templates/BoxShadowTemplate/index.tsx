@@ -5,24 +5,27 @@ import ShapeTool from 'components/ShapeTool'
 
 import * as S from './styles'
 
-import { Preset } from 'types'
+import { AuthoredPreset } from 'types'
+import { BoxShadowProvider } from 'hooks/use-box-shadow'
 
 export type HomeTemplateProps = {
-  boxShadow?: Preset
+  boxShadow?: AuthoredPreset
 }
 
 const HomeTemplate = ({ boxShadow }: HomeTemplateProps) => {
   return (
     <S.Wrapper>
       <S.Panel>
-        <S.Display>
-          <Shadow />
-          <div>
-            <ShapeTool />
-            <Terminal />
-          </div>
-        </S.Display>
-        <Tools />
+        <BoxShadowProvider>
+          <S.Display>
+            <Shadow initialBoxShadow={boxShadow?.boxShadow} />
+            <div>
+              <ShapeTool />
+              <Terminal />
+            </div>
+          </S.Display>
+          <Tools />
+        </BoxShadowProvider>
       </S.Panel>
     </S.Wrapper>
   )

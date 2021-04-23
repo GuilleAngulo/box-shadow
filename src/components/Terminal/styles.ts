@@ -1,44 +1,95 @@
 import styled, { css } from 'styled-components'
 import { lighten, darken } from 'polished'
+//import { RGBAProps } from 'types'
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  position: relative;
 `
 
 export const Pre = styled.pre`
   ${({ theme }) => css`
-    position: relative;
-    display: flex;
+    text-align: left;
     width: 100%;
-    align-items: center;
-    justify-content: center;
+    max-height: 24rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    overflow-x: auto;
-    background-color: ${theme.colors.terminalBg};
+    overflow-y: auto;
     border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.medium} ${theme.spacings.xsmall};
+    padding: 0 ${theme.spacings.xsmall};
+    padding-top: ${theme.spacings.small};
     white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
     border: 0.2rem solid ${theme.colors.accent};
+    background-color: ${theme.colors.terminalBg} !important;
+
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #666d7a;
+      border-radius: 0.12rem;
+    }
+    ::-webkit-scrollbar-track {
+      background: #acb1b8;
+      border-radius: 0.12rem;
+    }
   `}
 `
 
-export const Code = styled.code`
+export const Line = styled.div`
+  display: table-row;
+`
+
+export const LineContent = styled.span`
   ${({ theme }) => css`
-    font-family: monospace;
-    font-weight: bold;
-    padding: 0 0.4rem;
-    margin: 0 0.2rem;
-    font-size: ${theme.font.sizes.medium};
-    font-weight: ${theme.font.light};
-    font-family: monospace;
-    color: ${theme.colors.terminalFont};
-    background-color: transparent;
+    display: table-cell;
+    align-items: center;
+    font-family: ${theme.font.code};
+    font-size: 1.5rem;
+    font-weight: ${theme.font.normal};
+
+    .token.property {
+      color: #a382ff !important;
+      font-weight: ${theme.font.bold};
+    }
+
+    .token.color.function {
+      color: #ff9ade !important;
+    }
+
+    .token.number {
+      color: ${theme.colors.terminalFont} !important;
+    }
+
+    .token.punctuation,
+    .token.color.punctuation,
+    .token.unit {
+      color: #d0b9e3 !important;
+    }
   `}
 `
+
+// export const LineContent = styled.span<RGBAProps>`
+//   ${({ theme, red, green, blue, alpha }) => css`
+//     display: flex;
+//     align-items: center;
+//     font-family: ${theme.font.code};
+//     font-size: ${theme.font.sizes.small};
+//     font-weight: ${theme.font.normal};
+
+//     &::after {
+//       content: '';
+//       width: 1.2rem;
+//       height: 1.2rem;
+//       margin-left: 0.2rem;
+//       background: rgba(${red}, ${green}, ${blue}, ${alpha});
+//       border-radius: 50%;
+//     }
+
+//     .token.property {
+//       color: ${lighten(0.1, theme.colors.primary)} !important;
+//     }
+//   `}
+// `
 
 export const CopyWrapper = styled.div`
   ${({ theme }) => css`
@@ -47,7 +98,8 @@ export const CopyWrapper = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.8rem;
+    padding-top: 0.8rem;
+    padding-right: 1rem;
     transition: color ${theme.transition.fast};
 
     &:hover {

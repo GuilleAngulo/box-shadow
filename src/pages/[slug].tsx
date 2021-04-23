@@ -4,12 +4,12 @@ import {
   getLikesCount,
   getSlugs
 } from 'services/boxShadows'
-import { Preset } from 'types'
+import { AuthoredPreset } from 'types'
 import BoxShadowTemplate from 'templates/BoxShadowTemplate'
 import { GetStaticPropsContext } from 'next'
 
 export type BoxShadowProps = {
-  boxShadow: Preset
+  boxShadow?: AuthoredPreset
 }
 
 export default function BoxShadow({ boxShadow }: BoxShadowProps) {

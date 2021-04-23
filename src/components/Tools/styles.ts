@@ -1,10 +1,7 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-export const Wrapper = styled.div`
-  display: flex;
-  margin-bottom: 2rem;
-`
+export const Wrapper = styled.div``
 export const Item = styled.div``
 export const Color = styled.div``
 
@@ -24,6 +21,7 @@ export const ToolsWrapper = styled.ul`
     `}
     ${media.greaterThan('large')`
       grid-template-columns: repeat(3, 26rem);
+      margin: ${theme.spacings.xsmall};
       padding: 0 ;
     `}
   `}
@@ -35,7 +33,7 @@ export const Add = styled.li`
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1rem;
-    min-height: 34.8rem;
+    height: 35rem;
     border-radius: ${theme.border.radius};
     border: 0.2rem dashed ${theme.colors.tertiaryFont};
     cursor: pointer;
