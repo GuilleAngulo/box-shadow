@@ -21,7 +21,7 @@ export const ToolsWrapper = styled.ul`
     `}
     ${media.greaterThan('large')`
       grid-template-columns: repeat(3, 26rem);
-      margin: ${theme.spacings.xsmall};
+      margin: ${theme.spacings.xsmall} ${theme.spacings.small};
       padding: 0 ;
     `}
   `}

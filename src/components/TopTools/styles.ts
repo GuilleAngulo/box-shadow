@@ -1,14 +1,18 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.header`
   ${({ theme }) => css`
     position: absolute;
-    width: 55rem;
     top: 0;
     left: 0;
-    padding: ${theme.spacings.xsmall};
-    z-index: 10;
-    background: ${theme.colors.background};
+    padding: ${theme.spacings.xsmall} 0;
+    ${media.greaterThan('small')`
+      padding: ${theme.spacings.xsmall};
+      z-index: 10;
+      background: transparent;
+      /* background: ${theme.colors.background}; */
+    `}
   `}
 `
 export const Content = styled.div`

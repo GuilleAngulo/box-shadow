@@ -11,6 +11,7 @@ export const Pre = styled.pre`
     text-align: left;
     width: 100%;
     max-height: 24rem;
+    min-height: 7rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow-y: auto;
@@ -101,6 +102,8 @@ export const CopyWrapper = styled.div`
     padding-top: 0.8rem;
     padding-right: 1rem;
     transition: color ${theme.transition.fast};
+    font-family: ${theme.font.code};
+    font-size: ${theme.font.sizes.xsmall};
 
     &:hover {
       color: ${lighten(0.4, theme.colors.terminalFont)};
