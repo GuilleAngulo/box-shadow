@@ -22,16 +22,58 @@ export const stringify = (shadowStyle: ShadowProps[], semicolon = true) => {
         blurRadius,
         spreadRadius,
         color,
-        inset = false
+        inset = false,
+        visible
       }) =>
-        `${
+        visible
+          ? `${
+              inset ? 'inset ' : ''
+            }${horizontalOffset}px ${verticalOffset}px ${blurRadius}px ${spreadRadius}px rgba(${
+              color.red
+            }, ${color.green}, ${color.blue}, ${color.alpha})`
+          : ''
+    )
+
+  let styles = Array.isArray(stylesArray)
+    ? stylesArray.filter((item) => !!item).join(', ')
+    : ''
+
+  if (semicolon) {
+    styles += ';'
+  }
+
+  return styles
+}
+
+export const stringifyTerminal = (
+  shadowStyle: ShadowProps[],
+  semicolon = true
+) => {
+  const stylesArray =
+    Array.isArray(shadowStyle) &&
+    shadowStyle.map(
+      ({
+        horizontalOffset,
+        verticalOffset,
+        blurRadius,
+        spreadRadius,
+        color,
+        inset = false,
+        visible
+      }) => {
+        const line = `${
           inset ? 'inset ' : ''
         }${horizontalOffset}px ${verticalOffset}px ${blurRadius}px ${spreadRadius}px rgba(${
           color.red
         }, ${color.green}, ${color.blue}, ${color.alpha})`
+
+        return visible ? line : `/* ${line} */ `
+      }
     )
 
-  let styles = Array.isArray(stylesArray) ? stylesArray.join(', ') : ''
+  let styles = Array.isArray(stylesArray)
+    ? stylesArray.filter((item) => !!item).join(', ')
+    : ''
 
   if (semicolon) {
     styles += ';'

@@ -23,7 +23,8 @@ export const defaultShadow = (isDarkMode = false) => {
     blurRadius: 32,
     spreadRadius: isDarkMode ? 15 : 0,
     inset: false,
-    color
+    color,
+    visible: true
   }
 }
 
@@ -42,7 +43,8 @@ export const simplePreset = {
         green: 0,
         blue: 0,
         alpha: 0.15
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -54,7 +56,8 @@ export const simplePreset = {
         green: 0,
         blue: 0,
         alpha: 0.3
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -66,7 +69,8 @@ export const simplePreset = {
         green: 70,
         blue: 70,
         alpha: 0.15
-      }
+      },
+      visible: true
     }
   ]
 }
@@ -86,7 +90,8 @@ export const neumorphismPreset = {
         green: 165,
         blue: 165,
         alpha: 0.4
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 40,
@@ -99,7 +104,8 @@ export const neumorphismPreset = {
         blue: 160,
         alpha: 0.25
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: -20,
@@ -111,7 +117,8 @@ export const neumorphismPreset = {
         green: 255,
         blue: 255,
         alpha: 1
-      }
+      },
+      visible: true
     }
   ]
 }
@@ -132,7 +139,8 @@ export const ringsPreset = {
         blue: 216,
         alpha: 1
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -145,7 +153,8 @@ export const ringsPreset = {
         blue: 0,
         alpha: 1
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -158,7 +167,8 @@ export const ringsPreset = {
         blue: 238,
         alpha: 1
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -170,7 +180,8 @@ export const ringsPreset = {
         green: 0,
         blue: 0,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -182,7 +193,8 @@ export const ringsPreset = {
         green: 150,
         blue: 199,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -194,7 +206,8 @@ export const ringsPreset = {
         green: 0,
         blue: 0,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -206,7 +219,8 @@ export const ringsPreset = {
         green: 119,
         blue: 182,
         alpha: 1
-      }
+      },
+      visible: true
     }
   ]
 }
@@ -226,7 +240,8 @@ export const ledsPreset = {
         green: 204,
         blue: 255,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 2,
@@ -238,7 +253,8 @@ export const ledsPreset = {
         green: 0,
         blue: 0,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: -50,
@@ -250,7 +266,8 @@ export const ledsPreset = {
         green: 145,
         blue: 255,
         alpha: 0.6
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 30,
@@ -262,7 +279,8 @@ export const ledsPreset = {
         green: 31,
         blue: 31,
         alpha: 0.8
-      }
+      },
+      visible: true
     }
   ]
 }
@@ -283,7 +301,8 @@ export const eclipsePreset = {
         blue: 0,
         alpha: 1
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: 50,
@@ -295,7 +314,8 @@ export const eclipsePreset = {
         green: 255,
         blue: 160,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 55,
@@ -307,7 +327,8 @@ export const eclipsePreset = {
         green: 96,
         blue: 10,
         alpha: 1
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 60,
@@ -319,7 +340,8 @@ export const eclipsePreset = {
         green: 123,
         blue: 0,
         alpha: 0.85
-      }
+      },
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -331,7 +353,8 @@ export const eclipsePreset = {
         green: 161,
         blue: 255,
         alpha: 0.85
-      }
+      },
+      visible: true
     }
   ]
 }
@@ -353,7 +376,8 @@ export const featuredPreset = {
         blue: 208,
         alpha: 0.7
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: -100,
@@ -366,7 +390,8 @@ export const featuredPreset = {
         blue: 90,
         alpha: 1
       },
-      inset: true
+      inset: true,
+      visible: true
     },
     {
       horizontalOffset: 0,
@@ -378,7 +403,8 @@ export const featuredPreset = {
         green: 20,
         blue: 245,
         alpha: 0.4
-      }
+      },
+      visible: true
     }
   ]
 }
@@ -394,7 +420,8 @@ export const shadow = [
       green: 255,
       blue: 255,
       alpha: 1
-    }
+    },
+    visible: true
   },
   {
     horizontalOffset: 3,
@@ -406,6 +433,7 @@ export const shadow = [
       green: 0,
       blue: 0,
       alpha: 0.1
-    }
+    },
+    visible: true
   }
 ]

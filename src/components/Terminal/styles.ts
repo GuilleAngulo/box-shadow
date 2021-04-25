@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { lighten, darken } from 'polished'
-//import { RGBAProps } from 'types'
+import { RGBAProps } from 'types'
 
 export const Wrapper = styled.div`
   position: relative;
@@ -12,13 +12,13 @@ export const Pre = styled.pre`
     width: 100%;
     max-height: 24rem;
     min-height: 7rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    /* word-wrap: break-word; */
+    /* overflow-wrap: break-word; */
     overflow-y: auto;
     border-radius: ${theme.border.radius};
     padding: 0 ${theme.spacings.xsmall};
     padding-top: ${theme.spacings.small};
-    white-space: pre-wrap;
+    /* white-space: pre-wrap; */
     border: 0.2rem solid ${theme.colors.accent};
     background-color: ${theme.colors.terminalBg} !important;
 
@@ -42,15 +42,16 @@ export const Line = styled.div`
 
 export const LineContent = styled.span`
   ${({ theme }) => css`
-    display: table-cell;
+    display: flex;
     align-items: center;
     font-family: ${theme.font.code};
-    font-size: 1.5rem;
+    font-size: ${theme.font.sizes.small};
     font-weight: ${theme.font.normal};
 
     .token.property {
       color: #a382ff !important;
       font-weight: ${theme.font.bold};
+      display: inline-block !important;
     }
 
     .token.color.function {
@@ -69,28 +70,29 @@ export const LineContent = styled.span`
   `}
 `
 
-// export const LineContent = styled.span<RGBAProps>`
-//   ${({ theme, red, green, blue, alpha }) => css`
-//     display: flex;
-//     align-items: center;
-//     font-family: ${theme.font.code};
-//     font-size: ${theme.font.sizes.small};
-//     font-weight: ${theme.font.normal};
+export const Token = styled.span`
+  /* display: flex; */
+`
 
-//     &::after {
-//       content: '';
-//       width: 1.2rem;
-//       height: 1.2rem;
-//       margin-left: 0.2rem;
-//       background: rgba(${red}, ${green}, ${blue}, ${alpha});
-//       border-radius: 50%;
-//     }
+export const RGBA = styled.span<RGBAProps>`
+  ${({ red, green, blue, alpha }) => css`
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-//     .token.property {
-//       color: ${lighten(0.1, theme.colors.primary)} !important;
-//     }
-//   `}
-// `
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.2rem;
+      border: none;
+      background: rgba(${red}, ${green}, ${blue}, ${alpha});
+      border-radius: 50%;
+    }
+  `}
+`
 
 export const CopyWrapper = styled.div`
   ${({ theme }) => css`

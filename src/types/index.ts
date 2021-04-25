@@ -12,6 +12,7 @@ export type ShadowProps = {
   spreadRadius: number
   color: RGBAProps
   inset?: boolean
+  visible?: boolean
 }
 
 export type AnimationDirection =

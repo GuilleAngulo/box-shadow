@@ -27,6 +27,7 @@ export type BoxShadowContextData = {
   clearBoxShadow: () => void
   saveShape: (shape: Shape) => void
   loadPreset: (preset: Preset | AuthoredPreset) => void
+  setVisible: (index: number) => void
 }
 
 const BOXSHADOW_KEY = 'boxShadow'
@@ -42,7 +43,8 @@ const BoxShadowContextDefaultValues = {
   addBoxShadow: () => null,
   clearBoxShadow: () => null,
   saveShape: () => null,
-  loadPreset: () => null
+  loadPreset: () => null,
+  setVisible: () => null
 }
 
 export const BoxShadowContext = createContext<BoxShadowContextData>(
@@ -134,6 +136,12 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
     return
   }
 
+  const setVisible = (index: number) => {
+    const copy = JSON.parse(JSON.stringify(boxShadow))
+    copy[index].visible = !copy[index].visible
+    saveBoxShadow(copy)
+  }
+
   const clearBoxShadow = () => {
     saveBoxShadow([])
   }
@@ -160,7 +168,8 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
         addBoxShadow,
         clearBoxShadow,
         saveShape,
-        loadPreset
+        loadPreset,
+        setVisible
       }}
     >
       {children}

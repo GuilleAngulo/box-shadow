@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useMemo } from 'react'
+import { InputHTMLAttributes, useMemo, useState } from 'react'
 import { RGBAProps } from 'types'
 import rgbHex from 'rgb-hex'
 
@@ -19,7 +19,7 @@ const InputColor = ({
   onInput,
   ...props
 }: InputRangeProps) => {
-  const value = useMemo(() => {
+  const initialValueHex = useMemo(() => {
     if (initialValue) {
       const { red, green, blue } = initialValue
       return `#${rgbHex(red, green, blue)}`
@@ -27,10 +27,39 @@ const InputColor = ({
     return
   }, [initialValue])
 
+  const [value, setValue] = useState<string | undefined>(initialValueHex)
+  const [time, setTime] = useState<NodeJS.Timeout | undefined>(undefined)
+
+  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newValue = e.currentTarget.value
+  //   !!onInput && onInput(newValue)
+  // }
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value
+    setValue(newValue)
+    throttleSetValue(newValue, 50)
+  }
 
-    !!onInput && onInput(newValue)
+  const onBlur = () => {
+    if (value) {
+      !!onInput && onInput(value)
+    }
+  }
+
+  const throttleSetValue = (value: string | undefined, delay: number) => {
+    if (time) {
+      return
+    }
+
+    setTime(
+      setTimeout(() => {
+        if (value) {
+          !!onInput && onInput(value)
+        }
+        setTime(undefined)
+      }, delay)
+    )
   }
 
   return (
@@ -39,7 +68,8 @@ const InputColor = ({
       <S.Input
         type="color"
         onChange={onChange}
-        value={value}
+        onBlur={onBlur}
+        value={initialValueHex}
         disabled={disabled}
         name={name}
         {...(label ? { id: name } : {})}
