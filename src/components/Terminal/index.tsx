@@ -28,6 +28,7 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
 
   return (
     <S.Wrapper aria-label="CSS Snippet">
+      <S.Language>CSS</S.Language>
       <S.CopyWrapper onClick={handleCopyCode} role="button">
         {copied ? (
           <span>Copied ✓</span>
@@ -37,8 +38,9 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
       </S.CopyWrapper>
       <Highlight
         {...defaultProps}
-        code={prettify(stringifyTerminal(boxShadow || initialBoxShadow, false))}
+        code={prettify(stringifyTerminal(boxShadow || initialBoxShadow, true))}
         language="css"
+        theme={undefined}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <S.Pre className={className} style={style}>
@@ -56,7 +58,7 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
                         red={boxShadow[i]?.color.red ?? 0}
                       />
                     ) : (
-                      <S.Token key={key} {...getTokenProps({ token, key })} />
+                      <span key={key} {...getTokenProps({ token, key })} />
                     )
                   )}
                 </S.LineContent>

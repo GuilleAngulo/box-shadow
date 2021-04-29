@@ -52,22 +52,33 @@ export const stringifyTerminal = (
   const stylesArray =
     Array.isArray(shadowStyle) &&
     shadowStyle.map(
-      ({
-        horizontalOffset,
-        verticalOffset,
-        blurRadius,
-        spreadRadius,
-        color,
-        inset = false,
-        visible
-      }) => {
-        const line = `${
+      (
+        {
+          horizontalOffset,
+          verticalOffset,
+          blurRadius,
+          spreadRadius,
+          color,
+          inset = false,
+          visible
+        },
+        index
+      ) => {
+        let line = `${
           inset ? 'inset ' : ''
         }${horizontalOffset}px ${verticalOffset}px ${blurRadius}px ${spreadRadius}px rgba(${
           color.red
         }, ${color.green}, ${color.blue}, ${color.alpha})`
 
-        return visible ? line : `/* ${line} */ `
+        if (!visible) {
+          line = `/* ${line} */ `
+        }
+
+        if (index === 0) {
+          line = `\n  ${line}`
+        }
+
+        return line
       }
     )
 
@@ -75,7 +86,7 @@ export const stringifyTerminal = (
     ? stylesArray.filter((item) => !!item).join(', ')
     : ''
 
-  if (semicolon) {
+  if (semicolon && styles) {
     styles += ';'
   }
 

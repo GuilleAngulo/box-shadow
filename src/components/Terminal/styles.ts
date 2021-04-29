@@ -1,29 +1,32 @@
 import styled, { css } from 'styled-components'
 import { lighten, darken } from 'polished'
 import { RGBAProps } from 'types'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   position: relative;
+  width: 100%;
+  ${media.greaterThan('medium')`
+    width: 50rem;
+    margin: auto;
+  `}
 `
 
 export const Pre = styled.pre`
   ${({ theme }) => css`
     text-align: left;
     width: 100%;
-    max-height: 24rem;
+    max-height: 22rem;
     min-height: 7rem;
-    /* word-wrap: break-word; */
-    /* overflow-wrap: break-word; */
     overflow-y: auto;
     border-radius: ${theme.border.radius};
-    padding: 0 ${theme.spacings.xsmall};
-    padding-top: ${theme.spacings.small};
-    /* white-space: pre-wrap; */
+    padding: ${theme.spacings.small} ${theme.spacings.xsmall};
     border: 0.2rem solid ${theme.colors.accent};
-    background-color: ${theme.colors.terminalBg} !important;
+    background-color: ${theme.colors.terminalBg};
 
     ::-webkit-scrollbar {
       width: 0.5rem;
+      height: 1.2rem;
     }
     ::-webkit-scrollbar-thumb {
       background: #666d7a;
@@ -33,6 +36,11 @@ export const Pre = styled.pre`
       background: #acb1b8;
       border-radius: 0.12rem;
     }
+
+    ${media.greaterThan('medium')`
+      padding: 0 ${theme.spacings.xsmall};
+      padding-top: ${theme.spacings.small};
+    `}
   `}
 `
 
@@ -46,32 +54,33 @@ export const LineContent = styled.span`
     align-items: center;
     font-family: ${theme.font.code};
     font-size: ${theme.font.sizes.small};
-    font-weight: ${theme.font.normal};
+    font-weight: 500;
+    color: ${theme.colors.terminalFont};
 
     .token.property {
-      color: #a382ff !important;
-      font-weight: ${theme.font.bold};
-      display: inline-block !important;
+      display: inline-block;
     }
 
-    .token.color.function {
-      color: #ff9ade !important;
+    .token.color.function,
+    .token.plain {
+      font-weight: 700;
+      color: #ff9ade;
     }
 
     .token.number {
-      color: ${theme.colors.terminalFont} !important;
+      color: ${theme.colors.terminalFont};
     }
 
     .token.punctuation,
     .token.color.punctuation,
     .token.unit {
-      color: #d0b9e3 !important;
+      color: #c085f2;
+    }
+
+    .token.comment {
+      color: #9886a7;
     }
   `}
-`
-
-export const Token = styled.span`
-  /* display: flex; */
 `
 
 export const RGBA = styled.span<RGBAProps>`
@@ -81,16 +90,14 @@ export const RGBA = styled.span<RGBAProps>`
     align-items: center;
     justify-content: center;
 
-    &::before {
+    /* &::before {
       content: '';
       display: inline-block;
       width: 1rem;
       height: 1rem;
       margin-right: 0.2rem;
-      border: none;
       background: rgba(${red}, ${green}, ${blue}, ${alpha});
-      border-radius: 50%;
-    }
+    } */
   `}
 `
 
@@ -110,5 +117,19 @@ export const CopyWrapper = styled.div`
     &:hover {
       color: ${lighten(0.4, theme.colors.terminalFont)};
     }
+  `}
+`
+
+export const Language = styled.span`
+  ${({ theme }) => css`
+    color: ${theme.colors.primaryFont};
+    position: absolute;
+    top: -2.4rem;
+    left: 0;
+    padding-top: 0.8rem;
+    padding-left: 1rem;
+    font-family: ${theme.font.code};
+    font-weight: ${theme.font.bold};
+    font-size: ${theme.font.sizes.xsmall};
   `}
 `

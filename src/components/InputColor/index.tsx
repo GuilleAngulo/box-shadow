@@ -30,15 +30,10 @@ const InputColor = ({
   const [value, setValue] = useState<string | undefined>(initialValueHex)
   const [time, setTime] = useState<NodeJS.Timeout | undefined>(undefined)
 
-  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newValue = e.currentTarget.value
-  //   !!onInput && onInput(newValue)
-  // }
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value
     setValue(newValue)
-    throttleSetValue(newValue, 50)
+    throttleSetValue(newValue, 10)
   }
 
   const onBlur = () => {

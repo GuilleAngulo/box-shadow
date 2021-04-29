@@ -1,19 +1,58 @@
+import { rgba } from 'polished'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 export const Wrapper = styled.section`
-  display: grid;
-  align-items: center;
-  justify-content: center;
+  ${({ theme }) => css`
+    position: relative;
+
+    &::before {
+      content: '';
+      top: 0;
+      left: 2rem;
+      right: 2rem;
+      position: absolute;
+      height: 2rem;
+      z-index: 10;
+      pointer-events: none;
+      background: linear-gradient(
+        ${rgba(theme.colors.background, 1)},
+        ${rgba(theme.colors.background, 0.5)},
+        ${rgba(theme.colors.background, 0)}
+      );
+    }
+
+    &::after {
+      content: '';
+      bottom: 0;
+      left: 2rem;
+      right: 2rem;
+      position: absolute;
+      height: 2rem;
+      z-index: 10;
+      pointer-events: none;
+      background: linear-gradient(
+        ${rgba(theme.colors.background, 0)},
+        ${rgba(theme.colors.background, 0.5)},
+        ${rgba(theme.colors.background, 1)}
+      );
+    }
+  `}
 `
 export const Panel = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  ${media.greaterThan('medium')`
-    grid-template-columns: 1.5fr 2fr;
+  padding-bottom: 1.4rem;
+
+  @media (min-width: 840px) {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1.4fr 1fr;
+    padding: 0;
+  }
+  ${media.greaterThan('large')`
+  grid-template-columns: 1.4fr 2fr;
   `}
   ${media.greaterThan('huge')`
-    grid-template-columns: 55rem 80rem;
+    grid-template-columns: 1.4fr 2fr;
   `}
 `
 
@@ -22,30 +61,13 @@ export const Display = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8rem;
-    padding: ${theme.spacings.xsmall};
     padding-top: 12rem;
-    padding-bottom: ${theme.spacings.small};
-    ${media.greaterThan('medium')`
-      gap: 8rem;
-    `}
+    padding-bottom: 2.4rem;
 
-    ${media.greaterThan('large')`
-      /** Follow scroll move */
-      position: sticky;
-      top: 0;
-      height: 100vh;
+    ${media.greaterThan('medium')`
+      padding-bottom: 0;
+      padding-left: 2rem;
+      padding-right: 2rem;
     `}
   `}
-`
-
-export const Config = styled.div`
-  position: absolute;
-  display: flex;
-  top: 18rem;
-  left: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  svg {
-    width: 3rem;
-  }
 `

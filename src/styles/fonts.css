@@ -28,9 +28,15 @@
 @font-face {
   font-family: 'Fira Code';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
+  font-weight: 500;
   src: local(''),
-       url('/fonts/fira-code-v10-latin-regular.woff2') format('woff2');
+       url('/fonts/fira-code-v10-latin-500.woff2') format('woff2'),
+}
 
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+       url('/fonts/fira-code-v10-latin-700.woff2') format('woff2'),
 }

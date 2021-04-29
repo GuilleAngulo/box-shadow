@@ -3,10 +3,11 @@ import { supabase } from 'utils/supabaseClient'
 import { definitions } from 'types/supabase'
 export type User = definitions['users']
 
-export async function getUser() {
+export async function getUser(id: string) {
   const { data, error } = await supabase
     .from<User>('users')
-    .select('id, name, avatar_url')
+    .select('name, avatar_url')
+    .eq('id', id)
     .single()
 
   return { user: data, error }
@@ -33,7 +34,7 @@ export async function updateUser(name?: string, avatar_url?: string) {
 
 export async function signInUser({ id, name, avatar_url }: User) {
   try {
-    const { user, error: getUserError } = await getUser()
+    const { user, error: getUserError } = await getUser(id)
 
     if (getUserError) {
       throw getUserError || new Error('Error retrieving the user.')

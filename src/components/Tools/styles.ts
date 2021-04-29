@@ -2,27 +2,53 @@ import { darken } from 'polished'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+  ${({ theme }) => css`
+    ${media.greaterThan('medium')`
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: ${theme.spacings.xsmall} 0;
+
+      ::-webkit-scrollbar {
+        width: 1.2rem;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: ${theme.colors.accent};
+        border-radius: 0.4rem;
+      }
+      ::-webkit-scrollbar-track {
+        background: ${darken(0.05, theme.colors.background)};
+        border-radius: 0.4rem;
+      }
+    `}
+  `}
+`
 export const Color = styled.div``
 
 export const ToolsWrapper = styled.ul`
   ${({ theme }) => css`
     display: grid;
+    justify-content: center;
     grid-template-columns: 1fr;
-    grid-row-gap: 1.4rem;
+    grid-row-gap: 2.4rem;
     width: 100%;
-    padding: 0 ${theme.spacings.small};
-    margin: auto;
-    margin-top: 2.4rem;
+    /* max-width: 47rem; */
+    /* padding: 0 ${theme.spacings.small}; */
+    /* margin: auto;
+    margin-top: 2rem; */
     list-style: none;
     ${media.greaterThan('medium')`
+      grid-template-columns: 26rem;
+    `}
+    ${media.greaterThan('large')`
       grid-template-columns: repeat(2, 26rem);
       grid-column-gap: 2.2rem;
     `}
-    ${media.greaterThan('large')`
+    ${media.greaterThan('huge')`
       grid-template-columns: repeat(3, 26rem);
-      margin: ${theme.spacings.xsmall} ${theme.spacings.small};
-      padding: 0 ;
+      grid-row-gap: 1.4rem;
     `}
   `}
 `
