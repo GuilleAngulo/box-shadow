@@ -21,6 +21,7 @@ import * as S from './styles'
 
 import { LayerPlus as AddIcon } from '@styled-icons/boxicons-regular'
 import ToolItem from 'components/ToolItem'
+import { useEffect, useRef, useState } from 'react'
 
 const Tools = () => {
   const {
@@ -30,6 +31,20 @@ const Tools = () => {
     removeBoxShadow,
     setVisible
   } = useBoxShadow()
+
+  const [scroll, setScroll] = useState(false)
+  const addShadowRef = useRef<HTMLLIElement>(null)
+
+  const scrollToBottom = () => {
+    if (addShadowRef.current && scroll) {
+      addShadowRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+    setScroll(false)
+  }, [scroll])
 
   return (
     <S.Wrapper>
@@ -125,7 +140,11 @@ const Tools = () => {
         <S.Add
           role="button"
           aria-label="create new box shadow"
-          onClick={() => addBoxShadow()}
+          ref={addShadowRef}
+          onClick={() => {
+            addBoxShadow()
+            setScroll(true)
+          }}
         >
           <AddIcon width={50} />
         </S.Add>

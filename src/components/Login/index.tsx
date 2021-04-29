@@ -19,7 +19,7 @@ import { saveBoxShadow } from 'services/boxShadows'
 const Login = () => {
   const { boxShadow, shape, loadPreset } = useBoxShadow()
   const { theme } = useTheme()
-  const { loading, user, session, signInGithub, signOut } = useAuth()
+  const { loading, error, user, session, signInGithub, signOut } = useAuth()
 
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
   const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
@@ -117,7 +117,7 @@ const Login = () => {
           icon={<Github />}
           disabled={loading}
           loading={loading}
-          onClick={signInGithub}
+          onClick={() => signInGithub()}
         >
           Log in
         </Button>

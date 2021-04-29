@@ -8,7 +8,7 @@ export type AuthContextData = {
   session: Session | null
   loading: boolean
   error: string
-  signInGithub: () => void
+  signInGithub: (redirect?: string) => void
   signOut: () => void
 }
 
@@ -42,13 +42,18 @@ const AuthProvider = ({
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  const signInGithub = async () => {
+  const signInGithub = async (redirect?: string) => {
     setLoading(true)
-    // TO BE REMOVE: Fake 0.5s wait for loading to appear
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    const { error } = await supabaseClient.auth.signIn({ provider: 'github' })
+    const { error } = await supabaseClient.auth.signIn(
+      { provider: 'github' },
+      {
+        ...(!!redirect && {
+          redirectTo: redirect
+        })
+      }
+    )
     if (error) setError(error.message)
-    setLoading(false)
+    // setLoading(false)
   }
 
   const signOut = async () => {

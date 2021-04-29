@@ -15,7 +15,7 @@ export const Wrapper = styled.section`
       right: 2rem;
       position: absolute;
       height: 2rem;
-      z-index: 10;
+      z-index: 1;
       pointer-events: none;
       background: linear-gradient(
         ${rgba(theme.colors.background, 1)},
@@ -31,7 +31,7 @@ export const Wrapper = styled.section`
       right: 2rem;
       position: absolute;
       height: 2rem;
-      z-index: 10;
+      z-index: 1;
       pointer-events: none;
       background: linear-gradient(
         ${rgba(theme.colors.background, 0)},

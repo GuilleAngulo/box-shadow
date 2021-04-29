@@ -10,7 +10,8 @@ export const Wrapper = styled.div`
       position: sticky;
       top: 0;
       height: 100vh;
-      overflow-y: auto;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
 
       ::-webkit-scrollbar {
         width: 1.2rem;
