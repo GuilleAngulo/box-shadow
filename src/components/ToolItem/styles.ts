@@ -31,12 +31,6 @@ export const Item = styled.li<ItemProps>`
 
 export const Delete = styled.div`
   ${({ theme }) => css`
-    /* position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    margin-top: 0.2rem;
-    margin-right: 0.2rem; */
     border-radius: ${theme.border.radius};
     color: ${theme.colors.secondaryFont};
 

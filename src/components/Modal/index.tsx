@@ -45,7 +45,11 @@ const Modal = ({ isOpen, setIsOpen, title, children }: ModalProps) => {
   }
 
   return (
-    <S.Overlay isOpen={isOpen}>
+    <S.Overlay
+      isOpen={isOpen}
+      // onClick={() => setIsOpen(false)}
+      aria-hidden={!isOpen}
+    >
       <S.Modal
         ref={onDialog}
         isOpen={isOpen}

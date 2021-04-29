@@ -4,12 +4,13 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    ${media.greaterThan('medium')`
+    padding: ${theme.spacings.xsmall} 0;
+
+    @media (min-width: 840px) {
       position: sticky;
       top: 0;
       height: 100vh;
       overflow-y: auto;
-      padding: ${theme.spacings.xsmall} 0;
 
       ::-webkit-scrollbar {
         width: 1.2rem;
@@ -22,34 +23,28 @@ export const Wrapper = styled.div`
         background: ${darken(0.05, theme.colors.background)};
         border-radius: 0.4rem;
       }
-    `}
+    }
   `}
 `
 export const Color = styled.div``
 
 export const ToolsWrapper = styled.ul`
-  ${({ theme }) => css`
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 1fr;
-    grid-row-gap: 2.4rem;
-    width: 100%;
-    /* max-width: 47rem; */
-    /* padding: 0 ${theme.spacings.small}; */
-    /* margin: auto;
-    margin-top: 2rem; */
-    list-style: none;
-    ${media.greaterThan('medium')`
-      grid-template-columns: 26rem;
-    `}
-    ${media.greaterThan('large')`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2.4rem;
+  width: 100%;
+  list-style: none;
+  @media (min-width: 840px) {
+    grid-template-columns: 26rem;
+  }
+  ${media.greaterThan('large')`
       grid-template-columns: repeat(2, 26rem);
       grid-column-gap: 2.2rem;
-    `}
-    ${media.greaterThan('huge')`
+  `}
+  ${media.greaterThan('huge')`
       grid-template-columns: repeat(3, 26rem);
       grid-row-gap: 1.4rem;
-    `}
   `}
 `
 export const Add = styled.li`

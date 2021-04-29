@@ -1,14 +1,50 @@
 import styled, { css } from 'styled-components'
-import { lighten, darken } from 'polished'
+import { lighten, darken, rgba } from 'polished'
 import { RGBAProps } from 'types'
 import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
-  ${media.greaterThan('medium')`
-    width: 50rem;
-    margin: auto;
+  ${({ theme }) => css`
+    position: relative;
+    width: 100%;
+
+    &::before {
+      content: '';
+      top: 0.2rem;
+      left: 0.2rem;
+      right: 0.6rem;
+      position: absolute;
+      height: 2.2rem;
+      pointer-events: none;
+      background: linear-gradient(
+        ${rgba(theme.colors.terminalBg, 1)},
+        ${rgba(theme.colors.terminalBg, 0.5)},
+        ${rgba(theme.colors.terminalBg, 0)}
+      );
+    }
+
+    &::after {
+      content: '';
+      bottom: 0.2rem;
+      left: 0.2rem;
+      right: 0.6rem;
+      position: absolute;
+      height: 2.2rem;
+      pointer-events: none;
+      background: linear-gradient(
+        ${rgba(theme.colors.terminalBg, 0)},
+        ${rgba(theme.colors.terminalBg, 0.5)},
+        ${rgba(theme.colors.terminalBg, 1)}
+      );
+    }
+
+    @media (min-width: 840px) {
+      width: 50rem;
+      margin: auto;
+    }
+    ${media.greaterThan('large')`
+    width: 56rem;
+    `}
   `}
 `
 
@@ -36,11 +72,6 @@ export const Pre = styled.pre`
       background: #acb1b8;
       border-radius: 0.12rem;
     }
-
-    ${media.greaterThan('medium')`
-      padding: 0 ${theme.spacings.xsmall};
-      padding-top: ${theme.spacings.small};
-    `}
   `}
 `
 
@@ -90,14 +121,15 @@ export const RGBA = styled.span<RGBAProps>`
     align-items: center;
     justify-content: center;
 
-    /* &::before {
+    &::before {
       content: '';
       display: inline-block;
       width: 1rem;
       height: 1rem;
-      margin-right: 0.2rem;
+      border-radius: 30%;
+      margin-right: 0.3rem;
       background: rgba(${red}, ${green}, ${blue}, ${alpha});
-    } */
+    }
   `}
 `
 

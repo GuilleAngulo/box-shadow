@@ -5,6 +5,8 @@ import media from 'styled-media-query'
 export const Wrapper = styled.section`
   ${({ theme }) => css`
     position: relative;
+    max-width: 160rem;
+    margin: auto;
 
     &::before {
       content: '';
@@ -57,17 +59,15 @@ export const Panel = styled.div`
 `
 
 export const Display = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    gap: 8rem;
-    padding-top: 12rem;
-    padding-bottom: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  padding-top: 12rem;
+  padding-bottom: 2.4rem;
 
-    ${media.greaterThan('medium')`
-      padding-bottom: 0;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    `}
-  `}
+  @media (min-width: 840px) {
+    padding-bottom: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `
