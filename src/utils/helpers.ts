@@ -5,11 +5,20 @@ import { SIZES } from 'utils/shadow'
 
 export const prettify = (code: string) => {
   const css = code && `box-shadow: ${code}`
-  return prettier.format(css, {
+  const prettyCss = prettier.format(css, {
     parser: 'css',
     printWidth: 70,
     plugins: [parserPostcss]
   })
+  return prettyCss
+  // console.log(prettyCss)
+  // return prettyCss.replace(':', ':\n')
+  // const css = prettier.format(code, {
+  //   parser: 'css',
+  //   printWidth: 70,
+  //   plugins: [parserPostcss]
+  // })
+  // return `box-shadow: \n${css}`
 }
 
 export const stringify = (shadowStyle: ShadowProps[], semicolon = true) => {
@@ -70,13 +79,16 @@ export const stringifyTerminal = (
           color.red
         }, ${color.green}, ${color.blue}, ${color.alpha})`
 
+        // if (index === 0) {
+        //   line = `${line}\n`
+        // }
         if (!visible) {
           line = `/* ${line} */ `
         }
 
-        if (index === 0) {
-          line = `\n  ${line}`
-        }
+        // if (index === 0) {
+        //   line = `\n  ${line}`
+        // }
 
         return line
       }

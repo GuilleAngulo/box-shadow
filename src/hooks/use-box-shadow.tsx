@@ -26,6 +26,7 @@ export type BoxShadowContextData = {
   addBoxShadow: (newBoxShadow?: ShadowProps[], isDarkMode?: boolean) => void
   clearBoxShadow: () => void
   saveShape: (shape: Shape) => void
+  reorderBoxShadow: (srcIndex: number, destIndex: number) => void
   loadPreset: (preset: Preset | AuthoredPreset) => void
   setVisible: (index: number) => void
 }
@@ -43,6 +44,7 @@ const BoxShadowContextDefaultValues = {
   addBoxShadow: () => null,
   clearBoxShadow: () => null,
   saveShape: () => null,
+  reorderBoxShadow: () => null,
   loadPreset: () => null,
   setVisible: () => null
 }
@@ -142,6 +144,13 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
     saveBoxShadow(copy)
   }
 
+  const reorderBoxShadow = (srcIndex: number, destIndex: number) => {
+    const copy = JSON.parse(JSON.stringify(boxShadow))
+    const [removed] = copy.splice(srcIndex, 1)
+    copy.splice(destIndex, 0, JSON.parse(JSON.stringify(removed)))
+    saveBoxShadow(copy)
+  }
+
   const clearBoxShadow = () => {
     saveBoxShadow([])
   }
@@ -168,6 +177,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
         addBoxShadow,
         clearBoxShadow,
         saveShape,
+        reorderBoxShadow,
         loadPreset,
         setVisible
       }}

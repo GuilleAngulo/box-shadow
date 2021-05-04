@@ -56,7 +56,7 @@ export const Pre = styled.pre`
     min-height: 7rem;
     overflow-y: auto;
     border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.small} ${theme.spacings.xsmall};
+    padding: 2rem ${theme.spacings.xsmall};
     border: 0.2rem solid ${theme.colors.accent};
     background-color: ${theme.colors.terminalBg};
 
@@ -79,6 +79,8 @@ export const Line = styled.div`
   display: table-row;
 `
 
+export const DroppableBlock = styled.div``
+
 export const LineContent = styled.span`
   ${({ theme }) => css`
     display: flex;
@@ -87,6 +89,12 @@ export const LineContent = styled.span`
     font-size: ${theme.font.sizes.small};
     font-weight: 500;
     color: ${theme.colors.terminalFont};
+
+    margin-bottom: 0.2rem;
+    padding: 0.1rem 0;
+    border-radius: 0.2rem;
+    background: transparent;
+    backdrop-filter: blur(10px);
 
     .token.property {
       display: inline-block;
