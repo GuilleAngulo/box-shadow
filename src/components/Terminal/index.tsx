@@ -74,13 +74,14 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
                           draggableId={`item-${i}`}
                           index={i}
                         >
-                          {(provided) => (
+                          {(provided, snapshot) => (
                             <S.Line
                               key={i}
                               {...getLineProps({ line, key: i })}
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
+                              isDragging={snapshot.isDragging}
                             >
                               <S.LineNo>{i + 1}</S.LineNo>
                               <S.LineContent>

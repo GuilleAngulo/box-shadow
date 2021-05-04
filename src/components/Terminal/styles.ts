@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import { rgba } from 'polished'
+import styled, { css, DefaultTheme } from 'styled-components'
+import { lighten, rgba } from 'polished'
 import { RGBAProps } from 'types'
 import media from 'styled-media-query'
 
@@ -76,16 +76,29 @@ export const Pre = styled.pre`
   `}
 `
 
-export const Line = styled.div`
-  display: flex;
-  justify-content: flex-start;
-`
+export type LineProps = {
+  isDragging?: boolean
+}
 
-export const DroppableBlock = styled.div`
-  ${({ theme }) => css`
+const lineModifiers = {
+  isDragging: (theme: DefaultTheme) => css`
+    background: ${lighten(0.02, theme.colors.terminalBg)};
+    /* box-shadow: 0 0 0.5rem ${theme.colors.primaryFont}; */
+  `
+}
+
+export const Line = styled.div<LineProps>`
+  ${({ theme, isDragging }) => css`
+    display: flex;
+    justify-content: flex-start;
     background: ${theme.colors.terminalBg};
+    border-radius: 0.2rem;
+
+    ${isDragging && lineModifiers.isDragging(theme)};
   `}
 `
+
+export const DroppableBlock = styled.div``
 
 export const LineContent = styled.span`
   ${({ theme }) => css`
@@ -98,9 +111,8 @@ export const LineContent = styled.span`
 
     margin-bottom: 0.2rem;
     padding: 0.1rem 0;
-    border-radius: 0.2rem;
-    background: transparent;
-    backdrop-filter: blur(10px);
+    /* background: ${theme.colors.terminalBg};
+    backdrop-filter: blur(10px); */
 
     .token.property {
       display: inline-block;
