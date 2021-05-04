@@ -233,7 +233,7 @@ export const ledsPreset = {
     {
       horizontalOffset: -2,
       verticalOffset: -2,
-      blurRadius: 4,
+      blurRadius: 2,
       spreadRadius: 1,
       color: {
         red: 0,
@@ -246,7 +246,7 @@ export const ledsPreset = {
     {
       horizontalOffset: 2,
       verticalOffset: 2,
-      blurRadius: 4,
+      blurRadius: 2,
       spreadRadius: 1,
       color: {
         red: 255,
@@ -293,7 +293,7 @@ export const eclipsePreset = {
     {
       horizontalOffset: -30,
       verticalOffset: 10,
-      blurRadius: 30,
+      blurRadius: 40,
       spreadRadius: -10,
       color: {
         red: 230,
@@ -305,9 +305,9 @@ export const eclipsePreset = {
       visible: true
     },
     {
-      horizontalOffset: 50,
+      horizontalOffset: 40,
       verticalOffset: -15,
-      blurRadius: 10,
+      blurRadius: 5,
       spreadRadius: -5,
       color: {
         red: 250,
@@ -318,9 +318,9 @@ export const eclipsePreset = {
       visible: true
     },
     {
-      horizontalOffset: 55,
+      horizontalOffset: 45,
       verticalOffset: -15,
-      blurRadius: 25,
+      blurRadius: 20,
       spreadRadius: 0,
       color: {
         red: 255,
@@ -331,10 +331,10 @@ export const eclipsePreset = {
       visible: true
     },
     {
-      horizontalOffset: 60,
-      verticalOffset: -20,
-      blurRadius: 60,
-      spreadRadius: 15,
+      horizontalOffset: 50,
+      verticalOffset: -15,
+      blurRadius: 30,
+      spreadRadius: 10,
       color: {
         red: 255,
         green: 123,
@@ -346,63 +346,13 @@ export const eclipsePreset = {
     {
       horizontalOffset: 0,
       verticalOffset: 0,
-      blurRadius: 20,
+      blurRadius: 10,
       spreadRadius: 5,
       color: {
         red: 10,
         green: 161,
         blue: 255,
-        alpha: 0.85
-      },
-      visible: true
-    }
-  ]
-}
-
-export const featuredPreset = {
-  name: 'Featured',
-  author: 'GuilleAngulo',
-  theme: 'dark' as Mode,
-  shape: 'circle' as Shape,
-  boxShadow: [
-    {
-      horizontalOffset: 0,
-      verticalOffset: 0,
-      blurRadius: 90,
-      spreadRadius: 35,
-      color: {
-        red: 206,
-        green: 1,
-        blue: 208,
-        alpha: 0.7
-      },
-      inset: true,
-      visible: true
-    },
-    {
-      horizontalOffset: -100,
-      verticalOffset: -45,
-      blurRadius: 50,
-      spreadRadius: -50,
-      color: {
-        red: 245,
-        green: 1,
-        blue: 90,
         alpha: 1
-      },
-      inset: true,
-      visible: true
-    },
-    {
-      horizontalOffset: 0,
-      verticalOffset: 0,
-      blurRadius: 70,
-      spreadRadius: 24,
-      color: {
-        red: 245,
-        green: 20,
-        blue: 245,
-        alpha: 0.4
       },
       visible: true
     }
