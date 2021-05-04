@@ -5,20 +5,11 @@ import { SIZES } from 'utils/shadow'
 
 export const prettify = (code: string) => {
   const css = code && `box-shadow: ${code}`
-  const prettyCss = prettier.format(css, {
+  return prettier.format(css, {
     parser: 'css',
     printWidth: 70,
     plugins: [parserPostcss]
   })
-  return prettyCss
-  // console.log(prettyCss)
-  // return prettyCss.replace(':', ':\n')
-  // const css = prettier.format(code, {
-  //   parser: 'css',
-  //   printWidth: 70,
-  //   plugins: [parserPostcss]
-  // })
-  // return `box-shadow: \n${css}`
 }
 
 export const stringify = (shadowStyle: ShadowProps[], semicolon = true) => {
@@ -61,34 +52,24 @@ export const stringifyTerminal = (
   const stylesArray =
     Array.isArray(shadowStyle) &&
     shadowStyle.map(
-      (
-        {
-          horizontalOffset,
-          verticalOffset,
-          blurRadius,
-          spreadRadius,
-          color,
-          inset = false,
-          visible
-        },
-        index
-      ) => {
+      ({
+        horizontalOffset,
+        verticalOffset,
+        blurRadius,
+        spreadRadius,
+        color,
+        inset = false,
+        visible
+      }) => {
         let line = `${
           inset ? 'inset ' : ''
         }${horizontalOffset}px ${verticalOffset}px ${blurRadius}px ${spreadRadius}px rgba(${
           color.red
         }, ${color.green}, ${color.blue}, ${color.alpha})`
 
-        // if (index === 0) {
-        //   line = `${line}\n`
-        // }
         if (!visible) {
           line = `/* ${line} */ `
         }
-
-        // if (index === 0) {
-        //   line = `\n  ${line}`
-        // }
 
         return line
       }

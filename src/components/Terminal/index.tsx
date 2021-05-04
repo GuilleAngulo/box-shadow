@@ -10,7 +10,7 @@ import {
 } from 'react-beautiful-dnd'
 
 import * as S from './styles'
-import { ContentCopy } from '@styled-icons/material-outlined'
+import { ContentCopy, Done } from '@styled-icons/material-outlined'
 import { ShadowProps } from 'types'
 
 export type TerminalProps = {
@@ -42,9 +42,13 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
       <S.Language>CSS</S.Language>
       <S.CopyWrapper onClick={handleCopyCode} role="button">
         {copied ? (
-          <span>Copied ✓</span>
+          <span>
+            Copied <Done size={16} aria-label="code copied" />
+          </span>
         ) : (
-          <ContentCopy size={20} aria-label="Copy Code" />
+          <span>
+            Copy <ContentCopy size={16} aria-label="copy code" />
+          </span>
         )}
       </S.CopyWrapper>
       <Highlight
@@ -78,6 +82,7 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                             >
+                              <S.LineNo>{i + 1}</S.LineNo>
                               <S.LineContent>
                                 {line.map((token, key) =>
                                   token.content === 'rgba' ? (

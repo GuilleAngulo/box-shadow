@@ -1,5 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { darken } from 'polished'
+import { darken, lighten } from 'polished'
 
 import { ButtonProps } from '.'
 
@@ -11,6 +11,7 @@ const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
     height: 3rem;
     font-size: ${theme.font.sizes.medium};
+    padding: 0 ${theme.spacings.xxsmall};
   `,
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
@@ -36,11 +37,11 @@ const wrapperModifiers = {
   `,
   minimal: (theme: DefaultTheme) => css`
     background: none;
-    color: ${theme.colors.secondaryFont};
-    transition: color ${theme.transition.fast};
+    color: ${theme.colors.primaryFont};
 
     &:hover {
-      color: ${theme.colors.primaryFont};
+      background: ${darken(0.1, theme.colors.card)};
+      transition: background ${theme.transition.fast};
     }
   `,
   variant: (theme: DefaultTheme) => css`

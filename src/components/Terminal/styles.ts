@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { lighten, darken, rgba } from 'polished'
+import { rgba } from 'polished'
 import { RGBAProps } from 'types'
 import media from 'styled-media-query'
 
@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
       position: absolute;
       height: 2.2rem;
       pointer-events: none;
+      z-index: 1;
       background: linear-gradient(
         ${rgba(theme.colors.terminalBg, 1)},
         ${rgba(theme.colors.terminalBg, 0.5)},
@@ -52,7 +53,7 @@ export const Pre = styled.pre`
   ${({ theme }) => css`
     text-align: left;
     width: 100%;
-    max-height: 22rem;
+    max-height: 25rem;
     min-height: 7rem;
     overflow-y: auto;
     border-radius: ${theme.border.radius};
@@ -76,10 +77,15 @@ export const Pre = styled.pre`
 `
 
 export const Line = styled.div`
-  display: table-row;
+  display: flex;
+  justify-content: flex-start;
 `
 
-export const DroppableBlock = styled.div``
+export const DroppableBlock = styled.div`
+  ${({ theme }) => css`
+    background: ${theme.colors.terminalBg};
+  `}
+`
 
 export const LineContent = styled.span`
   ${({ theme }) => css`
@@ -98,16 +104,11 @@ export const LineContent = styled.span`
 
     .token.property {
       display: inline-block;
+      color: #f8a691;
     }
 
-    .token.color.function,
-    .token.plain {
-      font-weight: 700;
-      color: #ff9ade;
-    }
-
-    .token.number {
-      color: ${theme.colors.terminalFont};
+    .token.comment {
+      color: #9886a7;
     }
 
     .token.punctuation,
@@ -116,8 +117,14 @@ export const LineContent = styled.span`
       color: #c085f2;
     }
 
-    .token.comment {
-      color: #9886a7;
+    .token.number {
+      color: ${theme.colors.terminalFont};
+    }
+
+    .token.color.function,
+    .token.plain {
+      font-weight: 700;
+      color: #ff9ade;
     }
   `}
 `
@@ -144,18 +151,23 @@ export const RGBA = styled.span<RGBAProps>`
 export const CopyWrapper = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
-    color: ${darken(0.2, theme.colors.terminalFont)};
+    color: ${theme.colors.secondaryFont};
     position: absolute;
-    top: 0;
-    right: 0;
-    padding-top: 0.8rem;
-    padding-right: 1rem;
+    top: -2.6rem;
+    right: 0.4rem;
+    z-index: 2;
     transition: color ${theme.transition.fast};
     font-family: ${theme.font.code};
-    font-size: ${theme.font.sizes.xsmall};
+    font-size: ${theme.font.sizes.small};
 
     &:hover {
-      color: ${lighten(0.4, theme.colors.terminalFont)};
+      color: ${theme.colors.primaryFont};
+    }
+
+    > span {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
   `}
 `
@@ -166,10 +178,17 @@ export const Language = styled.span`
     position: absolute;
     top: -2.4rem;
     left: 0;
-    padding-top: 0.8rem;
-    padding-left: 1rem;
+    padding-left: 0.4rem;
+    z-index: 2;
     font-family: ${theme.font.code};
-    font-weight: ${theme.font.bold};
-    font-size: ${theme.font.sizes.xsmall};
+    font-size: ${theme.font.sizes.small};
   `}
+`
+
+export const LineNo = styled.span`
+  width: 2em;
+  text-align: left;
+  padding-right: 0.6rem;
+  user-select: none;
+  color: #9886a7;
 `

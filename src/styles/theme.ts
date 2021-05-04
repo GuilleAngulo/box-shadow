@@ -115,7 +115,7 @@ export const lightTheme = {
     secondaryFont: '#7D7D7D',
     primaryFont: '#383838',
     terminalFont: '#F9F9F9',
-    terminalBg: '#0f131a',
+    terminalBg: '#0c1420',
     red: '#ef4444',
     glow: '#818181',
     shadowBg: '#D1D1D1'
@@ -184,7 +184,7 @@ export const darkTheme = {
     secondaryFont: '#CFD2D6',
     primaryFont: '#F9F9F9',
     terminalFont: '#F9F9F9',
-    terminalBg: '#111b27',
+    terminalBg: '#0c1420',
     red: '#ef4444',
     glow: '#ACB1B8',
     shadowBg: '#27364f'
