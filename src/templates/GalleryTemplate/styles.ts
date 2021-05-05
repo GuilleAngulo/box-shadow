@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: grid;
     height: 100vh;
-    padding-top: 12rem;
+    padding-top: 8rem;
     padding-bottom: ${theme.spacings.large};
   `}
 `

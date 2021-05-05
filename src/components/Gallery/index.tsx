@@ -29,8 +29,6 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
   const { user } = useAuth()
   const [likedIds, setLikedIds] = useState<number[]>([])
 
-  //TO DO GET USER'S LIKES TO ITERATE AND FILL LIKED DESIGNS
-
   useEffect(() => {
     if (user) {
       getLikesByUser(user.id)
@@ -94,7 +92,8 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
                 <CalendarAlt />
                 {new Intl.DateTimeFormat('en-GB', {
                   year: 'numeric',
-                  month: 'long'
+                  month: 'short',
+                  day: '2-digit'
                 }).format(new Date(boxShadow.inserted_at))}
               </S.Date>
               <S.Footer>

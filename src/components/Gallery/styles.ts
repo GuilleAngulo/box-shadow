@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme, keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import media from 'styled-media-query'
 import { opacify } from 'polished'
 
@@ -29,6 +29,12 @@ export const Item = styled.div`
     justify-content: flex-start;
     align-items: center;
     margin-bottom: ${theme.spacings.small};
+    border-radius: ${theme.border.radius};
+
+    &:hover {
+      transition: background ${theme.transition.default};
+      background: ${theme.colors.card};
+    }
   `}
 `
 
@@ -117,7 +123,8 @@ export const Title = styled.span`
     font-size: 2.2rem;
     font-weight: ${theme.font.bold};
     word-wrap: break-word;
-    margin-bottom: ${theme.spacings.xxsmall};
+    padding-top: ${theme.spacings.xxsmall};
+    margin-bottom: 0.4rem;
     overflow-wrap: break-word;
   `}
 `
