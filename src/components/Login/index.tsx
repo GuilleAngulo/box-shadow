@@ -7,19 +7,14 @@ import { useAuth } from 'hooks/use-auth'
 import Button from 'components/Button'
 import Dropdown from 'components/Dropdown'
 import SaveDialog from 'components/SaveDialog'
-import LoadDialog from 'components/LoadDialog'
+import CollectionDialog from 'components/CollectionDialog'
 
 import toast, { Toaster } from 'react-hot-toast'
 import { Github } from '@styled-icons/boxicons-logos'
 
 import * as S from './styles'
 
-import {
-  Logout,
-  Save,
-  FileDownload,
-  Collections
-} from '@styled-icons/material-outlined'
+import { Logout, Save, Collections } from '@styled-icons/material-outlined'
 import { saveBoxShadow } from 'services/boxShadows'
 
 const Login = () => {
@@ -102,7 +97,7 @@ const Login = () => {
                 }}
               >
                 <Collections />
-                <span>Your designs</span>
+                <span>Collection</span>
               </S.Item>
 
               <S.Item
@@ -115,7 +110,7 @@ const Login = () => {
                 }}
               >
                 <Save />
-                <span>Save design</span>
+                <span>Save</span>
               </S.Item>
 
               <S.Item role="button" aria-label="Logout" onClick={signOut}>
@@ -141,7 +136,10 @@ const Login = () => {
         setIsOpen={setIsSaveModalOpen}
         onSave={save}
       />
-      <LoadDialog isOpen={isLoadModalOpen} setIsOpen={setIsLoadModalOpen} />
+      <CollectionDialog
+        isOpen={isLoadModalOpen}
+        setIsOpen={setIsLoadModalOpen}
+      />
       <Toaster position="bottom-right" />
     </S.Wrapper>
   )

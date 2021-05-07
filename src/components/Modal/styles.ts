@@ -82,7 +82,6 @@ export const Wrapper = styled.div`
     align-content: center;
     flex-direction: column;
     padding: ${theme.spacings.medium};
-    border-radius: 1.2rem;
     box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5);
 
     ${ButtonStyles.Wrapper} {

@@ -1,9 +1,11 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import LikeButton from '.'
+import LikeButton, { LikeButtonProps } from '.'
 
 export default {
   title: 'LikeButton',
   component: LikeButton
 } as Meta
 
-export const Default: Story = () => <LikeButton />
+export const Default: Story<LikeButtonProps> = (args) => (
+  <LikeButton {...args} />
+)

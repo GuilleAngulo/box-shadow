@@ -2,6 +2,7 @@ import { supabase } from 'utils/supabaseClient'
 import { definitions } from 'types/supabase'
 
 import { Author } from 'types/index'
+import { getLikesCount } from './likes'
 
 export type BoxShadowProps = Omit<definitions['box_shadows'], 'id'>
 
@@ -24,7 +25,7 @@ export async function saveBoxShadow(
 export type BoxShadowAuthorProps = Omit<BoxShadowProps, 'user_id'> & {
   id: number
   user_id?: Author
-  likes?: number
+  likes: number
 }
 
 export async function getPresetByBoxShadow(boxShadowId: number) {
@@ -96,6 +97,20 @@ export async function createBoxShadow(
     return { data, error }
   } catch (err) {
     const message = 'Failed to create the box shadow: ' + err.message
+    return { data: null, error: { message } }
+  }
+}
+
+export async function deleteBoxShadow(boxShadowId: number) {
+  try {
+    const { data, error } = await supabase
+      .from('box_shadows')
+      .delete()
+      .match({ id: String(boxShadowId) })
+
+    return { data, error }
+  } catch (err) {
+    const message = 'Failed to delete the box shadow: ' + err.message
     return { data: null, error: { message } }
   }
 }
@@ -183,16 +198,21 @@ export async function getAllBoxShadows() {
   }
 }
 
-export async function getLikesCount(boxShadowId: number) {
+export async function getAllBoxShadowsByUser(user_id: string) {
   try {
-    const { count, error } = await supabase
-      .from('likes')
-      .select('*', { count: 'exact' })
-      .eq('box_shadow_id', boxShadowId)
+    const { data, error } = await supabase
+      .from<BoxShadowAuthorProps>('box_shadows')
+      .select(`id, title, slug, box_shadow, theme, shape, inserted_at`)
+      .eq('user_id', user_id)
 
-    return { data: count, error }
+    if (data) {
+      const withLikes = await populateWithLikes(data)
+      return { data: withLikes, error }
+    }
+
+    return { data, error }
   } catch (err) {
-    const message = 'Failed to retrieve the likes count: ' + err.message
+    const message = 'Failed to retrieve box shadows from user: ' + err.message
     return { data: null, error: { message } }
   }
 }
@@ -232,4 +252,24 @@ const parseBoxShadow = (boxShadow?: string) => {
   } catch {
     return boxShadow
   }
+}
+
+export const populateWithLikes = async (
+  boxShadowList: BoxShadowAuthorProps[],
+  featuredId?: number
+) => {
+  const promises = boxShadowList.map(async (item) => {
+    const { data } = await getLikesCount(item.id)
+    const likes = data ?? 0
+    return {
+      ...item,
+      likes,
+      ...(featuredId === item.id && {
+        featured: true
+      })
+    }
+  })
+
+  const populated = await Promise.all(promises)
+  return populated
 }

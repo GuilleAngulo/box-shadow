@@ -50,29 +50,28 @@ const PresetModal = ({ featured }: PresetModalProps) => {
       </Button>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Choose a preset:">
         <S.ItemsWrapper>
-          <>
-            {items.map((item) => (
-              <S.Item
-                role="button"
-                aria-label={`select ${item.name} preset`}
-                key={item.name}
-                onClick={() => handleClick(item)}
-              >
-                <S.Image>
-                  <GalleryShadow
-                    aria-label={`${item.name} preset preview`}
-                    initialBoxShadow={item.boxShadow}
-                    size="small"
-                    shape={item.shape}
-                    mode={item.theme}
-                  />
-                </S.Image>
-                <S.Info>
-                  <label>{item.name}</label>
-                </S.Info>
-              </S.Item>
-            ))}
-          </>
+          {items.map((item) => (
+            <S.Item
+              role="button"
+              aria-label={`select ${item.name} preset`}
+              key={item.name}
+              onClick={() => handleClick(item)}
+            >
+              <S.Image>
+                <GalleryShadow
+                  aria-label={`${item.name} preset preview`}
+                  initialBoxShadow={item.boxShadow}
+                  size="small"
+                  shape={item.shape}
+                  mode={item.theme}
+                />
+              </S.Image>
+              <S.Info>
+                <label>{item.name}</label>
+              </S.Info>
+            </S.Item>
+          ))}
+
           {!!featured && (
             <S.FeaturedItem
               role="button"

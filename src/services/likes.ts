@@ -30,3 +30,17 @@ export async function getLikesByUser(user_id: string) {
 
   return { data, error }
 }
+
+export async function getLikesCount(boxShadowId: number) {
+  try {
+    const { count, error } = await supabase
+      .from('likes')
+      .select('*', { count: 'exact' })
+      .eq('box_shadow_id', boxShadowId)
+
+    return { data: count, error }
+  } catch (err) {
+    const message = 'Failed to retrieve the likes count: ' + err.message
+    return { data: null, error: { message } }
+  }
+}

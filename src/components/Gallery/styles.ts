@@ -156,7 +156,9 @@ export const FeaturedIcon = styled.div`
     position: absolute;
     top: -0.2rem;
     width: 4rem;
+    height: 4rem;
     border-radius: 50%;
+    z-index: 5;
     color: ${theme.colors.accent};
 
     svg {
@@ -175,6 +177,34 @@ const glow = (color: string) => keyframes`
   80%, 100% {
     box-shadow: 0 0 0 1.2rem rgba(0, 0, 0, 0)};
   }
+`
+
+const shine = () => keyframes`
+  0% {
+      opacity: 0;
+      transform: scale(0);
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+      transform: scale(1);
+  }
+`
+
+export const Ring = styled.div`
+  ${({ theme }) => css`
+    position: absolute;
+    top: -0.8rem;
+    left: -0.9rem;
+    width: 6rem;
+    height: 6rem;
+    background: ${theme.colors.accent};
+    border-radius: 50%;
+    will-change: transform, opacity;
+    animation: ${shine} 1s ease-out infinite normal;
+  `}
 `
 
 export const Link = styled.a`

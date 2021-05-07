@@ -86,7 +86,8 @@ export const Likes = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0.1rem;
-    padding: 0.8rem;
+    padding-top: 0.4rem;
+    padding-right: 0.6rem;
     color: ${theme.colors.tertiaryFont};
     font-size: ${theme.font.sizes.xsmall};
     font-weight: ${theme.font.bold};

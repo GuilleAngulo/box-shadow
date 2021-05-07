@@ -12,6 +12,7 @@ import { useAuth } from 'hooks/use-auth'
 import LikeButton from 'components/LikeButton'
 import { useEffect, useState } from 'react'
 import { getLikesByUser } from 'services/likes'
+import { parseBoxShadow } from 'utils/helpers'
 
 export type GalleryProps = {
   boxShadowList: [
@@ -39,14 +40,6 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
         .catch((err) => console.log(err))
     }
   }, [user])
-
-  const parseBoxShadow = (boxShadow: string) => {
-    try {
-      return JSON.parse(boxShadow)
-    } catch {
-      return boxShadow
-    }
-  }
 
   if (!Array.isArray(boxShadowList)) return null
 

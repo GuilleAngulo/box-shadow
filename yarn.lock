@@ -9428,6 +9428,11 @@ is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   dependencies:
     isobject "^3.0.1"
 
+is-plain-object@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-5.0.0.tgz#4427f50ab3429e9025ea7d52e9043a9ef4159344"
+  integrity sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==
+
 is-potential-custom-element-name@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-potential-custom-element-name/-/is-potential-custom-element-name-1.0.0.tgz#0c52e54bcca391bb2c494b21e8626d7336c6e397"
@@ -12626,6 +12631,14 @@ react@17.0.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
+react@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
 reactcss@^1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/reactcss/-/reactcss-1.2.3.tgz#c00013875e557b1cf0dfd9a368a1c3dab3b548dd"
@@ -13761,6 +13774,15 @@ storybook-dark-mode@^1.0.7:
   dependencies:
     fast-deep-equal "^3.0.0"
     memoizerific "^1.11.3"
+
+storybook-react-context@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/storybook-react-context/-/storybook-react-context-0.2.5.tgz#19e1b086fe69d6d69de7acc7a9c08946fe52a857"
+  integrity sha512-0qMY3L4Qghf8A1ZTWFkcd1XEaUzh/tEgCRQn7qwmVM8mQriKXppEDDxoWQSoMTAiAnIJzbgoFF13xswCsaGnng==
+  dependencies:
+    "@storybook/addons" "^6.1.21"
+    is-plain-object "^5.0.0"
+    react "^17.0.2"
 
 stream-browserify@3.0.0:
   version "3.0.0"

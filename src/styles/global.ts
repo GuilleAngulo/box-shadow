@@ -31,6 +31,8 @@ const GlobalStyles: GlobalStyleComponent<
   html {
       --light-background: ${lightTheme.colors.background};
       --dark-background: ${darkTheme.colors.background};
+      --light-font: ${lightTheme.colors.primaryFont};
+      --dark-font: ${darkTheme.colors.primaryFont};
     }
 
   ${({ theme }) => css`

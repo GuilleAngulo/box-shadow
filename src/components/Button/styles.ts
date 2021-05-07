@@ -40,8 +40,10 @@ const wrapperModifiers = {
     color: ${theme.colors.primaryFont};
 
     &:hover {
-      background: ${darken(0.1, theme.colors.card)};
-      transition: background ${theme.transition.fast};
+      /* background: ${darken(0.1, theme.colors.card)};
+      transition: background ${theme.transition.fast}; */
+      color: ${theme.colors.secondaryFont};
+      transition: color ${theme.transition.fast};
     }
   `,
   variant: (theme: DefaultTheme) => css`
@@ -56,7 +58,7 @@ const wrapperModifiers = {
   `,
   disabled: () => css`
     &:disabled {
-      cursor: not-allowed;
+      cursor: progress;
     }
   `
 }

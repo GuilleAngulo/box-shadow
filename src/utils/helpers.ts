@@ -90,8 +90,9 @@ export const resizeBoxShadow = (
   boxShadow: ShadowProps[] | undefined,
   size: number
 ) => {
-  // If the boxShadow is undefined or has the same size do nothing
-  if (!boxShadow || size === SIZES.large) return boxShadow
+  // If the boxShadow is undefined or has the same size or is not an array do nothing
+  if (!boxShadow || size === SIZES.large || !Array.isArray(boxShadow))
+    return boxShadow
 
   // The size difference converted to px
   const differencePercentage = size / SIZES.large
@@ -105,4 +106,12 @@ export const resizeBoxShadow = (
   }))
 
   return JSON.parse(JSON.stringify(newBoxShadow))
+}
+
+export const parseBoxShadow = (boxShadow: string) => {
+  try {
+    return JSON.parse(boxShadow)
+  } catch {
+    return boxShadow
+  }
 }

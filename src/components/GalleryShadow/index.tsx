@@ -16,7 +16,8 @@ const GalleryShadow = ({
   size = 'large',
   initialBoxShadow,
   shape = 'square',
-  mode = 'light'
+  mode = 'light',
+  ...props
 }: BoxShadowProps) => {
   const boxShadow =
     size !== 'large'
@@ -24,7 +25,7 @@ const GalleryShadow = ({
       : initialBoxShadow
 
   return (
-    <S.Wrapper mode={mode} size={size}>
+    <S.Wrapper mode={mode} size={size} {...props}>
       {boxShadow ? (
         <S.ShapeBlock boxShadow={boxShadow} shape={shape} size={size} />
       ) : (
