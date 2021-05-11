@@ -66,6 +66,7 @@ const CollectionDialog = (
      * 3.- when creating an item (on save at Login component - useImperativeHandle)
      */
     loadBoxShadowList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   return (
@@ -90,6 +91,7 @@ const CollectionDialog = (
                 <CollectionItem
                   key={boxShadow.id}
                   boxShadow={boxShadow}
+                  isModalOpen={isOpen}
                   closeModal={() => setIsOpen(false)}
                   refresh={loadBoxShadowList}
                 />

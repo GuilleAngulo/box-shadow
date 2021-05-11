@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Preset, Mode, Shape } from 'types'
 import { BoxShadowAuthorProps, deleteBoxShadow } from 'services/boxShadows'
 
@@ -17,12 +17,14 @@ import { getTimeAgo } from 'utils/time'
 
 export type CollectionItemProps = {
   boxShadow: BoxShadowAuthorProps
+  isModalOpen: boolean
   closeModal: () => void
   refresh?: () => void
 }
 
 const CollectionItem = ({
   boxShadow,
+  isModalOpen,
   closeModal,
   refresh
 }: CollectionItemProps) => {
@@ -42,6 +44,10 @@ const CollectionItem = ({
     }
     setIsDeleting(true)
   }
+
+  useEffect(() => {
+    if (!isModalOpen) setIsDeleting(false)
+  }, [isModalOpen])
 
   const timeAgo = new Date(boxShadow.inserted_at).getTime()
 
