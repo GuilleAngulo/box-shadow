@@ -1,9 +1,6 @@
 import { useRouter } from 'next/router'
-import {
-  getBoxShadowBySlug,
-  getLikesCount,
-  getSlugs
-} from 'services/boxShadows'
+import { getBoxShadowBySlug, getSlugs } from 'services/boxShadows'
+import { getLikesCount } from 'services/likes'
 import { AuthoredPreset } from 'types'
 import BoxShadowTemplate from 'templates/BoxShadowTemplate'
 import { GetStaticPropsContext } from 'next'

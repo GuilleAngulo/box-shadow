@@ -6,6 +6,7 @@ export type RGBAProps = {
 }
 
 export type ShadowProps = {
+  id?: string
   horizontalOffset: number
   verticalOffset: number
   blurRadius: number

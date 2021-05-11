@@ -1,11 +1,11 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import LoadDialog, { LoadDialogProps } from '.'
+import CollectionDialog, { CollectionDialogProps } from '.'
 
 export default {
-  title: 'LoadDialog',
-  component: LoadDialog
+  title: 'CollectionDialog',
+  component: CollectionDialog
 } as Meta
 
-export const Default: Story<LoadDialogProps> = (args) => (
-  <LoadDialog {...args} />
+export const Default: Story<CollectionDialogProps> = (args) => (
+  <CollectionDialog {...args} />
 )

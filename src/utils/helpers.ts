@@ -53,6 +53,7 @@ export const stringifyTerminal = (
     Array.isArray(shadowStyle) &&
     shadowStyle.map(
       ({
+        id,
         horizontalOffset,
         verticalOffset,
         blurRadius,
@@ -114,4 +115,14 @@ export const parseBoxShadow = (boxShadow: string) => {
   } catch {
     return boxShadow
   }
+}
+
+export const uuid = () => {
+  return Math.random().toString(36).substr(2, 9)
+}
+
+export const toCamelCase = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9]+(.)/g, (m, text) => text.toUpperCase())
 }

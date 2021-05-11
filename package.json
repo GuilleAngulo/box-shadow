@@ -42,6 +42,7 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "17.0.1",
     "react-hot-toast": "^1.0.2",
+    "react-transition-group": "^4.4.1",
     "rgb-hex": "^3.0.0",
     "styled-components": "5.2.1",
     "styled-media-query": "^2.1.2"
@@ -59,6 +60,7 @@
     "@types/node": "^14.14.30",
     "@types/react": "^17.0.2",
     "@types/react-beautiful-dnd": "^13.0.0",
+    "@types/react-transition-group": "^4.4.1",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",

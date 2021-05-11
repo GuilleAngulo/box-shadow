@@ -29,13 +29,29 @@ export const Wrapper = styled.div`
 `
 export const Color = styled.div``
 
-export const ToolsWrapper = styled.ul`
+export const ToolsGrid = styled.ul`
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
   grid-row-gap: 2.4rem;
   width: 100%;
   list-style: none;
+
+  .item-enter {
+    opacity: 0;
+  }
+  .item-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
+  .item-exit {
+    opacity: 1;
+  }
+  .item-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
+
   @media (min-width: 840px) {
     grid-template-columns: 26rem;
   }
@@ -55,7 +71,7 @@ export const Add = styled.li`
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1rem;
-    height: 35rem;
+    min-height: 34.8rem;
     border-radius: ${theme.border.radius};
     border: 0.2rem dashed ${theme.colors.tertiaryFont};
     cursor: pointer;

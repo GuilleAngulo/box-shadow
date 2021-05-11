@@ -1,4 +1,10 @@
-import { useEffect, useState } from 'react'
+import {
+  forwardRef,
+  Ref,
+  useEffect,
+  useImperativeHandle,
+  useState
+} from 'react'
 
 import {
   BoxShadowAuthorProps,
@@ -10,15 +16,18 @@ import Button from 'components/Button'
 import Modal, { ModalProps } from 'components/Modal'
 import CollectionItem from 'components/CollectionItem'
 
-import mock from './mock'
 import * as S from './styles'
-import { Refresh } from '@styled-icons/material-outlined'
 
-const mock6 = mock(93)
+export type CollectionDialogProps = Omit<ModalProps, 'children' | 'title'>
 
-export type LoadDialogProps = Omit<ModalProps, 'children' | 'title'>
+export type LoadCollectionHandle = {
+  loadBoxShadowList: () => void
+}
 
-const LoadDialog = ({ isOpen, setIsOpen }: LoadDialogProps) => {
+const CollectionDialog = (
+  { isOpen, setIsOpen }: CollectionDialogProps,
+  forwardRef: Ref<LoadCollectionHandle>
+) => {
   const { user } = useAuth()
   const [boxShadowsList, setBoxShadowsList] = useState<
     BoxShadowAuthorProps[] | null
@@ -32,8 +41,6 @@ const LoadDialog = ({ isOpen, setIsOpen }: LoadDialogProps) => {
   const loadBoxShadowList = () => {
     if (user) {
       setLoading(true)
-      // setBoxShadowsList(mock6 as BoxShadowAuthorProps[])
-      //setTimeout(() => setLoading(false), 500)
       getAllBoxShadowsByUser(user.id)
         .then(({ data, error }) => {
           setLoading(false)
@@ -46,8 +53,18 @@ const LoadDialog = ({ isOpen, setIsOpen }: LoadDialogProps) => {
     }
   }
 
+  useImperativeHandle(forwardRef, () => {
+    return {
+      loadBoxShadowList
+    }
+  })
+
   useEffect(() => {
-    //setLoading(true)
+    /** The API request for collection update will be triggered:
+     * 1.- when user changes
+     * 2.- when deleting an item (on handleDelete at CollectionItem component)
+     * 3.- when creating an item (on save at Login component - useImperativeHandle)
+     */
     loadBoxShadowList()
   }, [user])
 
@@ -56,43 +73,36 @@ const LoadDialog = ({ isOpen, setIsOpen }: LoadDialogProps) => {
       <S.Content>
         {/* <S.Info>Load / Delete one of your designs:</S.Info> */}
         <S.Grid>
-          {loading
-            ? [...new Array(6)].map((_, i) => (
-                <S.SkeletonItem key={i}>
-                  <S.SkeletonTitle />
-                  <S.SkeletonImage />
-                  <S.SkeletonControls>
-                    <S.SkeletonButton />
-                    <S.SkeletonButton />
-                  </S.SkeletonControls>
-                </S.SkeletonItem>
-              ))
-            : boxShadowsList?.map((boxShadow) => {
-                return (
-                  <CollectionItem
-                    key={boxShadow.id}
-                    boxShadow={boxShadow}
-                    closeModal={() => setIsOpen(false)}
-                    refresh={loadBoxShadowList}
-                  />
-                )
-              })}
+          {loading ? (
+            [...new Array(6)].map((_, i) => (
+              <S.SkeletonItem key={i}>
+                <S.SkeletonTitle />
+                <S.SkeletonImage />
+                <S.SkeletonControls>
+                  <S.SkeletonButton />
+                  <S.SkeletonButton />
+                </S.SkeletonControls>
+              </S.SkeletonItem>
+            ))
+          ) : boxShadowsList?.length ? (
+            boxShadowsList?.map((boxShadow) => {
+              return (
+                <CollectionItem
+                  key={boxShadow.id}
+                  boxShadow={boxShadow}
+                  closeModal={() => setIsOpen(false)}
+                  refresh={loadBoxShadowList}
+                />
+              )
+            })
+          ) : (
+            <h1 style={{ gridColumnStart: 1, gridColumnEnd: 3 }}>
+              Your collection is empty
+            </h1>
+          )}
         </S.Grid>
       </S.Content>
       <S.Controls>
-        <Button
-          minimal
-          icon={<Refresh />}
-          // disabled={loading}
-          // loading={loading}
-          // onClick={loadBoxShadowList}
-          onClick={() => {
-            setLoading((prev) => !prev)
-          }}
-          aria-label="close"
-        >
-          Refresh
-        </Button>
         <Button variant onClick={handleClick} aria-label="close">
           Cancel
         </Button>
@@ -100,4 +110,4 @@ const LoadDialog = ({ isOpen, setIsOpen }: LoadDialogProps) => {
     </Modal>
   )
 }
-export default LoadDialog
+export default forwardRef(CollectionDialog)

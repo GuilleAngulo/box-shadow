@@ -1,11 +1,11 @@
-import { InputHTMLAttributes, useMemo, useState } from 'react'
+import { FocusEvent, InputHTMLAttributes, useMemo, useState } from 'react'
 import { RGBAProps } from 'types'
 import rgbHex from 'rgb-hex'
 
 import * as S from './styles'
 
 export type InputRangeProps = {
-  onInput?: (value: string) => void
+  onInput?: (property: string, value: string) => void
   label?: string
   initialValue?: RGBAProps
   disabled?: boolean
@@ -32,17 +32,23 @@ const InputColor = ({
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value
+    const property = e.currentTarget.name
     setValue(newValue)
-    throttleSetValue(newValue, 10)
+    throttleSetValue(newValue, 10, property)
   }
 
-  const onBlur = () => {
+  const onBlur = (e: FocusEvent<HTMLInputElement>) => {
     if (value) {
-      !!onInput && onInput(value)
+      const property = e.currentTarget.name
+      !!onInput && onInput(property, value)
     }
   }
 
-  const throttleSetValue = (value: string | undefined, delay: number) => {
+  const throttleSetValue = (
+    value: string | undefined,
+    delay: number,
+    property: string
+  ) => {
     if (time) {
       return
     }
@@ -50,7 +56,7 @@ const InputColor = ({
     setTime(
       setTimeout(() => {
         if (value) {
-          !!onInput && onInput(value)
+          !!onInput && onInput(property, value)
         }
         setTime(undefined)
       }, delay)

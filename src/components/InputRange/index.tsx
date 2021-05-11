@@ -1,10 +1,11 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, useState } from 'react'
 import NumberField from 'components/NumberField'
 
 import * as S from './styles'
 
 export type InputRangeProps = {
-  onInput?: (value: number) => void
+  // onInput?: (value: number) => void
+  onInput?: (property: string, value: number) => void
   label?: string
   initialValue?: number
   min: number
@@ -28,14 +29,19 @@ const InputRange = ({
   rangeUnit = 'px',
   ...props
 }: InputRangeProps) => {
+  const [value, setValue] = useState(initialValue)
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.currentTarget.value)
+    setValue(newValue)
+    const property = e.currentTarget.name
 
-    !!onInput && onInput(newValue)
+    // !!onInput && onInput(newValue)
+    !!onInput && onInput(property, newValue)
   }
 
-  const handleInputChange = (value: number) => {
-    !!onInput && onInput(value)
+  const handleInputChange = (property: string, value: number) => {
+    !!onInput && onInput(property, value)
   }
 
   return (
@@ -64,7 +70,8 @@ const InputRange = ({
               min={min}
               max={max}
               onChange={handleChange}
-              value={initialValue}
+              value={value}
+              // value={initialValue}
               disabled={disabled}
               name={name}
               isVertical={isVertical}
@@ -75,10 +82,12 @@ const InputRange = ({
           </S.InputWrapper>
         </S.RangeWrapper>
         <NumberField
+          name={name}
           min={min}
           max={max}
-          onInputChange={(v) => handleInputChange(v)}
-          initialValue={initialValue}
+          onInputChange={handleInputChange}
+          // initialValue={initialValue}
+          value={value}
         />
       </S.FieldWrapper>
     </S.Wrapper>

@@ -4,8 +4,6 @@ import { Mode } from 'types'
 export const Item = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 0.2rem;
-  width: 17rem;
 `
 
 export const ItemHeader = styled.div`
@@ -38,6 +36,7 @@ export const ItemControls = styled.div`
     align-items: center;
     width: 100%;
     margin-top: ${theme.spacings.xsmall};
+    margin-bottom: 0.4rem;
   `}
 `
 
@@ -58,6 +57,7 @@ const imageModifiers = {
       bottom: 0;
       left: 0;
       right: 0;
+
       background-color: ${mode === 'light'
         ? 'var(--light-background)'
         : 'var(--dark-background)'};
@@ -88,6 +88,7 @@ export type DeleteMessageProps = {
 export const Message = styled.div<DeleteMessageProps>`
   ${({ theme, deleteMode, mode }) => css`
     position: absolute;
+    will-change: opacity;
     color: ${mode === 'light' ? 'var(--light-font)' : 'var(--dark-font)'};
     font-weight: ${theme.font.bold};
     font-size: ${theme.font.sizes.large};

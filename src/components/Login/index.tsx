@@ -18,14 +18,15 @@ import { Logout, Save, Collections } from '@styled-icons/material-outlined'
 import { saveBoxShadow } from 'services/boxShadows'
 
 const Login = () => {
-  const { boxShadow, shape, loadPreset } = useBoxShadow()
+  const { boxShadow, shape } = useBoxShadow()
   const { theme } = useTheme()
-  const { loading, error, user, session, signInGithub, signOut } = useAuth()
+  const { loading, user, signInGithub, signOut } = useAuth()
 
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
   const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
 
   const dropdownRef = useRef<ElementRef<typeof Dropdown>>(null)
+  const collectionRef = useRef<ElementRef<typeof CollectionDialog>>(null)
 
   const closeDropdown = () => {
     if (dropdownRef.current) {
@@ -33,15 +34,22 @@ const Login = () => {
     }
   }
 
-  const load = async () => {
-    closeDropdown()
+  const loadBoxShadowList = () => {
+    if (collectionRef.current) {
+      collectionRef.current.loadBoxShadowList()
+    }
   }
 
   const save = async (title: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const boxShadowWithoutId = boxShadow?.map(({ id, ...rest }) => ({
+      ...rest
+    }))
+
     const res = saveBoxShadow({
       title,
       slug: title.toLowerCase().split(' ').join('-'),
-      box_shadow: JSON.stringify(boxShadow),
+      box_shadow: JSON.stringify(boxShadowWithoutId),
       theme,
       shape,
       user_id: user?.id ?? ''
@@ -51,7 +59,10 @@ const Login = () => {
       res,
       {
         loading: 'Saving...',
-        success: () => `Successfully saved.`,
+        success: () => {
+          loadBoxShadowList()
+          return `Successfully saved.`
+        },
         error: (err: string) => {
           const error = err.toString()
           return error.includes('duplicate key value')
@@ -139,6 +150,7 @@ const Login = () => {
       <CollectionDialog
         isOpen={isLoadModalOpen}
         setIsOpen={setIsLoadModalOpen}
+        ref={collectionRef}
       />
       <Toaster position="bottom-right" />
     </S.Wrapper>

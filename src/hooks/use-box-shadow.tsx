@@ -11,12 +11,14 @@ import {
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
 import { useTheme } from 'hooks/use-theme'
+import { uuid } from 'utils/helpers'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
   shape?: Shape | undefined
   animation?: AnimationProps
   keyframe?: Keyframe[]
+  loading: boolean
   setBoxShadowProperty: (
     index: number,
     key: BoxShadowKeyProps,
@@ -39,6 +41,7 @@ const BoxShadowContextDefaultValues = {
   animation: {},
   keyframe: [],
   shape: undefined,
+  loading: false,
   setBoxShadowProperty: () => null,
   removeBoxShadow: () => null,
   addBoxShadow: () => null,
@@ -61,6 +64,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
   const [shape, setShape] = useState<Shape | undefined>(undefined)
   const { theme, toggleTheme } = useTheme()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const storedBoxShadow = getStorageItem(BOXSHADOW_KEY)
@@ -156,6 +160,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
   }
 
   const loadPreset = (preset: Preset) => {
+    setLoading(true)
     if (preset?.theme !== theme && toggleTheme) {
       toggleTheme()
     }
@@ -164,7 +169,11 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
       saveShape(preset?.shape)
     }
 
-    saveBoxShadow(preset?.boxShadow)
+    // Trick to make loading work
+    setTimeout(() => {
+      saveBoxShadow(preset?.boxShadow.map((item) => ({ ...item, id: uuid() })))
+      setLoading(false)
+    }, 0)
   }
 
   return (
@@ -172,6 +181,7 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
       value={{
         boxShadow,
         shape,
+        loading,
         setBoxShadowProperty,
         removeBoxShadow,
         addBoxShadow,

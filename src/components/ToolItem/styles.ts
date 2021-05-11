@@ -17,7 +17,8 @@ export const Item = styled.li<ItemProps>`
     list-style: none;
     position: relative;
     padding: 0.5rem 1.2rem 1rem 1.2rem;
-    height: 35rem;
+    /* height: 35rem; */
+    height: fit-content;
     background-color: ${theme.colors.card};
     border-radius: ${theme.border.radius};
     border: 1px solid ${theme.colors.accent};

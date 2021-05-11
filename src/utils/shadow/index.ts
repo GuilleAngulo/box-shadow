@@ -1,4 +1,5 @@
 import { Mode, Shape } from 'types'
+import { uuid } from 'utils/helpers'
 
 export const HORIZONTAL_OFFSET_RANGES = [-100, 100]
 export const VERTICAL_OFFSET_RANGES = [-100, 100]
@@ -18,6 +19,7 @@ export const defaultShadow = (isDarkMode = false) => {
     : { red: 0, green: 0, blue: 0, alpha: 0.4 }
 
   return {
+    id: uuid(),
     horizontalOffset: 0,
     verticalOffset: 0,
     blurRadius: 32,

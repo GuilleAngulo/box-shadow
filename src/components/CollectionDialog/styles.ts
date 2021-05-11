@@ -1,5 +1,5 @@
 import { darken } from 'polished'
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 import { Item } from 'components/CollectionItem/styles'
 
@@ -21,7 +21,7 @@ export const Info = styled.p`
 
 export const Controls = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
 `
@@ -31,10 +31,8 @@ export const Grid = styled.div`
     grid-template-columns: 1fr;
     gap: 1rem;
     justify-items: center;
-    height: 58rem;
     overflow-y: auto;
-    padding-right: 2rem;
-    padding-left: 0.4rem;
+    padding: 0 2rem 0.2rem 0.4rem;
     margin-bottom: 1rem;
 
     ::-webkit-scrollbar {
@@ -47,6 +45,11 @@ export const Grid = styled.div`
     ::-webkit-scrollbar-track {
       background: ${darken(0.02, theme.colors.card)};
       border-radius: 0.4rem;
+    }
+
+    .item-exit-active {
+      opacity: 0;
+      transition: opacity 700ms ease-out;
     }
 
     ${media.greaterThan('small')`

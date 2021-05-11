@@ -17,8 +17,9 @@ import {
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import Color from 'components/Color'
 import Checkbox from 'components/Checkbox'
-import { memo } from 'react'
 import VisibilityButton from 'components/VisibilityButton'
+import { toCamelCase } from 'utils/helpers'
+import { BoxShadowKeyProps, RGBAProps } from 'types'
 
 export type ToolItemProps = {
   index: number
@@ -26,6 +27,7 @@ export type ToolItemProps = {
   verticalOffset: number
   blurRadius: number
   spreadRadius: number
+  color: RGBAProps
   inset?: boolean
   visibility?: boolean
 }
@@ -36,14 +38,23 @@ const ToolItem = ({
   verticalOffset,
   blurRadius,
   spreadRadius,
+  color,
   inset,
   visibility
 }: ToolItemProps) => {
   const { setBoxShadowProperty, removeBoxShadow } = useBoxShadow()
 
+  const handleChange = (
+    index: number,
+    property: string,
+    value?: number | string
+  ) => {
+    const boxShadowProp = toCamelCase(property) as BoxShadowKeyProps
+    setBoxShadowProperty(index, boxShadowProp, value)
+  }
+
   return (
     <S.Item
-      key={index}
       aria-label={`Tool for Box Shadow at level ${index}`}
       visibilityHidden={!visibility}
     >
@@ -63,9 +74,9 @@ const ToolItem = ({
         max={HORIZONTAL_OFFSET_RANGES[1]}
         initialValue={horizontalOffset}
         icon={<MoveHorizontal />}
-        onInput={(value: number) =>
-          setBoxShadowProperty(index, 'horizontalOffset', value)
-        }
+        onInput={(property: string, value: number) => {
+          handleChange(index, property, value)
+        }}
       />
       <InputRange
         label="Vertical Offset"
@@ -74,9 +85,9 @@ const ToolItem = ({
         max={VERTICAL_OFFSET_RANGES[1]}
         initialValue={verticalOffset}
         icon={<MoveVertical />}
-        onInput={(value: number) =>
-          setBoxShadowProperty(index, 'verticalOffset', value)
-        }
+        onInput={(property: string, value: number) => {
+          handleChange(index, property, value)
+        }}
       />
       <InputRange
         label="Blur Radius"
@@ -85,9 +96,9 @@ const ToolItem = ({
         max={BLUR_RADIUS_RANGES[1]}
         initialValue={blurRadius}
         icon={<BlurOn />}
-        onInput={(value: number) =>
-          setBoxShadowProperty(index, 'blurRadius', value)
-        }
+        onInput={(property: string, value: number) => {
+          handleChange(index, property, value)
+        }}
       />
       <InputRange
         label="Spread Radius"
@@ -96,13 +107,25 @@ const ToolItem = ({
         max={SPREAD_RADIUS_RANGES[1]}
         initialValue={spreadRadius}
         icon={<Move />}
-        onInput={(value: number) =>
-          setBoxShadowProperty(index, 'spreadRadius', value)
-        }
+        onInput={(property: string, value: number) => {
+          handleChange(index, property, value)
+        }}
       />
-      <Color index={index} label="Color - Opacity" icon={<ColorFill />} />
+      <Color
+        index={index}
+        label="Color - Opacity"
+        icon={<ColorFill />}
+        initialColor={color}
+        initialOpacity={Math.round(color?.alpha * 100)}
+        handleOpacity={(property: string, value: number) => {
+          handleChange(index, property, value)
+        }}
+        handleColor={(property: string, value: string) => {
+          handleChange(index, property, value)
+        }}
+      />
       <Checkbox
-        onCheck={() => setBoxShadowProperty(index, 'inset')}
+        onCheck={() => handleChange(index, 'inset')}
         isChecked={inset}
         label="Inset"
       />
@@ -113,13 +136,3 @@ const ToolItem = ({
   )
 }
 export default ToolItem
-
-// // the custom comparison function
-// const comparisonFn = function (
-//   prevProps: ToolItemProps,
-//   nextProps: ToolItemProps
-// ) {
-//   return prevProps.index === nextProps.index &&
-// }
-// // exporting the memoized function component
-// export default memo(ToolItem, comparisonFn)
