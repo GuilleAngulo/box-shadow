@@ -42,18 +42,23 @@ const AuthProvider = ({
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  const signInGithub = async (redirect?: string) => {
+  const signInGithub = (redirect?: string) => {
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn(
-      { provider: 'github' },
-      {
-        ...(!!redirect && {
-          redirectTo: redirect
-        })
-      }
-    )
-    if (error) setError(error.message)
-    // setLoading(false)
+
+    supabaseClient.auth
+      .signIn(
+        { provider: 'github' },
+        {
+          ...(!!redirect && {
+            redirectTo: redirect
+          })
+        }
+      )
+      /** Leave loading on true while exiting the page. When the app takes control again
+       *  loading will load with false. Otherwise the loading never shows.
+       */
+      // .then(() => setLoading(false))
+      .catch((error) => setError(error.message))
   }
 
   const signOut = async () => {

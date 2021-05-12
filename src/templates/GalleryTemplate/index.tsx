@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { useTheme } from 'hooks/use-theme'
 
-import Login from 'components/Login'
+import LoginSimple from 'components/LoginSimple'
 import ToogleButton from 'components/ToogleButton'
 import Gallery, { GalleryProps } from 'components/Gallery'
 import Button from 'components/Button'
@@ -22,7 +22,7 @@ const GalleryTemplate = ({ boxShadowList }: GalleryProps) => {
             Home
           </Button>
         </Link>
-        <Login />
+        <LoginSimple />
       </S.Menu>
 
       <Gallery boxShadowList={boxShadowList} />
