@@ -141,23 +141,29 @@ export const LineContent = styled.span`
   `}
 `
 
-export const RGBA = styled.span<RGBAProps>`
-  ${({ red, green, blue, alpha }) => css`
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+export type Color = {
+  color?: string
+}
 
-    &::before {
-      content: '';
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      border-radius: 30%;
-      margin-right: 0.3rem;
-      background: rgba(${red}, ${green}, ${blue}, ${alpha});
-    }
-  `}
+export const RGBA = styled.span.attrs<RGBAProps>(
+  ({ red, green, blue, alpha }) => ({
+    color: `rgba(${red}, ${green}, ${blue}, ${alpha})`
+  })
+)<Color>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 30%;
+    margin-right: 0.3rem;
+    background: ${({ color }) => color};
+  }
 `
 
 export const CopyWrapper = styled.div`
