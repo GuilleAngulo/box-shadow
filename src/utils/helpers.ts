@@ -125,3 +125,10 @@ export const toCamelCase = (text: string) => {
     .toLowerCase()
     .replace(/[^a-zA-Z0-9]+(.)/g, (_, text) => text.toUpperCase())
 }
+
+export const populateId = (boxShadow: ShadowProps[] | undefined) => {
+  if (Array.isArray(boxShadow) && !!boxShadow) {
+    return boxShadow?.map((item) => ({ ...item, id: uuid() }))
+  }
+  return []
+}

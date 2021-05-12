@@ -143,7 +143,7 @@ export const LineContent = styled.span`
 
 export type Color = {
   color?: string
-}
+} & RGBAProps
 
 export const RGBA = styled.span.attrs<RGBAProps>(
   ({ red, green, blue, alpha }) => ({

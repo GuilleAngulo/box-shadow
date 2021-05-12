@@ -14,7 +14,7 @@ const Shadow = ({ children, initialBoxShadow }: BoxShadowProps) => {
 
   return (
     <S.Wrapper>
-      <S.ShapeBlock boxShadow={boxShadow} shape={shape}>
+      <S.ShapeBlock boxShadow={initialBoxShadow || boxShadow} shape={shape}>
         {boxShadow.length ? children : <Layer />}
       </S.ShapeBlock>
     </S.Wrapper>

@@ -11,7 +11,7 @@ import {
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
 import { useTheme } from 'hooks/use-theme'
-import { uuid } from 'utils/helpers'
+import { populateId, uuid } from 'utils/helpers'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
@@ -57,16 +57,29 @@ export const BoxShadowContext = createContext<BoxShadowContextData>(
 )
 
 export type BoxShadowProviderProps = {
+  initialPreset?: Preset
   children: React.ReactNode
 }
 
-const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
-  const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
-  const [shape, setShape] = useState<Shape | undefined>(undefined)
+const BoxShadowProvider = ({
+  initialPreset,
+  children
+}: BoxShadowProviderProps) => {
+  const [boxShadow, setBoxShadow] = useState<ShadowProps[]>(() =>
+    populateId(initialPreset?.boxShadow)
+  )
+  const [shape, setShape] = useState<Shape | undefined>(
+    initialPreset?.shape || undefined
+  )
   const { theme, toggleTheme } = useTheme()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (initialPreset?.theme !== theme && toggleTheme) {
+      toggleTheme()
+    }
+    if (initialPreset) return
+
     const storedBoxShadow = getStorageItem(BOXSHADOW_KEY)
     const storedShape = getStorageItem(SHAPE_KEY)
     setShape(storedShape ? storedShape : 'square')
@@ -171,7 +184,9 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
 
     // Trick to make loading work
     setTimeout(() => {
-      saveBoxShadow(preset?.boxShadow.map((item) => ({ ...item, id: uuid() })))
+      //Create IDs to handle unique keys on array map
+      const boxShadowIDs = populateId(preset?.boxShadow)
+      saveBoxShadow(boxShadowIDs)
       setLoading(false)
     }, 0)
   }

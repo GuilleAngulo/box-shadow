@@ -171,7 +171,23 @@ export async function getBoxShadowBySlug(slug: string) {
       .eq('slug', slug)
       .single()
 
-    return { data, error }
+    if (!data) return { data: null, error }
+
+    const { data: likes } = await getLikesCount(data.id)
+
+    const boxShadow = {
+      name: data?.title,
+      boxShadow: parseBoxShadow(data?.box_shadow),
+      shape: data?.shape,
+      theme: data?.theme,
+      likes,
+      author: {
+        name: data?.user_id?.name,
+        avatar_url: data?.user_id?.avatar_url
+      }
+    }
+
+    return { data: boxShadow, error }
   } catch (err) {
     const message = 'Failed to retrieve the box shadow by slug: ' + err.message
     return { data: null, error: { message } }

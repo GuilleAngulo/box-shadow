@@ -12,6 +12,7 @@ export type ButtonProps = {
   variant?: boolean
   icon?: JSX.Element
   loading?: boolean
+  isActive?: boolean
   as?: React.ElementType
 } & ButtonTypes
 
@@ -24,6 +25,7 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     minimal = false,
     variant = false,
     loading = false,
+    isActive = false,
     ...props
   },
   ref
@@ -34,6 +36,7 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     hasIcon={!!icon}
     minimal={minimal}
     variant={variant}
+    isActive={isActive}
     ref={ref}
     {...props}
   >

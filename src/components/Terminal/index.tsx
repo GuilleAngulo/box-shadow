@@ -53,7 +53,7 @@ const Terminal = ({ initialBoxShadow }: TerminalProps) => {
       </S.CopyWrapper>
       <Highlight
         {...defaultProps}
-        code={prettify(stringifyTerminal(boxShadow || initialBoxShadow, true))}
+        code={prettify(stringifyTerminal(boxShadow, true))}
         language="css"
         theme={undefined}
       >

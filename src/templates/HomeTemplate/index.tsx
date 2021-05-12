@@ -10,13 +10,14 @@ import { BoxShadowProvider } from 'hooks/use-box-shadow'
 
 export type HomeTemplateProps = {
   featured?: AuthoredPreset
+  initialPreset?: AuthoredPreset
 }
 
-const HomeTemplate = ({ featured }: HomeTemplateProps) => {
+const HomeTemplate = ({ featured, initialPreset }: HomeTemplateProps) => {
   return (
     <S.Wrapper>
-      <BoxShadowProvider>
-        <TopTools featured={featured} />
+      <BoxShadowProvider initialPreset={initialPreset}>
+        <TopTools featured={featured} withPresets={!initialPreset} />
         <S.Panel>
           <S.Display>
             <Shadow />

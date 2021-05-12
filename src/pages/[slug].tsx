@@ -1,41 +1,31 @@
 import { useRouter } from 'next/router'
 import { getBoxShadowBySlug, getSlugs } from 'services/boxShadows'
-import { getLikesCount } from 'services/likes'
 import { AuthoredPreset } from 'types'
-import BoxShadowTemplate from 'templates/BoxShadowTemplate'
 import { GetStaticPropsContext } from 'next'
+import { resetServerContext } from 'react-beautiful-dnd'
+import HomeTemplate from 'templates/HomeTemplate'
 
 export type BoxShadowProps = {
-  boxShadow?: AuthoredPreset
+  initialPreset?: AuthoredPreset
 }
 
-export default function BoxShadow({ boxShadow }: BoxShadowProps) {
+export default function BoxShadow({ initialPreset }: BoxShadowProps) {
   const router = useRouter()
 
   if (router.isFallback) return null
-  return <BoxShadowTemplate boxShadow={boxShadow} />
+  return <HomeTemplate initialPreset={initialPreset} />
 }
 
 export async function getStaticProps({
   params
 }: GetStaticPropsContext<{ slug: string }>) {
-  const { data: boxShadow, error } = await getBoxShadowBySlug(params!.slug)
+  const { data: initialPreset } = await getBoxShadowBySlug(params!.slug)
 
-  if (!boxShadow) {
-    throw new Error(
-      `Box Shadow with slug '${params!.slug}' not found: ${error}`
-    )
-  }
-
-  const { data: likes } = await getLikesCount(boxShadow.id)
-
-  if (likes) {
-    boxShadow.likes = likes
-  }
+  resetServerContext()
 
   return {
     props: {
-      boxShadow
+      initialPreset
     },
     revalidate: 100
   }
