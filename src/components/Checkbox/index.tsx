@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, useState } from 'react'
 import * as S from './styles'
 
 export type CheckboxProps = {
@@ -17,8 +17,11 @@ const Checkbox = ({
   value,
   ...props
 }: CheckboxProps) => {
+  const [checked, setChecked] = useState(isChecked)
+
   const onChange = () => {
-    const status = !isChecked
+    const status = !checked
+    setChecked(status)
 
     if (onCheck) {
       onCheck(status)
@@ -31,7 +34,7 @@ const Checkbox = ({
         id={labelFor}
         type="checkbox"
         onChange={onChange}
-        checked={isChecked}
+        checked={checked}
         value={value}
         {...props}
       />

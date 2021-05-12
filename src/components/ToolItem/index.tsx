@@ -127,6 +127,8 @@ const ToolItem = ({
       <Checkbox
         onCheck={() => handleChange(index, 'inset')}
         isChecked={inset}
+        name="inset"
+        labelFor="inset"
         label="Inset"
       />
       <S.Index aria-label={`Box Shadow level ${index + 1}`}>
