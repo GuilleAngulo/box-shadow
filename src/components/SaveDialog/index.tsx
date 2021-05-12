@@ -28,6 +28,7 @@ const SaveDialog = ({ isOpen, setIsOpen, onSave }: SaveDialogProps) => {
           onInputChange={(value) => setTitle(value)}
           icon={<DriveFileRenameOutline />}
         />
+        <S.Legend>To modify one of your designs type the same title</S.Legend>
       </S.Content>
       <S.Controls>
         <Button variant onClick={() => setIsOpen(false)} aria-label="close">

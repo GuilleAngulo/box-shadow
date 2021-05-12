@@ -92,7 +92,8 @@ export async function createBoxShadow(
   try {
     const { data, error } = await supabase
       .from('box_shadows')
-      .insert([props], { returning: 'minimal' })
+      // .insert([props], { returning: 'minimal' })
+      .upsert([props], { returning: 'minimal', onConflict: 'title' })
 
     return { data, error }
   } catch (err) {

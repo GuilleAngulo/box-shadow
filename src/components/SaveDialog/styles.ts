@@ -22,3 +22,10 @@ export const Controls = styled.div`
   align-items: center;
   width: 100%;
 `
+export const Legend = styled.span`
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.xsmall};
+    font-style: italic;
+    color: ${theme.colors.secondaryFont};
+  `}
+`

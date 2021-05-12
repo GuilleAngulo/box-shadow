@@ -11,7 +11,7 @@ import {
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
 import { useTheme } from 'hooks/use-theme'
-import { populateId, uuid } from 'utils/helpers'
+import { populateId } from 'utils/helpers'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
