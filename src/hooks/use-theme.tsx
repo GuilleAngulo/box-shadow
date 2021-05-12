@@ -6,6 +6,7 @@ import {
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { lightTheme, darkTheme } from 'styles/theme'
 import { Mode } from 'types'
+import NextNProgress from 'nextjs-progressbar'
 
 const MODE_KEY = 'theme'
 
@@ -55,6 +56,13 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
     >
       <StyledThemeProvider theme={themeMode as DefaultTheme}>
         {children}
+        <NextNProgress
+          color={themeMode.colors.primary}
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={3}
+          options={{ showSpinner: false }}
+        />
       </StyledThemeProvider>
     </ThemeContext.Provider>
   )

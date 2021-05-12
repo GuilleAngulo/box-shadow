@@ -75,10 +75,12 @@ const BoxShadowProvider = ({
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (initialPreset?.theme !== theme && toggleTheme) {
-      toggleTheme()
+    if (initialPreset) {
+      if (initialPreset.theme !== theme && toggleTheme) {
+        toggleTheme()
+      }
+      return
     }
-    if (initialPreset) return
 
     const storedBoxShadow = getStorageItem(BOXSHADOW_KEY)
     const storedShape = getStorageItem(SHAPE_KEY)
