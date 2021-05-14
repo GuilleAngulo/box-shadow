@@ -17,9 +17,9 @@ const HomeTemplate = ({ featured, initialPreset }: HomeTemplateProps) => {
   return (
     <S.Wrapper>
       <BoxShadowProvider initialPreset={initialPreset}>
+        <TopTools featured={featured} withPresets={!initialPreset} />
         <S.Panel>
           <S.Display>
-            <TopTools featured={featured} withPresets={!initialPreset} />
             <Shadow />
             <div>
               <ShapeTool />

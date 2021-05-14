@@ -21,8 +21,8 @@ export const Item = styled.li<ItemProps>`
     background-color: ${theme.colors.card};
     border-radius: ${theme.border.radius};
     border: 1px solid ${theme.colors.accent};
-    transition: box-shadow ${theme.transition.default}, filter,
-      opacity ${theme.transition.fast};
+    transition: box-shadow ${theme.transition.default},
+      filter ${theme.transition.default};
 
     ${visibilityHidden && itemModifiers.hidden()};
   `}
