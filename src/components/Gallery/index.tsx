@@ -90,14 +90,20 @@ const Gallery = ({ boxShadowList }: GalleryProps) => {
                 }).format(new Date(boxShadow.inserted_at))}
               </S.Date>
               <S.Footer>
-                {user && (
+                <LikeButton
+                  id={boxShadow.id}
+                  likesCount={boxShadow.likes || 0}
+                  hasLike={hasLike}
+                  setLikedIds={setLikedIds}
+                />
+                {/* {user && (
                   <LikeButton
                     id={boxShadow.id}
                     likesCount={boxShadow.likes || 0}
                     hasLike={hasLike}
                     setLikedIds={setLikedIds}
                   />
-                )}
+                )} */}
               </S.Footer>
             </S.Info>
           </S.Item>

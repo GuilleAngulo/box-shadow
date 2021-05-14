@@ -1,11 +1,15 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import { darken } from 'polished'
+import { Warning } from '@styled-icons/material-outlined'
 
 import { ButtonProps } from '.'
 
 export type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal' | 'variant' | 'isActive'>
+} & Pick<
+  ButtonProps,
+  'size' | 'fullWidth' | 'minimal' | 'variant' | 'isActive' | 'error'
+>
 
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
@@ -60,6 +64,9 @@ const wrapperModifiers = {
     &:disabled {
       cursor: progress;
     }
+  `,
+  error: (theme: DefaultTheme) => css`
+    outline: solid 0.2rem ${theme.colors.red};
   `
 }
 
@@ -72,8 +79,10 @@ export const Wrapper = styled.button<WrapperProps>`
     minimal,
     variant,
     disabled,
-    isActive
+    isActive,
+    error
   }) => css`
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -104,6 +113,18 @@ export const Wrapper = styled.button<WrapperProps>`
     ${!!hasIcon && wrapperModifiers.withIcon(theme)};
     ${!!minimal && wrapperModifiers.minimal(theme)};
     ${!!variant && wrapperModifiers.variant(theme)};
+    ${!!error && wrapperModifiers.error(theme)};
     ${disabled && wrapperModifiers.disabled()};
+  `}
+`
+
+export const Error = styled(Warning)`
+  ${({ theme }) => css`
+    position: absolute;
+    bottom: -0.8rem;
+    right: -0.8rem;
+    width: 2rem;
+    height: 2rem;
+    fill: ${theme.colors.red};
   `}
 `

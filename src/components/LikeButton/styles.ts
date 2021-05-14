@@ -8,11 +8,12 @@ export const Likes = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0.1rem;
+    height: 4rem;
     color: ${theme.colors.primaryFont};
     font-size: ${theme.font.sizes.small};
 
     svg {
-      width: 2rem;
+      width: 1.8rem;
       transition: transform ${theme.transition.fast};
 
       &:hover {

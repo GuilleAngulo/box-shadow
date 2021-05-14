@@ -27,15 +27,22 @@ const LikeButton = ({
   const { user } = useAuth()
   const [likes, setLikes] = useState(likesCount)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleLike = async () => {
     if (user) {
       setLoading(true)
 
-      const { data: createdLike } = await createLike({
+      const { data: createdLike, error } = await createLike({
         box_shadow_id: id,
         user_id: user?.id
       })
+
+      if (error) {
+        setError(error.details)
+      }
+
+      setError('')
 
       createdLike &&
         setLikedIds((likedIds) => [
@@ -43,15 +50,7 @@ const LikeButton = ({
           Number(createdLike?.box_shadow_id)
         ])
 
-      /** Saving another API Call */
-      setLikes((numberLikes) => numberLikes + 1)
-
-      /** Refresh Likes count */
-      // const { data: numberLikes, error } = await getLikesCount(id)
-      // console.log(error)
-      // if (numberLikes !== null && !isNaN(numberLikes)) {
-      //   setLikes(numberLikes)
-      // }
+      createdLike && setLikes((numberLikes) => numberLikes + 1)
 
       setLoading(false)
     }
@@ -61,32 +60,30 @@ const LikeButton = ({
     if (user) {
       setLoading(true)
 
-      const { data: deletedLike } = await removeLike({
+      const { data: deletedLike, error } = await removeLike({
         box_shadow_id: id,
         user_id: user?.id
       })
+
+      if (error) {
+        setError(error.details)
+      }
+
+      setError('')
 
       deletedLike &&
         setLikedIds((likedIds) =>
           likedIds.filter((id) => id !== deletedLike?.box_shadow_id)
         )
 
-      /** Saving another API Call */
       if (likes > 0) {
-        setLikes((numberLikes) => numberLikes - 1)
+        deletedLike && setLikes((numberLikes) => numberLikes - 1)
       }
-      /** Refresh Likes count */
-      // const { data: numberLikes, error } = await getLikesCount(id)
-      // console.log(error)
-      // if (numberLikes !== null && !isNaN(numberLikes)) {
-      //   setLikes(numberLikes)
-      // }
 
       setLoading(false)
     }
   }
 
-  if (!user) return null
   return (
     <>
       <S.Likes>
@@ -96,17 +93,20 @@ const LikeButton = ({
           compactDisplay: 'short'
         }).format(likes)}
       </S.Likes>
-      <Button
-        variant
-        size="medium"
-        icon={hasLike ? <FullHeart color="#f20089" /> : <EmptyHeart />}
-        onClick={hasLike ? handleDislike : handleLike}
-        aria-label={hasLike ? 'Dislike' : 'Like'}
-        disabled={loading}
-        loading={loading}
-      >
-        <S.ButtonContent>{hasLike ? 'Dislike' : 'Awesome'}</S.ButtonContent>
-      </Button>
+      {user && (
+        <Button
+          variant
+          size="medium"
+          icon={hasLike ? <FullHeart color="#f20089" /> : <EmptyHeart />}
+          onClick={hasLike ? handleDislike : handleLike}
+          aria-label={hasLike ? 'Dislike' : 'Like'}
+          disabled={loading}
+          loading={loading}
+          error={error}
+        >
+          <S.ButtonContent>{hasLike ? 'Dislike' : 'Awesome'}</S.ButtonContent>
+        </Button>
+      )}
     </>
   )
 }

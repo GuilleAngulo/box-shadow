@@ -13,6 +13,7 @@ export type ButtonProps = {
   icon?: JSX.Element
   loading?: boolean
   isActive?: boolean
+  error?: string
   as?: React.ElementType
 } & ButtonTypes
 
@@ -26,6 +27,7 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     variant = false,
     loading = false,
     isActive = false,
+    error,
     ...props
   },
   ref
@@ -37,11 +39,13 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     minimal={minimal}
     variant={variant}
     isActive={isActive}
+    error={error}
     ref={ref}
     {...props}
   >
     {!!icon && (loading ? <Spinner color="white" /> : icon)}
     {!icon && loading && <Spinner color="white" />}
+    {!!error && <S.Error title={error} />}
     {!!children && <span>{children}</span>}
   </S.Wrapper>
 )
