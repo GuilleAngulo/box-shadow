@@ -33,6 +33,7 @@
     "@supabase/supabase-js": "^1.7.7",
     "@supabase/ui": "^0.23.1",
     "hex-rgb": "^4.2.0",
+    "joi": "^17.4.0",
     "next": "10.0.7",
     "next-pwa": "^5.0.5",
     "nextjs-progressbar": "^0.0.8",

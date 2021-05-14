@@ -29,3 +29,23 @@ export const Legend = styled.span`
     color: ${theme.colors.secondaryFont};
   `}
 `
+export const Error = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    max-width: 30rem;
+    font-size: ${theme.font.sizes.small};
+    font-weight: ${theme.font.bold};
+    border-radius: 0.2rem;
+    padding: 0 0.4rem;
+    color: ${theme.colors.red};
+    margin-bottom: 0.2rem;
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      flex-shrink: 0;
+    }
+  `}
+`
