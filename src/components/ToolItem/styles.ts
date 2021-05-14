@@ -7,8 +7,7 @@ export type ItemProps = {
 
 const itemModifiers = {
   hidden: () => css`
-    opacity: 0.8;
-    filter: grayscale(100%);
+    filter: grayscale(100%) brightness(0.8);
   `
 }
 
