@@ -62,7 +62,6 @@ export const Display = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8rem;
-  padding-top: 12rem;
   padding-bottom: 2.4rem;
 
   @media (min-width: 840px) {

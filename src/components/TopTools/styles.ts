@@ -3,15 +3,14 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.header`
   ${({ theme }) => css`
-    position: absolute;
+    width: 100%;
     top: 0;
     left: 0;
     padding: ${theme.spacings.xsmall} 0;
     ${media.greaterThan('small')`
       padding: ${theme.spacings.xsmall};
       z-index: 10;
-      background: transparent;
-      /* background: ${theme.colors.background}; */
+      backdrop-filter: blur(20px);
     `}
   `}
 `
@@ -20,5 +19,4 @@ export const Content = styled.div`
   justify-content: left;
   align-items: center;
   gap: 1rem;
-  background: transparent;
 `
