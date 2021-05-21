@@ -1,12 +1,10 @@
 import { readFileSync } from 'fs'
 import { darkTheme, lightTheme } from 'styles/theme'
 
-const regular = readFileSync(
-  `public/fonts/inter-v3-latin-regular.woff2`
-).toString('base64')
-const bold = readFileSync(`public/fonts/inter-v3-latin-600.woff2`).toString(
+const regular = readFileSync(`fonts/inter-v3-latin-regular.woff2`).toString(
   'base64'
 )
+const bold = readFileSync(`fonts/inter-v3-latin-600.woff2`).toString('base64')
 
 function getCss(theme: string, boxShadow: string) {
   const background =
