@@ -4,6 +4,14 @@ import { AuthoredPreset } from 'types'
 import { GetStaticPropsContext } from 'next'
 import { resetServerContext } from 'react-beautiful-dnd'
 import HomeTemplate from 'templates/HomeTemplate'
+import {
+  generateOgUrl,
+  prettify,
+  resizeBoxShadow,
+  stringify
+} from 'utils/helpers'
+import { SIZES } from 'utils/shadow'
+import Head from 'next/head'
 
 export type BoxShadowProps = {
   initialPreset?: AuthoredPreset
@@ -12,8 +20,39 @@ export type BoxShadowProps = {
 export default function BoxShadow({ initialPreset }: BoxShadowProps) {
   const router = useRouter()
 
+  const ogPayload = {
+    title: initialPreset?.name || '',
+    theme: String(initialPreset?.theme),
+    boxShadow: prettify(
+      stringify(resizeBoxShadow(initialPreset?.boxShadow, SIZES['xlarge']))
+    ),
+    shape: initialPreset?.shape || '',
+    authorName: initialPreset?.author.name || '',
+    authorPhoto: initialPreset?.author.avatar_url || ''
+  }
+
+  const ogUrl = generateOgUrl(ogPayload)
+
   if (router.isFallback) return null
-  return <HomeTemplate initialPreset={initialPreset} />
+  return (
+    <>
+      <Head>
+        <meta property="og:title" content={initialPreset?.name} />
+        <meta
+          property="og:description"
+          content={`${initialPreset?.name}: A box-shadow design by ${initialPreset?.name}`}
+        />
+
+        <meta property="og:image" content={ogUrl} />
+        <meta property="og:image:type" content="image/png" />
+
+        <meta property="og:image:width" content="2048" />
+        <meta property="og:image:height" content="1260" />
+      </Head>
+
+      <HomeTemplate initialPreset={initialPreset} />
+    </>
+  )
 }
 
 export async function getStaticProps({

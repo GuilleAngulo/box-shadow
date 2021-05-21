@@ -11,7 +11,17 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { body } = req
+    const query = req.query
+
+    const body = {
+      title: String(query.title),
+      theme: String(query.theme),
+      shape: String(query.shape),
+      boxShadow: String(query.boxShadow),
+      authorName: String(query.authorName),
+      authorPhoto: String(query.authorPhoto)
+    }
+
     const html = getHtml(body)
     if (isHtmlDebug) {
       res.setHeader('Content-Type', 'text/html')

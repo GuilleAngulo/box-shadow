@@ -1,18 +1,19 @@
-import { readFileSync } from 'fs'
 import { darkTheme, lightTheme } from 'styles/theme'
 
-const regular = readFileSync(`fonts/inter-v3-latin-regular.woff2`).toString(
-  'base64'
-)
-const bold = readFileSync(`fonts/inter-v3-latin-600.woff2`).toString('base64')
-
-function getCss(theme: string, boxShadow: string) {
+function getCss(
+  theme: string,
+  boxShadow: string,
+  shape: string,
+  viewportWidth: number,
+  viewportHeight: number
+) {
   const background =
     theme === 'dark'
       ? darkTheme.colors.background
       : lightTheme.colors.background
 
-  const card = theme === 'dark' ? darkTheme.colors.card : lightTheme.colors.card
+  const card =
+    theme === 'dark' ? darkTheme.colors.accent : lightTheme.colors.accent
   const primaryFont =
     theme === 'dark'
       ? darkTheme.colors.primaryFont
@@ -28,22 +29,28 @@ function getCss(theme: string, boxShadow: string) {
       ? darkTheme.colors.tertiaryFont
       : lightTheme.colors.tertiaryFont
 
+  const borderRadius = shape === 'square' ? 'none' : '50%'
+
   return `
     @font-face {
-        font-family: 'Inter';
-        font-style:  normal;
-        font-weight: normal;
-        src: url(data:font/woff2;charset=utf-8;base64,${regular}) format('woff2');
-    }
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: local(''),
+          url('/fonts/inter-v3-latin-regular.woff2') format('woff2');
+      }
+
     @font-face {
-        font-family: 'Inter';
-        font-style:  normal;
-        font-weight: bold;
-        src: url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: local(''),
+          url('/fonts/inter-v3-latin-600.woff2') format('woff2');
     }
     body {
       background: ${background};
-      height: 100vh;
       display: flex;
       text-align: center;
       align-items: center;
@@ -54,13 +61,13 @@ function getCss(theme: string, boxShadow: string) {
 
     .wrapper {
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: ${viewportWidth}px;
+      height: ${viewportHeight}px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8rem;
-      padding: 4rem;
+      padding: 8rem;
       border: 0.8rem solid ${card};
       border-radius: 2rem;
     }
@@ -68,8 +75,8 @@ function getCss(theme: string, boxShadow: string) {
     .boxShadow {
       width: 32rem;
       height: 32rem;
-      border-radius: 50%;
-      box-shadow: ${boxShadow};
+      border-radius: ${borderRadius};
+      ${boxShadow};
 
     }
 
@@ -80,12 +87,16 @@ function getCss(theme: string, boxShadow: string) {
 
     .title {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       font-size: 8rem;
+      max-width: 960px;
+		  text-align: left;
+		  word-break: break-all;
       color: ${primaryFont};
     }
 
     .title svg {
+      flex-shrink: 0;
       width: 10rem;
       height: 10rem;
       fill:  ${tertiaryFont};
@@ -95,7 +106,7 @@ function getCss(theme: string, boxShadow: string) {
       font-size: 4.5rem;
       color: ${secondaryFont};
       text-align: left;
-      margin-top: -1.4rem;
+      margin-top: -1.2rem;
     }
 
     .author {
@@ -119,7 +130,7 @@ function getCss(theme: string, boxShadow: string) {
       color: ${tertiaryFont};
       bottom: 0;
       right: 0;
-      font-size: 2rem;
+      font-size: 2.6rem;
       padding: 1.6rem;
     }`
 }
@@ -127,13 +138,14 @@ function getCss(theme: string, boxShadow: string) {
 export type ParsedRequest = {
   title: string
   theme: string
+  shape: string
   boxShadow: string
   authorName: string
   authorPhoto: string
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-  const { title, theme, boxShadow, authorName, authorPhoto } = parsedReq
+  const { title, theme, shape, boxShadow, authorName, authorPhoto } = parsedReq
 
   return `<!DOCTYPE html>
 <html>
@@ -141,13 +153,12 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, boxShadow)}
+        ${getCss(theme, boxShadow, shape, 2048, 960)}
     </style>
     <body>
-    <div className="wrapper">
-      <div className="boxShadow"></div>
-      <div className="text">
-        <div className="title">
+    <div class="wrapper">
+      <div class="text">
+        <div class="title">
           ${title}
           <svg
             viewBox="0 0 24 24"
@@ -159,22 +170,21 @@ export function getHtml(parsedReq: ParsedRequest) {
             <path d="M20.515 15.126L12 19.856l-8.515-4.73-.971 1.748 9 5a1 1 0 00.971 0l9-5-.97-1.748z" />
           </svg>
         </div>
-        <div className="subtitle">A box-shadow design by</div>
-        <div className="author">
-          <div className="name">${authorName}</div>
-          ${getImage(authorPhoto, authorName)}
+        <div class="subtitle">A box-shadow design by</div>
+        <div class="author">
+          <div class="name">${authorName}</div>
+          ${getImage(authorPhoto)}
         </div>
       </div>
-      <div className="link">${process.env.NEXT_PUBLIC_API_URL}</div>
+      <div class="boxShadow"></div>
+      <div class="link">${process.env.NEXT_PUBLIC_API_URL}</div>
     </div>
   </body>
 </html>`
 }
 
-function getImage(src: string, alt: string) {
+function getImage(src: string) {
   return `<img
-        class="author"
-        alt=${alt}
         src="${sanitizeHtml(src)}"
     />`
 }

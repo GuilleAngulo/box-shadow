@@ -132,3 +132,31 @@ export const populateId = (boxShadow: ShadowProps[] | undefined) => {
   }
   return []
 }
+
+export type OgUrlProps = {
+  title: string
+  theme: string
+  shape: string
+  boxShadow: string
+  authorName: string
+  authorPhoto: string
+}
+
+export const generateOgUrl = ({
+  title,
+  theme,
+  shape,
+  boxShadow,
+  authorName,
+  authorPhoto
+}: OgUrlProps) => {
+  return `${
+    process.env.NEXT_PUBLIC_API_URL
+  }/api/og-image.png?title=${encodeURIComponent(
+    title
+  )}&theme=${encodeURIComponent(theme)}&shape=${encodeURIComponent(
+    shape
+  )}&boxShadow=${encodeURIComponent(boxShadow)}&authorName=${encodeURIComponent(
+    authorName
+  )}&authorPhoto=${encodeURIComponent(authorPhoto)}`
+}
