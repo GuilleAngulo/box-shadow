@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-// import { parseRequest } from './_lib/parser'
 import { getScreenshot } from './_lib/chromium'
 import { getHtml } from './_lib/og-template'
 

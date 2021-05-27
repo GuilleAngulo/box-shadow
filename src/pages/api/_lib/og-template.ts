@@ -89,7 +89,7 @@ function getCss(
       display: flex;
       gap: 0.8rem;
       font-size: 8rem;
-      max-width: 960px;
+      max-width: 1024px;
 		  text-align: left;
 		  word-break: break-all;
       color: ${primaryFont};

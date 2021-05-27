@@ -32,22 +32,30 @@ export default function BoxShadow({ initialPreset }: BoxShadowProps) {
   }
 
   const ogUrl = generateOgUrl(ogPayload)
+  const ogTitle = initialPreset?.name
+  const ogDescription = `${initialPreset?.name}: A box-shadow design by ${initialPreset?.name}`
 
   if (router.isFallback) return null
   return (
     <>
       <Head>
-        <meta property="og:title" content={initialPreset?.name} />
-        <meta
-          property="og:description"
-          content={`${initialPreset?.name}: A box-shadow design by ${initialPreset?.name}`}
-        />
+        <title>{ogTitle}</title>
+        <meta property="description" content={ogDescription} />
+
+        <meta property="og:site_name" content="Box Shadow Club" />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={ogDescription} />
 
         <meta property="og:image" content={ogUrl} />
         <meta property="og:image:type" content="image/png" />
 
         <meta property="og:image:width" content="2048" />
         <meta property="og:image:height" content="1260" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={ogTitle} />
+        <meta name="twitter:description" content={ogDescription} />
+        <meta name="twitter:image" content={ogUrl} />
       </Head>
 
       <HomeTemplate initialPreset={initialPreset} />
