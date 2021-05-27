@@ -1,27 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
-import media from 'styled-media-query'
 import { opacify } from 'polished'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    display: grid;
-    grid-template-rows: 46rem;
-    grid-template-columns: minmax(26rem, 1fr);
-    gap: 4rem;
-    padding: 0 ${theme.spacings.xlarge};
-
-    ${media.greaterThan('medium')`
-      grid-template-columns: repeat(2, minmax(26rem, 1fr));
-      padding: 0 ${theme.spacings.xlarge};
-    `}
-
-    ${media.greaterThan('large')`
-      grid-template-columns: repeat(4, minmax(26rem, 1fr));
-      grid-template-rows: 46rem;
-    `}
-  `}
-`
-export const Item = styled.div`
+export const Item = styled.article`
   ${({ theme }) => css`
     display: flex;
     gap: 0.8rem;

@@ -1,33 +1,30 @@
+import { useState } from 'react'
+
 import Button from 'components/Button'
 
-import { createLike, removeLike } from 'services/likes'
+import { createLike, deleteLike } from 'services/likes'
 
+import { useAuth } from 'hooks/use-auth'
+import { useLikes } from 'hooks/use-likes'
+
+import * as S from './styles'
 import { Heart as EmptyHeart } from '@styled-icons/boxicons-regular'
 import { Heart as FullHeart } from '@styled-icons/boxicons-solid'
 import { Heart } from '@styled-icons/typicons'
 
-import * as S from './styles'
-import { useAuth } from 'hooks/use-auth'
-import { Dispatch, SetStateAction, useState } from 'react'
-//import { getLikesCount } from 'services/boxShadows'
-
 export type LikeButtonProps = {
   id: number
   likesCount: number
-  hasLike?: boolean
-  setLikedIds: Dispatch<SetStateAction<number[]>>
 }
 
-const LikeButton = ({
-  id,
-  hasLike = false,
-  likesCount,
-  setLikedIds
-}: LikeButtonProps) => {
+const LikeButton = ({ id, likesCount }: LikeButtonProps) => {
   const { user } = useAuth()
+  const { isLiked, addLike, removeLike } = useLikes()
   const [likes, setLikes] = useState(likesCount)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  const hasLike = isLiked(id)
 
   const handleLike = async () => {
     if (user) {
@@ -44,11 +41,7 @@ const LikeButton = ({
 
       setError('')
 
-      createdLike &&
-        setLikedIds((likedIds) => [
-          ...likedIds,
-          Number(createdLike?.box_shadow_id)
-        ])
+      createdLike && addLike(createdLike?.box_shadow_id)
 
       createdLike && setLikes((numberLikes) => numberLikes + 1)
 
@@ -60,7 +53,7 @@ const LikeButton = ({
     if (user) {
       setLoading(true)
 
-      const { data: deletedLike, error } = await removeLike({
+      const { data: deletedLike, error } = await deleteLike({
         box_shadow_id: id,
         user_id: user?.id
       })
@@ -71,10 +64,7 @@ const LikeButton = ({
 
       setError('')
 
-      deletedLike &&
-        setLikedIds((likedIds) =>
-          likedIds.filter((id) => id !== deletedLike?.box_shadow_id)
-        )
+      deletedLike && removeLike(deletedLike?.box_shadow_id)
 
       if (likes > 0) {
         deletedLike && setLikes((numberLikes) => numberLikes - 1)

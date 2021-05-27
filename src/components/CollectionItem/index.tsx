@@ -13,7 +13,6 @@ import { FolderOpen } from '@styled-icons/material-outlined'
 import { Likes } from 'components/PresetsTool/styles'
 import { Heart } from '@styled-icons/typicons'
 import * as S from './styles'
-import { getTimeAgo } from 'utils/time'
 
 export type CollectionItemProps = {
   boxShadow: BoxShadowAuthorProps
@@ -49,13 +48,10 @@ const CollectionItem = ({
     if (!isModalOpen) setIsDeleting(false)
   }, [isModalOpen])
 
-  const timeAgo = new Date(boxShadow.inserted_at).getTime()
-
   return (
     <S.Item key={boxShadow.id}>
       <S.ItemHeader>
         <S.ItemTitle>{boxShadow.title}</S.ItemTitle>
-        {/* <S.ItemDate>{getTimeAgo(timeAgo)}</S.ItemDate> */}
       </S.ItemHeader>
       <S.Image deleteMode={isDeleting} mode={boxShadow.theme}>
         <S.Message deleteMode={isDeleting} mode={boxShadow.theme}>
@@ -88,7 +84,8 @@ const CollectionItem = ({
               aria-label={`delete ${boxShadow.title}`}
               style={{
                 color: '#FF1717',
-                boxShadow: '0 0 0 0.1rem #FF1717'
+                boxShadow: '0 0 0 0.1rem rgba(255, 23, 23, 0.8)',
+                backgroundColor: 'rgba(255, 23, 23, 0.1)'
               }}
             >
               Delete

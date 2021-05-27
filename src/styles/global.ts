@@ -33,6 +33,7 @@ const GlobalStyles: GlobalStyleComponent<
       --dark-background: ${darkTheme.colors.background};
       --light-font: ${lightTheme.colors.primaryFont};
       --dark-font: ${darkTheme.colors.primaryFont};
+      --red: "#FF1717";
     }
 
   ${({ theme }) => css`

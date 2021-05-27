@@ -12,7 +12,7 @@ export async function createLike({ user_id, box_shadow_id }: Like) {
   return { data, error }
 }
 
-export async function removeLike({ user_id, box_shadow_id }: Like) {
+export async function deleteLike({ user_id, box_shadow_id }: Like) {
   const { data, error } = await supabase
     .from('likes')
     .delete()
