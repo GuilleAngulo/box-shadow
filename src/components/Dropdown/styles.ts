@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { ChevronDown } from '@styled-icons/boxicons-regular/ChevronDown'
 
 export const Title = styled.div`
   ${({ theme }) => css`
@@ -93,4 +94,17 @@ export const Wrapper = styled.div<WrapperProps>`
     }
   `}
 `
-export const Icon = styled.div``
+
+const arrowModifiers = {
+  open: () => css`
+    transform: rotate(180deg);
+  `
+}
+
+export const Chevron = styled(ChevronDown)<WrapperProps>`
+  ${({ isOpen, theme }) => css`
+    transition: transform ${theme.transition.default};
+    transform: rotate(0);
+    ${isOpen && arrowModifiers.open()};
+  `}
+`
