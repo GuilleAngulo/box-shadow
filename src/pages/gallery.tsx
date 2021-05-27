@@ -1,4 +1,5 @@
 import { GalleryProps } from 'components/Gallery'
+import OpenGraph from 'components/OpenGraph'
 import {
   getAllBoxShadows,
   getBoxShadowOrderByLikes,
@@ -7,7 +8,15 @@ import {
 import GalleryTemplate from 'templates/GalleryTemplate'
 
 export default function BoxShadow({ boxShadowList }: GalleryProps) {
-  return <GalleryTemplate boxShadowList={boxShadowList} />
+  return (
+    <>
+      <OpenGraph
+        title={'Box Shadow Tool'}
+        description={'CSS Box Shadow Tool'}
+      />
+      <GalleryTemplate boxShadowList={boxShadowList} />
+    </>
+  )
 }
 
 export async function getStaticProps() {

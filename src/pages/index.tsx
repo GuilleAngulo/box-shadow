@@ -2,13 +2,22 @@ import HomeTemplate from 'templates/HomeTemplate'
 import { getFeaturedBoxShadow } from 'services/boxShadows'
 import { AuthoredPreset } from 'types'
 import { resetServerContext } from 'react-beautiful-dnd'
+import OpenGraph from 'components/OpenGraph'
 
 export type HomeProps = {
   featured?: AuthoredPreset
 }
 
 export default function Home({ featured }: HomeProps) {
-  return <HomeTemplate featured={featured} />
+  return (
+    <>
+      <OpenGraph
+        title={'Box Shadow Tool'}
+        description={'CSS Box Shadow Tool'}
+      />
+      <HomeTemplate featured={featured} />
+    </>
+  )
 }
 
 export async function getStaticProps() {
