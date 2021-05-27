@@ -1,8 +1,10 @@
-import { useRouter } from 'next/router'
-import { getBoxShadowBySlug, getSlugs } from 'services/boxShadows'
-import { AuthoredPreset } from 'types'
 import { GetStaticPropsContext } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+
+import { AuthoredPreset } from 'types'
 import { resetServerContext } from 'react-beautiful-dnd'
+import { getBoxShadowBySlug, getSlugs } from 'services/boxShadows'
 import HomeTemplate from 'templates/HomeTemplate'
 import {
   generateOgUrl,
@@ -11,7 +13,7 @@ import {
   stringify
 } from 'utils/helpers'
 import { SIZES } from 'utils/shadow'
-import Head from 'next/head'
+import OpenGraph from 'components/OpenGraph'
 
 export type BoxShadowProps = {
   initialPreset?: AuthoredPreset
@@ -41,23 +43,8 @@ export default function BoxShadow({ initialPreset }: BoxShadowProps) {
       <Head>
         <title>{ogTitle}</title>
         <meta property="description" content={ogDescription} />
-
-        <meta property="og:site_name" content="Box Shadow Club" />
-        <meta property="og:title" content={ogTitle} />
-        <meta property="og:description" content={ogDescription} />
-
-        <meta property="og:image" content={ogUrl} />
-        <meta property="og:image:type" content="image/png" />
-
-        <meta property="og:image:width" content="2048" />
-        <meta property="og:image:height" content="1260" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={ogTitle} />
-        <meta name="twitter:description" content={ogDescription} />
-        <meta name="twitter:image" content={ogUrl} />
       </Head>
-
+      <OpenGraph title={ogTitle} description={ogDescription} imageUrl={ogUrl} />
       <HomeTemplate initialPreset={initialPreset} />
     </>
   )

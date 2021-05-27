@@ -70,7 +70,7 @@ export const Pre = styled.pre`
       border-radius: 0.12rem;
     }
     ::-webkit-scrollbar-track {
-      background: #acb1b8;
+      background: ${theme.colors.terminalBg};
       border-radius: 0.12rem;
     }
   `}
@@ -83,7 +83,6 @@ export type LineProps = {
 const lineModifiers = {
   isDragging: (theme: DefaultTheme) => css`
     background: ${lighten(0.02, theme.colors.terminalBg)};
-    /* box-shadow: 0 0 0.5rem ${theme.colors.primaryFont}; */
   `
 }
 
@@ -111,8 +110,6 @@ export const LineContent = styled.span`
 
     margin-bottom: 0.2rem;
     padding: 0.1rem 0;
-    /* background: ${theme.colors.terminalBg};
-    backdrop-filter: blur(10px); */
 
     .token.property {
       display: inline-block;
@@ -161,6 +158,7 @@ export const RGBA = styled.span.attrs<RGBAProps>(
     width: 1rem;
     height: 1rem;
     border-radius: 30%;
+    border: 0.02rem solid white;
     margin-right: 0.3rem;
     background: ${({ color }) => color};
   }

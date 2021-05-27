@@ -7,6 +7,7 @@ import { supabase } from 'utils/supabaseClient'
 import { ThemeProvider } from 'hooks/use-theme'
 import GlobalStyles from 'styles/global'
 import 'styles/fonts.css'
+import OpenGraph from 'components/OpenGraph'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,6 +19,10 @@ function App({ Component, pageProps }: AppProps) {
           <link rel="manifest" href="/manifest.json" />
           <meta name="description" content="CSS Box Shadow Tool" />
         </Head>
+        <OpenGraph
+          title={'Box Shadow Tool'}
+          description={'CSS Box Shadow Tool'}
+        />
         <GlobalStyles />
         <Component {...pageProps} />
       </ThemeProvider>
