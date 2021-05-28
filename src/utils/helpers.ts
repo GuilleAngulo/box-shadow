@@ -88,7 +88,8 @@ export const stringifyTerminal = (
 
 export const resizeBoxShadow = (
   boxShadow: ShadowProps[] | undefined,
-  size: number
+  size: number,
+  unparsed = false
 ) => {
   // If the boxShadow is undefined or has the same size or is not an array do nothing
   if (!boxShadow || size === SIZES.large || !Array.isArray(boxShadow))
@@ -99,11 +100,13 @@ export const resizeBoxShadow = (
 
   const newBoxShadow = boxShadow.map((item) => ({
     ...item,
-    horizontalOffset: item.horizontalOffset * differencePercentage,
-    verticalOffset: item.verticalOffset * differencePercentage,
-    blurRadius: item.blurRadius * differencePercentage,
-    spreadRadius: item.spreadRadius * differencePercentage
+    horizontalOffset: (item.horizontalOffset * differencePercentage).toFixed(2),
+    verticalOffset: (item.verticalOffset * differencePercentage).toFixed(2),
+    blurRadius: (item.blurRadius * differencePercentage).toFixed(2),
+    spreadRadius: (item.spreadRadius * differencePercentage).toFixed(2)
   }))
+
+  if (unparsed) return newBoxShadow
 
   return JSON.parse(JSON.stringify(newBoxShadow))
 }

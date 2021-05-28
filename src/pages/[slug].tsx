@@ -22,12 +22,14 @@ export type BoxShadowProps = {
 export default function BoxShadow({ initialPreset }: BoxShadowProps) {
   const router = useRouter()
 
+  const boxShadow = prettify(
+    stringify(resizeBoxShadow(initialPreset?.boxShadow, SIZES['og']), false)
+  )
+
   const ogPayload = {
     title: initialPreset?.name || '',
     theme: String(initialPreset?.theme),
-    boxShadow: prettify(
-      stringify(resizeBoxShadow(initialPreset?.boxShadow, SIZES['xlarge']))
-    ),
+    boxShadow,
     shape: initialPreset?.shape || '',
     authorName: initialPreset?.author.name || '',
     authorPhoto: initialPreset?.author.avatar_url || ''
