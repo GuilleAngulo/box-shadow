@@ -1,12 +1,6 @@
 import { darkTheme, lightTheme } from 'styles/theme'
 
-function getCss(
-  theme: string,
-  boxShadow: string,
-  shape: string,
-  viewportWidth: number,
-  viewportHeight: number
-) {
+function getCss(theme: string, boxShadow: string, shape: string) {
   const background =
     theme === 'dark'
       ? darkTheme.colors.background
@@ -50,31 +44,40 @@ function getCss(
           url('/fonts/inter-v3-latin-600.woff2') format('woff2');
     }
     body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       background: ${background};
-      display: flex;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
       font-family: Inter, sans-serif;
       font-weight: bold;
-      }
-
-    .wrapper {
       position: relative;
-      width: ${viewportWidth}px;
-      height: ${viewportHeight}px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4rem;
-      padding: 4rem;
-      border: 0.8rem solid ${card};
-      border-radius: 1rem;
+      height: 100vh;
     }
 
+    .frame {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      padding: 8rem;
+      border-radius: 1rem;
+      border: 1rem solid ${card};
+    }
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.4rem;
+      }
+
     .boxShadow {
-      width: 16rem;
-      height: 16rem;
+      width: 300px;
+      height: 300px;
       border-radius: ${borderRadius};
       ${boxShadow};
 
@@ -88,8 +91,10 @@ function getCss(
     .title {
       display: flex;
       align-items: center;
+      justify-content: center;
       width: 600px;
       gap: 0.8rem;
+      line-height: 1.2;
       font-size: 4rem;
 		  text-align: left;
       display: -webkit-box;
@@ -101,10 +106,9 @@ function getCss(
     }
 
     .title svg {
-      align-self: baseline;
-      flex-shrink: 0;
-      width: 4rem;
-      height: 4rem;
+		  flex-shrink: 0;
+		  width: 3.6rem;
+		  height: 3.6rem;
       fill:  ${tertiaryFont};
     }
 
@@ -112,7 +116,7 @@ function getCss(
       font-size: 2.25rem;
       color: ${secondaryFont};
       text-align: left;
-      margin-top: -0.8rem;
+      margin-top: 0.2rem;
     }
 
     .author {
@@ -149,22 +153,14 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, boxShadow, shape, 1200, 460)}
+        ${getCss(theme, boxShadow, shape)}
     </style>
     <body>
     <div class="wrapper">
       <div class="text">
         <div class="title">
           ${title}
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M22 7.999a1 1 0 00-.516-.874l-9.022-5a1.003 1.003 0 00-.968 0l-8.978 4.96a1 1 0 00-.003 1.748l9.022 5.04a.995.995 0 00.973.001l8.978-5A1 1 0 0022 7.999zm-9.977 3.855L5.06 7.965l6.917-3.822 6.964 3.859-6.918 3.852z" />
-            <path d="M20.515 11.126L12 15.856l-8.515-4.73-.971 1.748 9 5a1 1 0 00.971 0l9-5-.97-1.748z" />
-            <path d="M20.515 15.126L12 19.856l-8.515-4.73-.971 1.748 9 5a1 1 0 00.971 0l9-5-.97-1.748z" />
-          </svg>
+          ${Logo}
         </div>
         <div class="subtitle">A box-shadow design by</div>
         <div class="author">
@@ -183,6 +179,17 @@ function getImage(src: string) {
         src="${sanitizeHtml(src)}"
     />`
 }
+
+const Logo = `<svg
+viewBox="0 0 24 24"
+fill="currentColor"
+xmlns="http://www.w3.org/2000/svg"
+>
+  <path d="M22 7.999a1 1 0 00-.516-.874l-9.022-5a1.003 1.003 0 00-.968 0l-8.978 4.96a1 1 0 00-.003 1.748l9.022 5.04a.995.995 0 00.973.001l8.978-5A1 1 0 0022 7.999zm-9.977 3.855L5.06 7.965l6.917-3.822 6.964 3.859-6.918 3.852z" />
+  <path d="M20.515 11.126L12 15.856l-8.515-4.73-.971 1.748 9 5a1 1 0 00.971 0l9-5-.97-1.748z" />
+  <path d="M20.515 15.126L12 19.856l-8.515-4.73-.971 1.748 9 5a1 1 0 00.971 0l9-5-.97-1.748z" />
+</svg>
+`
 
 const entityMap: { [key: string]: string } = {
   '&': '&amp;',

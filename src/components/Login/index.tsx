@@ -1,4 +1,4 @@
-import { useRef, ElementRef, useState } from 'react'
+import { useRef, ElementRef, useState, useEffect } from 'react'
 
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { useTheme } from 'hooks/use-theme'
@@ -18,12 +18,13 @@ import { Logout, Save, Collections } from '@styled-icons/material-outlined'
 import { saveBoxShadow } from 'services/boxShadows'
 
 const Login = () => {
+  const [isMount, setIsMount] = useState(false)
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
+  const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
+
   const { boxShadow, shape } = useBoxShadow()
   const { theme } = useTheme()
   const { loading, user, signInGithub, signOut } = useAuth()
-
-  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
-  const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
 
   const dropdownRef = useRef<ElementRef<typeof Dropdown>>(null)
   const collectionRef = useRef<ElementRef<typeof CollectionDialog>>(null)
@@ -76,6 +77,13 @@ const Login = () => {
         }
       }
     )
+  }
+
+  useEffect(() => {
+    setIsMount(true)
+  }, [])
+  if (!isMount) {
+    return null
   }
 
   return (
