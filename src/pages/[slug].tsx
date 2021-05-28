@@ -35,7 +35,7 @@ export default function BoxShadow({ initialPreset }: BoxShadowProps) {
 
   const ogUrl = generateOgUrl(ogPayload)
   const ogTitle = initialPreset?.name
-  const ogDescription = `${initialPreset?.name}: A box-shadow design by ${initialPreset?.name}`
+  const ogDescription = `${initialPreset?.name}: A box-shadow design by ${initialPreset?.author.name}`
 
   if (router.isFallback) return null
   return (

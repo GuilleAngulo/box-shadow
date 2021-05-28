@@ -19,13 +19,13 @@ export async function getScreenshot(html: string, isDev: boolean) {
   const page = await getPage(isDev)
 
   await page.setViewport({
-    width: 2048,
-    height: 1260
+    width: 1200,
+    height: 627
   })
   await page.setContent(html)
   await page.evaluateHandle('document.fonts.ready')
 
-  const file = await page.screenshot({ type: 'png' })
+  const file = await page.screenshot({ type: 'jpeg' })
 
   return file
 }
