@@ -101,7 +101,6 @@ function getCss(theme: string, boxShadow: string, shape: string) {
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-		  word-break: break-all;
       color: ${primaryFont};
     }
 
@@ -156,6 +155,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, boxShadow, shape)}
     </style>
     <body>
+    <div class="frame"></div>
     <div class="wrapper">
       <div class="text">
         <div class="title">

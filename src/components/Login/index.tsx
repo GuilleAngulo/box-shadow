@@ -16,11 +16,12 @@ import * as S from './styles'
 
 import { Logout, Save, Collections } from '@styled-icons/material-outlined'
 import { saveBoxShadow } from 'services/boxShadows'
+import useHasMounted from 'hooks/use-has-mounted'
 
 const Login = () => {
-  const [isMount, setIsMount] = useState(false)
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
   const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
+  const hasMounted = useHasMounted()
 
   const { boxShadow, shape } = useBoxShadow()
   const { theme } = useTheme()
@@ -79,10 +80,7 @@ const Login = () => {
     )
   }
 
-  useEffect(() => {
-    setIsMount(true)
-  }, [])
-  if (!isMount) {
+  if (!hasMounted) {
     return null
   }
 

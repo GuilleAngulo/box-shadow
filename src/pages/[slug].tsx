@@ -23,7 +23,7 @@ export default function BoxShadow({ initialPreset }: BoxShadowProps) {
   const router = useRouter()
 
   const boxShadow = prettify(
-    stringify(resizeBoxShadow(initialPreset?.boxShadow, SIZES['og']), false)
+    stringify(resizeBoxShadow(initialPreset?.boxShadow, SIZES['og'], true))
   )
 
   const ogPayload = {

@@ -8,8 +8,8 @@ export const SPREAD_RADIUS_RANGES = [-100, 100]
 export const OPACITY_RANGES = [0, 100]
 
 export const SIZES = {
+  og: 30,
   large: 24,
-  og: 16,
   medium: 12,
   small: 9
 }
