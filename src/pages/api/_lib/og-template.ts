@@ -66,15 +66,15 @@ function getCss(
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8rem;
-      padding: 8rem;
+      gap: 4rem;
+      padding: 4rem;
       border: 0.8rem solid ${card};
-      border-radius: 2rem;
+      border-radius: 1rem;
     }
 
     .boxShadow {
-      width: 32rem;
-      height: 32rem;
+      width: 16rem;
+      height: 16rem;
       border-radius: ${borderRadius};
       ${boxShadow};
 
@@ -87,51 +87,47 @@ function getCss(
 
     .title {
       display: flex;
+      align-items: center;
+      width: 600px;
       gap: 0.8rem;
-      font-size: 8rem;
-      max-width: 1024px;
+      font-size: 4rem;
 		  text-align: left;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
 		  word-break: break-all;
       color: ${primaryFont};
     }
 
     .title svg {
+      align-self: baseline;
       flex-shrink: 0;
-      width: 10rem;
-      height: 10rem;
+      width: 4rem;
+      height: 4rem;
       fill:  ${tertiaryFont};
     }
 
     .subtitle {
-      font-size: 4.5rem;
+      font-size: 2.25rem;
       color: ${secondaryFont};
       text-align: left;
-      margin-top: -1.2rem;
+      margin-top: -0.8rem;
     }
 
     .author {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1rem;
       color: ${primaryFont};
-      font-size: 5rem;
-      margin-top: 6rem;
+      font-size: 3rem;
+      margin-top: 3rem;
     }
 
     .author img {
-      width: 8rem;
-      height: 8rem;
+      width: 4rem;
+      height: 4rem;
       border-radius: 50%;
-    }
-
-    .link {
-      position: absolute;
-      font-weight: 400;
-      color: ${tertiaryFont};
-      bottom: 0;
-      right: 0;
-      font-size: 2.6rem;
-      padding: 1.6rem;
     }`
 }
 
@@ -153,7 +149,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, boxShadow, shape, 2048, 960)}
+        ${getCss(theme, boxShadow, shape, 1200, 460)}
     </style>
     <body>
     <div class="wrapper">
@@ -177,7 +173,6 @@ export function getHtml(parsedReq: ParsedRequest) {
         </div>
       </div>
       <div class="boxShadow"></div>
-      <div class="link">${process.env.NEXT_PUBLIC_API_URL}</div>
     </div>
   </body>
 </html>`
