@@ -17,8 +17,8 @@ const OpenGraph = ({ title, description, imageUrl }: OpenGraphProps) => (
     <meta property="og:image" content={imageUrl || defaultImage} />
     <meta property="og:image:type" content="image/png" />
 
-    <meta property="og:image:width" content="2048" />
-    <meta property="og:image:height" content="1260" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="800" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
