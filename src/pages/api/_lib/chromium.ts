@@ -20,7 +20,7 @@ export async function getScreenshot(html: string, isDev: boolean) {
 
   await page.setViewport({
     width: 1200,
-    height: 627
+    height: 630
   })
   await page.setContent(html)
   await page.evaluateHandle('document.fonts.ready')
