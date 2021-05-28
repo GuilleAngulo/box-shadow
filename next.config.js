@@ -10,7 +10,7 @@ module.exports = withPWA({
   async rewrites() {
     return [
       {
-        source: '/api/og-image.jpeg',
+        source: '/api/og-image.png',
         destination: '/api/og-image'
       }
     ]

@@ -29,7 +29,7 @@ export default async function handler(
     }
     const file = await getScreenshot(html, isDev)
     res.statusCode = 200
-    res.setHeader('Content-Type', `image/jpeg`)
+    res.setHeader('Content-Type', `image/png`)
     res.setHeader(
       'Cache-Control',
       `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
