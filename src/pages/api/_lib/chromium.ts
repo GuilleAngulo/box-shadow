@@ -25,7 +25,7 @@ export async function getScreenshot(html: string, isDev: boolean) {
   await page.setContent(html)
   await page.evaluateHandle('document.fonts.ready')
 
-  const file = await page.screenshot({ type: 'png' })
+  const file = await page.screenshot({ type: 'jpeg' })
 
   return file
 }

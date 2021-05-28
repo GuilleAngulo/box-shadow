@@ -6,7 +6,7 @@ export type OpenGraphProps = {
   imageUrl?: string
 }
 
-const defaultImage = `${process.env.NEXT_PUBLIC_API_URL}/img/og-image.png`
+const defaultImage = `${process.env.NEXT_PUBLIC_API_URL}/img/og-image.jpeg`
 
 const OpenGraph = ({ title, description, imageUrl }: OpenGraphProps) => (
   <Head>
@@ -15,7 +15,7 @@ const OpenGraph = ({ title, description, imageUrl }: OpenGraphProps) => (
     <meta property="og:description" content={description} />
 
     <meta property="og:image" content={imageUrl || defaultImage} />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content="image/jpeg" />
 
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="800" />
