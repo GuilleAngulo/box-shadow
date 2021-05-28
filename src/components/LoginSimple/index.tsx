@@ -10,6 +10,7 @@ import { Github } from '@styled-icons/boxicons-logos'
 import { Logout } from '@styled-icons/material-outlined'
 
 import * as S from './styles'
+import useHasMounted from 'hooks/use-has-mounted'
 
 export type LoginProps = {
   redirect?: string
@@ -18,10 +19,15 @@ export type LoginProps = {
 const Login = ({ redirect }: LoginProps) => {
   const { loading, user, signInGithub, signOut } = useAuth()
   const { asPath } = useRouter()
+  const hasMounted = useHasMounted()
 
   //By default Login will redirect to the current page if no redirect is passed as prop
   const redirectUrl = `${process.env.NEXT_PUBLIC_API_URL}${redirect ?? asPath}`
   const dropdownRef = useRef<ElementRef<typeof Dropdown>>(null)
+
+  if (!hasMounted) {
+    return null
+  }
 
   return (
     <S.Wrapper>
