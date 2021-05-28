@@ -1,40 +1,71 @@
+import { useEffect, useRef, useState } from 'react'
 import { useBoxShadow } from 'hooks/use-box-shadow'
-import ShadowTool from 'components/ShadowTool'
 
+import ToolItem from 'components/ToolItem'
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { LayerPlus as AddIcon } from '@styled-icons/boxicons-regular'
-
 import * as S from './styles'
-import { useMemo } from 'react'
 
 const Tools = () => {
-  const { boxShadow = [], addBoxShadow } = useBoxShadow()
+  const { boxShadow = [], addBoxShadow, loading } = useBoxShadow()
 
-  const range = useMemo(() => {
-    const output = []
+  const [scroll, setScroll] = useState(false)
+  const addShadowRef = useRef<HTMLLIElement>(null)
 
-    for (let i = 0; i < boxShadow.length; i++) {
-      output.push(i)
+  const scrollToBottom = () => {
+    if (addShadowRef.current && scroll) {
+      addShadowRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
+  }
 
-    return output
-  }, [boxShadow])
+  const handleAdd = () => {
+    addBoxShadow()
+    setScroll(true)
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+    setScroll(false)
+  }, [scroll])
 
   return (
     <S.Wrapper>
-      <S.ToolsWrapper>
-        <>
-          {range.map((index) => (
-            <ShadowTool key={index} index={index} />
-          ))}
-        </>
+      <S.ToolsGrid>
+        <TransitionGroup component={null}>
+          {boxShadow.map((item, index) => {
+            const props = {
+              horizontalOffset: item?.horizontalOffset,
+              verticalOffset: item?.verticalOffset,
+              blurRadius: item?.blurRadius,
+              spreadRadius: item?.spreadRadius,
+              color: item?.color,
+              inset: item?.inset,
+              visibility: item?.visible
+            }
+
+            return (
+              <CSSTransition
+                key={item.id}
+                timeout={200}
+                classNames="item"
+                exit={!loading}
+                enter={!loading}
+              >
+                <ToolItem index={index} {...props} />
+              </CSSTransition>
+            )
+          })}
+        </TransitionGroup>
         <S.Add
           role="button"
           aria-label="create new box shadow"
-          onClick={() => addBoxShadow()}
+          ref={addShadowRef}
+          onClick={handleAdd}
         >
           <AddIcon width={50} />
         </S.Add>
-      </S.ToolsWrapper>
+      </S.ToolsGrid>
     </S.Wrapper>
   )
 }

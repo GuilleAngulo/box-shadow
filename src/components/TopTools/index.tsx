@@ -1,19 +1,43 @@
+import Link from 'next/link'
+import Button from 'components/Button'
 import Login from 'components/Login'
 import PresetsTool from 'components/PresetsTool'
-import ThemeSwitch from 'components/ThemeSwitch'
+import ToogleButton from 'components/ToogleButton'
 import { useTheme } from 'hooks/use-theme'
+import { AuthoredPreset } from 'types'
 
 import * as S from './styles'
+import { useRouter } from 'next/router'
 
-const TopTools = () => {
+export type TopToolsProps = {
+  withPresets?: boolean
+  featured?: AuthoredPreset
+}
+
+const TopTools = ({ withPresets = false, featured }: TopToolsProps) => {
   const { theme, toggleTheme } = useTheme()
+  const { asPath } = useRouter()
+
   const isChecked = theme === 'dark' ? true : false
+  const isLinkActive = (href: string) => asPath === href
 
   return (
     <S.Wrapper>
-      <ThemeSwitch toggleTheme={toggleTheme} isChecked={isChecked} />
-      <PresetsTool />
-      <Login />
+      <S.Content>
+        <ToogleButton onCheck={toggleTheme} isChecked={isChecked} />
+        <Link href="/" passHref>
+          <Button size="small" minimal isActive={isLinkActive('/')}>
+            Home
+          </Button>
+        </Link>
+        <Link href="/gallery" passHref>
+          <Button size="small" minimal isActive={isLinkActive('/gallery')}>
+            Gallery
+          </Button>
+        </Link>
+        {withPresets && <PresetsTool featured={featured} />}
+        <Login />
+      </S.Content>
     </S.Wrapper>
   )
 }

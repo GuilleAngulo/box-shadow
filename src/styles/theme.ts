@@ -80,6 +80,8 @@ export const lightTheme = {
   font: {
     family:
       "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+    code:
+      "Fira Code, monocode, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
     bold: 600,
@@ -107,14 +109,15 @@ export const lightTheme = {
     primary: '#6A8BFF',
     background: '#FEFEFE',
     card: '#F5F5F5',
+    variant: '#c5c2c2',
     accent: '#D4D4D4',
     tertiaryFont: '#818181',
     secondaryFont: '#7D7D7D',
     primaryFont: '#383838',
     terminalFont: '#F9F9F9',
-    terminalBg: '#1E293C',
+    terminalBg: '#0c1420',
     red: '#ef4444',
-    glow: '#ecae0f',
+    glow: '#818181',
     shadowBg: '#D1D1D1'
   },
   transition: {
@@ -146,6 +149,8 @@ export const darkTheme = {
   font: {
     family:
       "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+    code:
+      "Fira Code, monocode, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
     bold: 600,
@@ -173,14 +178,15 @@ export const darkTheme = {
     primary: '#F231A5',
     background: '#131F33',
     card: '#1E293C',
+    variant: '#2A3649',
     accent: '#666D7A',
     tertiaryFont: '#ACB1B8',
     secondaryFont: '#CFD2D6',
     primaryFont: '#F9F9F9',
     terminalFont: '#F9F9F9',
-    terminalBg: '#1E293C',
+    terminalBg: '#0c1420',
     red: '#ef4444',
-    glow: '#FAD02C',
+    glow: '#ACB1B8',
     shadowBg: '#27364f'
   },
   transition: {

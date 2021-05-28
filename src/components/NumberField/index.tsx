@@ -3,7 +3,7 @@ import { InputHTMLAttributes } from 'react'
 import * as S from './styles'
 
 export type NumberFieldProps = {
-  onInputChange?: (string: number) => void
+  onInputChange?: (property: string, value: number) => void
   label?: string
   initialValue?: number
   min?: number
@@ -27,6 +27,7 @@ const NumberField = ({
 }: NumberFieldProps) => {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const data = e.currentTarget.value
+    const name = e.currentTarget.name
 
     let newValue = Number(data)
 
@@ -34,7 +35,7 @@ const NumberField = ({
       newValue = newValue > max ? max : min
     }
 
-    !!onInputChange && onInputChange(newValue)
+    !!onInputChange && onInputChange(name, newValue)
   }
 
   /**

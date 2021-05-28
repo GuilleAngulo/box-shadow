@@ -5,31 +5,36 @@ import { OPACITY_RANGES } from 'utils/shadow'
 import { useBoxShadow } from 'hooks/use-box-shadow'
 
 import * as S from './styles'
+import { RGBAProps } from 'types'
 
 export type ColorProps = {
   index?: number
   label?: string
   icon?: React.ReactNode
-  initialColor?: number
+  initialColor?: RGBAProps
   initialOpacity?: number
+  handleOpacity: (property: string, value: number) => void
+  handleColor: (property: string, value: string) => void
 }
 
 const Color = ({
   index = 0,
   label,
   icon,
-  initialColor = 0,
-  initialOpacity = 0
+  initialColor,
+  initialOpacity = 0,
+  handleOpacity,
+  handleColor
 }: ColorProps) => {
   const { boxShadow = [], setBoxShadowProperty } = useBoxShadow()
 
-  const handleColor = (value: string) => {
-    return setBoxShadowProperty(index, 'color', value)
-  }
+  // const handleColor = (value: string) => {
+  //   return setBoxShadowProperty(index, 'color', value)
+  // }
 
-  const handleOpacity = (value: number) => {
-    return setBoxShadowProperty(index, 'opacity', value)
-  }
+  // const handleOpacity = (value: number) => {
+  //   return setBoxShadowProperty(index, 'opacity', value)
+  // }
 
   return (
     <S.Wrapper>
@@ -41,17 +46,26 @@ const Color = ({
       )}
       <S.InputWrapper>
         <InputColor
-          initialValue={boxShadow[index]?.color || initialColor}
-          onInput={handleColor}
+          name="color"
+          // initialValue={boxShadow[index]?.color || initialColor}
+          initialValue={initialColor}
+          // onInput={handleColor}
+          onInput={(property: string, value: string) => {
+            handleColor(property, value)
+          }}
         />
         <InputRange
           name="opacity"
           min={OPACITY_RANGES[0]}
           max={OPACITY_RANGES[1]}
-          initialValue={
-            Math.round(boxShadow[index]?.color?.alpha * 100) || initialOpacity
-          }
-          onInput={handleOpacity}
+          // initialValue={
+          //   Math.round(boxShadow[index]?.color?.alpha * 100) || initialOpacity
+          // }
+          initialValue={initialOpacity}
+          // onInput={handleOpacity}
+          onInput={(property: string, value: number) => {
+            handleOpacity(property, value)
+          }}
           rangeUnit="%"
         />
       </S.InputWrapper>

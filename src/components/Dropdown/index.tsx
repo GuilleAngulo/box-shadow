@@ -32,9 +32,7 @@ const Dropdown = (
       <S.Title onClick={() => setIsOpen((prevState) => !prevState)}>
         {title}
         {arrow && (
-          <S.Icon>
-            {!isOpen ? <ChevronDown width={24} /> : <ChevronUp width={24} />}
-          </S.Icon>
+          <S.Chevron size={24} isOpen={isOpen} aria-label="dropdown arrow" />
         )}
       </S.Title>
 

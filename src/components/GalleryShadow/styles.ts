@@ -72,3 +72,24 @@ export const ShapeBlock = styled.div<ShapeProps>`
     ${!!shape && shapeModifiers[shape](theme)};
   `}
 `
+
+export const colorModifiers = {
+  light: () => css`
+    color: black;
+  `,
+  dark: () => css`
+    color: white;
+  `
+}
+
+export const Empty = styled.div<Omit<BoxShadowProps, 'initialBoxShadow'>>`
+  ${({ theme, shape, size, mode }) => css`
+    font-size: ${theme.font.sizes.large};
+    font-weight: ${theme.font.bold};
+    text-align: center;
+
+    ${!!mode && colorModifiers[mode]()};
+    ${!!size && sizeModifiers[size](theme)};
+    ${!!shape && shapeModifiers[shape](theme)};
+  `}
+`

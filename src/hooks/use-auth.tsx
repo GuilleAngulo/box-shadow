@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { SupabaseClient, Session, User } from '@supabase/supabase-js'
 
+import { signInUser } from 'services/users'
+
 export type AuthContextData = {
   user: User | null
   session: Session | null
   loading: boolean
   error: string
-  signInGithub: () => void
+  signInGithub: (redirect?: string) => void
   signOut: () => void
 }
 
@@ -25,22 +27,38 @@ export const AuthContext = createContext<AuthContextData>(
 
 export type AuthProviderProps = {
   supabaseClient: SupabaseClient
+  SSR?: boolean
   children: React.ReactNode
 }
 
-const AuthProvider = ({ supabaseClient, children }: AuthProviderProps) => {
+const AuthProvider = ({
+  supabaseClient,
+  SSR = false,
+  children
+}: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null)
   const [session, setSession] = useState<Session | null>(null)
 
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  const signInGithub = async () => {
+  const signInGithub = (redirect?: string) => {
     setLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    const { error } = await supabaseClient.auth.signIn({ provider: 'github' })
-    if (error) setError(error.message)
-    setLoading(false)
+
+    supabaseClient.auth
+      .signIn(
+        { provider: 'github' },
+        {
+          ...(!!redirect && {
+            redirectTo: redirect
+          })
+        }
+      )
+      /** Leave loading on true while exiting the page. When the app takes control again
+       *  loading will load with false. Otherwise the loading never shows.
+       */
+      // .then(() => setLoading(false))
+      .catch((error) => setError(error.message))
   }
 
   const signOut = async () => {
@@ -54,18 +72,29 @@ const AuthProvider = ({ supabaseClient, children }: AuthProviderProps) => {
     const session = supabaseClient.auth.session()
     setSession(session)
     setUser(session?.user ?? null)
+
     const { data: authListener } = supabaseClient.auth.onAuthStateChange(
       async (event, session) => {
         setSession(session)
-        setUser(session?.user ?? null)
+        const currentUser = session?.user
+        setUser(currentUser ?? null)
+        if (currentUser) {
+          signInUser({
+            id: currentUser.id,
+            name: currentUser.user_metadata.full_name,
+            avatar_url: currentUser.user_metadata.avatar_url
+          })
+        }
 
-        //Set session cookie for Server Side
-        await fetch('/api/auth', {
-          method: 'POST',
-          headers: new Headers({ 'Content-Type': 'application/json' }),
-          credentials: 'same-origin',
-          body: JSON.stringify({ event, session })
-        })
+        //If Server Side is active -> Set session cookie
+        if (SSR) {
+          await fetch('/api/auth', {
+            method: 'POST',
+            headers: new Headers({ 'Content-Type': 'application/json' }),
+            credentials: 'same-origin',
+            body: JSON.stringify({ event, session })
+          })
+        }
       }
     )
 
@@ -73,7 +102,7 @@ const AuthProvider = ({ supabaseClient, children }: AuthProviderProps) => {
       authListener?.unsubscribe()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   return (
     <AuthContext.Provider

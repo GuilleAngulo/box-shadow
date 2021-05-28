@@ -1,4 +1,4 @@
-import { useRef, ElementRef } from 'react'
+import { useRef, ElementRef, useState } from 'react'
 
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { useTheme } from 'hooks/use-theme'
@@ -6,20 +6,27 @@ import { useAuth } from 'hooks/use-auth'
 
 import Button from 'components/Button'
 import Dropdown from 'components/Dropdown'
+import SaveDialog from 'components/SaveDialog'
+import CollectionDialog from 'components/CollectionDialog'
 
 import toast, { Toaster } from 'react-hot-toast'
 import { Github } from '@styled-icons/boxicons-logos'
 
 import * as S from './styles'
 
-import { Logout, Save, FileDownload } from '@styled-icons/material-outlined'
+import { Logout, Save, Collections } from '@styled-icons/material-outlined'
+import { saveBoxShadow } from 'services/boxShadows'
 
 const Login = () => {
-  const { boxShadow, shape, loadPreset } = useBoxShadow()
+  const { boxShadow, shape } = useBoxShadow()
   const { theme } = useTheme()
-  const { loading, user, session, signInGithub, signOut } = useAuth()
+  const { loading, user, signInGithub, signOut } = useAuth()
+
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
+  const [isLoadModalOpen, setIsLoadModalOpen] = useState(false)
 
   const dropdownRef = useRef<ElementRef<typeof Dropdown>>(null)
+  const collectionRef = useRef<ElementRef<typeof CollectionDialog>>(null)
 
   const closeDropdown = () => {
     if (dropdownRef.current) {
@@ -27,57 +34,41 @@ const Login = () => {
     }
   }
 
-  const load = async () => {
-    closeDropdown()
-
-    const res = fetch('/api/boxshadows', {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        token: session?.access_token || ''
-      }),
-      credentials: 'same-origin'
-    })
-      .then((res) => res.json())
-      .then(([data]) => loadPreset(data))
-      .catch((err) => console.log(err))
-
-    toast.promise(
-      res,
-      {
-        loading: 'Loading...',
-        success: () => `Loaded.`,
-        error: () => `Oops...something went wrong. Try again.`
-      },
-      {
-        style: {
-          minWidth: '150px'
-        }
-      }
-    )
+  const loadBoxShadowList = () => {
+    if (collectionRef.current) {
+      collectionRef.current.loadBoxShadowList()
+    }
   }
 
-  const save = async () => {
-    closeDropdown()
+  const save = async (title: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const boxShadowWithoutId = boxShadow?.map(({ id, ...rest }) => ({
+      ...rest
+    }))
 
-    const res = fetch('/api/boxshadows', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        token: session?.access_token || ''
-      }),
-      body: JSON.stringify({ boxShadow, theme, shape }),
-      credentials: 'same-origin'
+    const res = saveBoxShadow({
+      title,
+      slug: title.toLowerCase().split(' ').join('-'),
+      box_shadow: JSON.stringify(boxShadowWithoutId),
+      theme,
+      shape,
+      user_id: user?.id ?? ''
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
 
     toast.promise(
       res,
       {
         loading: 'Saving...',
-        success: () => `Saved.`,
-        error: () => `Oops...something went wrong. Try again.`
+        success: () => {
+          loadBoxShadowList()
+          return `Successfully saved.`
+        },
+        error: (err: string) => {
+          const error = err.toString()
+          return error.includes('duplicate key value')
+            ? 'Someone has already used that name.'
+            : 'Oops ... something went wrong.'
+        }
       },
       {
         style: {
@@ -107,14 +98,30 @@ const Login = () => {
             ref={dropdownRef}
           >
             <S.Panel>
-              <S.Item role="button" aria-label="Load" onClick={load}>
-                <FileDownload />
-                <span>Load design</span>
+              <S.Item
+                role="button"
+                aria-label="Your designs"
+                onClick={() => {
+                  closeDropdown()
+                  setIsLoadModalOpen(true)
+                  return
+                }}
+              >
+                <Collections />
+                <span>Collection</span>
               </S.Item>
 
-              <S.Item role="button" aria-label="Save" onClick={save}>
+              <S.Item
+                role="button"
+                aria-label="Save"
+                onClick={() => {
+                  closeDropdown()
+                  setIsSaveModalOpen(true)
+                  return
+                }}
+              >
                 <Save />
-                <span>Save design</span>
+                <span>Save</span>
               </S.Item>
 
               <S.Item role="button" aria-label="Logout" onClick={signOut}>
@@ -128,12 +135,23 @@ const Login = () => {
         <Button
           size="small"
           icon={<Github />}
+          disabled={loading}
           loading={loading}
-          onClick={signInGithub}
+          onClick={() => signInGithub()}
         >
           Log in
         </Button>
       )}
+      <SaveDialog
+        isOpen={isSaveModalOpen}
+        setIsOpen={setIsSaveModalOpen}
+        onSave={save}
+      />
+      <CollectionDialog
+        isOpen={isLoadModalOpen}
+        setIsOpen={setIsLoadModalOpen}
+        ref={collectionRef}
+      />
       <Toaster position="bottom-right" />
     </S.Wrapper>
   )

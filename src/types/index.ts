@@ -6,12 +6,14 @@ export type RGBAProps = {
 }
 
 export type ShadowProps = {
+  id?: string
   horizontalOffset: number
   verticalOffset: number
   blurRadius: number
   spreadRadius: number
   color: RGBAProps
   inset?: boolean
+  visible?: boolean
 }
 
 export type AnimationDirection =
@@ -88,9 +90,8 @@ export type Shape = 'square' | 'circle'
 export type Mode = 'light' | 'dark'
 
 export type Author = {
-  name?: string
-  link?: string
-  photo?: string
+  name: string
+  avatar_url: string
 }
 
 export type Preset = {
@@ -98,5 +99,13 @@ export type Preset = {
   boxShadow: ShadowProps[]
   shape: Shape
   theme: Mode
-  author?: string
+}
+
+export type AuthoredPreset = {
+  name?: string
+  boxShadow: ShadowProps[]
+  shape: Shape
+  theme: Mode
+  author: Author
+  likes: number
 }

@@ -6,5 +6,13 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     disable: !isProd
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/og-image.png',
+        destination: '/api/og-image'
+      }
+    ]
   }
 })

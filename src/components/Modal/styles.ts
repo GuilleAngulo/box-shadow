@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { darken } from 'polished'
 
 import * as ButtonStyles from 'components/Button/styles'
+import media from 'styled-media-query'
 
 type ModalProps = {
   isOpen: boolean
@@ -10,6 +11,7 @@ type ModalProps = {
 const overlayModifiers = {
   open: () => css`
     opacity: 1;
+    pointer-events: auto;
   `,
   close: () => css`
     opacity: 0;
@@ -20,16 +22,18 @@ const overlayModifiers = {
 export const Overlay = styled.div<ModalProps>`
   ${({ theme, isOpen }) => css`
     position: fixed;
+    width: 100%;
+    height: 100%;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    overflow: auto;
+    overflow: hidden;
     z-index: 50;
 
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
-    transition: ${theme.transition.default};
+    transition: opacity ${theme.transition.default};
 
     ${isOpen && overlayModifiers.open()}
     ${!isOpen && overlayModifiers.close()}
@@ -48,21 +52,27 @@ const modalModifiers = {
 
 export const Modal = styled.div<ModalProps>`
   ${({ theme, isOpen }) => css`
-    min-width: calc(100% / 4);
-    background-color: ${theme.colors.card};
     position: absolute;
     will-change: transform;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     border-radius: 1.2rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-    transition: ${theme.transition.default};
+    transition: opacity ${theme.transition.default};
+    background-color: ${theme.colors.card};
+    overflow-y: auto;
 
     ${isOpen && modalModifiers.open()}
     ${!isOpen && modalModifiers.close()}
+
+    ${media.lessThan('medium')`
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    `}
   `}
 `
 
@@ -72,7 +82,6 @@ export const Wrapper = styled.div`
     align-content: center;
     flex-direction: column;
     padding: ${theme.spacings.medium};
-    border-radius: 1.2rem;
     box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5);
 
     ${ButtonStyles.Wrapper} {
@@ -106,8 +115,8 @@ export const Header = styled.div``
 
 export const Title = styled.h3`
   ${({ theme }) => css`
-    font-size: 2rem;
-    font-weight: ${theme.font.normal};
+    font-size: 2.6rem;
+    font-weight: ${theme.font.bold};
     margin-bottom: ${theme.spacings.medium};
   `}
 `

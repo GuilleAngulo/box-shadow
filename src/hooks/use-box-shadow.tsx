@@ -5,17 +5,20 @@ import {
   BoxShadowKeyProps,
   ShadowProps,
   Shape,
-  Preset
+  Preset,
+  AuthoredPreset
 } from 'types'
 import { getStorageItem, setStorageItem } from 'utils/localStorage'
 import { defaultShadow } from 'utils/shadow'
 import { useTheme } from 'hooks/use-theme'
+import { populateId } from 'utils/helpers'
 
 export type BoxShadowContextData = {
   boxShadow?: ShadowProps[]
   shape?: Shape | undefined
   animation?: AnimationProps
   keyframe?: Keyframe[]
+  loading: boolean
   setBoxShadowProperty: (
     index: number,
     key: BoxShadowKeyProps,
@@ -25,7 +28,9 @@ export type BoxShadowContextData = {
   addBoxShadow: (newBoxShadow?: ShadowProps[], isDarkMode?: boolean) => void
   clearBoxShadow: () => void
   saveShape: (shape: Shape) => void
-  loadPreset: (preset: Preset) => void
+  reorderBoxShadow: (srcIndex: number, destIndex: number) => void
+  loadPreset: (preset: Preset | AuthoredPreset) => void
+  setVisible: (index: number) => void
 }
 
 const BOXSHADOW_KEY = 'boxShadow'
@@ -36,12 +41,15 @@ const BoxShadowContextDefaultValues = {
   animation: {},
   keyframe: [],
   shape: undefined,
+  loading: false,
   setBoxShadowProperty: () => null,
   removeBoxShadow: () => null,
   addBoxShadow: () => null,
   clearBoxShadow: () => null,
   saveShape: () => null,
-  loadPreset: () => null
+  reorderBoxShadow: () => null,
+  loadPreset: () => null,
+  setVisible: () => null
 }
 
 export const BoxShadowContext = createContext<BoxShadowContextData>(
@@ -49,15 +57,31 @@ export const BoxShadowContext = createContext<BoxShadowContextData>(
 )
 
 export type BoxShadowProviderProps = {
+  initialPreset?: Preset
   children: React.ReactNode
 }
 
-const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
-  const [boxShadow, setBoxShadow] = useState<ShadowProps[]>([])
-  const [shape, setShape] = useState<Shape | undefined>(undefined)
+const BoxShadowProvider = ({
+  initialPreset,
+  children
+}: BoxShadowProviderProps) => {
+  const [boxShadow, setBoxShadow] = useState<ShadowProps[]>(() =>
+    populateId(initialPreset?.boxShadow)
+  )
+  const [shape, setShape] = useState<Shape | undefined>(
+    initialPreset?.shape || undefined
+  )
   const { theme, toggleTheme } = useTheme()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (initialPreset) {
+      if (initialPreset.theme !== theme && toggleTheme) {
+        toggleTheme()
+      }
+      return
+    }
+
     const storedBoxShadow = getStorageItem(BOXSHADOW_KEY)
     const storedShape = getStorageItem(SHAPE_KEY)
     setShape(storedShape ? storedShape : 'square')
@@ -133,11 +157,25 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
     return
   }
 
+  const setVisible = (index: number) => {
+    const copy = JSON.parse(JSON.stringify(boxShadow))
+    copy[index].visible = !copy[index].visible
+    saveBoxShadow(copy)
+  }
+
+  const reorderBoxShadow = (srcIndex: number, destIndex: number) => {
+    const copy = JSON.parse(JSON.stringify(boxShadow))
+    const [removed] = copy.splice(srcIndex, 1)
+    copy.splice(destIndex, 0, JSON.parse(JSON.stringify(removed)))
+    saveBoxShadow(copy)
+  }
+
   const clearBoxShadow = () => {
     saveBoxShadow([])
   }
 
   const loadPreset = (preset: Preset) => {
+    setLoading(true)
     if (preset?.theme !== theme && toggleTheme) {
       toggleTheme()
     }
@@ -146,7 +184,13 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
       saveShape(preset?.shape)
     }
 
-    saveBoxShadow(preset?.boxShadow)
+    // Trick to make loading work
+    setTimeout(() => {
+      //Create IDs to handle unique keys on array map
+      const boxShadowIDs = populateId(preset?.boxShadow)
+      saveBoxShadow(boxShadowIDs)
+      setLoading(false)
+    }, 0)
   }
 
   return (
@@ -154,12 +198,15 @@ const BoxShadowProvider = ({ children }: BoxShadowProviderProps) => {
       value={{
         boxShadow,
         shape,
+        loading,
         setBoxShadowProperty,
         removeBoxShadow,
         addBoxShadow,
         clearBoxShadow,
         saveShape,
-        loadPreset
+        reorderBoxShadow,
+        loadPreset,
+        setVisible
       }}
     >
       {children}

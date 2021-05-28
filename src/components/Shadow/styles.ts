@@ -19,7 +19,7 @@ export type ShapeProps = {
 
 export const shapeModifiers = {
   square: (theme: DefaultTheme) => css`
-    border-radius: ${theme.border.radius};
+    /* border-radius: ${theme.border.radius}; */
   `,
   circle: () => css`
     border-radius: 100%;
