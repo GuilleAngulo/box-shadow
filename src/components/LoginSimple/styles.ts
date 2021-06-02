@@ -15,9 +15,7 @@ export const UserImage = styled.img`
 `
 
 export const Username = styled.span`
-  ${({ theme }) => css`
-    padding: 0 ${theme.spacings.xxsmall};
-  `}
+  padding: 0 var(--spacings-xxsmall);
 `
 
 export const Panel = styled.ul`
@@ -31,12 +29,12 @@ export const Item = styled.li`
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-    color: ${theme.colors.secondaryFont};
-    padding: ${theme.spacings.xsmall} ${theme.spacings.small};
+    color: ${theme.secondaryFont};
+    padding: var(--spacings-xsmall) var(--spacings-small);
 
     &:hover {
-      color: ${theme.colors.primaryFont};
-      background: ${darken(0.05, theme.colors.card)};
+      color: ${theme.primaryFont};
+      background: ${darken(0.05, theme.card)};
     }
 
     > svg {

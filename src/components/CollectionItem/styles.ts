@@ -7,37 +7,33 @@ export const Item = styled.div`
 `
 
 export const ItemHeader = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: ${theme.spacings.xxsmall};
-  `}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--spacings-xxsmall);
 `
 export const ItemTitle = styled.span`
   ${({ theme }) => css`
-    color: ${theme.colors.primaryFont};
-    font-size: ${theme.font.sizes.large};
+    color: ${theme.primaryFont};
+    font-size: var(--font-size-large);
     text-align: center;
   `}
 `
 
 export const ItemDate = styled.time`
   ${({ theme }) => css`
-    color: ${theme.colors.secondaryFont};
-    font-size: ${theme.font.sizes.xsmall};
+    color: ${theme.secondaryFont};
+    font-size: var(--font-size-xsmall);
   `}
 `
 
 export const ItemControls = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: ${theme.spacings.xsmall};
-    margin-bottom: 0.4rem;
-  `}
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--spacings-xsmall);
+  margin-bottom: 0.4rem;
 `
 
 export type ImageProps = {
@@ -47,8 +43,7 @@ export type ImageProps = {
 
 const imageModifiers = {
   deleteMode: (theme: DefaultTheme, mode: Mode | undefined) => css`
-    box-shadow: 0 0 0 0.3rem ${theme.colors.card},
-      0 0 0 0.5rem ${theme.colors.red};
+    box-shadow: 0 0 0 0.3rem ${theme.card}, 0 0 0 0.5rem var(--color-light-red);
 
     &:after {
       content: '';
@@ -74,8 +69,8 @@ export const Image = styled.div<ImageProps>`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: ${theme.border.radius};
-    transition: ${theme.transition.fast};
+    border-radius: var(--border-radius);
+    transition: var(--transition-fast);
     ${deleteMode && imageModifiers.deleteMode(theme, mode)};
   `}
 `
@@ -86,14 +81,14 @@ export type DeleteMessageProps = {
 }
 
 export const Message = styled.div<DeleteMessageProps>`
-  ${({ theme, deleteMode, mode }) => css`
+  ${({ deleteMode, mode }) => css`
     position: absolute;
     will-change: opacity;
     color: ${mode === 'light' ? 'var(--light-font)' : 'var(--dark-font)'};
-    font-weight: ${theme.font.bold};
-    font-size: ${theme.font.sizes.large};
+    font-weight: var(--font-bold);
+    font-size: var(--font-size-large);
     z-index: 1;
-    transition: opacity ${theme.transition.fast};
+    transition: opacity var(--transition-fast);
     opacity: ${deleteMode ? '1' : '0'};
   `}
 `

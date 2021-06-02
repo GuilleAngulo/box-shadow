@@ -34,8 +34,8 @@ exports[`<Checkbox /> should render with label 1`] = `
   height: 1.8rem;
   border: 0.2rem solid #818181;
   border-radius: 0.2rem;
-  -webkit-transition: background border 0.1s ease-in-out;
-  transition: background border 0.1s ease-in-out;
+  -webkit-transition: background border var(--transition-fast);
+  transition: background border var(--transition-fast);
   position: relative;
   outline: none;
 }
@@ -53,23 +53,23 @@ exports[`<Checkbox /> should render with label 1`] = `
   position: absolute;
   top: 0.1rem;
   opacity: 0;
-  -webkit-transition: 0.1s ease-in-out;
-  transition: 0.1s ease-in-out;
+  -webkit-transition: var(--transition-fast);
+  transition: var(--transition-fast);
 }
 
 .c1:focus {
-  box-shadow: 0 0 0.5rem #6A8BFF;
+  box-shadow: 0 0 0.5rem var(--color-primary);
 }
 
 .c1:hover {
   border-color: #7D7D7D;
-  -webkit-transition: 0.1s ease-in-out;
-  transition: 0.1s ease-in-out;
+  -webkit-transition: var(--transition-fast);
+  transition: var(--transition-fast);
 }
 
 .c1:checked {
-  border-color: #6A8BFF;
-  background: #6A8BFF;
+  border-color: var(--color-primary);
+  background: var(--color-primary);
 }
 
 .c1:checked:before {
@@ -78,10 +78,10 @@ exports[`<Checkbox /> should render with label 1`] = `
 
 .c2 {
   cursor: pointer;
-  padding-left: 0.8rem;
+  padding-left: var(--spacings-xxsmall);
   line-height: 1.8rem;
   color: #383838;
-  font-weight: 600;
+  font-weight: var(--font-bold);
 }
 
 <div

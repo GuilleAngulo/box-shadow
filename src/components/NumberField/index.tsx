@@ -38,10 +38,6 @@ const NumberField = ({
     !!onInputChange && onInputChange(name, newValue)
   }
 
-  /**
-   * In case of 'onInput' being an API call, use a debounce method to wait
-   * instead of calling on every onChange event
-   */
   return (
     <S.Wrapper disabled={disabled} hasError={!!error} isLoading={!!loading}>
       {!!label && <S.Label htmlFor={name}>{label}</S.Label>}

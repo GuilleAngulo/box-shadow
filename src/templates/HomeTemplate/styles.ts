@@ -18,9 +18,9 @@ export const Wrapper = styled.section`
       z-index: 1;
       pointer-events: none;
       background: linear-gradient(
-        ${rgba(theme.colors.background, 1)},
-        ${rgba(theme.colors.background, 0.5)},
-        ${rgba(theme.colors.background, 0)}
+        ${rgba(theme.background, 1)},
+        ${rgba(theme.background, 0.5)},
+        ${rgba(theme.background, 0)}
       );
     }
 
@@ -34,9 +34,9 @@ export const Wrapper = styled.section`
       z-index: 1;
       pointer-events: none;
       background: linear-gradient(
-        ${rgba(theme.colors.background, 0)},
-        ${rgba(theme.colors.background, 0.5)},
-        ${rgba(theme.colors.background, 1)}
+        ${rgba(theme.background, 0)},
+        ${rgba(theme.background, 0.5)},
+        ${rgba(theme.background, 1)}
       );
     }
   `}

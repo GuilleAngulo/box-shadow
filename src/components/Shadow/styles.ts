@@ -1,15 +1,13 @@
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ShadowProps, Shape } from 'types'
 import { stringify } from 'utils/helpers'
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: ${theme.border.radius};
-  `}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
 `
 
 export type ShapeProps = {
@@ -18,8 +16,8 @@ export type ShapeProps = {
 }
 
 export const shapeModifiers = {
-  square: (theme: DefaultTheme) => css`
-    /* border-radius: ${theme.border.radius}; */
+  square: () => css`
+    border-radius: none;
   `,
   circle: () => css`
     border-radius: 100%;
@@ -32,20 +30,20 @@ export const ShapeBlock = styled.div.attrs<ShapeProps>(({ boxShadow }) => ({
   }
 }))<ShapeProps>`
   ${({ theme, shape, boxShadow }) => css`
-    width: ${theme.shadow.sizes.large};
-    height: ${theme.shadow.sizes.large};
+    width: var(--shadow-size-large);
+    height: var(--shadow-size-large);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: border-radius ${theme.transition.default};
-    background: ${boxShadow.length ? 'none' : theme.colors.shadowBg};
+    transition: border-radius var(--transition-default);
+    background: ${boxShadow.length ? 'none' : theme.shadowBg};
 
     > svg {
-      fill: ${theme.colors.background};
+      fill: ${theme.background};
       width: 6rem;
       height: 6rem;
     }
 
-    ${!!shape && shapeModifiers[shape](theme)};
+    ${!!shape && shapeModifiers[shape]()};
   `}
 `

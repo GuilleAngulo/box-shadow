@@ -37,4 +37,4 @@ public/workbox-*.js
 storybook-static
 
 # supabase
-/.supabase/
+.supabase/

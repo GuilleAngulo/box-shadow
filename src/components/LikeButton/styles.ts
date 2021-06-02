@@ -9,12 +9,12 @@ export const Likes = styled.div`
     justify-content: center;
     gap: 0.1rem;
     height: 4rem;
-    color: ${theme.colors.primaryFont};
-    font-size: ${theme.font.sizes.small};
+    color: ${theme.primaryFont};
+    font-size: var(--font-size-small);
 
     svg {
       width: 1.8rem;
-      transition: transform ${theme.transition.fast};
+      transition: transform var(--transition-fast);
 
       &:hover {
         transform: scale(1.2);

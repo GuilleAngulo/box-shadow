@@ -2,12 +2,12 @@ import styled, { css } from 'styled-components'
 
 export const Visible = styled.div`
   ${({ theme }) => css`
-    border-radius: ${theme.border.radius};
-    color: ${theme.colors.secondaryFont};
+    border-radius: var(--border-radius);
+    color: ${theme.secondaryFont};
 
     &:hover {
-      color: ${theme.colors.primaryFont};
-      transition: color ${theme.transition.fast};
+      color: ${theme.primaryFont};
+      transition: color var(--transition-fast);
     }
   `}
 `

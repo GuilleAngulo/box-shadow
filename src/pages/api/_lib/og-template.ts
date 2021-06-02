@@ -2,26 +2,17 @@ import { darkTheme, lightTheme } from 'styles/theme'
 
 function getCss(theme: string, boxShadow: string, shape: string) {
   const background =
-    theme === 'dark'
-      ? darkTheme.colors.background
-      : lightTheme.colors.background
+    theme === 'dark' ? darkTheme.background : lightTheme.background
 
-  const card =
-    theme === 'dark' ? darkTheme.colors.accent : lightTheme.colors.accent
+  const card = theme === 'dark' ? darkTheme.accent : lightTheme.accent
   const primaryFont =
-    theme === 'dark'
-      ? darkTheme.colors.primaryFont
-      : lightTheme.colors.primaryFont
+    theme === 'dark' ? darkTheme.primaryFont : lightTheme.primaryFont
 
   const secondaryFont =
-    theme === 'dark'
-      ? darkTheme.colors.secondaryFont
-      : lightTheme.colors.secondaryFont
+    theme === 'dark' ? darkTheme.secondaryFont : lightTheme.secondaryFont
 
   const tertiaryFont =
-    theme === 'dark'
-      ? darkTheme.colors.tertiaryFont
-      : lightTheme.colors.tertiaryFont
+    theme === 'dark' ? darkTheme.tertiaryFont : lightTheme.tertiaryFont
 
   const borderRadius = shape === 'square' ? 'none' : '50%'
 

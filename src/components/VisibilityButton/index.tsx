@@ -13,8 +13,8 @@ const VisibilityButton = ({ visible, index }: VisibilityButtonProps) => {
     <S.Visible
       aria-label={
         visible
-          ? `Hide Box Shadow at level ${index}`
-          : `Show Box Shadow at level ${index}`
+          ? `Hide Box Shadow at index ${index}`
+          : `Show Box Shadow at index ${index}`
       }
       onClick={() => setVisible(index)}
     >

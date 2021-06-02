@@ -3,16 +3,14 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div``
 
 export const Content = styled.div`
-  ${({ theme }) => css`
-    margin-bottom: ${theme.spacings.large};
-  `}
+  margin-bottom: var(--spacings-large);
 `
 
 export const Info = styled.p`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.medium};
-    color: ${theme.colors.secondaryFont};
-    margin-bottom: ${theme.spacings.small};
+    font-size: var(--font-size-medium);
+    color: ${theme.secondaryFont};
+    margin-bottom: var(--spacings-small);
   `}
 `
 
@@ -24,28 +22,26 @@ export const Controls = styled.div`
 `
 export const Legend = styled.span`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.xsmall};
+    font-size: var(--font-size-xsmall);
     font-style: italic;
-    color: ${theme.colors.secondaryFont};
+    color: ${theme.secondaryFont};
   `}
 `
 export const Error = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    max-width: 30rem;
-    font-size: ${theme.font.sizes.small};
-    font-weight: ${theme.font.bold};
-    border-radius: 0.2rem;
-    padding: 0 0.4rem;
-    color: ${theme.colors.red};
-    margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  max-width: 30rem;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-bold);
+  border-radius: 0.2rem;
+  padding: 0 0.4rem;
+  color: var(--color-light-red);
+  margin-bottom: 0.2rem;
 
-    svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      flex-shrink: 0;
-    }
-  `}
+  svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+  }
 `
