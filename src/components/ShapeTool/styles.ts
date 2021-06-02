@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -12,9 +12,9 @@ export type ButtonProps = {
 }
 
 const buttonModifiers = {
-  selected: (theme: DefaultTheme) => css`
+  selected: () => css`
     svg {
-      fill: ${theme.colors.primary};
+      fill: var(--color-primary);
     }
   `
 }
@@ -27,10 +27,10 @@ export const Button = styled.button<ButtonProps>`
     background-color: transparent;
     cursor: pointer;
     svg {
-      fill: ${theme.colors.accent};
+      fill: ${theme.accent};
       width: 3rem;
     }
 
-    ${selected && buttonModifiers['selected'](theme)};
+    ${selected && buttonModifiers['selected']()};
   `}
 `

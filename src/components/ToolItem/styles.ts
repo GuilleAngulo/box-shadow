@@ -18,11 +18,11 @@ export const Item = styled.li<ItemProps>`
     padding: 0.5rem 1.2rem 1rem 1.2rem;
     /* height: 35rem; */
     height: fit-content;
-    background-color: ${theme.colors.card};
-    border-radius: ${theme.border.radius};
-    border: 1px solid ${theme.colors.accent};
-    transition: box-shadow ${theme.transition.default},
-      filter ${theme.transition.default};
+    background-color: ${theme.card};
+    border-radius: var(--border-radius);
+    border: 1px solid ${theme.accent};
+    transition: box-shadow var(--transition-default),
+      filter var(--transition-default);
 
     ${visibilityHidden && itemModifiers.hidden()};
   `}
@@ -30,12 +30,12 @@ export const Item = styled.li<ItemProps>`
 
 export const Delete = styled.div`
   ${({ theme }) => css`
-    border-radius: ${theme.border.radius};
-    color: ${theme.colors.secondaryFont};
+    border-radius: var(--border-radius);
+    color: ${theme.secondaryFont};
 
     &:hover {
-      background: ${darken(0.1, theme.colors.card)};
-      transition: background ${theme.transition.fast};
+      background: ${darken(0.1, theme.card)};
+      transition: background var(--transition-fast);
     }
   `}
 `
@@ -57,6 +57,6 @@ export const Index = styled.span`
     right: 0;
     padding-bottom: 0.6rem;
     margin-right: 0.8rem;
-    color: ${theme.colors.secondaryFont};
+    color: ${theme.secondaryFont};
   `}
 `

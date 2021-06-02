@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { lighten, transparentize } from 'polished'
+import { cssVar, lighten, transparentize } from 'polished'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -16,14 +16,14 @@ export const Label = styled.label`
     display: flex;
     align-items: center;
     margin-bottom: 0.6rem;
-    color: ${theme.colors.primaryFont};
-    font-size: ${theme.font.sizes.medium};
-    font-weight: ${theme.font.bold};
+    color: ${theme.primaryFont};
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-bold);
     user-select: none;
     svg {
       width: 2rem;
       margin-right: 0.6rem;
-      color: ${theme.colors.secondaryFont};
+      color: ${theme.secondaryFont};
     }
   `}
 `
@@ -63,13 +63,16 @@ export const Input = styled.input<InputProps>`
       width: 1.2rem;
       border-radius: 0.6rem;
       border: none;
-      background: ${theme.colors.primary};
+      background: var(--color-primary);
       cursor: ew-resize;
       margin-top: -1rem;
     }
 
     &:focus::-webkit-slider-thumb {
-      box-shadow: 0 0 0.2rem 0.3rem ${lighten(0.2, theme.colors.primary)};
+      box-shadow: 0 0 0.2rem 0.3rem ${lighten(
+        0.2,
+        cssVar('--color-primary') as string
+      )};
     }
     &::-moz-range-thumb {
       -webkit-appearance: none;
@@ -77,11 +80,14 @@ export const Input = styled.input<InputProps>`
       width: 1.2rem;
       border-radius: 0.6rem;
       border: none;
-      background: ${theme.colors.primary};
+      background: var(--color-primary);
       cursor: ew-resize;
     }
     &:focus::-moz-range-thumb {
-      box-shadow: 0 0 0.2rem 0.3rem ${lighten(0.2, theme.colors.primary)};
+      box-shadow: 0 0 0.2rem 0.3rem ${lighten(
+        0.2,
+        cssVar('--color-primary') as string
+      )};
     }
     &::-ms-thumb {
       -webkit-appearance: none;
@@ -89,11 +95,14 @@ export const Input = styled.input<InputProps>`
       width: 1.2rem;
       border-radius: 0.6rem;
       border: none;
-      background: ${theme.colors.primary};
+      background: var(--color-primary);
       cursor: ew-resize;
     }
     &:focus::-ms-thumb {
-      box-shadow: 0 0 0.2rem 0.3rem ${lighten(0.2, theme.colors.primary)};
+      box-shadow: 0 0 0.2rem 0.3rem ${lighten(
+        0.2,
+        cssVar('--color-primary') as string
+      )};
     }
 
     &:focus {
@@ -104,34 +113,34 @@ export const Input = styled.input<InputProps>`
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.accent};
+      background: ${theme.accent};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-webkit-slider-runnable-track {
-      border: 0.05rem solid ${transparentize(0.5, theme.colors.tertiaryFont)}};
+      border: 0.05rem solid ${transparentize(0.5, theme.tertiaryFont)}};
     }
 
     &::-moz-range-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.accent};
+      background: ${theme.accent};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-moz-range-track {
-      border: 0.05rem solid ${transparentize(0.5, theme.colors.tertiaryFont)}};
+      border: 0.05rem solid ${transparentize(0.5, theme.tertiaryFont)}};
     }
 
     &::-ms-track {
       width: 100%;
       height: 0.8rem;
-      background: ${theme.colors.accent};
+      background: ${theme.accent};
       cursor: pointer;
       border-radius: 1.2rem;
     }
     &:focus::-ms-track {
-      border: 0.05rem solid ${transparentize(0.5, theme.colors.tertiaryFont)}};
+      border: 0.05rem solid ${transparentize(0.5, theme.tertiaryFont)}};
     }
 
     ${isVertical && InputModifiers.vertical()}
@@ -145,8 +154,8 @@ export const Ranges = styled.div`
 
 export const RangeUnit = styled.span`
   ${({ theme }) => css`
-    color: ${theme.colors.secondaryFont};
-    font-size: ${theme.font.sizes.xxsmall};
+    color: ${theme.secondaryFont};
+    font-size: var(--font-size-xxsmall);
     margin-bottom: 0.1rem;
     user-select: none;
   `}

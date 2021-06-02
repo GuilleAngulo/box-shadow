@@ -57,7 +57,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
       <StyledThemeProvider theme={themeMode as DefaultTheme}>
         {children}
         <NextNProgress
-          color={themeMode.colors.primary}
+          color={'var(--color-primary)'}
           startPosition={0.3}
           stopDelayMs={200}
           height={3}

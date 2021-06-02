@@ -13,6 +13,7 @@ import { FolderOpen } from '@styled-icons/material-outlined'
 import { Likes } from 'components/PresetsTool/styles'
 import { Heart } from '@styled-icons/typicons'
 import * as S from './styles'
+import { cssVar, rgba } from 'polished'
 
 export type CollectionItemProps = {
   boxShadow: BoxShadowAuthorProps
@@ -83,9 +84,12 @@ const CollectionItem = ({
               onClick={() => handleDelete(boxShadow.id)}
               aria-label={`delete ${boxShadow.title}`}
               style={{
-                color: '#FF1717',
-                boxShadow: '0 0 0 0.1rem rgba(255, 23, 23, 0.8)',
-                backgroundColor: 'rgba(255, 23, 23, 0.1)'
+                color: cssVar('--color-red') as string,
+                boxShadow: `0 0 0 0.1rem ${rgba(
+                  cssVar('--color-red') as string,
+                  0.8
+                )}`,
+                backgroundColor: rgba(cssVar('--color-red') as string, 0.1)
               }}
             >
               Delete
@@ -115,7 +119,7 @@ const CollectionItem = ({
               aria-label={`delete permanently ${boxShadow.title}`}
               style={{
                 color: 'white',
-                backgroundColor: '#FF1717'
+                backgroundColor: cssVar('--color-red') as string
               }}
             >
               Delete

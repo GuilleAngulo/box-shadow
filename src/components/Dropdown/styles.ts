@@ -4,7 +4,7 @@ import { ChevronDown } from '@styled-icons/boxicons-regular/ChevronDown'
 export const Title = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
-    color: ${theme.colors.primaryFont};
+    color: ${theme.primaryFont};
     position: relative;
     display: flex;
     align-items: center;
@@ -17,10 +17,10 @@ export const Content = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
-    background: ${theme.colors.card};
-    color: ${theme.colors.primaryFont};
-    margin-top: ${theme.spacings.small};
-    border-radius: ${theme.border.radius};
+    background: ${theme.card};
+    color: ${theme.primaryFont};
+    margin-top: var(--spacings-small);
+    border-radius: var(--border-radius);
     position: absolute;
     right: 0;
     z-index: 30;
@@ -31,7 +31,7 @@ export const Content = styled.div`
       position: absolute;
       border-right: 1.2rem solid transparent;
       border-left: 1.2rem solid transparent;
-      border-bottom: 1.2rem solid ${theme.colors.card};
+      border-bottom: 1.2rem solid ${theme.card};
       top: -1.2rem;
       right: 2.4rem;
     }
@@ -78,17 +78,17 @@ const contentModifiers = {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({ theme, isOpen }) => css`
+  ${({ isOpen }) => css`
     position: relative;
     width: max-content;
     ${Content} {
       will-change: transform;
-      transition: transform 400ms ease-in, opacity ${theme.transition.default};
+      transition: transform 400ms ease-in, opacity var(--transition-default);
       ${isOpen && contentModifiers.open()}
       ${!isOpen && contentModifiers.close()}
     }
     ${Overlay} {
-      transition: transform 0.2s ease-in, opacity ${theme.transition.default};
+      transition: transform 0.2s ease-in, opacity var(--transition-default);
       ${isOpen && overlayModifiers.open()}
       ${!isOpen && overlayModifiers.close()}
     }
@@ -102,8 +102,8 @@ const arrowModifiers = {
 }
 
 export const Chevron = styled(ChevronDown)<WrapperProps>`
-  ${({ isOpen, theme }) => css`
-    transition: transform ${theme.transition.default};
+  ${({ isOpen }) => css`
+    transition: transform var(--transition-default);
     transform: rotate(0);
     ${isOpen && arrowModifiers.open()};
   `}

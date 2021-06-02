@@ -10,25 +10,25 @@ export const InputWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: ${theme.colors.accent};
+    background: ${theme.accent};
     border-radius: 0.2rem;
-    padding: 0 ${theme.spacings.xxsmall};
+    padding: 0 var(--spacings-xxsmall);
     border: 0.2rem solid;
-    border-color: ${theme.colors.accent};
+    border-color: ${theme.accent};
     margin-left: 1rem;
 
     &:focus-within {
-      box-shadow: 0 0 0.5rem ${theme.colors.primary};
-      border: 0.2rem solid ${theme.colors.primary};
+      box-shadow: 0 0 0.5rem var(--color-primary);
+      border: 0.2rem solid var(--color-primary);
     }
   `}
 `
 
 export const Input = styled.input`
   ${({ theme }) => css`
-    color: ${theme.colors.primaryFont};
-    font-family: ${theme.font.family};
-    font-size: ${theme.font.sizes.small};
+    color: ${theme.primaryFont};
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
     padding: 0.2rem 0;
     background: transparent;
     border: 0;
@@ -48,8 +48,8 @@ export const Input = styled.input`
 
 export const Label = styled.label`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.small};
-    color: ${theme.colors.primaryFont};
+    font-size: var(--font-size-small);
+    color: ${theme.primaryFont};
     cursor: pointer;
   `}
 `
@@ -63,10 +63,10 @@ const wrapperModifiers = {
       color: red;
     }
   `,
-  loading: (theme: DefaultTheme) => css`
+  loading: () => css`
     ${InputWrapper} {
-      border-color: ${theme.colors.primary};
-      animation: ${glow(theme.colors.primary)} 0.6s ease-in-out infinite
+      border-color: var(--color-primary);
+      animation: ${glow('var(--color - primary)')} 0.6s ease-in-out infinite
         alternate;
     }
   `,
@@ -74,7 +74,7 @@ const wrapperModifiers = {
     ${Label},
     ${Input} {
       cursor: not-allowed;
-      color: ${theme.colors.accent};
+      color: ${theme.accent};
 
       &::placeholder {
         color: currentColor;
@@ -86,7 +86,7 @@ const wrapperModifiers = {
 export const Wrapper = styled.div<WrapperProps>`
   ${({ theme, hasError, isLoading, disabled }) => css`
     ${hasError && wrapperModifiers.error()}
-    ${isLoading && wrapperModifiers.loading(theme)}
+    ${isLoading && wrapperModifiers.loading()}
     ${disabled && wrapperModifiers.disabled(theme)}
   `}
 `

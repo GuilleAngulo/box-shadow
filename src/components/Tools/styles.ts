@@ -4,7 +4,7 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    padding: ${theme.spacings.xsmall} 0;
+    padding: var(--spacings-xsmall) 0;
 
     @media (min-width: 840px) {
       position: sticky;
@@ -17,17 +17,16 @@ export const Wrapper = styled.div`
         width: 1.2rem;
       }
       ::-webkit-scrollbar-thumb {
-        background: ${theme.colors.accent};
+        background: ${theme.accent};
         border-radius: 0.4rem;
       }
       ::-webkit-scrollbar-track {
-        background: ${darken(0.05, theme.colors.background)};
+        background: ${darken(0.05, theme.background)};
         border-radius: 0.4rem;
       }
     }
   `}
 `
-export const Color = styled.div``
 
 export const ToolsGrid = styled.ul`
   display: grid;
@@ -72,17 +71,17 @@ export const Add = styled.li`
     align-items: center;
     padding: 0.8rem 1rem;
     min-height: 34.8rem;
-    border-radius: ${theme.border.radius};
-    border: 0.2rem dashed ${theme.colors.tertiaryFont};
+    border-radius: var(--border-radius);
+    border: 0.2rem dashed ${theme.tertiaryFont};
     cursor: pointer;
 
     svg {
-      fill: ${theme.colors.tertiaryFont};
-      transition: all ${theme.transition.default};
+      fill: ${theme.tertiaryFont};
+      transition: all var(--transition-default);
     }
     &:hover {
       svg {
-        fill: ${theme.colors.secondaryFont};
+        fill: ${theme.secondaryFont};
         transform: translateY(-0.5rem);
       }
     }
@@ -96,10 +95,10 @@ export const Item = styled.li`
     padding: 0.5rem 1.2rem 1rem 1.2rem;
     /* height: fit-content; */
     height: 35rem;
-    background-color: ${theme.colors.card};
-    border-radius: ${theme.border.radius};
-    border: 1px solid ${theme.colors.accent};
-    transition: box-shadow ${theme.transition.default};
+    background-color: ${theme.card};
+    border-radius: var(--border-radius);
+    border: 1px solid ${theme.accent};
+    transition: box-shadow var(--transition-default);
   `}
 `
 
@@ -111,12 +110,12 @@ export const Delete = styled.div`
     cursor: pointer;
     margin-top: 0.2rem;
     margin-right: 0.2rem;
-    border-radius: ${theme.border.radius};
-    color: ${theme.colors.secondaryFont};
+    border-radius: var(--border-radius);
+    color: ${theme.secondaryFont};
 
     &:hover {
-      background: ${darken(0.1, theme.colors.card)};
-      transition: background ${theme.transition.fast};
+      background: ${darken(0.1, theme.card)};
+      transition: background var(--transition-fast);
     }
   `}
 `
@@ -128,6 +127,6 @@ export const Index = styled.span`
     right: 0;
     padding-bottom: 0.6rem;
     margin-right: 0.8rem;
-    color: ${theme.colors.secondaryFont};
+    color: ${theme.secondaryFont};
   `}
 `

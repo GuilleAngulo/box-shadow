@@ -15,9 +15,9 @@ export const Input = styled.input`
     appearance: none;
     width: 1.8rem;
     height: 1.8rem;
-    border: 0.2rem solid ${theme.colors.tertiaryFont};
+    border: 0.2rem solid ${theme.tertiaryFont};
     border-radius: 0.2rem;
-    transition: background border ${theme.transition.fast};
+    transition: background border var(--transition-fast);
     position: relative;
     outline: none;
 
@@ -32,21 +32,21 @@ export const Input = styled.input`
       position: absolute;
       top: 0.1rem;
       opacity: 0;
-      transition: ${theme.transition.fast};
+      transition: var(--transition-fast);
     }
 
     &:focus {
-      box-shadow: 0 0 0.5rem ${theme.colors.primary};
+      box-shadow: 0 0 0.5rem var(--color-primary);
     }
 
     &:hover {
-      border-color: ${theme.colors.secondaryFont};
-      transition: ${theme.transition.fast};
+      border-color: ${theme.secondaryFont};
+      transition: var(--transition-fast);
     }
 
     &:checked {
-      border-color: ${theme.colors.primary};
-      background: ${theme.colors.primary};
+      border-color: var(--color-primary);
+      background: var(--color-primary);
 
       &:before {
         opacity: 1;
@@ -58,9 +58,9 @@ export const Input = styled.input`
 export const Label = styled.label`
   ${({ theme }) => css`
     cursor: pointer;
-    padding-left: ${theme.spacings.xxsmall};
+    padding-left: var(--spacings-xxsmall);
     line-height: 1.8rem;
-    color: ${theme.colors.primaryFont};
-    font-weight: ${theme.font.bold};
+    color: ${theme.primaryFont};
+    font-weight: var(--font-bold);
   `}
 `

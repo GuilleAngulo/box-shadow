@@ -5,17 +5,13 @@ import { Item } from 'components/CollectionItem/styles'
 
 export const Wrapper = styled.div``
 
-export const Content = styled.div`
-  ${({ theme }) => css`
-    /* margin-bottom: ${theme.spacings.large}; */
-  `}
-`
+export const Content = styled.div``
 
 export const Info = styled.p`
   ${({ theme }) => css`
-    font-size: ${theme.font.sizes.medium};
-    color: ${theme.colors.secondaryFont};
-    margin-bottom: ${theme.spacings.small};
+    font-size: var(--font-size-medium);
+    color: ${theme.secondaryFont};
+    margin-bottom: var(--spacings-small);
   `}
 `
 
@@ -39,11 +35,11 @@ export const Grid = styled.div`
       width: 1rem;
     }
     ::-webkit-scrollbar-thumb {
-      background: ${theme.colors.accent};
+      background: ${theme.accent};
       border-radius: 0.4rem;
     }
     ::-webkit-scrollbar-track {
-      background: ${darken(0.02, theme.colors.card)};
+      background: ${darken(0.02, theme.card)};
       border-radius: 0.4rem;
     }
 
@@ -68,13 +64,13 @@ export const Grid = styled.div`
 
 export const Skeleton = styled.div`
   ${({ theme }) => css`
-    background: ${theme.colors.accent};
+    background: ${theme.accent};
     background-image: linear-gradient(
       to right,
-      ${theme.colors.accent} 0%,
-      ${theme.colors.card} 20%,
-      ${theme.colors.accent} 40%,
-      ${theme.colors.accent} 100%
+      ${theme.accent} 0%,
+      ${theme.card} 20%,
+      ${theme.accent} 40%,
+      ${theme.accent} 100%
     );
     background-size: 80rem 14rem;
     animation: placeholderShimmer 1s linear infinite forwards;
@@ -94,34 +90,26 @@ export const Skeleton = styled.div`
 export const SkeletonItem = styled(Item)``
 
 export const SkeletonImage = styled(Skeleton)`
-  ${({ theme }) => css`
-    height: 17rem;
-    width: 17rem;
-    border-radius: ${theme.border.radius};
-  `}
+  height: 17rem;
+  width: 17rem;
+  border-radius: var(--border-radius);
 `
 
 export const SkeletonTitle = styled(Skeleton)`
-  ${({ theme }) => css`
-    height: 1.92rem;
-    width: 100%;
-    margin-bottom: ${theme.spacings.xxsmall};
-  `}
+  height: 1.92rem;
+  width: 100%;
+  margin-bottom: var(--spacings-xxsmall);
 `
 
 export const SkeletonControls = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    justify-content: space-between;
-    margin-top: ${theme.spacings.xsmall};
-    width: 100%;
-    height: 3rem;
-  `}
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacings-xsmall);
+  width: 100%;
+  height: 3rem;
 `
 
 export const SkeletonButton = styled(Skeleton)`
-  ${({ theme }) => css`
-    width: 7rem;
-    border-radius: ${theme.border.radius};
-  `}
+  width: 7rem;
+  border-radius: var(--border-radius);
 `

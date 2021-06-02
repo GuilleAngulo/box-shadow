@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ShadowProps } from 'types'
 import { stringify } from 'utils/helpers'
 import { shapeModifiers } from 'components/Shadow/styles'
@@ -16,43 +16,43 @@ const backgroundModifiers = {
 }
 
 export const paddingModifiers = {
-  small: (theme: DefaultTheme) => css`
-    padding: ${theme.shadow.padding.small};
+  small: () => css`
+    padding: var(--shadow-padding-small);
   `,
-  medium: (theme: DefaultTheme) => css`
-    padding: ${theme.shadow.padding.medium};
+  medium: () => css`
+    padding: var(--shadow-padding-medium);
   `,
-  large: (theme: DefaultTheme) => css`
-    padding: ${theme.shadow.padding.large};
+  large: () => css`
+    padding: var(--shadow-padding-large);
   `
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({ theme, mode, size }) => css`
+  ${({ mode, size }) => css`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: ${theme.border.radius};
+    border-radius: var(--border-radius);
     overflow: hidden;
 
-    ${!!size && paddingModifiers[size](theme)};
+    ${!!size && paddingModifiers[size]()};
     ${!!mode && backgroundModifiers[mode]()};
   `}
 `
 
 export const sizeModifiers = {
-  small: (theme: DefaultTheme) => css`
-    width: ${theme.shadow.sizes.small};
-    height: ${theme.shadow.sizes.small};
+  small: () => css`
+    width: var(--shadow-size-small);
+    height: var(--shadow-size-small);
   `,
-  medium: (theme: DefaultTheme) => css`
-    width: ${theme.shadow.sizes.medium};
-    height: ${theme.shadow.sizes.medium};
+  medium: () => css`
+    width: var(--shadow-size-medium);
+    height: var(--shadow-size-medium);
   `,
-  large: (theme: DefaultTheme) => css`
-    width: ${theme.shadow.sizes.large};
-    height: ${theme.shadow.sizes.large};
+  large: () => css`
+    width: var(--shadow-size-large);
+    height: var(--shadow-size-large);
   `
 }
 
@@ -61,15 +61,15 @@ export type ShapeProps = {
 } & Pick<BoxShadowProps, 'size' | 'shape'>
 
 export const ShapeBlock = styled.div<ShapeProps>`
-  ${({ theme, boxShadow, shape, size }) => css`
+  ${({ boxShadow, shape, size }) => css`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: ${theme.font.sizes.huge};
+    font-size: var(--font-size-huge);
     box-shadow: ${stringify(boxShadow, false)};
 
-    ${!!size && sizeModifiers[size](theme)};
-    ${!!shape && shapeModifiers[shape](theme)};
+    ${!!size && sizeModifiers[size]()};
+    ${!!shape && shapeModifiers[shape]()};
   `}
 `
 
@@ -83,13 +83,13 @@ export const colorModifiers = {
 }
 
 export const Empty = styled.div<Omit<BoxShadowProps, 'initialBoxShadow'>>`
-  ${({ theme, shape, size, mode }) => css`
-    font-size: ${theme.font.sizes.large};
-    font-weight: ${theme.font.bold};
+  ${({ shape, size, mode }) => css`
+    font-size: var(--font-size-large);
+    font-weight: var(--font-bold);
     text-align: center;
 
     ${!!mode && colorModifiers[mode]()};
-    ${!!size && sizeModifiers[size](theme)};
-    ${!!shape && shapeModifiers[shape](theme)};
+    ${!!size && sizeModifiers[size]()};
+    ${!!shape && shapeModifiers[shape]()};
   `}
 `

@@ -6,12 +6,12 @@ export const Label = styled.label`
     display: flex;
     align-items: center;
     margin-bottom: 0.6rem;
-    font-weight: ${theme.font.bold};
-    color: ${theme.colors.primaryFont};
+    font-weight: var(--font-bold);
+    color: ${theme.primaryFont};
     svg {
       width: 2rem;
       margin-right: 0.4rem;
-      color: ${theme.colors.secondaryFont};
+      color: ${theme.secondaryFont};
     }
   `}
 `
