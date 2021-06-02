@@ -17,7 +17,8 @@ export const Input = styled.input`
     height: 1.8rem;
     border: 0.2rem solid ${theme.tertiaryFont};
     border-radius: 0.2rem;
-    transition: background border var(--transition-fast);
+    transition: all var(--transition-fast);
+    transition-property: background, border;
     position: relative;
     outline: none;
 

@@ -97,7 +97,7 @@ export const Wrapper = styled.button<WrapperProps>`
     &:hover {
       background: ${minimal
         ? 'none'
-        : darken(0.1, cssVar('--color-primary') as string)};
+        : darken(0.1, cssVar('--color-primary', '#6A8BFF') as string)};
     }
 
     &:focus {
