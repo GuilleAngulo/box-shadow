@@ -34,8 +34,10 @@ exports[`<Checkbox /> should render with label 1`] = `
   height: 1.8rem;
   border: 0.2rem solid #818181;
   border-radius: 0.2rem;
-  -webkit-transition: background border var(--transition-fast);
-  transition: background border var(--transition-fast);
+  -webkit-transition: all var(--transition-fast);
+  transition: all var(--transition-fast);
+  -webkit-transition-property: background,border;
+  transition-property: background,border;
   position: relative;
   outline: none;
 }

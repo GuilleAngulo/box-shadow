@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
 import { cssVar, lighten, transparentize } from 'polished'
 
+const primary = cssVar('--color-primary', '#6A8BFF') as string
+
 export const Wrapper = styled.div`
   width: 100%;
 `
@@ -69,10 +71,7 @@ export const Input = styled.input<InputProps>`
     }
 
     &:focus::-webkit-slider-thumb {
-      box-shadow: 0 0 0.2rem 0.3rem ${lighten(
-        0.2,
-        cssVar('--color-primary') as string
-      )};
+      box-shadow: 0 0 0.2rem 0.3rem ${lighten(0.2, primary)};
     }
     &::-moz-range-thumb {
       -webkit-appearance: none;
@@ -84,10 +83,7 @@ export const Input = styled.input<InputProps>`
       cursor: ew-resize;
     }
     &:focus::-moz-range-thumb {
-      box-shadow: 0 0 0.2rem 0.3rem ${lighten(
-        0.2,
-        cssVar('--color-primary') as string
-      )};
+      box-shadow: 0 0 0.2rem 0.3rem ${lighten(0.2, primary)};
     }
     &::-ms-thumb {
       -webkit-appearance: none;
@@ -99,10 +95,7 @@ export const Input = styled.input<InputProps>`
       cursor: ew-resize;
     }
     &:focus::-ms-thumb {
-      box-shadow: 0 0 0.2rem 0.3rem ${lighten(
-        0.2,
-        cssVar('--color-primary') as string
-      )};
+      box-shadow: 0 0 0.2rem 0.3rem ${lighten(0.2, primary)};
     }
 
     &:focus {
