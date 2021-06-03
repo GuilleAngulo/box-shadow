@@ -14,10 +14,9 @@ function App({ Component, pageProps }: AppProps) {
     <AuthProvider supabaseClient={supabase}>
       <ThemeProvider>
         <Head>
-          <title>Box Shadow Tool</title>
+          <title>Box Shadow Club</title>
           <link rel="shortcut icon" href="/img/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
-          <meta name="description" content="CSS Box Shadow Tool" />
         </Head>
         <GlobalStyles />
         <Component {...pageProps} />

@@ -5,15 +5,15 @@ import { resetServerContext } from 'react-beautiful-dnd'
 import OpenGraph from 'components/OpenGraph'
 
 export type HomeProps = {
-  featured?: AuthoredPreset
+  featured: AuthoredPreset
 }
 
 export default function Home({ featured }: HomeProps) {
   return (
     <>
       <OpenGraph
-        title={'Box Shadow Tool'}
-        description={'CSS Box Shadow Tool'}
+        title={'Box Shadow Club'}
+        description={'Design beautiful box shadow for CSS with this tool'}
       />
       <HomeTemplate featured={featured} />
     </>
