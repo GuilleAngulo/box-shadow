@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { cssVar, lighten, rgba, linearGradient } from 'polished'
+import { cssVar, lighten, rgba, linearGradient, getContrast } from 'polished'
 import { RGBAProps } from 'types'
 import media from 'styled-media-query'
 
@@ -137,6 +137,16 @@ export const LineContent = styled.span`
     color: #ff9ade;
   }
 `
+const RGBAModifiers = (color?: string) => {
+  if (!color) return
+  const contrastRatio = getContrast(color, terminalBg)
+  return (
+    contrastRatio < 3 &&
+    css`
+      box-shadow: 0 0 0.1rem 0.1rem rgba(197, 194, 194, 1);
+    `
+  )
+}
 
 export type Color = {
   color?: string
@@ -158,9 +168,9 @@ export const RGBA = styled.span.attrs<RGBAProps>(
     width: 1rem;
     height: 1rem;
     border-radius: 30%;
-    border: 0.02rem solid white;
     margin-right: 0.3rem;
     background: ${({ color }) => color};
+    ${({ color }) => RGBAModifiers(color)}
   }
 `
 
