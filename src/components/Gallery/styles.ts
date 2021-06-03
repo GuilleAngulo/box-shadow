@@ -6,17 +6,19 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 46rem;
   grid-template-columns: minmax(26rem, 1fr);
-  gap: 4rem;
+  column-gap: 4rem;
   padding: 0 var(--spacings-xlarge);
 
   ${media.greaterThan('medium')`
-      grid-template-columns: repeat(2, minmax(26rem, 1fr));
-      padding: 0 var(--spacings-xlarge);
-    `}
+      grid-template-columns: repeat(2, 1fr);
+  `}
 
   ${media.greaterThan('large')`
-      grid-template-columns: repeat(4, minmax(26rem, 1fr));
-      grid-template-rows: 46rem;
+      grid-template-columns: repeat(3, 1fr);
+  `}
+
+  ${media.greaterThan('huge')`
+      grid-template-columns: repeat(4, 1fr);
     `}
 `
 export const Item = styled.div`

@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
         border-radius: 0.4rem;
       }
       ::-webkit-scrollbar-track {
-        background: ${darken(0.05, theme.background)};
+        background: ${theme.background};
         border-radius: 0.4rem;
       }
     }

@@ -4,6 +4,7 @@ import { RGBAProps } from 'types'
 import media from 'styled-media-query'
 
 const terminalBg = cssVar('--color-terminal-background', '#0c1420') as string
+const primary = cssVar('--color-primary', '#6A8BFF') as string
 
 const gradient = (color: string, direction: string) => css`
   background: ${linearGradient({
@@ -114,7 +115,8 @@ export const LineContent = styled.span`
 
   .token.property {
     display: inline-block;
-    color: #f8a691;
+    color: ${lighten(0.02, primary)};
+    font-weight: 700;
   }
 
   .token.comment {
@@ -124,7 +126,8 @@ export const LineContent = styled.span`
   .token.punctuation,
   .token.color.punctuation,
   .token.unit {
-    color: #c085f2;
+    color: ${lighten(0.1, primary)};
+    /* color: #c085f2; */
   }
 
   .token.number {
@@ -133,8 +136,7 @@ export const LineContent = styled.span`
 
   .token.color.function,
   .token.plain {
-    font-weight: 700;
-    color: #ff9ade;
+    color: #ffafcc;
   }
 `
 const RGBAModifiers = (color?: string) => {

@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 import { opacify } from 'polished'
 
-export const Item = styled.article`
+export const Item = styled.div`
   ${({ theme }) => css`
     display: flex;
     gap: 0.8rem;
@@ -125,6 +125,7 @@ export const Footer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 0.4rem;
 `
 
 export const FeaturedIcon = styled.div`
