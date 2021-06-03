@@ -5,7 +5,7 @@ import media from 'styled-media-query'
 export const Wrapper = styled.section`
   ${({ theme }) => css`
     position: relative;
-    /* max-width: 160rem; */
+    max-width: 200rem;
     margin: auto;
 
     &::before {

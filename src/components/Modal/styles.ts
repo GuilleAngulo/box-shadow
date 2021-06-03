@@ -88,6 +88,18 @@ export const Wrapper = styled.div`
       width: 2rem;
     }
   }
+
+  ${media.lessThan('medium')`
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    height: 100%;
+  `}
+  ${media.lessThan('small')`
+    height: auto;
+  `}
 `
 
 export const CloseButton = styled.div`

@@ -3,7 +3,11 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 import { Item } from 'components/CollectionItem/styles'
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
 
 export const Content = styled.div``
 
@@ -19,7 +23,6 @@ export const Controls = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
 `
 export const Grid = styled.div`
   ${({ theme }) => css`

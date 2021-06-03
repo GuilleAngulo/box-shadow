@@ -1,5 +1,6 @@
 import { darken } from 'polished'
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div``
 
@@ -16,6 +17,9 @@ export const UserImage = styled.img`
 
 export const Username = styled.span`
   padding: 0 var(--spacings-xxsmall);
+  ${media.lessThan('small')`
+      display: none;
+  `}
 `
 
 export const Panel = styled.ul`
