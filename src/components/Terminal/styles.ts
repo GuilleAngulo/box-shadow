@@ -93,6 +93,7 @@ export const Line = styled.div<LineProps>`
   ${({ isDragging }) => css`
     display: flex;
     justify-content: flex-start;
+    padding-left: 0.2rem;
     background: var(--color-terminal-background);
     border-radius: 0.2rem;
 
@@ -104,7 +105,7 @@ export const DroppableBlock = styled.div``
 
 export const LineContent = styled.span`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-family: var(--font-family-code);
   font-size: var(--font-size-small);
   font-weight: 500;

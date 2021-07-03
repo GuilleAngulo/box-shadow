@@ -68,7 +68,7 @@ export const stringifyTerminal = (
         }, ${color.green}, ${color.blue}, ${color.alpha})`
 
         if (!visible) {
-          line = `/*${line}*/ `
+          line = `/*${line}*/`
         }
 
         return line
