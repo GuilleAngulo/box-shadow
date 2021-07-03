@@ -45,7 +45,7 @@ const SaveDialog = ({ isOpen, setIsOpen, onSave }: SaveDialogProps) => {
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Save your design">
-      <form onSubmit={handleSubmit}>
+      <S.Form onSubmit={handleSubmit}>
         <S.Content>
           <S.Info>
             Give a name to your <b>awesome</b> creation:
@@ -73,7 +73,7 @@ const SaveDialog = ({ isOpen, setIsOpen, onSave }: SaveDialogProps) => {
             Confirm
           </Button>
         </S.Controls>
-      </form>
+      </S.Form>
     </Modal>
   )
 }

@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div``
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`
 
 export const Content = styled.div`
   margin-bottom: var(--spacings-large);
