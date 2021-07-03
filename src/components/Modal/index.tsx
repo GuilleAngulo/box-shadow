@@ -32,16 +32,18 @@ const Modal = ({ isOpen, setIsOpen, title, children }: ModalProps) => {
         .removeEventListener('keydown', handleKeyDown as EventListener, true)
   })
 
-  function handleKeyDown(event: KeyboardEvent) {
-    // if (event.defaultPrevented) {
-    //   return // Do nothing if the event was already processed
-    // }
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset'
 
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       setIsOpen(false)
     }
-    // Avoid it being handled twice
-    //event.preventDefault()
   }
 
   return (
