@@ -13,10 +13,13 @@ export default function useTimeAgo(timestamp: number, refresh?: number) {
     setTime(getUnitAndValueDate(timestamp))
   }, [timestamp, refresh])
 
-  const rtf = new Intl.RelativeTimeFormat('en-US')
+  // Fallback for not supporting browsers
+  const rtf =
+    (Intl && Intl.RelativeTimeFormat && new Intl.RelativeTimeFormat('en-US')) ||
+    false
 
   const { unit, value } = time
-  return rtf.format(value, unit as UsedUnits)
+  return rtf ? rtf.format(value, unit as UsedUnits) : null
 }
 
 export type UsedUnits = Extract<

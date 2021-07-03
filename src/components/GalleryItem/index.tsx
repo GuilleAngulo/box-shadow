@@ -32,8 +32,12 @@ const GalleryItem = ({
   theme,
   user_id
 }: GalleryItemProps) => {
-  const timestamp = new Date(inserted_at).getTime()
+  const date = new Date(inserted_at)
+  const timestamp = date.getTime()
   const timeAgo = useTimeAgo(timestamp)
+  const dateFallback = `${date.getDay()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`
 
   return (
     <S.Item key={id}>
@@ -70,13 +74,18 @@ const GalleryItem = ({
         )}
         <S.Date
           dateTime={inserted_at}
-          title={new Intl.DateTimeFormat('en-GB', {
-            year: 'numeric',
-            month: 'short',
-            day: '2-digit'
-          }).format(new Date(inserted_at))}
+          title={
+            (Intl &&
+              Intl.DateTimeFormat &&
+              new Intl.DateTimeFormat('en-GB', {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit'
+              }).format(new Date(inserted_at))) ||
+            dateFallback
+          }
         >
-          {timeAgo}
+          {timeAgo ?? dateFallback}
         </S.Date>
         <S.Footer>
           <LikeButton id={id} likesCount={likes || 0} />
