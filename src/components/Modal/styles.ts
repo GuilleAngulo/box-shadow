@@ -56,6 +56,7 @@ export const Modal = styled.div<ModalProps>`
     will-change: transform;
     top: 50%;
     left: 50%;
+    max-height: 100vh;
     transform: translate(-50%, -50%);
 
     border-radius: 1.2rem;
@@ -77,6 +78,7 @@ export const Modal = styled.div<ModalProps>`
 `
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   align-content: center;
   flex-direction: column;
@@ -94,11 +96,7 @@ export const Wrapper = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    overflow: auto;
-    height: 100%;
-  `}
-  ${media.lessThan('small')`
-    height: auto;
+    height: 100vh;
   `}
 `
 
@@ -129,4 +127,21 @@ export const Title = styled.h3`
   margin-bottom: var(--spacings-medium);
 `
 
-export const Content = styled.div``
+export const Content = styled.div`
+  ${({ theme }) => css`
+    height: 100%;
+    overflow: auto;
+    padding: var(--spacings-xxsmall);
+
+    ::-webkit-scrollbar {
+      width: 0.8rem;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${theme.accent};
+      border-radius: 0.4rem;
+    }
+    ::-webkit-scrollbar-track {
+      background: ${theme.card};
+    }
+  `}
+`

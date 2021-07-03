@@ -71,44 +71,46 @@ const CollectionDialog = (
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Your collection">
-      <S.Content>
-        {/* <S.Info>Load / Delete one of your designs:</S.Info> */}
-        <S.Grid>
-          {loading ? (
-            [...new Array(6)].map((_, i) => (
-              <S.SkeletonItem key={i}>
-                <S.SkeletonTitle />
-                <S.SkeletonImage />
-                <S.SkeletonControls>
-                  <S.SkeletonButton />
-                  <S.SkeletonButton />
-                </S.SkeletonControls>
-              </S.SkeletonItem>
-            ))
-          ) : boxShadowsList?.length ? (
-            boxShadowsList?.map((boxShadow) => {
-              return (
-                <CollectionItem
-                  key={boxShadow.id}
-                  boxShadow={boxShadow}
-                  isModalOpen={isOpen}
-                  closeModal={() => setIsOpen(false)}
-                  refresh={loadBoxShadowList}
-                />
-              )
-            })
-          ) : (
-            <h1 style={{ gridColumnStart: 1, gridColumnEnd: 3 }}>
-              Your collection is empty
-            </h1>
-          )}
-        </S.Grid>
-      </S.Content>
-      <S.Controls>
-        <Button variant onClick={handleClick} aria-label="close">
-          Cancel
-        </Button>
-      </S.Controls>
+      <S.Wrapper>
+        <S.Content>
+          {/* <S.Info>Load / Delete one of your designs:</S.Info> */}
+          <S.Grid>
+            {loading ? (
+              [...new Array(6)].map((_, i) => (
+                <S.SkeletonItem key={i}>
+                  <S.SkeletonTitle />
+                  <S.SkeletonImage />
+                  <S.SkeletonControls>
+                    <S.SkeletonButton />
+                    <S.SkeletonButton />
+                  </S.SkeletonControls>
+                </S.SkeletonItem>
+              ))
+            ) : boxShadowsList?.length ? (
+              boxShadowsList?.map((boxShadow) => {
+                return (
+                  <CollectionItem
+                    key={boxShadow.id}
+                    boxShadow={boxShadow}
+                    isModalOpen={isOpen}
+                    closeModal={() => setIsOpen(false)}
+                    refresh={loadBoxShadowList}
+                  />
+                )
+              })
+            ) : (
+              <h1 style={{ gridColumnStart: 1, gridColumnEnd: 3 }}>
+                Your collection is empty
+              </h1>
+            )}
+          </S.Grid>
+        </S.Content>
+        <S.Controls>
+          <Button variant onClick={handleClick} aria-label="close">
+            Cancel
+          </Button>
+        </S.Controls>
+      </S.Wrapper>
     </Modal>
   )
 }
