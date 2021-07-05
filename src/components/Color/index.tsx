@@ -2,10 +2,8 @@ import InputColor from 'components/InputColor'
 import InputRange from 'components/InputRange'
 import { OPACITY_RANGES } from 'utils/shadow'
 
-import { useBoxShadow } from 'hooks/use-box-shadow'
-
-import * as S from './styles'
 import { RGBAProps } from 'types'
+import * as S from './styles'
 
 export type ColorProps = {
   index?: number
@@ -18,7 +16,6 @@ export type ColorProps = {
 }
 
 const Color = ({
-  index = 0,
   label,
   icon,
   initialColor,
@@ -26,16 +23,6 @@ const Color = ({
   handleOpacity,
   handleColor
 }: ColorProps) => {
-  const { boxShadow = [], setBoxShadowProperty } = useBoxShadow()
-
-  // const handleColor = (value: string) => {
-  //   return setBoxShadowProperty(index, 'color', value)
-  // }
-
-  // const handleOpacity = (value: number) => {
-  //   return setBoxShadowProperty(index, 'opacity', value)
-  // }
-
   return (
     <S.Wrapper>
       {!!label && (
@@ -47,9 +34,7 @@ const Color = ({
       <S.InputWrapper>
         <InputColor
           name="color"
-          // initialValue={boxShadow[index]?.color || initialColor}
           initialValue={initialColor}
-          // onInput={handleColor}
           onInput={(property: string, value: string) => {
             handleColor(property, value)
           }}
@@ -58,11 +43,7 @@ const Color = ({
           name="opacity"
           min={OPACITY_RANGES[0]}
           max={OPACITY_RANGES[1]}
-          // initialValue={
-          //   Math.round(boxShadow[index]?.color?.alpha * 100) || initialOpacity
-          // }
           initialValue={initialOpacity}
-          // onInput={handleOpacity}
           onInput={(property: string, value: number) => {
             handleOpacity(property, value)
           }}

@@ -17,6 +17,7 @@ export type TerminalProps = {
   initialBoxShadow?: ShadowProps[]
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Terminal = ({ initialBoxShadow }: TerminalProps) => {
   const [copied, setCopied] = useState(false)
   const { boxShadow = [], reorderBoxShadow } = useBoxShadow()

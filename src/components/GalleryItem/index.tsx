@@ -48,7 +48,7 @@ const GalleryItem = ({
             <Medal />
           </S.FeaturedIcon>
         )}
-        <Link href={`/${slug}`}>
+        <Link href={`/${slug}`} passHref>
           <S.Link>
             <GalleryShadow
               aria-label={`Design name: ${title}`}
