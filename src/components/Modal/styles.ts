@@ -131,7 +131,7 @@ export const Content = styled.div`
   ${({ theme }) => css`
     height: 100%;
     overflow: auto;
-    padding: var(--spacings-xxsmall);
+    padding: var(--spacings-xxsmall) var(--spacings-xsmall);
 
     ::-webkit-scrollbar {
       width: 0.8rem;
