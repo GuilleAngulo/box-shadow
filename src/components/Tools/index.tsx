@@ -27,6 +27,7 @@ const Tools = () => {
   useEffect(() => {
     scrollToBottom()
     setScroll(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scroll])
 
   return (

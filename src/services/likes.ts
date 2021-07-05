@@ -40,7 +40,8 @@ export async function getLikesCount(boxShadowId: number) {
 
     return { data: count, error }
   } catch (err) {
-    const message = 'Failed to retrieve the likes count: ' + err.message
+    const message =
+      'Failed to retrieve the likes count: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }

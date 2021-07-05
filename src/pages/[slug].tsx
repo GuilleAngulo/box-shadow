@@ -55,6 +55,7 @@ export default function BoxShadow({ initialPreset }: BoxShadowProps) {
 export async function getStaticProps({
   params
 }: GetStaticPropsContext<{ slug: string }>) {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { data: initialPreset } = await getBoxShadowBySlug(params!.slug)
 
   resetServerContext()

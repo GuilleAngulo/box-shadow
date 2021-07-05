@@ -1,5 +1,4 @@
 import { useState, forwardRef, useImperativeHandle, Ref } from 'react'
-import { ChevronUp, ChevronDown } from '@styled-icons/boxicons-regular'
 
 import * as S from './styles'
 

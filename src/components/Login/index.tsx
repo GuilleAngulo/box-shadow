@@ -1,4 +1,4 @@
-import { useRef, ElementRef, useState, useEffect } from 'react'
+import { useRef, ElementRef, useState } from 'react'
 
 import { useBoxShadow } from 'hooks/use-box-shadow'
 import { useTheme } from 'hooks/use-theme'

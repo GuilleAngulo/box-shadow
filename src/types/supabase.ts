@@ -316,6 +316,7 @@ export interface paths {
     post: {
       parameters: {
         body: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           args: { [key: string]: any }
         }
         header: {
@@ -333,6 +334,7 @@ export interface paths {
     post: {
       parameters: {
         body: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           args: { [key: string]: any }
         }
         header: {

@@ -1,5 +1,4 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Email } from '@styled-icons/material-outlined'
 import NumberField, { NumberFieldProps } from '.'
 
 export default {
