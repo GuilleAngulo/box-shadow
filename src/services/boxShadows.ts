@@ -18,7 +18,7 @@ export async function saveBoxShadow(
 
     return
   } catch (error) {
-    throw new Error(error.message)
+    throw new Error((error as Error).message)
   }
 }
 
@@ -53,7 +53,7 @@ export async function getPresetByBoxShadow(boxShadowId: number) {
       error: likesError
     }
   } catch (err) {
-    const message = 'Failed to retrieve preset by id: ' + err.message
+    const message = 'Failed to retrieve preset by id: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -81,7 +81,8 @@ export async function getFeaturedBoxShadow() {
 
     return { data: boxShadow, error }
   } catch (err) {
-    const message = 'Failed to retrieve featured box shadow: ' + err.message
+    const message =
+      'Failed to retrieve featured box shadow: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -97,7 +98,7 @@ export async function createBoxShadow(
 
     return { data, error }
   } catch (err) {
-    const message = 'Failed to create the box shadow: ' + err.message
+    const message = 'Failed to create the box shadow: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -111,7 +112,7 @@ export async function deleteBoxShadow(boxShadowId: number) {
 
     return { data, error }
   } catch (err) {
-    const message = 'Failed to delete the box shadow: ' + err.message
+    const message = 'Failed to delete the box shadow: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -152,7 +153,8 @@ export async function getBoxShadow(boxShadowId?: number) {
 
     return { data, error }
   } catch (err) {
-    const message = 'Failed to retrieve the box shadow: ' + err.message
+    const message =
+      'Failed to retrieve the box shadow: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -190,7 +192,8 @@ export async function getBoxShadowBySlug(slug: string) {
 
     return { data: boxShadow, error }
   } catch (err) {
-    const message = 'Failed to retrieve the box shadow by slug: ' + err.message
+    const message =
+      'Failed to retrieve the box shadow by slug: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -210,7 +213,8 @@ export async function getAllBoxShadows() {
 
     return { data, error }
   } catch (err) {
-    const message = 'Failed to retrieve all box shadows: ' + err.message
+    const message =
+      'Failed to retrieve all box shadows: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -229,7 +233,8 @@ export async function getAllBoxShadowsByUser(user_id: string) {
 
     return { data, error }
   } catch (err) {
-    const message = 'Failed to retrieve box shadows from user: ' + err.message
+    const message =
+      'Failed to retrieve box shadows from user: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -242,7 +247,8 @@ export async function getBoxShadowOrderByLikes() {
 
     return { data, error }
   } catch (err) {
-    const message = "RPC 'get_most_popular_box_shadow()' failed: " + err.message
+    const message =
+      "RPC 'get_most_popular_box_shadow()' failed: " + (err as Error).message
     return { data: null, error: { message } }
   }
 }
@@ -256,7 +262,8 @@ export async function getSlugs(limit: number) {
 
     return { data, error }
   } catch (err) {
-    const message = 'Failed to retrieve box shadows slugs: ' + err.message
+    const message =
+      'Failed to retrieve box shadows slugs: ' + (err as Error).message
     return { data: null, error: { message } }
   }
 }

@@ -60,6 +60,6 @@ export async function signInUser({ id, name, avatar_url }: User) {
       throw error || new Error('Error while creating the user.')
     }
   } catch (error) {
-    console.error(error.message)
+    console.error((error as Error).message)
   }
 }
