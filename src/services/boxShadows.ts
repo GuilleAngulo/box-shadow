@@ -210,6 +210,7 @@ export async function getAllBoxShadows() {
             )
           `
       )
+      .order('inserted_at', { ascending: false })
 
     return { data, error }
   } catch (err) {
