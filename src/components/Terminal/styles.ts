@@ -53,7 +53,8 @@ export const Pre = styled.pre`
   ${({ theme }) => css`
     text-align: left;
     width: 100%;
-    max-height: 25rem;
+    /* max-height: 25rem; */
+    max-height: 22rem;
     min-height: 7rem;
     overflow-y: auto;
     border-radius: var(--border-radius);
