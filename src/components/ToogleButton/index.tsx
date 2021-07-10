@@ -1,5 +1,7 @@
 import { InputHTMLAttributes } from 'react'
 
+import { Sun, Moon } from '@styled-icons/boxicons-solid'
+
 import * as S from './styles'
 
 export type ToogleButtonProps = {
@@ -17,8 +19,13 @@ const ToogleButton = ({ onCheck, isChecked = false }: ToogleButtonProps) => {
   }
 
   return (
-    <S.Wrapper onClick={handleClick} tabIndex={1}>
+    <S.Wrapper
+      onClick={handleClick}
+      tabIndex={1}
+      aria-label={`Turn on ${isChecked ? 'light' : 'dark'} theme`}
+    >
       <S.Thumb isChecked={isChecked}>
+        {isChecked ? <Sun size={16} /> : <Moon size={16} />}
         <S.Checkbox type="checkbox" role="switch" aria-checked={isChecked} />
       </S.Thumb>
     </S.Wrapper>
