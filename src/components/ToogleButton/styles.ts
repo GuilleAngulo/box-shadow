@@ -46,10 +46,13 @@ export const Thumb = styled.div<ThumbProps>`
     height: 2.5rem;
     transform: scale(0.9);
     border-radius: 50%;
-    background: ${theme.background};
+    background: ${theme.card};
     box-shadow: 0 0.02rem 0.07rem rgba(0, 0, 0, 0.5),
       inset 0 0.08rem 0.08rem rgba(255, 255, 255, 0.5),
       inset 0 -0.08rem 0.08rem rgba(0, 0, 0, 0.5);
+
+    color: ${isChecked ? 'white' : 'black'};
+
     transition: all 0.2s ease-in;
 
     ${isChecked && thumbModifiers.isChecked()};

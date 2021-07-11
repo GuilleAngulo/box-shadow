@@ -25,7 +25,7 @@ const ToogleButton = ({ onCheck, isChecked = false }: ToogleButtonProps) => {
       aria-label={`Turn on ${isChecked ? 'light' : 'dark'} theme`}
     >
       <S.Thumb isChecked={isChecked}>
-        {isChecked ? <Sun size={16} /> : <Moon size={16} />}
+        {isChecked ? <Sun size={18} /> : <Moon size={18} />}
         <S.Checkbox type="checkbox" role="switch" aria-checked={isChecked} />
       </S.Thumb>
     </S.Wrapper>
