@@ -14,7 +14,7 @@ A playground for creating and testing CSS `box-shadow` designs. Start from scrat
 - **🤏 Drag and drop code**. It is possible to drag and drop the lines on the terminal to change shadow's positioning. Try it!
 - **🎴 Social Cards**. When saving a new design, it will be automatically added to the gallery gaining a customized open graph image. (On Twitter sometimes needs to be validated first [here](https://cards-dev.twitter.com/validator))
 <div align="center">
-    <img src="https://res.cloudinary.com/guillermoangulo/image/upload/v1625946870/box-shadow/dh5jlckldkpvoa9izbf3.png" alt="Box Shadow Social Card" width="80px" />
+    <img src="https://res.cloudinary.com/guillermoangulo/image/upload/v1625946870/box-shadow/dh5jlckldkpvoa9izbf3.png" alt="Box Shadow Social Card" width="200px" />
  </div>
 
 💡 *Tip*: In case you need to fill the element with a color, just add a new shadow with `Inset` *marked* and `Color Opacity`, `Blur Radius` and `Spread Radius` set to *maximum*.  
