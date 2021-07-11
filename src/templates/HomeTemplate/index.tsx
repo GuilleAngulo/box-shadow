@@ -7,6 +7,7 @@ import TopTools from 'components/TopTools'
 import ShapeTool from 'components/ShapeTool'
 import { AuthoredPreset } from 'types'
 import { BoxShadowProvider } from 'hooks/use-box-shadow'
+import Footer from 'components/Footer'
 
 export type HomeTemplateProps = {
   featured?: AuthoredPreset
@@ -20,11 +21,12 @@ const HomeTemplate = ({ featured, initialPreset }: HomeTemplateProps) => {
         <TopTools featured={featured} withPresets={!initialPreset} />
         <S.Panel>
           <S.Display>
-            <Shadow />
-            <div>
+            <S.Flex>
+              <Shadow />
               <ShapeTool />
               <Terminal />
-            </div>
+            </S.Flex>
+            <Footer />
           </S.Display>
           <Tools />
         </S.Panel>

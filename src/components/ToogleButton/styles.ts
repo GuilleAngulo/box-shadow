@@ -34,10 +34,11 @@ const thumbModifiers = {
   `
 }
 
-const primary = cssVar('--color-primary', '#6A8BFF') as string
-
 export const Thumb = styled.div<ThumbProps>`
-  ${({ isChecked }) => css`
+  ${({ isChecked, theme }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 0;
     left: 0;
@@ -45,14 +46,13 @@ export const Thumb = styled.div<ThumbProps>`
     height: 2.5rem;
     transform: scale(0.9);
     border-radius: 50%;
-    background: linear-gradient(
-      to bottom,
-      ${lighten(0.1, primary)},
-      ${darken(0.2, primary)}
-    );
+    background: ${theme.card};
     box-shadow: 0 0.02rem 0.07rem rgba(0, 0, 0, 0.5),
       inset 0 0.08rem 0.08rem rgba(255, 255, 255, 0.5),
       inset 0 -0.08rem 0.08rem rgba(0, 0, 0, 0.5);
+
+    color: ${isChecked ? 'white' : 'black'};
+
     transition: all 0.2s ease-in;
 
     ${isChecked && thumbModifiers.isChecked()};

@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2.2rem;
+  margin-top: 7rem;
 `
 
 export type ButtonProps = {

@@ -61,13 +61,19 @@ export const Panel = styled.div`
 export const Display = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8rem;
   padding-top: 12rem;
-  padding-bottom: 2.4rem;
+  justify-content: space-between;
 
   @media (min-width: 840px) {
     padding-bottom: 0;
     padding-left: 2rem;
     padding-right: 2rem;
   }
+`
+
+export const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
