@@ -18,7 +18,7 @@ const Footer = () => (
       |
       <p>
         ⛏️ Built by{' '}
-        <Link href="https://guilleangulo.me">
+        <Link href="https://github.com/GuilleAngulo">
           <a target="_blank" rel="noreferrer">
             Guillermo Angulo
           </a>

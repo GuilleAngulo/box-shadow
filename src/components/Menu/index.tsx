@@ -9,12 +9,12 @@ import { AuthoredPreset } from 'types'
 import * as S from './styles'
 import { useRouter } from 'next/router'
 
-export type TopToolsProps = {
+export type MenuProps = {
   withPresets?: boolean
   featured?: AuthoredPreset
 }
 
-const TopTools = ({ withPresets = false, featured }: TopToolsProps) => {
+const Menu = ({ withPresets = false, featured }: MenuProps) => {
   const { theme, toggleTheme } = useTheme()
   const { asPath } = useRouter()
 
@@ -41,4 +41,4 @@ const TopTools = ({ withPresets = false, featured }: TopToolsProps) => {
     </S.Wrapper>
   )
 }
-export default TopTools
+export default Menu

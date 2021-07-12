@@ -1,4 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components'
+import media from 'styled-media-query'
 import { cssVar, darken } from 'polished'
 import { Warning } from '@styled-icons/material-outlined'
 
@@ -38,6 +39,12 @@ const wrapperModifiers = {
         margin-left: var(--spacings-xxsmall);
       }
     }
+
+    ${media.lessThan('small')`
+      svg {
+        display:none;
+      }
+    `}
   `,
   minimal: (theme: DefaultTheme) => css`
     background: none;
@@ -93,6 +100,7 @@ export const Wrapper = styled.button<WrapperProps>`
     text-decoration: none;
     transition: background var(--transition-fast);
     font-weight: ${isActive ? 'var(--font-bold)' : 'var(--font-normal)'};
+    white-space: nowrap;
 
     &:hover {
       background: ${minimal

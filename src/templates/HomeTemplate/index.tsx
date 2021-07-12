@@ -3,7 +3,7 @@ import Shadow from 'components/Shadow'
 import Tools from 'components/Tools'
 
 import * as S from './styles'
-import TopTools from 'components/TopTools'
+import Menu from 'components/Menu'
 import ShapeTool from 'components/ShapeTool'
 import { AuthoredPreset } from 'types'
 import { BoxShadowProvider } from 'hooks/use-box-shadow'
@@ -18,7 +18,7 @@ const HomeTemplate = ({ featured, initialPreset }: HomeTemplateProps) => {
   return (
     <S.Wrapper>
       <BoxShadowProvider initialPreset={initialPreset}>
-        <TopTools featured={featured} withPresets={!initialPreset} />
+        <Menu featured={featured} withPresets={!initialPreset} />
         <S.Panel>
           <S.Display>
             <S.Flex>

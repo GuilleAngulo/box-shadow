@@ -8,7 +8,6 @@ export const Title = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    padding-right: 2.4rem;
     z-index: 30;
   `}
 `
