@@ -41,6 +41,7 @@ const InputRange = ({
   }
 
   const handleInputChange = (property: string, value: number) => {
+    setValue(value)
     !!onInput && onInput(property, value)
   }
 
