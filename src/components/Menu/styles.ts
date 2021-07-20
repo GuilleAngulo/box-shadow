@@ -11,6 +11,7 @@ export const Wrapper = styled.header`
   padding: var(--spacings-xsmall) 0;
 
   ${media.greaterThan('small')`
+    width: fit-content;
     justify-content: flex-start;
     padding: var(--spacings-xsmall);
     z-index: 10;
